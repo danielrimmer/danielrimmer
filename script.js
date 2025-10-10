@@ -61,8 +61,9 @@
 // Scroll spy to highlight current section
 (function () {
   const sections = Array.from(document.querySelectorAll('main section[id]'));
+  // Only desktop header links (exclude mobile overlay)
   const links = new Map(
-    Array.from(document.querySelectorAll('.nav-links a[href^="#"]')).map((a) => [a.getAttribute('href'), a])
+    Array.from(document.querySelectorAll('.nav .nav-links a[href^="#"]')).map((a) => [a.getAttribute('href'), a])
   );
 
   const onScroll = () => {
@@ -113,12 +114,29 @@
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', onReady);
   else onReady();
 
+  let lastY = window.scrollY;
   const onScroll = () => {
     if (!header) return;
-    if (window.scrollY > 8) header.classList.add('scrolled');
+    const y = window.scrollY;
+    const navOpen = document.documentElement.classList.contains('nav-open');
+
+    // Keep transparent style
+    if (y > 8) header.classList.add('scrolled');
     else header.classList.remove('scrolled');
+
+    // Hide on scroll down, show on scroll up or near top
+    if (!navOpen) {
+      const goingDown = y > lastY;
+      if (goingDown && y > 50) header.classList.add('hide');
+      else header.classList.remove('hide');
+    } else {
+      // Ensure visible when mobile menu open
+      header.classList.remove('hide');
+    }
+    lastY = y;
   };
   window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll);
   onScroll();
 })();
 

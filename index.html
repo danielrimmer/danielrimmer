@@ -19,22 +19,45 @@
   <body>
     <header class="site-header" id="home">
       <div class="container nav">
+        <!-- Left side: Home, About, Projects -->
+        <nav class="nav-links nav-left" aria-label="Primary left">
+          <a href="#home" class="active">Home</a>
+          <a href="#about">About</a>
+          <a href="#projects">Projects</a>
+        </nav>
+
+        <!-- Centered logo (40% bigger handled via CSS) -->
         <a href="#home" class="logo" aria-label="Go to top">
           <img class="logo-img" src="Images/logo-initials.svg?v=1" alt="דניאל רימר" />
         </a>
 
+        <!-- Right side: Services, Contact, Language -->
+        <div class="right-side">
+          <nav class="nav-links nav-right" aria-label="Primary right">
+            <a href="#services">Services</a>
+            <a href="#contact">Contact</a>
+          </nav>
+          <div class="lang-group" role="group" aria-label="Language">
+            <a class="btn btn-ghost lang-switch lang-en" href="index.html" aria-label="Switch to English">EN</a>
+            <a class="btn btn-ghost lang-switch lang-he" href="he.html" aria-label="Switch to Hebrew">HE</a>
+          </div>
+        </div>
+
+        <!-- Mobile toggle -->
         <button class="nav-toggle" aria-expanded="false" aria-label="Toggle navigation">
           <span></span><span></span><span></span>
         </button>
+      </div>
 
-        <nav class="nav-links" aria-label="Primary">
-          <a href="#home" class="active">Home</a>
+      <!-- Mobile overlay menu -->
+      <div class="mobile-menu" aria-label="Mobile navigation">
+        <nav class="nav-links">
+          <a href="#home">Home</a>
           <a href="#about">About</a>
           <a href="#projects">Projects</a>
           <a href="#services">Services</a>
           <a href="#contact">Contact</a>
         </nav>
-
         <div class="lang-group" role="group" aria-label="Language">
           <a class="btn btn-ghost lang-switch lang-en" href="index.html" aria-label="Switch to English">EN</a>
           <a class="btn btn-ghost lang-switch lang-he" href="he.html" aria-label="Switch to Hebrew">HE</a>

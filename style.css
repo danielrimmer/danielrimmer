@@ -100,23 +100,34 @@ html[lang="en"] .lang-en, html[lang="he"] .lang-he { background: rgba(255,255,25
   background: transparent;
   border-bottom: none;
   box-shadow: none;
-  transition: background .35s ease, border-color .35s ease, box-shadow .35s ease, backdrop-filter .35s ease;
+  transition: transform .3s ease, opacity .3s ease;
 }
-.site-header.scrolled {
-  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-  background: linear-gradient(180deg, rgba(11,12,16,.7), rgba(11,12,16,.3));
-  border-bottom: 1px solid var(--border);
-  box-shadow: 0 2px 24px rgba(0,0,0,.4), 0 0 0 1px rgba(255,255,255,.04), inset 0 -1px 0 rgba(255,255,255,.02);
-}
-.nav { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 0; }
+/* Keep fully transparent even when scrolled */
+.site-header.scrolled { background: transparent; border-bottom: none; box-shadow: none; backdrop-filter: none; }
+/* Hide on scroll down */
+.site-header.hide { transform: translateY(-100%); opacity: 0; }
+
+/* Header layout: center logo, split nav */
+.nav { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 12px; padding: 14px 0; }
 .logo { display: inline-flex; align-items: center; gap: 10px; font-weight: 700; letter-spacing: .3px; }
 .logo .mark { color: var(--acc-cyan); filter: drop-shadow(0 0 10px rgba(0,224,255,.6)); }
 /* Logo image in header */
-.logo .logo-img { height: 28px; width: auto; display: block; filter: none; }
+.logo .logo-img { height: 42px; width: auto; display: block; filter: none; }
+/* Ensure desktop header logo scales as requested */
+.site-header .logo .logo-img { height: 70px !important; max-height: 80px; }
+/* Center logo in grid */
+.nav .logo { justify-self: center; }
+
+/* Left and right groups */
+.nav-left { justify-self: start; }
+.right-side { justify-self: end; display: inline-flex; align-items: center; gap: 16px; }
 
 .nav-links { display: flex; gap: 20px; align-items: center; }
 .nav-links a { opacity: .85; padding: 8px 12px; border-radius: 10px; transition: all .3s ease; }
 .nav-links a:hover, .nav-links a.active { opacity: 1; background: rgba(255,255,255,.06); }
+
+/* Hide mobile overlay by default on desktop */
+.mobile-menu { display: none; }
 
 .theme-toggle { margin-left: 6px; width: 44px; height: 40px; border-radius: 12px; border: 1px solid var(--border); background: transparent; color: var(--text); display: grid; place-items: center; position: relative; cursor: pointer; }
 .theme-toggle .sun, .theme-toggle .moon { position: absolute; transition: all .35s ease; }
@@ -257,15 +268,17 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
   .services-grid { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 720px) {
-  .nav { display: flex; align-items: center; }
-  .nav .logo { order: 1; }
-  .nav .lang-group { order: 2; margin-left: auto; margin-right: 8px; }
-  .nav .nav-toggle { display: inline-block; order: 3; }
-  [dir="rtl"] .nav { flex-direction: row; }
+  /* Grid rearrangement for mobile */
+  .nav { grid-template-columns: auto 1fr auto; }
+  .nav .logo { order: 2; justify-self: center; }
+  .nav .nav-toggle { display: inline-block; order: 3; justify-self: end; }
+  .nav .right-side, .nav .nav-left { display: none; }
 
-  .nav-links { position: absolute; inset: auto 0 0 0; top: 58px; display: grid; gap: 8px; background: #000; color: #fff; padding: 12px; transform: translateY(-10px); opacity: 0; pointer-events: none; border-top: 1px solid rgba(255,255,255,0.08); z-index: 60; }
-  .nav-links a { color: #ffffff; }
-  .nav-open .nav-links { transform: translateY(0); opacity: 1; pointer-events: auto; }
+  /* Mobile overlay menu */
+  .mobile-menu { position: absolute; inset: auto 0 0 0; top: 100%; display: grid; gap: 8px; background: #000; color: #fff; padding: 12px; transform: translateY(-10px); opacity: 0; pointer-events: none; border-top: 1px solid rgba(255,255,255,0.08); z-index: 60; }
+  .mobile-menu a { color: #ffffff; }
+  .nav-open .mobile-menu { transform: translateY(0); opacity: 1; pointer-events: auto; }
+
   .projects-grid { grid-template-columns: 1fr; }
   .services-grid { grid-template-columns: 1fr; }
   .section { padding: 72px 0; }

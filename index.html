@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Daniel Rimmer — Web Designer & Front‑End Developer</title>
+    <meta
+      name="description"
+      content="Portfolio of Daniel Rimmer — Web Designer & Front‑End Developer crafting modern, elegant, and high‑performing websites."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="site-header" id="home">
+      <div class="container nav">
+        <a href="#home" class="logo" aria-label="Go to top">
+          <img class="logo-img" src="Images/logo-initials.svg?v=1" alt="דניאל רימר" />
+        </a>
+
+        <button class="nav-toggle" aria-expanded="false" aria-label="Toggle navigation">
+          <span></span><span></span><span></span>
+        </button>
+
+        <nav class="nav-links" aria-label="Primary">
+          <a href="#home" class="active">Home</a>
+          <a href="#about">About</a>
+          <a href="#projects">Projects</a>
+          <a href="#services">Services</a>
+          <a href="#contact">Contact</a>
+        </nav>
+
+        <div class="lang-group" role="group" aria-label="Language">
+          <a class="btn btn-ghost lang-switch lang-en" href="index.html" aria-label="Switch to English">EN</a>
+          <a class="btn btn-ghost lang-switch lang-he" href="he.html" aria-label="Switch to Hebrew">HE</a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <!-- Hero -->
+      <section class="hero section reveal" id="hero">
+        <div class="hero-media" aria-hidden="true">
+          <video class="bg-video v1 active" autoplay muted loop playsinline preload="metadata" src="Images/mecoding720.mp4"></video>
+        </div>
+        <div class="container hero-inner">
+          <div class="hero-copy">
+            <h1 class="h1 animate-title">
+              Designing and Developing Digital Experiences That Sell.
+            </h1>
+            <p class="sub">
+              I design, build, and write for the web. As a web designer, front-end developer, and copywriter, I turn your ideas into powerful online experiences that sell.
+            </p>
+            <div class="hero-cta">
+              <a class="btn btn-primary scrollto" href="#projects">View My Work</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- About -->
+      <section class="about section reveal" id="about">
+        <div class="about-bg" aria-hidden="true"></div>
+        <div class="container about-inner glass">
+          <div class="about-copy">
+            <h2 class="h2">Who I Am</h2>
+            <p>
+              I’m a self-taught web developer and designer who brings together technology, creativity, and business strategy to build meaningful digital experiences. My journey into web development started from curiosity — and grew into a passion for creating websites that don’t just look great, but actually help businesses grow.
+            </p>
+            <p>
+              With a background in business management, and years of experience in B2B and B2C sales, I understand what drives people to act and what makes brands stand out. That insight, combined with my skills in copywriting and creative design, allows me to craft websites that connect both visually and emotionally — blending aesthetics with conversion-focused strategy.
+            </p>
+            <p>
+              I see every project as an opportunity to merge art with logic: design with purpose, and technology with storytelling. Whether it’s coding, writing, or conceptualizing a brand identity, I approach each detail with precision, passion, and creativity.
+            </p>
+          </div>
+          <div class="about-visual">
+            <div class="avatar-frame">
+              <img class="avatar-img" src="Images/portrait.png" alt="Portrait of Daniel Rimmer" loading="lazy" decoding="async" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Projects -->
+      <section class="projects section reveal" id="projects">
+        <div class="container">
+          <div class="section-head">
+            <h2 class="h2">Featured Projects</h2>
+            <p class="muted">Selected work — exploration and production.</p>
+          </div>
+
+          <div class="grid projects-grid">
+            <!-- Card 1 -->
+            <article class="card project">
+              <a href="#" class="project-link" aria-label="View project">
+                <figure class="thumb t1"></figure>
+                <div class="project-meta">
+                  <h3 class="h3">Aurora Landing</h3>
+                  <p>Minimal landing page with glass UI and motion.</p>
+                  <div class="actions">
+                    <a class="btn btn-ghost" href="#">View Live</a>
+                    <a class="btn btn-ghost" href="#">View Code</a>
+                  </div>
+                </div>
+              </a>
+            </article>
+
+            <!-- Card 2 -->
+            <article class="card project">
+              <a href="#" class="project-link" aria-label="View project">
+                <figure class="thumb t2"></figure>
+                <div class="project-meta">
+                  <h3 class="h3">Neon Dashboard</h3>
+                  <p>Data dashboard with real‑time charts and dark UI.</p>
+                  <div class="actions">
+                    <a class="btn btn-ghost" href="#">View Live</a>
+                    <a class="btn btn-ghost" href="#">View Code</a>
+                  </div>
+                </div>
+              </a>
+            </article>
+
+            <!-- Card 3 -->
+            <article class="card project">
+              <a href="#" class="project-link" aria-label="View project">
+                <figure class="thumb t3"></figure>
+                <div class="project-meta">
+                  <h3 class="h3">Eclipse Studio</h3>
+                  <p>Brand site with cinematic scroll and parallax.</p>
+                  <div class="actions">
+                    <a class="btn btn-ghost" href="#">View Live</a>
+                    <a class="btn btn-ghost" href="#">View Code</a>
+                  </div>
+                </div>
+              </a>
+            </article>
+
+            <!-- Card 4 -->
+            <article class="card project">
+              <a href="#" class="project-link" aria-label="View project">
+                <figure class="thumb t4"></figure>
+                <div class="project-meta">
+                  <h3 class="h3">Atlas Commerce</h3>
+                  <p>Elegant e‑commerce UX with fast interactions.</p>
+                  <div class="actions">
+                    <a class="btn btn-ghost" href="#">View Live</a>
+                    <a class="btn btn-ghost" href="#">View Code</a>
+                  </div>
+                </div>
+              </a>
+            </article>
+
+            <!-- Card 5 -->
+            <article class="card project">
+              <a href="#" class="project-link" aria-label="View project">
+                <figure class="thumb t5"></figure>
+                <div class="project-meta">
+                  <h3 class="h3">Helix Docs</h3>
+                  <p>Docs portal with search, themes, and MDX.</p>
+                  <div class="actions">
+                    <a class="btn btn-ghost" href="#">View Live</a>
+                    <a class="btn btn-ghost" href="#">View Code</a>
+                  </div>
+                </div>
+              </a>
+            </article>
+
+            <!-- Card 6 -->
+            <article class="card project">
+              <a href="#" class="project-link" aria-label="View project">
+                <figure class="thumb t6"></figure>
+                <div class="project-meta">
+                  <h3 class="h3">Nova Portfolio</h3>
+                  <p>Creative portfolio with grid and hover reveals.</p>
+                  <div class="actions">
+                    <a class="btn btn-ghost" href="#">View Live</a>
+                    <a class="btn btn-ghost" href="#">View Code</a>
+                  </div>
+                </div>
+              </a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Services -->
+      <section class="services section reveal" id="services">
+        <div class="container">
+          <div class="section-head">
+            <h2 class="h2">What I Do</h2>
+            <p class="muted">Strategy, design, and build.</p>
+          </div>
+
+          <div class="grid services-grid">
+            <article class="card service">
+              <div class="icon">
+                <svg viewBox="0 0 64 64" aria-hidden="true">
+                  <defs>
+                    <linearGradient id="ic" x1="0" x2="1">
+                      <stop offset="0%" stop-color="#00e0ff" />
+                      <stop offset="100%" stop-color="#ff3c7e" />
+                    </linearGradient>
+                  </defs>
+                  <rect x="10" y="12" width="44" height="32" rx="4" fill="none" stroke="url(#ic)" stroke-width="2" />
+                  <rect x="18" y="20" width="28" height="16" rx="2" fill="none" stroke="url(#ic)" stroke-width="2" />
+                </svg>
+              </div>
+              <h3 class="h3">Web Design</h3>
+              <p>Modern, accessible UI with a cinematic touch.</p>
+            </article>
+
+            <article class="card service">
+              <div class="icon">
+                <svg viewBox="0 0 64 64" aria-hidden="true">
+                  <circle cx="20" cy="44" r="4" fill="none" stroke="url(#ic)" stroke-width="2" />
+                  <circle cx="44" cy="44" r="4" fill="none" stroke="url(#ic)" stroke-width="2" />
+                  <path d="M12 40h40M20 40V20h16l8 8v12" fill="none" stroke="url(#ic)" stroke-width="2" />
+                </svg>
+              </div>
+              <h3 class="h3">Front‑End Development</h3>
+              <p>Responsive, performant builds with smooth interactions.</p>
+            </article>
+
+            <article class="card service">
+              <div class="icon">
+                <svg viewBox="0 0 64 64" aria-hidden="true">
+                  <path d="M12 44c16-24 24-24 40 0" fill="none" stroke="url(#ic)" stroke-width="2" />
+                  <circle cx="32" cy="28" r="6" fill="none" stroke="url(#ic)" stroke-width="2" />
+                </svg>
+              </div>
+              <h3 class="h3">Responsive Optimization</h3>
+              <p>Core Web Vitals, accessibility, and SEO best practices.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact -->
+      <section class="contact section reveal" id="contact">
+        <div class="container contact-inner glass">
+          <div class="contact-copy">
+            <h2 class="h2">Let’s Build Something</h2>
+            <p class="muted">Tell me about your project and timeline.</p>
+          </div>
+          <form class="contact-form" id="contact-form">
+            <div class="fields">
+              <label>
+                <span class="sr-only">Name</span>
+                <input type="text" name="name" placeholder="Your name" required />
+              </label>
+              <label>
+                <span class="sr-only">Email</span>
+                <input type="email" name="email" placeholder="Your email" required />
+              </label>
+            </div>
+            <label class="full">
+              <span class="sr-only">Message</span>
+              <textarea name="message" rows="6" placeholder="Tell me a bit about your project…" required></textarea>
+            </label>
+            <button class="btn btn-primary" type="submit" id="send-btn">Send Message</button>
+            <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>© 2025 Daniel Rimmer — All Rights Reserved.</p>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+  </html>

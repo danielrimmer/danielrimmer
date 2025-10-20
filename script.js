@@ -392,6 +392,8 @@ const animateStepValue = (el, target, options = {}) => {
     const numberEl = panel?.querySelector('.detail-number');
     const titleEl = panel?.querySelector('.detail-title');
     const textEl = panel?.querySelector('.detail-text');
+    const wallpaperEl = section?.querySelector('.process-bg');
+    const defaultWallpaper = section?.dataset.defaultWallpaper || '';
     if (panel) panel.setAttribute('tabindex', '0');
 
     const mobileQuery = window.matchMedia('(max-width: 720px)');
@@ -399,11 +401,18 @@ const animateStepValue = (el, target, options = {}) => {
 
     let current = null;
 
+    const applyWallpaper = (src) => {
+      if (!wallpaperEl) return;
+      const image = src || defaultWallpaper;
+      wallpaperEl.style.backgroundImage = image ? `url('${image}')` : '';
+    };
+
     const activate = (btn, force = false) => {
       if (!btn) return;
       const detailTitle = btn.dataset.title || btn.textContent.trim();
       const detailText = btn.dataset.detail || '';
       const stepIndex = Number(btn.dataset.step) || 0;
+      applyWallpaper(btn.dataset.wallpaper);
 
       if (isMobile()) {
         current = btn;
@@ -447,6 +456,7 @@ const animateStepValue = (el, target, options = {}) => {
           step.setAttribute('aria-expanded', 'true');
         });
         if (numberEl) numberEl.textContent = formatStepNumber(Number(first.dataset.step) || 1);
+        applyWallpaper(first?.dataset.wallpaper);
       } else {
         const initial = steps.find((step) => step.classList.contains('active')) || steps[0];
         activate(initial, true);
@@ -471,6 +481,11 @@ const animateStepValue = (el, target, options = {}) => {
           const prev = steps[(index - 1 + steps.length) % steps.length];
           prev.focus();
         }
+      });
+      step.addEventListener('mouseleave', () => {
+        if (isMobile()) return;
+        const active = steps.find((s) => s.classList.contains('active')) || current;
+        applyWallpaper(active?.dataset.wallpaper);
       });
     });
 

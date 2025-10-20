@@ -230,14 +230,19 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
   inset: 0;
   background:
     radial-gradient(circle at top left, rgba(0,224,255,.18), transparent 55%),
-    radial-gradient(circle at bottom right, rgba(255,60,126,.14), transparent 50%),
-    url('Images/myprocess.png');
-  background-size: 100% 100%, 100% 100%, cover;
-  background-position: center, center, center;
-  background-repeat: no-repeat;
+    radial-gradient(circle at bottom right, rgba(255,60,126,.16), transparent 50%);
   pointer-events: none;
+  z-index: 1;
 }
-.process-inner { position: relative; z-index: 1; display: grid; gap: 48px; }
+.process-bg {
+  position: absolute;
+  inset: 0;
+  background: center / cover no-repeat url('Images/myprocess.png');
+  filter: saturate(105%);
+  transition: background-image .4s ease, opacity .4s ease;
+  z-index: 0;
+}
+.process-inner { position: relative; z-index: 2; display: grid; gap: 48px; }
 .process-heading { display: grid; gap: 12px; max-width: 680px; }
 .process-tag {
   margin: 0;

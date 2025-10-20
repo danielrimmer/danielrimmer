@@ -438,12 +438,15 @@ const animateStepValue = (el, target, options = {}) => {
 
     const initialize = () => {
       if (isMobile()) {
-        current = null;
+        const first = steps[0];
+        current = first;
         steps.forEach((step) => {
-          step.classList.remove('active');
-          step.setAttribute('aria-selected', 'false');
+          const isActive = step === first;
+          step.classList.toggle('active', isActive);
+          step.setAttribute('aria-selected', String(isActive));
           step.setAttribute('aria-expanded', 'true');
         });
+        if (numberEl) numberEl.textContent = formatStepNumber(Number(first.dataset.step) || 1);
       } else {
         const initial = steps.find((step) => step.classList.contains('active')) || steps[0];
         activate(initial, true);

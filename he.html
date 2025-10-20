@@ -15,6 +15,56 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="style.css?v=hide-projects-1" />
+    <style id="he-header-fix">
+      /* --- Header centering fix (he.html only) --- */
+      .site-header .container.nav {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-top: 16px;
+        padding-bottom: 16px;
+        min-height: 80px;
+      }
+      .site-header .nav-left,
+      .site-header .right-side{
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        white-space: nowrap;
+      }
+      /* Absolutely center the logo regardless of left/right widths */
+      .site-header .logo-center{
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        display: flex;
+        align-items: center;
+        z-index: 2; /* keep above */
+        pointer-events: auto; /* clickable */
+      }
+      .site-header .logo-center .logo{
+        display: inline-flex;
+        align-items: center;
+        text-decoration: none;
+      }
+      .site-header .logo-center .logo-img {
+        height: 44px;
+        width: auto;
+        display: block;
+        margin-top: 2px;
+      }
+      /* Make sure the hamburger doesn't collide on mobile */
+      .site-header .nav-toggle{
+        z-index: 3;
+      }
+      /* Mobile tweaks: hide the left inline nav, keep centered logo + lang/toggle */
+      @media (max-width: 768px){
+        .site-header .nav-left{ display: none; }
+        .site-header .right-side{ margin-inline-start: auto; }
+      }
+    </style>
   </head>
   <body>
     <header class="site-header" id="home">
@@ -26,10 +76,12 @@
           <a href="#projects">פרויקטים</a>
         </nav>
 
-        <!-- לוגו ממורכז (גדול ב-40% דרך CSS) -->
-        <a href="#home" class="logo" aria-label="חזרה לראש הדף">
-          <img class="logo-img" src="Images/logo-initials.svg?v=1" alt="דניאל רימר" />
-        </a>
+        <!-- לוגו ממורכז -->
+        <div class="logo-center">
+          <a href="#home" class="logo" aria-label="חזרה לראש הדף">
+            <img class="logo-img" src="Images/logo-initials.svg?v=1" alt="דניאל רימר" />
+          </a>
+        </div>
 
         <!-- צד ימין: שירותים, יצירת קשר, שפה -->
         <div class="right-side">
@@ -149,14 +201,14 @@
                   <p class="step-desc">אני מממש את החזון באמצעות פיתוח פרונט‑אנד רספונסיבי ועיצוב ויזואלי מוקפד.</p>
                 </div>
               </button>
-              <button class="process-step" type="button" role="tab" aria-selected="false" data-target="#process-a-detail" data-step="5" data-title="כתיבת תוכן משכנעת" data-detail="אני כותב טקסט ממוקד שמדבר אל הקהל שלך ומעודד לפעולה." data-wallpaper="Images/salescopy.png">
+              <button class="process-step" type="button" role="tab" aria-selected="false" data-target="#process-a-detail" data-step="5" data-title="כתיבת תוכן משכנעת" data-detail="אני כותב טקסט ממוקד שמדבר אל הקהל שלך ומעודד לפעולה." data-wallpaper="Images/myprocess.png">
                 <span class="step-num" data-count="5">05</span>
                 <div class="step-body">
                   <span class="step-title">כתיבת תוכן משכנעת</span>
                   <p class="step-desc">אני כותב טקסט ממוקד שמדבר אל הקהל שלך ומעודד לפעולה.</p>
                 </div>
               </button>
-              <button class="process-step" type="button" role="tab" aria-selected="false" data-target="#process-a-detail" data-step="6" data-title="שילוב כל הרכיבים בהרמוניה" data-detail="אני מחבר את התוכן, העיצוב והפונקציונליות לכל אורך האתר כדי ליצור תוצאה מקצועית ואחידה." data-wallpaper="Images/integrating.png">
+              <button class="process-step" type="button" role="tab" aria-selected="false" data-target="#process-a-detail" data-step="6" data-title="שילוב כל הרכיבים בהרמוניה" data-detail="אני מחבר את התוכן, העיצוב והפונקציונליות לכל אורך האתר כדי ליצור תוצאה מקצועית ואחידה." data-wallpaper="Images/myprocess.png">
                 <span class="step-num" data-count="6">06</span>
                 <div class="step-body">
                   <span class="step-title">שילוב כל הרכיבים בהרמוניה</span>
@@ -380,6 +432,6 @@
       </div>
     </footer>
 
-    <script src="script.js?v=process-9"></script>
+    <script src="script.js?v=process-8"></script>
   </body>
   </html>

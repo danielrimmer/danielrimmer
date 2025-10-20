@@ -399,7 +399,9 @@ const animateStepValue = (el, target, options = {}) => {
     const mobileQuery = window.matchMedia('(max-width: 720px)');
     const isMobile = () => mobileQuery.matches;
 
-    let current = null;
+    let current = steps[0] || null;
+    let currentIndex = 0;
+    let hasUnlockedLoop = false;
 
     const applyWallpaper = (src) => {
       if (!wallpaperEl) return;
@@ -407,11 +409,44 @@ const animateStepValue = (el, target, options = {}) => {
       wallpaperEl.style.backgroundImage = image ? `url('${image}')` : '';
     };
 
+    const applyCardClasses = () => {
+      const len = steps.length;
+      steps.forEach((step) => step.classList.remove('card-current', 'card-prev', 'card-next', 'card-hidden'));
+      if (!isMobile()) return;
+
+      const nextIdx = currentIndex === len - 1 ? (hasUnlockedLoop ? 0 : null) : currentIndex + 1;
+      const prevIdx = hasUnlockedLoop ? (currentIndex - 1 + len) % len : currentIndex > 0 ? currentIndex - 1 : null;
+
+      steps.forEach((step, idx) => {
+        if (idx === currentIndex) step.classList.add('card-current');
+        else if (nextIdx !== null && idx === nextIdx) step.classList.add('card-next');
+        else if (prevIdx !== null && idx === prevIdx) step.classList.add('card-prev');
+        else step.classList.add('card-hidden');
+      });
+    };
+
+    const goRelative = (dir) => {
+      const len = steps.length;
+      if (dir === 1) {
+        if (currentIndex < len - 1) activate(steps[currentIndex + 1]);
+        else if (hasUnlockedLoop) activate(steps[0]);
+      } else if (dir === -1) {
+        if (!hasUnlockedLoop) return;
+        const prevIdx = currentIndex === 0 ? len - 1 : currentIndex - 1;
+        activate(steps[prevIdx]);
+      }
+    };
+
     const activate = (btn, force = false) => {
       if (!btn) return;
       const detailTitle = btn.dataset.title || btn.textContent.trim();
       const detailText = btn.dataset.detail || '';
-      const stepIndex = Number(btn.dataset.step) || 0;
+      const idx = steps.indexOf(btn);
+      const stepIndex = Number(btn.dataset.step) || idx + 1;
+      if (idx !== -1) {
+        currentIndex = idx;
+        if (idx === steps.length - 1) hasUnlockedLoop = true;
+      }
       applyWallpaper(btn.dataset.wallpaper);
 
       if (isMobile()) {
@@ -423,6 +458,7 @@ const animateStepValue = (el, target, options = {}) => {
           step.setAttribute('aria-expanded', 'true');
         });
         if (numberEl) numberEl.textContent = formatStepNumber(stepIndex);
+        applyCardClasses();
         return;
       }
 
@@ -443,12 +479,16 @@ const animateStepValue = (el, target, options = {}) => {
         if (numberEl) animateStepValue(numberEl, stepIndex, { duration: 500 });
         setTimeout(() => panel.classList.remove('updating'), 320);
       }
+
+      applyCardClasses();
     };
 
     const initialize = () => {
       if (isMobile()) {
         const first = steps[0];
         current = first;
+        currentIndex = 0;
+        hasUnlockedLoop = false;
         steps.forEach((step) => {
           const isActive = step === first;
           step.classList.toggle('active', isActive);
@@ -461,6 +501,7 @@ const animateStepValue = (el, target, options = {}) => {
         const initial = steps.find((step) => step.classList.contains('active')) || steps[0];
         activate(initial, true);
       }
+      applyCardClasses();
     };
 
     steps.forEach((step, index) => {
@@ -488,6 +529,54 @@ const animateStepValue = (el, target, options = {}) => {
         applyWallpaper(active?.dataset.wallpaper);
       });
     });
+
+    let pointerActive = false;
+    let startX = 0;
+    let startY = 0;
+    const SWIPE_THRESHOLD = 40;
+
+    const getPoint = (event) => {
+      if ('touches' in event && event.touches.length) return event.touches[0];
+      if ('changedTouches' in event && event.changedTouches.length) return event.changedTouches[0];
+      return event;
+    };
+
+    const handlePointerDown = (event) => {
+      if (!isMobile()) return;
+      pointerActive = true;
+      const point = getPoint(event);
+      startX = point.clientX;
+      startY = point.clientY;
+    };
+
+    const handlePointerMove = (event) => {
+      if (!pointerActive) return;
+      const point = getPoint(event);
+      const dx = point.clientX - startX;
+      const dy = point.clientY - startY;
+      if (Math.abs(dy) > Math.abs(dx)) {
+        pointerActive = false;
+        return;
+      }
+      if (Math.abs(dx) > SWIPE_THRESHOLD) {
+        pointerActive = false;
+        goRelative(dx < 0 ? 1 : -1);
+      }
+    };
+
+    const handlePointerUp = () => {
+      pointerActive = false;
+    };
+
+    list.addEventListener('pointerdown', handlePointerDown);
+    list.addEventListener('pointermove', handlePointerMove);
+    list.addEventListener('pointerup', handlePointerUp);
+    list.addEventListener('pointercancel', handlePointerUp);
+    list.addEventListener('pointerleave', handlePointerUp);
+    list.addEventListener('touchstart', handlePointerDown, { passive: true });
+    list.addEventListener('touchmove', handlePointerMove, { passive: true });
+    list.addEventListener('touchend', handlePointerUp);
+    list.addEventListener('touchcancel', handlePointerUp);
 
     initialize();
     const onChange = () => initialize();

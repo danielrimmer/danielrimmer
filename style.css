@@ -228,9 +228,13 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at top left, rgba(0,224,255,.15), transparent 55%),
-              radial-gradient(circle at bottom right, rgba(255,60,126,.12), transparent 50%);
-  opacity: .6;
+  background:
+    radial-gradient(circle at top left, rgba(0,224,255,.18), transparent 55%),
+    radial-gradient(circle at bottom right, rgba(255,60,126,.14), transparent 50%),
+    url('Images/myprocess.png');
+  background-size: 100% 100%, 100% 100%, cover;
+  background-position: center, center, center;
+  background-repeat: no-repeat;
   pointer-events: none;
 }
 .process-inner { position: relative; z-index: 1; display: grid; gap: 48px; }
@@ -327,9 +331,8 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
   max-width: min(640px, 90%);
 }
 .process-bonus {
-  margin-top: clamp(32px, 6vw, 60px);
   display: grid;
-  gap: 18px;
+  gap: 22px;
 }
 .bonus-title { margin: 0; }
 .bonus-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
@@ -466,3 +469,17 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
 
 /* Temporary: hide Featured Projects section */
 #projects { display: none !important; }
+.bonus {
+  background: #040404;
+  position: relative;
+}
+.bonus::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top right, rgba(0,224,255,.12), transparent 55%),
+              radial-gradient(circle at bottom left, rgba(255,60,126,.12), transparent 55%);
+  opacity: .65;
+  pointer-events: none;
+}
+.bonus-inner { position: relative; z-index: 1; }

@@ -1,3 +1,28 @@
+const formatStepNumber = (value) => {
+  const safe = Math.max(0, Math.round(Number(value) || 0));
+  return safe < 10 ? `0${safe}` : String(safe);
+};
+
+const animateStepValue = (el, target, options = {}) => {
+  if (!el) return;
+  const { duration = 600, from } = options;
+  const startValue = typeof from === 'number' ? from : Number(el.textContent.replace(/[^0-9]/g, '')) || 0;
+  const to = Math.max(0, Math.round(Number(target) || 0));
+  if (duration <= 0) {
+    el.textContent = formatStepNumber(to);
+    return;
+  }
+  const startTime = performance.now();
+  const step = (now) => {
+    const progress = Math.min((now - startTime) / duration, 1);
+    const eased = progress < 1 ? 1 - Math.pow(1 - progress, 3) : 1;
+    const current = startValue + (to - startValue) * eased;
+    el.textContent = formatStepNumber(current);
+    if (progress < 1) requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
+};
+
 // Smooth scroll with sticky header offset
 (function () {
   const header = document.querySelector('.site-header');
@@ -323,4 +348,202 @@
   window.addEventListener('scroll', onScroll, { passive: true });
   window.addEventListener('resize', onScroll);
   onScroll();
+})();
+
+// Animate numeric counters when process sections enter viewport
+(function () {
+  const counters = document.querySelectorAll('[data-count]');
+  if (!counters.length) return;
+
+  const animate = (el) => {
+    const target = Number(el.dataset.count);
+    if (!target) return;
+    animateStepValue(el, target, { duration: 800, from: 1 });
+    el.removeAttribute('data-count');
+  };
+
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries, observer) => {
+      for (const entry of entries) {
+        if (entry.isIntersecting) {
+          animate(entry.target);
+          observer.unobserve(entry.target);
+        }
+      }
+    }, { rootMargin: '0px 0px -10% 0px', threshold: 0.35 });
+    counters.forEach((el) => io.observe(el));
+  } else {
+    counters.forEach((el) => animate(el));
+  }
+})();
+
+// Version 1 timeline interaction
+(function () {
+  const lists = document.querySelectorAll('.process-step-list');
+  if (!lists.length) return;
+
+  lists.forEach((list) => {
+    const steps = Array.from(list.querySelectorAll('.process-step'));
+    if (!steps.length) return;
+
+    const section = list.closest('.process');
+    const targetSelector = steps[0].dataset.target;
+    const panel = targetSelector && section ? section.querySelector(targetSelector) : null;
+    const numberEl = panel?.querySelector('.detail-number');
+    const titleEl = panel?.querySelector('.detail-title');
+    const textEl = panel?.querySelector('.detail-text');
+    if (panel) panel.setAttribute('tabindex', '0');
+
+    const mobileQuery = window.matchMedia('(max-width: 720px)');
+    const isMobile = () => mobileQuery.matches;
+
+    let current = null;
+
+    const activate = (btn, force = false) => {
+      if (!btn) return;
+      const detailTitle = btn.dataset.title || btn.textContent.trim();
+      const detailText = btn.dataset.detail || '';
+      const stepIndex = Number(btn.dataset.step) || 0;
+
+      if (isMobile()) {
+        current = btn;
+        steps.forEach((step) => {
+          const isActive = step === btn;
+          step.classList.toggle('active', isActive);
+          step.setAttribute('aria-selected', String(isActive));
+          step.setAttribute('aria-expanded', 'true');
+        });
+        if (numberEl) numberEl.textContent = formatStepNumber(stepIndex);
+        return;
+      }
+
+      if (!force && current === btn && btn.classList.contains('active')) return;
+      current = btn;
+
+      steps.forEach((step) => {
+        const isActive = step === btn;
+        step.classList.toggle('active', isActive);
+        step.setAttribute('aria-selected', String(isActive));
+        step.setAttribute('aria-expanded', String(isActive));
+      });
+
+      if (panel) {
+        panel.classList.add('updating');
+        if (titleEl) titleEl.textContent = detailTitle;
+        if (textEl) textEl.textContent = detailText;
+        if (numberEl) animateStepValue(numberEl, stepIndex, { duration: 500 });
+        setTimeout(() => panel.classList.remove('updating'), 320);
+      }
+    };
+
+    const initialize = () => {
+      if (isMobile()) {
+        current = null;
+        steps.forEach((step) => {
+          step.classList.remove('active');
+          step.setAttribute('aria-selected', 'false');
+          step.setAttribute('aria-expanded', 'true');
+        });
+      } else {
+        const initial = steps.find((step) => step.classList.contains('active')) || steps[0];
+        activate(initial, true);
+      }
+    };
+
+    steps.forEach((step, index) => {
+      const handleHover = () => { if (!isMobile()) activate(step); };
+      step.addEventListener('mouseenter', handleHover);
+      step.addEventListener('focus', () => activate(step));
+      step.addEventListener('click', (e) => {
+        e.preventDefault();
+        activate(step);
+      });
+      step.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
+          e.preventDefault();
+          const next = steps[(index + 1) % steps.length];
+          next.focus();
+        } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
+          e.preventDefault();
+          const prev = steps[(index - 1 + steps.length) % steps.length];
+          prev.focus();
+        }
+      });
+    });
+
+    initialize();
+    const onChange = () => initialize();
+    if (typeof mobileQuery.addEventListener === 'function') mobileQuery.addEventListener('change', onChange);
+    else if (typeof mobileQuery.addListener === 'function') mobileQuery.addListener(onChange);
+  });
+})();
+
+// Version 2 carousel interaction
+(function () {
+  const carousels = document.querySelectorAll('[data-process-carousel]');
+  if (!carousels.length) return;
+
+  carousels.forEach((carousel) => {
+    const cards = Array.from(carousel.querySelectorAll('.process-card'));
+    if (!cards.length) return;
+
+    const section = carousel.closest('.process');
+    const controls = section ? Array.from(section.querySelectorAll('.carousel-btn')) : [];
+    let activeIndex = Math.max(0, cards.findIndex((card) => card.classList.contains('active')));
+
+    const clampIndex = (index) => {
+      if (index < 0) return 0;
+      if (index >= cards.length) return cards.length - 1;
+      return index;
+    };
+
+    const ensureVisible = (card) => {
+      if (!card || typeof card.scrollIntoView !== 'function') return;
+      card.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    };
+
+    const setActive = (index, focusCard = false, animate = true) => {
+      const nextIndex = clampIndex(index);
+      const nextCard = cards[nextIndex];
+      if (!nextCard) return;
+      if (nextIndex === activeIndex && nextCard.classList.contains('active') && animate) return;
+      activeIndex = nextIndex;
+      cards.forEach((card, i) => {
+        const isActive = i === nextIndex;
+        card.classList.toggle('active', isActive);
+        card.setAttribute('aria-expanded', String(isActive));
+      });
+      if (animate) {
+        animateStepValue(nextCard.querySelector('.step-num'), Number(nextCard.dataset.step) || nextIndex + 1, { duration: 500, from: 0 });
+      }
+      ensureVisible(nextCard);
+      if (focusCard) nextCard.focus();
+    };
+
+    cards.forEach((card, index) => {
+      card.addEventListener('click', () => setActive(index));
+      card.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          setActive(index);
+        } else if (e.key === 'ArrowRight') {
+          e.preventDefault();
+          setActive(index + 1, true);
+        } else if (e.key === 'ArrowLeft') {
+          e.preventDefault();
+          setActive(index - 1, true);
+        }
+      });
+    });
+
+    controls.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const dir = btn.dataset.dir === 'prev' ? -1 : 1;
+        setActive(activeIndex + dir, true);
+      });
+    });
+
+    cards.forEach((card) => card.setAttribute('aria-expanded', String(card.classList.contains('active'))));
+    setActive(activeIndex, false, false);
+  });
 })();

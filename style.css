@@ -300,3 +300,6 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
 /* Glowing cursor */
 .cursor-glow { position: fixed; top: 0; left: 0; width: 18px; height: 18px; border-radius: 50%; pointer-events: none; z-index: 100; opacity: .85; background: radial-gradient(circle, rgba(0,224,255,.9) 0%, rgba(255,60,126,.7) 60%, rgba(0,0,0,0) 70%); filter: blur(8px); mix-blend-mode: screen; transform: translate3d(-50%, -50%, 0); transition: width .2s ease, height .2s ease, opacity .3s ease; }
 @media (pointer: coarse) { .cursor-glow { display: none; } }
+
+/* Temporary: hide Featured Projects section */
+#projects { display: none !important; }

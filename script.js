@@ -447,7 +447,7 @@ const animateStepValue = (el, target, options = {}) => {
         currentIndex = idx;
         if (idx === steps.length - 1) hasUnlockedLoop = true;
       }
-      applyWallpaper(btn.dataset.wallpaper);
+      if (!isMobile()) applyWallpaper(btn.dataset.wallpaper);
 
       if (isMobile()) {
         current = btn;

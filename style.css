@@ -164,7 +164,7 @@ html[lang="en"] .lang-en, html[lang="he"] .lang-he { background: rgba(255,255,25
   will-change: transform;
 }
 /* Explicit wallpaper for About section */
-.about[data-wallpaper="whoami"] .about-bg { background-image: url('Images/who-am-i.png'); }
+.about[data-wallpaper="whoami"] .about-bg { background-image: url('Images/who-i-am.png'); }
 /* Ensure framed content sits above wallpaper */
 .about .about-inner { position: relative; z-index: 1; }
 /* Slight desktop-only zoom for background video */

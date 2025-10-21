@@ -14,7 +14,7 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="style.css?v=hide-projects-1" />
+    <link rel="stylesheet" href="style.css?v=whoami-1" />
     <style id="he-header-fix">
       /* --- Header centering fix (he.html only) --- */
       .site-header .container.nav {
@@ -53,7 +53,7 @@
         height: 44px;
         width: auto;
         display: block;
-        margin-top: 2px;
+        margin-top: 18px;
       }
       /* Make sure the hamburger doesn't collide on mobile */
       .site-header .nav-toggle{
@@ -103,16 +103,18 @@
 
       <!-- תפריט מובייל (אוברליי) -->
       <div class="mobile-menu" aria-label="ניווט בנייד">
-        <nav class="nav-links">
-          <a href="#home">בית</a>
-          <a href="#about">אודות</a>
-          <a href="#projects">פרויקטים</a>
-          <a href="#services">שירותים</a>
-          <a href="#contact">יצירת קשר</a>
-        </nav>
-        <div class="lang-group" role="group" aria-label="שפה">
-          <a class="btn btn-ghost lang-switch lang-en" href="index.html" aria-label="Switch to English">EN</a>
-          <a class="btn btn-ghost lang-switch lang-he" href="he.html" aria-label="Switch to Hebrew">HE</a>
+        <div class="mobile-menu-panel" role="dialog" aria-modal="true" aria-label="ניווט ראשי" tabindex="-1">
+          <nav class="nav-links">
+            <a href="#home">בית</a>
+            <a href="#about">אודות</a>
+            <a href="#projects">פרויקטים</a>
+            <a href="#services">שירותים</a>
+            <a href="#contact">יצירת קשר</a>
+          </nav>
+          <div class="lang-group" role="group" aria-label="שפה">
+            <a class="btn btn-ghost lang-switch lang-en" href="index.html" aria-label="Switch to English">EN</a>
+            <a class="btn btn-ghost lang-switch lang-he" href="he.html" aria-label="Switch to Hebrew">HE</a>
+          </div>
         </div>
       </div>
     </header>
@@ -139,7 +141,7 @@
       </section>
 
       <!-- About -->
-      <section class="about section reveal" id="about">
+      <section class="about section reveal" id="about" data-wallpaper="whoami">
         <div class="about-bg" aria-hidden="true"></div>
         <div class="container about-inner glass">
           <div class="about-copy">
@@ -201,14 +203,14 @@
                   <p class="step-desc">אני מממש את החזון באמצעות פיתוח פרונט‑אנד רספונסיבי ועיצוב ויזואלי מוקפד.</p>
                 </div>
               </button>
-              <button class="process-step" type="button" role="tab" aria-selected="false" data-target="#process-a-detail" data-step="5" data-title="כתיבת תוכן משכנעת" data-detail="אני כותב טקסט ממוקד שמדבר אל הקהל שלך ומעודד לפעולה." data-wallpaper="Images/myprocess.png">
+              <button class="process-step" type="button" role="tab" aria-selected="false" data-target="#process-a-detail" data-step="5" data-title="כתיבת תוכן משכנעת" data-detail="אני כותב טקסט ממוקד שמדבר אל הקהל שלך ומעודד לפעולה." data-wallpaper="Images/salescopy.png">
                 <span class="step-num" data-count="5">05</span>
                 <div class="step-body">
                   <span class="step-title">כתיבת תוכן משכנעת</span>
                   <p class="step-desc">אני כותב טקסט ממוקד שמדבר אל הקהל שלך ומעודד לפעולה.</p>
                 </div>
               </button>
-              <button class="process-step" type="button" role="tab" aria-selected="false" data-target="#process-a-detail" data-step="6" data-title="שילוב כל הרכיבים בהרמוניה" data-detail="אני מחבר את התוכן, העיצוב והפונקציונליות לכל אורך האתר כדי ליצור תוצאה מקצועית ואחידה." data-wallpaper="Images/myprocess.png">
+              <button class="process-step" type="button" role="tab" aria-selected="false" data-target="#process-a-detail" data-step="6" data-title="שילוב כל הרכיבים בהרמוניה" data-detail="אני מחבר את התוכן, העיצוב והפונקציונליות לכל אורך האתר כדי ליצור תוצאה מקצועית ואחידה." data-wallpaper="Images/integrating.png">
                 <span class="step-num" data-count="6">06</span>
                 <div class="step-body">
                   <span class="step-title">שילוב כל הרכיבים בהרמוניה</span>
@@ -230,20 +232,20 @@
         <div class="container bonus-inner">
           <div class="process-bonus">
             <h2 class="h2 bonus-title" id="bonus-services-title">שירותי בונוס</h2>
-            <ul class="bonus-list">
-              <li>
-                <strong>ללמד אותך לנהל את האתר שלך</strong>
+            <div class="bonus-cards">
+              <div class="bonus-card">
+                <h3>ללמד אותך לנהל את האתר שלך</h3>
                 <p>אדריך אותך כיצד לבצע עדכונים ותחזוקה בסיסיים כך שתישאר עצמאי.</p>
-              </li>
-              <li>
-                <strong>הקמת אימייל מקצועי (בפחות מ-0.04$ ליום)</strong>
+              </div>
+              <div class="bonus-card">
+                <h3>הקמת אימייל מקצועי (בפחות מ-0.04$ ליום)</h3>
                 <p>אקים עבורך כתובת אימייל עסקית שמחזקת את אמינות המותג ואת התקשורת.</p>
-              </li>
-              <li>
-                <strong>ביסוס הנוכחות הדיגיטלית שלך</strong>
+              </div>
+              <div class="bonus-card">
+                <h3>ביסוס הנוכחות הדיגיטלית שלך</h3>
                 <p>אחבר עבורך את הדומיין, אקים את האתר ואוודא שהעסק שלך יופיע ברחבי הרשת.</p>
-              </li>
-            </ul>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -432,6 +434,6 @@
       </div>
     </footer>
 
-    <script src="script.js?v=process-8"></script>
+    <script src="script.js?v=process-11"></script>
   </body>
   </html>

@@ -81,6 +81,18 @@ const animateStepValue = (el, target, options = {}) => {
     const open = document.documentElement.classList.toggle('nav-open');
     toggle.setAttribute('aria-expanded', String(open));
   });
+
+  // Close when tapping outside the drawer
+  const menu = document.querySelector('.mobile-menu');
+  const panel = menu?.querySelector('.mobile-menu-panel');
+  if (menu && panel) {
+    menu.addEventListener('click', (e) => {
+      if (!panel.contains(e.target)) {
+        document.documentElement.classList.remove('nav-open');
+        toggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
 })();
 
 // Scroll spy to highlight current section
@@ -159,6 +171,38 @@ const animateStepValue = (el, target, options = {}) => {
       header.classList.remove('hide');
     }
     lastY = y;
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll);
+  onScroll();
+})();
+
+// About section parallax wallpaper
+(function () {
+  const bgs = Array.from(document.querySelectorAll('.about .about-bg'));
+  if (!bgs.length) return;
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+  if (reduce.matches) return;
+
+  const clamp = (v, min, max) => Math.max(min, Math.min(max, v));
+  let ticking = false;
+
+  const update = () => {
+    ticking = false;
+    const vh = window.innerHeight || document.documentElement.clientHeight;
+    bgs.forEach((bg) => {
+      const host = bg.closest('.about') || bg.parentElement;
+      const rect = host.getBoundingClientRect();
+      const centerDelta = rect.top + rect.height / 2 - vh / 2;
+      const offset = clamp(-centerDelta * 0.06, -40, 40);
+      bg.style.transform = `translateY(${offset}px) scale(1.05)`;
+    });
+  };
+
+  const onScroll = () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(update);
   };
   window.addEventListener('scroll', onScroll, { passive: true });
   window.addEventListener('resize', onScroll);
@@ -507,6 +551,8 @@ const animateStepValue = (el, target, options = {}) => {
     steps.forEach((step, index) => {
       const handleHover = () => { if (!isMobile()) activate(step); };
       step.addEventListener('mouseenter', handleHover);
+      step.addEventListener('mouseover', handleHover);
+      step.addEventListener('pointerenter', handleHover);
       step.addEventListener('focus', () => activate(step));
       step.addEventListener('click', (e) => {
         e.preventDefault();

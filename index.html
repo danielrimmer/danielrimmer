@@ -14,7 +14,7 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="style.css?v=hide-projects-1" />
+    <link rel="stylesheet" href="style.css?v=whoami-1" />
   </head>
   <body>
     <header class="site-header" id="home">
@@ -51,16 +51,18 @@
 
       <!-- Mobile overlay menu -->
       <div class="mobile-menu" aria-label="Mobile navigation">
-        <nav class="nav-links">
-          <a href="#home">Home</a>
-          <a href="#about">About</a>
-          <a href="#projects">Projects</a>
-          <a href="#services">Services</a>
-          <a href="#contact">Contact</a>
-        </nav>
-        <div class="lang-group" role="group" aria-label="Language">
-          <a class="btn btn-ghost lang-switch lang-en" href="index.html" aria-label="Switch to English">EN</a>
-          <a class="btn btn-ghost lang-switch lang-he" href="he.html" aria-label="Switch to Hebrew">HE</a>
+        <div class="mobile-menu-panel" role="dialog" aria-modal="true" aria-label="Primary navigation" tabindex="-1">
+          <nav class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#projects">Projects</a>
+            <a href="#services">Services</a>
+            <a href="#contact">Contact</a>
+          </nav>
+          <div class="lang-group" role="group" aria-label="Language">
+            <a class="btn btn-ghost lang-switch lang-en" href="index.html" aria-label="Switch to English">EN</a>
+            <a class="btn btn-ghost lang-switch lang-he" href="he.html" aria-label="Switch to Hebrew">HE</a>
+          </div>
         </div>
       </div>
     </header>
@@ -87,7 +89,7 @@
       </section>
 
       <!-- About -->
-      <section class="about section reveal" id="about">
+      <section class="about section reveal" id="about" data-wallpaper="whoami">
         <div class="about-bg" aria-hidden="true"></div>
         <div class="container about-inner glass">
           <div class="about-copy">
@@ -178,20 +180,20 @@
         <div class="container bonus-inner">
           <div class="process-bonus">
             <h2 class="h2 bonus-title" id="bonus-services-title">Bonus Services</h2>
-            <ul class="bonus-list">
-              <li>
-                <strong>Teach You How to Manage Your Own Website</strong>
+            <div class="bonus-cards">
+              <div class="bonus-card">
+                <h3>Teach You How to Manage Your Own Website</h3>
                 <p>I'll show you how to handle simple updates and maintenance so you stay independent.</p>
-              </li>
-              <li>
-                <strong>Set Up a Professional Email (for less than $0.04 a day)</strong>
+              </div>
+              <div class="bonus-card">
+                <h3>Set Up a Professional Email (for less than $0.04 a day)</h3>
                 <p>A custom business email that enhances your brand credibility and communication.</p>
-              </li>
-              <li>
-                <strong>Establish Your Online Presence</strong>
+              </div>
+              <div class="bonus-card">
+                <h3>Establish Your Online Presence</h3>
                 <p>I'll help you connect your domain, set up your site, and get your business fully visible on the web.</p>
-              </li>
-            </ul>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -386,6 +388,6 @@
       </div>
     </footer>
 
-    <script src="script.js?v=process-9"></script>
+    <script src="script.js?v=process-11"></script>
   </body>
   </html>

@@ -50,24 +50,18 @@
         }
 
         /* Absolutely center the logo */
-        .site-header .logo-center {
+        .site-header .logo {
           position: absolute;
           left: 50%;
           top: 50%;
           transform: translate(-50%, -50%);
-          display: flex;
+          display: inline-flex;
           align-items: center;
           z-index: 1;
           pointer-events: auto;
         }
 
-        .site-header .logo-center .logo {
-          display: inline-flex;
-          align-items: center;
-          text-decoration: none;
-        }
-
-        .site-header .logo-center .logo-img {
+        .site-header .logo .logo-img {
           height: 70px;
           width: auto;
           display: block;
@@ -78,11 +72,10 @@
       @media (max-width: 720px) {
         .site-header .container.nav {
           position: relative !important;
-          display: flex !important;
-          align-items: center !important;
-          justify-content: flex-end !important;
+          display: block !important;
           padding: 16px !important;
           min-height: 70px !important;
+          text-align: center !important;
         }
 
         /* Hide left nav on mobile */
@@ -95,12 +88,13 @@
           display: none !important;
         }
 
-        /* Center the logo on mobile - ensure visibility */
-        .site-header .logo-center {
+        /* Center the logo on mobile - ensure visibility and true centering */
+        .site-header .logo {
           position: absolute !important;
-          left: 50% !important;
+          left: 0 !important;
+          right: 0 !important;
           top: 50% !important;
-          transform: translate(-50%, -50%) !important;
+          transform: translateY(-50%) !important;
           display: flex !important;
           align-items: center !important;
           justify-content: center !important;
@@ -108,16 +102,11 @@
           pointer-events: auto !important;
           visibility: visible !important;
           opacity: 1 !important;
+          margin: 0 auto !important;
+          padding: 0 !important;
         }
 
-        .site-header .logo-center .logo {
-          display: inline-flex !important;
-          align-items: center !important;
-          visibility: visible !important;
-          opacity: 1 !important;
-        }
-
-        .site-header .logo-center .logo-img {
+        .site-header .logo .logo-img {
           height: 44px !important;
           width: auto !important;
           display: block !important;
@@ -125,12 +114,16 @@
           opacity: 1 !important;
         }
 
-        /* Show hamburger menu on mobile */
+        /* Show hamburger menu on mobile - force right position for RTL */
         .site-header .nav-toggle {
           display: inline-block !important;
-          z-index: 3 !important;
-          position: relative !important;
-          flex-shrink: 0 !important;
+          position: absolute !important;
+          left: auto !important;
+          right: 16px !important;
+          top: 50% !important;
+          transform: translateY(-50%) !important;
+          z-index: 11 !important;
+          margin: 0 !important;
         }
       }
     </style>
@@ -146,11 +139,9 @@
         </nav>
 
         <!-- לוגו ממורכז -->
-        <div class="logo-center">
-          <a href="#home" class="logo" aria-label="חזרה לראש הדף">
-            <img class="logo-img" src="Images/logo-initials.svg?v=1" alt="דניאל רימר" />
-          </a>
-        </div>
+        <a href="#home" class="logo" aria-label="חזרה לראש הדף">
+          <img class="logo-img" src="Images/logo-initials.svg?v=1" alt="דניאל רימר" />
+        </a>
 
         <!-- צד ימין: שירותים, יצירת קשר, שפה -->
         <div class="right-side">

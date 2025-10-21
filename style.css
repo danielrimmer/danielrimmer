@@ -519,14 +519,18 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
     display: none !important;
   }
 
-  /* Center the logo on mobile - use !important to override any conflicts */
+  /* Center the logo on mobile with full-width flex alignment */
   .nav .logo {
     position: absolute !important;
-    left: 50% !important;
+    left: 0 !important;
+    right: 0 !important;
     top: 50% !important;
-    transform: translate(-50%, -50%) !important;
+    transform: translateY(-50%) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
     z-index: 10 !important;
-    margin: 0 !important;
+    margin: 0 auto !important;
     padding: 0 !important;
   }
 
@@ -538,9 +542,12 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
 
   /* Show hamburger menu on mobile - positioned on the right */
   .nav .nav-toggle {
-    display: inline-block !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
     position: absolute !important;
     right: 16px !important;
+    left: auto !important;
     top: 50% !important;
     transform: translateY(-50%) !important;
     z-index: 3 !important;
@@ -553,15 +560,14 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
   }
 
   [dir="rtl"] .nav .logo {
-    position: absolute !important;
-    left: 50% !important;
-    top: 50% !important;
-    transform: translate(-50%, -50%) !important;
+    left: 0 !important;
+    right: 0 !important;
+    transform: translateY(-50%) !important;
   }
 
   [dir="rtl"] .nav .nav-toggle {
-    right: auto !important;
-    left: 16px !important;
+    left: auto !important;
+    right: 16px !important;
   }
 
   /* Mobile side drawer (slides from right for both languages) */

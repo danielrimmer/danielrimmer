@@ -60,6 +60,15 @@ html[lang="en"] .hero .h1 { font-size: calc(0.92 * clamp(30px, 4.4vw, 52px)); }
 .h3 { font: 700 clamp(18px, 2vw, 22px) Poppins, Montserrat, "Space Grotesk", Roboto, Inter, sans-serif; margin: 0 0 8px; letter-spacing: .02em; }
 .muted { color: var(--muted); }
 
+.hero .hero-gradient {
+  background: linear-gradient(130deg, #0b0c10 0%, #0f1c2e 28%, #00e0ff 62%, #ff3c7e 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
 .btn {
   display: inline-flex; align-items: center; gap: 10px;
   border-radius: 12px; padding: 12px 18px; font-weight: 600;

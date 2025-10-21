@@ -16,55 +16,122 @@
     />
     <link rel="stylesheet" href="style.css?v=whoami-1" />
     <style id="he-header-fix">
-      /* --- Header centering fix (he.html only) --- */
-      .site-header .container.nav {
-        position: relative;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding-top: 0; /* reduced by additional 10px (minimum) */
-        padding-bottom: 16px;
-        min-height: 100px; /* Hebrew header bar height */
+      /* --- Hebrew header specific styles --- */
+
+      /* Desktop header layout */
+      @media (min-width: 721px) {
+        .site-header .container.nav {
+          position: relative;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 20px 0;
+          min-height: 90px;
+        }
+
+        .site-header .nav-left {
+          display: flex;
+          align-items: center;
+          gap: 16px;
+          z-index: 2;
+        }
+
+        .site-header .right-side {
+          display: flex;
+          align-items: center;
+          gap: 16px;
+          white-space: nowrap;
+          z-index: 2;
+        }
+
+        /* Enlarge Hebrew header nav links (not language buttons) */
+        .site-header .nav-links a {
+          font-size: 1.15em;
+        }
+
+        /* Absolutely center the logo */
+        .site-header .logo-center {
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%);
+          display: flex;
+          align-items: center;
+          z-index: 1;
+          pointer-events: auto;
+        }
+
+        .site-header .logo-center .logo {
+          display: inline-flex;
+          align-items: center;
+          text-decoration: none;
+        }
+
+        .site-header .logo-center .logo-img {
+          height: 70px;
+          width: auto;
+          display: block;
+        }
       }
-      .site-header .nav-left,
-      .site-header .right-side{
-        display: flex;
-        align-items: center;
-        gap: 16px;
-        white-space: nowrap;
-      }
-      /* Enlarge Hebrew header nav links (not language buttons) */
-      .site-header .nav-links a { font-size: 1.2em; }
-      /* Absolutely center the logo regardless of left/right widths */
-      .site-header .logo-center{
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-        display: flex;
-        align-items: center;
-        z-index: 2; /* keep above */
-        pointer-events: auto; /* clickable */
-      }
-      .site-header .logo-center .logo{
-        display: inline-flex;
-        align-items: center;
-        text-decoration: none;
-      }
-      .site-header .logo-center .logo-img {
-        height: 44px;
-        width: auto;
-        display: block;
-        margin-top: 1px; /* moved logo up by additional 3px */
-      }
-      /* Make sure the hamburger doesn't collide on mobile */
-      .site-header .nav-toggle{
-        z-index: 3;
-      }
-      /* Mobile tweaks: hide the left inline nav, keep centered logo + lang/toggle */
-      @media (max-width: 768px){
-        .site-header .nav-left{ display: none; }
-        .site-header .right-side{ margin-inline-start: auto; }
+
+      /* Mobile layout */
+      @media (max-width: 720px) {
+        .site-header .container.nav {
+          position: relative !important;
+          display: flex !important;
+          align-items: center !important;
+          justify-content: flex-end !important;
+          padding: 16px !important;
+          min-height: 70px !important;
+        }
+
+        /* Hide left nav on mobile */
+        .site-header .nav-left {
+          display: none !important;
+        }
+
+        /* Hide entire right side including language buttons on mobile */
+        .site-header .right-side {
+          display: none !important;
+        }
+
+        /* Center the logo on mobile - ensure visibility */
+        .site-header .logo-center {
+          position: absolute !important;
+          left: 50% !important;
+          top: 50% !important;
+          transform: translate(-50%, -50%) !important;
+          display: flex !important;
+          align-items: center !important;
+          justify-content: center !important;
+          z-index: 10 !important;
+          pointer-events: auto !important;
+          visibility: visible !important;
+          opacity: 1 !important;
+        }
+
+        .site-header .logo-center .logo {
+          display: inline-flex !important;
+          align-items: center !important;
+          visibility: visible !important;
+          opacity: 1 !important;
+        }
+
+        .site-header .logo-center .logo-img {
+          height: 44px !important;
+          width: auto !important;
+          display: block !important;
+          visibility: visible !important;
+          opacity: 1 !important;
+        }
+
+        /* Show hamburger menu on mobile */
+        .site-header .nav-toggle {
+          display: inline-block !important;
+          z-index: 3 !important;
+          position: relative !important;
+          flex-shrink: 0 !important;
+        }
       }
     </style>
   </head>
@@ -87,15 +154,15 @@
 
         <!-- צד ימין: שירותים, יצירת קשר, שפה -->
         <div class="right-side">
+          <div class="lang-group" role="group" aria-label="שפה">
+            <a class="btn btn-ghost lang-switch lang-en" href="index.html" aria-label="Switch to English">EN</a>
+            <a class="btn btn-ghost lang-switch lang-he" href="he.html" aria-label="Switch to Hebrew">HE</a>
+          </div>
           <nav class="nav-links nav-right" aria-label="ניווט ימני">
             <a href="#process-v1">תהליך</a>
             <a href="#services">שירותים</a>
             <a href="#contact">יצירת קשר</a>
           </nav>
-          <div class="lang-group" role="group" aria-label="שפה">
-            <a class="btn btn-ghost lang-switch lang-en" href="index.html" aria-label="Switch to English">EN</a>
-            <a class="btn btn-ghost lang-switch lang-he" href="he.html" aria-label="Switch to Hebrew">HE</a>
-          </div>
         </div>
 
         <!-- תפריט לנייד -->

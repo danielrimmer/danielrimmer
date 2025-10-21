@@ -22,9 +22,9 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding-top: 16px;
+        padding-top: 0; /* reduced by additional 10px (minimum) */
         padding-bottom: 16px;
-        min-height: 80px;
+        min-height: 100px; /* Hebrew header bar height */
       }
       .site-header .nav-left,
       .site-header .right-side{
@@ -33,6 +33,8 @@
         gap: 16px;
         white-space: nowrap;
       }
+      /* Enlarge Hebrew header nav links (not language buttons) */
+      .site-header .nav-links a { font-size: 1.2em; }
       /* Absolutely center the logo regardless of left/right widths */
       .site-header .logo-center{
         position: absolute;
@@ -53,7 +55,7 @@
         height: 44px;
         width: auto;
         display: block;
-        margin-top: 18px;
+        margin-top: 1px; /* moved logo up by additional 3px */
       }
       /* Make sure the hamburger doesn't collide on mobile */
       .site-header .nav-toggle{

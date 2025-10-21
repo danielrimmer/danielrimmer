@@ -126,10 +126,28 @@ html[lang="en"] .lang-en, html[lang="he"] .lang-he { background: rgba(255,255,25
 /* Header */
 .site-header {
   position: fixed; top: 0; left: 0; right: 0; z-index: 50;
-  background: transparent;
+  background: rgba(15, 28, 46, 0);
   border-bottom: none;
   box-shadow: none;
-  transition: transform .3s ease, opacity .3s ease;
+  transition: transform .3s ease, opacity .3s ease, background-color .3s ease;
+}
+.site-header::after {
+  content: "";
+  position: absolute;
+  left: 30px;
+  right: 30px;
+  bottom: 0;
+  height: 1px;
+  background: rgba(255, 255, 255, 1);
+  opacity: 0;
+  transition: opacity .3s ease;
+  pointer-events: none;
+}
+.site-header.is-solid {
+  background: rgba(15, 28, 46, 0.9);
+}
+.site-header.is-solid::after {
+  opacity: 1;
 }
 /* Keep fully transparent even when scrolled */
 .site-header.scrolled { background: transparent; border-bottom: none; box-shadow: none; backdrop-filter: none; }
@@ -221,6 +239,7 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
 /* CTA reveal after typing */
 .hero-cta { opacity: 0; visibility: hidden; transform: translateY(6px); transition: opacity .35s ease, transform .35s ease, visibility 0s linear .35s; }
 .hero-cta.show { opacity: 1; visibility: visible; transform: translateY(0); transition-delay: 0s; }
+.hero .hero-cta { display: none !important; }
 
 /* Prevent awkward mid-word breaks in hero */
 .hero .h1, .hero .sub { hyphens: none; word-break: normal; overflow-wrap: break-word; }
@@ -375,6 +394,33 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
   gap: 22px;
 }
 .bonus-title { margin: 0; }
+
+.bonus {
+  position: relative;
+  overflow: hidden;
+}
+.bonus::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgba(11,12,16,0.82) 0%, rgba(11,12,16,0.35) 35%, rgba(11,12,16,0.12) 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+.bonus-bg {
+  position: absolute;
+  inset: -120px 0 -60px;
+  transform: translate3d(0, 0, 0);
+  transition: transform .4s ease-out;
+  z-index: 0;
+  overflow: hidden;
+}
+.bonus-bg .bonus-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center bottom; display: block; }
+.bonus-inner {
+  position: relative;
+  z-index: 2;
+}
+
 /* Bonus Services cards */
 .bonus-cards {
   display: flex;

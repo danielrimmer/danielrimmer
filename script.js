@@ -152,20 +152,28 @@ const animateStepValue = (el, target, options = {}) => {
   else onReady();
 
   let lastY = window.scrollY;
+  const solidThreshold = 800;
   const onScroll = () => {
     if (!header) return;
     const y = window.scrollY;
     const navOpen = document.documentElement.classList.contains('nav-open');
 
-    // Keep transparent style
-    if (y > 8) header.classList.add('scrolled');
-    else header.classList.remove('scrolled');
+    if (y >= solidThreshold) {
+      header.classList.add('is-solid');
+      header.classList.remove('hide');
+    } else {
+      header.classList.remove('is-solid');
+    }
 
-    // Hide on scroll down, show on scroll up or near top
+    // Hide on scroll down, show on scroll up or near top (only before reaching solid threshold)
     if (!navOpen) {
-      const goingDown = y > lastY;
-      if (goingDown && y > 50) header.classList.add('hide');
-      else header.classList.remove('hide');
+      if (y < solidThreshold) {
+        const goingDown = y > lastY;
+        if (goingDown && y > 50) header.classList.add('hide');
+        else header.classList.remove('hide');
+      } else {
+        header.classList.remove('hide');
+      }
     } else {
       // Ensure visible when mobile menu open
       header.classList.remove('hide');
@@ -392,6 +400,41 @@ const animateStepValue = (el, target, options = {}) => {
   window.addEventListener('scroll', onScroll, { passive: true });
   window.addEventListener('resize', onScroll);
   onScroll();
+})();
+
+// Bonus services background parallax
+(function () {
+  const section = document.querySelector('.bonus');
+  const bg = section?.querySelector('.bonus-bg');
+  if (!section || !bg) return;
+
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const clamp = (v, min, max) => Math.max(min, Math.min(max, v));
+  let ticking = false;
+
+  const update = () => {
+    ticking = false;
+    if (reduce.matches) {
+      bg.style.transform = 'translate3d(0,0,0)';
+      return;
+    }
+    const rect = section.getBoundingClientRect();
+    const vh = window.innerHeight || document.documentElement.clientHeight;
+    const progress = (vh - rect.top) / (vh + rect.height || 1);
+    const offset = clamp((progress - 0.5) * 90, -70, 50);
+    bg.style.transform = `translate3d(0, ${offset}px, 0)`;
+  };
+
+  const requestTick = () => {
+    if (!ticking) {
+      ticking = true;
+      requestAnimationFrame(update);
+    }
+  };
+
+  window.addEventListener('scroll', requestTick, { passive: true });
+  window.addEventListener('resize', requestTick);
+  requestTick();
 })();
 
 // Animate numeric counters when process sections enter viewport

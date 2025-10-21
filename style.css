@@ -675,6 +675,12 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
 [dir="rtl"] .detail-number { text-align: right; }
 [dir="rtl"] .detail-text, [dir="rtl"] .bonus-card p { text-align: right; }
 
+/* Hebrew: keep process detail title to one line to avoid layout growth */
+html[lang="he"] .process .detail-title {
+  font-size: clamp(20px, 2.6vw, 28px);
+  white-space: nowrap;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .process-step { transition: none !important; }
   .process-detail-panel.updating { animation: none !important; }

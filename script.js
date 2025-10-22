@@ -147,16 +147,50 @@ const animateStepValue = (el, target, options = {}) => {
 // Page-load animation and header glow on scroll
 (function () {
   const header = document.querySelector('.site-header');
+  const root = document.documentElement;
   const onReady = () => document.body.classList.add('is-ready');
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', onReady);
   else onReady();
 
   let lastY = window.scrollY;
   const solidThreshold = 700;
+  const bonusSection = document.getElementById('bonus-services-stack');
+  const stackCards = bonusSection ? Array.from(bonusSection.querySelectorAll('[data-stack-card]')) : [];
+  const lastStackCard = stackCards.length ? stackCards[stackCards.length - 1] : null;
+  let headerHeight = header?.getBoundingClientRect().height || 76;
+  if (header) root.style.setProperty('--header-height', `${Math.round(headerHeight)}px`);
+
   const onScroll = () => {
     if (!header) return;
     const y = window.scrollY;
     const navOpen = document.documentElement.classList.contains('nav-open');
+
+    // Keep CSS custom property for header height in sync with layout changes
+    const measuredHeight = header.getBoundingClientRect().height || headerHeight;
+    if (Math.abs(measuredHeight - headerHeight) > 0.5) {
+      headerHeight = measuredHeight;
+      root.style.setProperty('--header-height', `${Math.round(headerHeight)}px`);
+    }
+
+    // Check if we're in the Bonus Services section
+    let shouldPinHeader = false;
+
+    if (bonusSection) {
+      const sectionRect = bonusSection.getBoundingClientRect();
+      const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+      const sectionTopReached = sectionRect.top <= headerHeight + 12;
+
+      let lastCardFullyVisible = false;
+      if (lastStackCard) {
+        const lastRect = lastStackCard.getBoundingClientRect();
+        lastCardFullyVisible = lastRect.bottom <= viewportHeight - 32;
+      } else {
+        // Fallback: rely on entire section height
+        lastCardFullyVisible = sectionRect.bottom <= viewportHeight - 32;
+      }
+
+      shouldPinHeader = sectionTopReached && !lastCardFullyVisible && sectionRect.bottom > headerHeight + 24;
+    }
 
     if (y >= solidThreshold) {
       header.classList.add('is-solid');
@@ -165,18 +199,26 @@ const animateStepValue = (el, target, options = {}) => {
       header.classList.remove('is-solid');
     }
 
-    // Hide on scroll down, show on scroll up or near top (only before reaching solid threshold)
-    if (!navOpen) {
-      if (y < solidThreshold) {
-        const goingDown = y > lastY;
-        if (goingDown && y > 50) header.classList.add('hide');
-        else header.classList.remove('hide');
+    // Pin header when in Bonus Services section
+    if (shouldPinHeader) {
+      header.classList.add('is-pinned');
+      header.classList.remove('hide');
+    } else {
+      header.classList.remove('is-pinned');
+
+      // Hide on scroll down, show on scroll up or near top (only before reaching solid threshold)
+      if (!navOpen) {
+        if (y < solidThreshold) {
+          const goingDown = y > lastY;
+          if (goingDown && y > 50) header.classList.add('hide');
+          else header.classList.remove('hide');
+        } else {
+          header.classList.remove('hide');
+        }
       } else {
+        // Ensure visible when mobile menu open
         header.classList.remove('hide');
       }
-    } else {
-      // Ensure visible when mobile menu open
-      header.classList.remove('hide');
     }
     lastY = y;
   };
@@ -709,5 +751,183 @@ const animateStepValue = (el, target, options = {}) => {
 
     cards.forEach((card) => card.setAttribute('aria-expanded', String(card.classList.contains('active'))));
     setActive(activeIndex, false, false);
+  });
+})();
+
+// Bonus Services 3D Carousel
+(function () {
+  const carousels = document.querySelectorAll('[data-bonus-carousel]');
+  if (!carousels.length) return;
+
+  carousels.forEach((carousel) => {
+    const cards = Array.from(carousel.querySelectorAll('.carousel-card'));
+    if (!cards.length) return;
+
+    const wrapper = carousel.closest('.bonus-carousel-wrapper');
+    const prevBtn = wrapper ? wrapper.querySelector('.carousel-nav-prev') : null;
+    const nextBtn = wrapper ? wrapper.querySelector('.carousel-nav-next') : null;
+    const isRTL = document.documentElement.getAttribute('dir') === 'rtl';
+
+    let currentIndex = 0;
+
+    const updateCarousel = () => {
+      cards.forEach((card, index) => {
+        // Remove all state classes
+        card.classList.remove('active', 'prev', 'next', 'far-prev', 'far-next');
+
+        // Calculate position relative to current
+        const diff = index - currentIndex;
+        const total = cards.length;
+
+        // Normalize diff to handle circular navigation
+        let normalizedDiff = diff;
+        if (Math.abs(diff) > total / 2) {
+          normalizedDiff = diff > 0 ? diff - total : diff + total;
+        }
+
+        // Apply appropriate class based on position
+        if (normalizedDiff === 0) {
+          card.classList.add('active');
+        } else if (normalizedDiff === 1 || normalizedDiff === -total + 1) {
+          card.classList.add(isRTL ? 'prev' : 'next');
+        } else if (normalizedDiff === -1 || normalizedDiff === total - 1) {
+          card.classList.add(isRTL ? 'next' : 'prev');
+        } else if (normalizedDiff > 1 || normalizedDiff < -1) {
+          if (normalizedDiff > 0) {
+            card.classList.add(isRTL ? 'far-prev' : 'far-next');
+          } else {
+            card.classList.add(isRTL ? 'far-next' : 'far-prev');
+          }
+        }
+      });
+    };
+
+    const navigate = (direction) => {
+      currentIndex = (currentIndex + direction + cards.length) % cards.length;
+      updateCarousel();
+    };
+
+    // Event listeners for navigation buttons
+    if (prevBtn) {
+      prevBtn.addEventListener('click', () => navigate(isRTL ? 1 : -1));
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener('click', () => navigate(isRTL ? -1 : 1));
+    }
+
+    // Keyboard navigation
+    carousel.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        navigate(isRTL ? -1 : 1);
+      } else if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        navigate(isRTL ? 1 : -1);
+      }
+    });
+
+    // Touch/swipe support
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    carousel.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    carousel.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      handleSwipe();
+    }, { passive: true });
+
+    const handleSwipe = () => {
+      const swipeThreshold = 50;
+      const diff = touchStartX - touchEndX;
+
+      if (Math.abs(diff) > swipeThreshold) {
+        if (diff > 0) {
+          // Swipe left
+          navigate(isRTL ? -1 : 1);
+        } else {
+          // Swipe right
+          navigate(isRTL ? 1 : -1);
+        }
+      }
+    };
+
+    // Initialize
+    updateCarousel();
+  });
+})();
+
+// ────────────────────────────────────────────────────────────────
+// Scroll-Stacking Animation for Bonus Services V2
+// ────────────────────────────────────────────────────────────────
+(function () {
+  const containers = document.querySelectorAll('[data-stack-container]');
+  if (!containers.length) return;
+
+  containers.forEach((container) => {
+    const cards = Array.from(container.querySelectorAll('[data-stack-card]'));
+    if (!cards.length) return;
+
+    let ticking = false;
+
+    const updateCards = () => {
+      ticking = false;
+      const containerRect = container.getBoundingClientRect();
+      const viewportHeight = window.innerHeight;
+      const scrollProgress = Math.max(0, -containerRect.top);
+
+      cards.forEach((card, index) => {
+        const cardRect = card.getBoundingClientRect();
+        const cardTop = cardRect.top;
+
+        // Determine if card is in the active viewing zone
+        const isInViewZone = cardTop >= 0 && cardTop <= viewportHeight * 0.3;
+
+        if (isInViewZone) {
+          card.classList.add('is-active');
+        } else {
+          card.classList.remove('is-active');
+        }
+
+        // Calculate transform based on scroll position
+        const cardScrollProgress = Math.max(0, scrollProgress - (index * viewportHeight * 0.8));
+        const maxCardScroll = viewportHeight * 0.8;
+        const progress = Math.min(cardScrollProgress / maxCardScroll, 1);
+
+        // Stacking effect: cards scale down and move up slightly as they stack
+        const scale = 1 - (progress * 0.05 * (cards.length - index - 1));
+        const translateY = progress * -10; // Slight upward movement
+        const opacity = 1 - (progress * 0.2);
+
+        card.style.transform = `scale(${scale}) translateY(${translateY}px)`;
+        card.style.opacity = opacity;
+      });
+    };
+
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(updateCards);
+    };
+
+    // Use IntersectionObserver for better performance
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          window.addEventListener('scroll', onScroll, { passive: true });
+          updateCards();
+        } else {
+          window.removeEventListener('scroll', onScroll);
+        }
+      });
+    }, { rootMargin: '100px' });
+
+    observer.observe(container);
+
+    // Initial update
+    updateCards();
   });
 })();

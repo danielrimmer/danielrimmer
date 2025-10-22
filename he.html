@@ -295,7 +295,43 @@
         <div class="container bonus-inner">
           <div class="process-bonus">
             <h2 class="h2 bonus-title" id="bonus-services-title">שירותי בונוס</h2>
-            <div class="bonus-cards">
+
+            <!-- Desktop 3D Carousel -->
+            <div class="bonus-carousel-wrapper">
+              <button class="carousel-nav carousel-nav-prev" aria-label="שירות קודם">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M9 18l6-6-6-6"/>
+                </svg>
+              </button>
+
+              <div class="bonus-carousel" data-bonus-carousel>
+                <div class="bonus-card carousel-card active" data-index="0">
+                  <h3>ללמד אותך לנהל את האתר שלך</h3>
+                  <p>אדריך אותך כיצד לבצע עדכונים ותחזוקה בסיסיים כך שתישאר עצמאי.</p>
+                </div>
+                <div class="bonus-card carousel-card" data-index="1">
+                  <h3>הקמת אימייל מקצועי (בפחות מ-0.04$ ליום)</h3>
+                  <p>אקים עבורך כתובת אימייל עסקית שמחזקת את אמינות המותג ואת התקשורת.</p>
+                </div>
+                <div class="bonus-card carousel-card" data-index="2">
+                  <h3>ביסוס הנוכחות הדיגיטלית שלך</h3>
+                  <p>אחבר עבורך את הדומיין, אקים את האתר ואוודא שהעסק שלך יופיע ברחבי הרשת.</p>
+                </div>
+                <div class="bonus-card carousel-card" data-index="3">
+                  <h3>עיצוב לוגו</h3>
+                  <p>אני אעצב לוגו נקי ומקצועי המשקף את האישיות והערכים של המותג שלך — ויוצר זהות ויזואלית ייחודית שקל לזהות ולזכור.</p>
+                </div>
+              </div>
+
+              <button class="carousel-nav carousel-nav-next" aria-label="שירות הבא">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M15 18l-6-6 6-6"/>
+                </svg>
+              </button>
+            </div>
+
+            <!-- Mobile fallback (original cards layout) -->
+            <div class="bonus-cards bonus-cards-mobile">
               <div class="bonus-card">
                 <h3>ללמד אותך לנהל את האתר שלך</h3>
                 <p>אדריך אותך כיצד לבצע עדכונים ותחזוקה בסיסיים כך שתישאר עצמאי.</p>
@@ -308,11 +344,54 @@
                 <h3>ביסוס הנוכחות הדיגיטלית שלך</h3>
                 <p>אחבר עבורך את הדומיין, אקים את האתר ואוודא שהעסק שלך יופיע ברחבי הרשת.</p>
               </div>
+              <div class="bonus-card">
+                <h3>עיצוב לוגו</h3>
+                <p>אני אעצב לוגו נקי ומקצועי המשקף את האישיות והערכים של המותג שלך — ויוצר זהות ויזואלית ייחודית שקל לזהות ולזכור.</p>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
+      <!-- Bonus Services V2: Scroll-Stacking Version -->
+      <section class="bonus-stack section reveal" id="bonus-services-stack" aria-labelledby="bonus-stack-title">
+        <div class="container">
+          <header class="section-head">
+            <h2 class="h2" id="bonus-stack-title">שירותי בונוס</h2>
+            <p class="muted">גלול כדי לגלות מה עוד אני מציע</p>
+          </header>
+
+          <div class="stack-container" data-stack-container>
+            <div class="stack-card" data-stack-card data-index="0">
+              <div class="stack-card-inner">
+                <h3 class="h3">למד לנהל את האתר שלך בעצמך</h3>
+                <p>אני אראה לך איך לבצע עדכונים ותחזוקה פשוטה כדי שתישאר עצמאי.</p>
+              </div>
+            </div>
+
+            <div class="stack-card" data-stack-card data-index="1">
+              <div class="stack-card-inner">
+                <h3 class="h3">הגדרת אימייל מקצועי (בפחות מ-0.04 $ ליום)</h3>
+                <p>אימייל עסקי מותאם אישית המשדר אמינות ומחזק את התדמית של המותג שלך.</p>
+              </div>
+            </div>
+
+            <div class="stack-card" data-stack-card data-index="2">
+              <div class="stack-card-inner">
+                <h3 class="h3">הקמת נוכחות אונליין</h3>
+                <p>אעזור לך לחבר את הדומיין שלך, להגדיר את האתר שלך, ולהפוך את העסק שלך לנראה ברשת.</p>
+              </div>
+            </div>
+
+            <div class="stack-card" data-stack-card data-index="3">
+              <div class="stack-card-inner">
+                <h3 class="h3">עיצוב לוגו</h3>
+                <p>אני אעצב לוגו נקי ומקצועי המשקף את האישיות והערכים של המותג שלך — ויוצר זהות ויזואלית ייחודית שקל לזהות ולזכור.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <!-- Projects -->
       <section class="projects section reveal" id="projects" hidden>

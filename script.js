@@ -614,7 +614,10 @@ const animateStepValue = (el, target, options = {}) => {
       }
       if (Math.abs(dx) > SWIPE_THRESHOLD) {
         pointerActive = false;
-        goRelative(dx < 0 ? 1 : -1);
+        // Reverse swipe direction for RTL languages
+        const isRTL = document.documentElement.getAttribute('dir') === 'rtl';
+        const direction = dx < 0 ? 1 : -1;
+        goRelative(isRTL ? -direction : direction);
       }
     };
 

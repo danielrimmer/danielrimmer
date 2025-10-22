@@ -403,7 +403,7 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
   display: grid;
   gap: 22px;
 }
-.bonus-title { margin: 0; }
+.bonus-title { margin: 0; text-align: center; }
 
 .bonus {
   position: relative;
@@ -746,6 +746,21 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
 }
 
 /* Services */
+.services {
+  position: relative;
+  background: #06070d;
+  overflow: hidden;
+}
+.services-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: url('Images/darksky.png') center / cover no-repeat;
+}
+.services .container {
+  position: relative;
+  z-index: 2;
+}
 .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
 .service { text-align: left; padding: 24px; border-radius: 16px; border: 1px solid var(--border); background: var(--card); box-shadow: var(--shadow); transition: transform .3s ease; }
 .service:hover { transform: translateY(-4px); }
@@ -951,6 +966,11 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
   .projects-grid { grid-template-columns: 1fr; }
   .services-grid { grid-template-columns: 1fr; }
   .section { padding: 72px 0; }
+
+  /* Center services section title on mobile */
+  .services .section-head {
+    text-align: center;
+  }
   .process-step-list { grid-template-columns: 1fr; }
   .process-step-list {
     position: relative;

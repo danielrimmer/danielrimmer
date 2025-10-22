@@ -153,7 +153,7 @@ const animateStepValue = (el, target, options = {}) => {
   else onReady();
 
   let lastY = window.scrollY;
-  const solidThreshold = 700;
+  const solidThreshold = 500; // Changed from 700 to 500px
   const bonusSection = document.getElementById('bonus-services-stack');
   const stackCards = bonusSection ? Array.from(bonusSection.querySelectorAll('[data-stack-card]')) : [];
   const lastStackCard = stackCards.length ? stackCards[stackCards.length - 1] : null;
@@ -172,10 +172,10 @@ const animateStepValue = (el, target, options = {}) => {
       root.style.setProperty('--header-height', `${Math.round(headerHeight)}px`);
     }
 
-    // Check if we're in the Bonus Services section
+    // Check if we're in the Bonus Services section (DESKTOP ONLY - section 2)
     let shouldPinHeader = false;
 
-    if (bonusSection) {
+    if (bonusSection && window.innerWidth > 768) {
       const sectionRect = bonusSection.getBoundingClientRect();
       const sectionTopReached = sectionRect.top <= headerHeight + 12;
       const sectionBottomY = y + sectionRect.bottom;
@@ -199,7 +199,7 @@ const animateStepValue = (el, target, options = {}) => {
       header.classList.remove('is-solid');
     }
 
-    // Pin header when in Bonus Services section
+    // Pin header when in Bonus Services section (desktop only)
     if (shouldPinHeader) {
       header.classList.add('is-pinned');
       header.classList.remove('hide');
@@ -207,16 +207,23 @@ const animateStepValue = (el, target, options = {}) => {
       header.classList.remove('is-pinned');
 
       // Hide on scroll down, show on scroll up or near top (only before reaching solid threshold)
-      if (!navOpen) {
+      // Don't hide if header is pinned by mobile Bonus Services
+      const isPinnedByMobile = header.classList.contains('is-pinned');
+
+      if (!navOpen && !isPinnedByMobile) {
         if (y < solidThreshold) {
           const goingDown = y > lastY;
-          // Hide after 100px of scrolling down (mobile, tablet, desktop)
-          if (goingDown && y > 100) header.classList.add('hide');
-          else header.classList.remove('hide');
+          // Hide after 100px of scrolling down (all devices)
+          if (goingDown && y > 100) {
+            header.classList.add('hide');
+          } else {
+            header.classList.remove('hide');
+          }
         } else {
+          // After reaching solid threshold (500px), header becomes visible with blue background
           header.classList.remove('hide');
         }
-      } else {
+      } else if (navOpen) {
         // Ensure visible when mobile menu open
         header.classList.remove('hide');
       }

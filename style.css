@@ -300,6 +300,14 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
 }
 .process-inner { position: relative; z-index: 2; display: grid; gap: 48px; }
 .process-heading { display: grid; gap: 12px; max-width: 680px; }
+
+/* Center process title on mobile and tablet */
+@media (max-width: 980px) {
+  .process-heading {
+    text-align: center;
+    margin: 0 auto;
+  }
+}
 .process-tag {
   margin: 0;
   font-size: 13px;

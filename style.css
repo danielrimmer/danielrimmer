@@ -456,6 +456,11 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
   .bonus-card { width: 100%; }
 }
 
+/* Default: hide mobile stacking container on all screen sizes */
+.bonus-cards-stack-mobile {
+  display: none;
+}
+
 /* Bonus Services 3D Carousel (Desktop Only) */
 .bonus-carousel-wrapper {
   position: relative;
@@ -605,14 +610,110 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
   transform: translateX(52%) scale(.82) rotateY(-42deg);
 }
 
-/* Hide carousel on mobile, show original cards */
-@media (max-width: 980px) {
+/* Mobile-specific stacking animation - MUST BE MOST SPECIFIC */
+@media screen and (max-width: 768px) {
+  .bonus.section {
+    background: var(--bg-2) !important; /* Darker blue background */
+    min-height: auto; /* Let content determine height */
+    padding: 80px 0 60px 0; /* Reduced padding - just a bit of space around cards */
+    overflow: visible !important; /* Allow cards to be visible */
+  }
+
+  /* Hide the video background on mobile */
+  .bonus .bonus-bg {
+    display: none !important;
+  }
+
+  .bonus.section::before {
+    display: none !important;
+  }
+
+  .bonus .bonus-inner {
+    z-index: 10 !important;
+  }
+
+  .bonus .bonus-carousel-wrapper {
+    display: none !important;
+  }
+
+  /* Mobile stacking cards container */
+  .bonus .bonus-cards-mobile {
+    display: block !important;
+    position: relative;
+    width: 100%;
+    min-height: auto; /* Let cards determine height */
+    padding: 20px 0; /* Small padding */
+  }
+
+  /* Individual stacking cards */
+  .bonus .bonus-cards-mobile .bonus-card {
+    position: sticky;
+    top: calc(var(--header-height, 76px) + 20px);
+    width: 90%;
+    max-width: 400px;
+    margin: 0 auto 60vh; /* Space between cards for scrolling */
+    padding: 32px 24px;
+    min-height: 280px;
+    background: linear-gradient(160deg, rgba(12,14,22,.42), rgba(10,12,18,.36));
+    border: 1px solid rgba(255,255,255,.1);
+    border-radius: 20px;
+    box-shadow: 0 12px 32px rgba(0,0,0,.3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(100px);
+    transition: opacity 0.6s ease, transform 0.6s ease, background 0.5s ease, box-shadow 0.5s ease;
+  }
+
+  /* Visible state - slide in */
+  .bonus .bonus-cards-mobile .bonus-card.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Active state - when card is in sticky position */
+  .bonus .bonus-cards-mobile .bonus-card.is-active {
+    background: linear-gradient(155deg, #12324a, #3b0f2c);
+    border-color: rgba(0,224,255,.3);
+    box-shadow: 0 22px 55px rgba(0,0,0,.42), 0 0 50px rgba(0,224,255,.28);
+  }
+
+  .bonus .bonus-cards-mobile .bonus-card h3 {
+    font-size: clamp(18px, 5vw, 22px);
+    font-weight: 700;
+    margin: 0 0 16px;
+    color: #fff;
+  }
+
+  .bonus .bonus-cards-mobile .bonus-card p {
+    font-size: clamp(14px, 3.8vw, 16px);
+    line-height: 1.65;
+    margin: 0;
+    color: rgba(255,255,255,.88);
+  }
+
+  /* Hide the unused bonus-cards-stack-mobile container */
+  .bonus .bonus-cards-stack-mobile {
+    display: none !important;
+  }
+
+}
+
+/* Tablet: show original mobile cards (only between 769px and 980px) */
+@media (min-width: 769px) and (max-width: 980px) {
   .bonus-carousel-wrapper {
-    display: none;
+    display: none !important;
   }
 
   .bonus-cards-mobile {
     display: flex !important;
+  }
+
+  .bonus-cards-stack-mobile {
+    display: none !important;
   }
 }
 
@@ -623,6 +724,10 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
   }
 
   .bonus-cards-mobile {
+    display: none !important;
+  }
+
+  .bonus-cards-stack-mobile {
     display: none !important;
   }
 }

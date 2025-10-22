@@ -545,7 +545,7 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
     align-items: center !important;
     justify-content: center !important;
     position: absolute !important;
-    right: 8px !important;
+    right: -2px !important;
     left: auto !important;
     top: 50% !important;
     transform: translateY(-50%) !important;
@@ -565,7 +565,7 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
   }
 
   [dir="rtl"] .nav .nav-toggle {
-    left: 8px !important;
+    left: -2px !important;
     right: auto !important;
   }
 
@@ -649,11 +649,11 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
 
   /* Move hamburger even closer to edge on mobile */
   .nav .nav-toggle {
-    right: 4px !important;
+    right: -2px !important;
   }
 
   [dir="rtl"] .nav .nav-toggle {
-    left: 4px !important;
+    left: -2px !important;
     right: auto !important;
   }
 

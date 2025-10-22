@@ -177,19 +177,19 @@ const animateStepValue = (el, target, options = {}) => {
 
     if (bonusSection) {
       const sectionRect = bonusSection.getBoundingClientRect();
-      const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
       const sectionTopReached = sectionRect.top <= headerHeight + 12;
+      const sectionBottomY = y + sectionRect.bottom;
 
-      let lastCardFullyVisible = false;
+      let releaseReached = false;
       if (lastStackCard) {
         const lastRect = lastStackCard.getBoundingClientRect();
-        lastCardFullyVisible = lastRect.bottom <= viewportHeight - 32;
+        const lastCardBottomY = y + lastRect.bottom;
+        releaseReached = (y + headerHeight) >= (lastCardBottomY + 100);
       } else {
-        // Fallback: rely on entire section height
-        lastCardFullyVisible = sectionRect.bottom <= viewportHeight - 32;
+        releaseReached = (y + headerHeight) >= (sectionBottomY + 100);
       }
 
-      shouldPinHeader = sectionTopReached && !lastCardFullyVisible && sectionRect.bottom > headerHeight + 24;
+      shouldPinHeader = sectionTopReached && !releaseReached && sectionBottomY > headerHeight + 24;
     }
 
     if (y >= solidThreshold) {
@@ -210,7 +210,8 @@ const animateStepValue = (el, target, options = {}) => {
       if (!navOpen) {
         if (y < solidThreshold) {
           const goingDown = y > lastY;
-          if (goingDown && y > 50) header.classList.add('hide');
+          // Hide after 100px of scrolling down (mobile, tablet, desktop)
+          if (goingDown && y > 100) header.classList.add('hide');
           else header.classList.remove('hide');
         } else {
           header.classList.remove('hide');
@@ -879,6 +880,8 @@ const animateStepValue = (el, target, options = {}) => {
       const viewportHeight = window.innerHeight;
       const scrollProgress = Math.max(0, -containerRect.top);
 
+      const totalCards = cards.length;
+
       cards.forEach((card, index) => {
         const cardRect = card.getBoundingClientRect();
         const cardTop = cardRect.top;
@@ -898,10 +901,13 @@ const animateStepValue = (el, target, options = {}) => {
         const progress = Math.min(cardScrollProgress / maxCardScroll, 1);
 
         // Stacking effect: cards scale down and move up slightly as they stack
-        const scale = 1 - (progress * 0.05 * (cards.length - index - 1));
+        const stackDepth = totalCards - index - 1;
+        const scale = 1 - (progress * 0.05 * stackDepth);
         const translateY = progress * -10; // Slight upward movement
-        const opacity = 1 - (progress * 0.2);
+        const shouldFade = stackDepth > 0;
+        const opacity = shouldFade ? Math.max(0.45, 1 - (progress * 0.25)) : 1;
 
+        card.style.zIndex = String(totalCards - index);
         card.style.transform = `scale(${scale}) translateY(${translateY}px)`;
         card.style.opacity = opacity;
       });

@@ -615,7 +615,7 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
   .bonus.section {
     background: var(--bg-2) !important; /* Darker blue background */
     min-height: auto; /* Let content determine height */
-    padding: 80px 0 60px 0; /* Reduced padding - just a bit of space around cards */
+    padding: 24px 0 16px 0; /* 20% smaller than previous */
     overflow: visible !important; /* Allow cards to be visible */
   }
 
@@ -630,6 +630,11 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
 
   .bonus .bonus-inner {
     z-index: 10 !important;
+  }
+
+  /* Center the title */
+  .bonus .bonus-title {
+    text-align: center;
   }
 
   .bonus .bonus-carousel-wrapper {
@@ -651,7 +656,7 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
     top: calc(var(--header-height, 76px) + 20px);
     width: 90%;
     max-width: 400px;
-    margin: 0 auto 60vh; /* Space between cards for scrolling */
+    margin: 0 auto 11.2vh; /* 20% smaller than 14vh = 11.2vh */
     padding: 32px 24px;
     min-height: 280px;
     background: linear-gradient(160deg, rgba(12,14,22,.42), rgba(10,12,18,.36));

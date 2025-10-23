@@ -1053,7 +1053,7 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
   }
 
   .card-text h3 {
-    font-size: clamp(16px, 4vw, 20px);
+    font-size: clamp(32px, 8vw, 40px);
   }
 
   .benefit-card:hover {

@@ -950,6 +950,28 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
   color: #ffffff;
 }
 
+/* Mobile/Tablet: Show only videos, hide images in Key Benefits section */
+@media (max-width: 980px) {
+  .benefit-card.card-with-image .card-image-full {
+    opacity: 0 !important;
+    display: none;
+  }
+
+  .benefit-card.card-with-image .card-video-full {
+    opacity: 1 !important;
+    pointer-events: auto;
+  }
+
+  /* Ensure video plays on all mobile/tablet devices */
+  .benefit-card.card-with-image:hover .card-video-full {
+    opacity: 1;
+  }
+
+  .benefit-card.card-with-image:hover .card-image-full {
+    opacity: 0;
+  }
+}
+
 /* Card size variations for mosaic layout */
 /* Card 1: Square (1x1) */
 .card-size-1 {

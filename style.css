@@ -566,6 +566,33 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
   z-index: 1;
 }
 
+/* Card numbers styling */
+.bonus-card.carousel-card .card-number {
+  position: relative;
+  display: block;
+  margin-bottom: 16px;
+  font-size: 64px;
+  font-weight: 800;
+  letter-spacing: .08em;
+  color: #fff;
+  opacity: 1;
+  transition: color 0.55s cubic-bezier(.3,.7,.24,1);
+  line-height: 1;
+}
+
+/* Active card (front) - lighter blue */
+.bonus-card.carousel-card.active .card-number {
+  color: var(--acc-cyan);
+}
+
+/* Cards behind (next/prev/far) - white */
+.bonus-card.carousel-card.next .card-number,
+.bonus-card.carousel-card.prev .card-number,
+.bonus-card.carousel-card.far-next .card-number,
+.bonus-card.carousel-card.far-prev .card-number {
+  color: #fff;
+}
+
 /* Hover effect on active card */
 .bonus-card.carousel-card.active:hover {
   background: linear-gradient(155deg, #005266, #00475a);
@@ -668,7 +695,7 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
     top: calc(var(--header-height, 76px) + 20px);
     width: 90%;
     max-width: 400px;
-    margin: 0 auto 11.2vh; /* 20% smaller than 14vh = 11.2vh */
+    margin: 0 auto 14vh;
     padding: 32px 24px;
     min-height: 280px;
     background: linear-gradient(160deg, rgba(12,14,22,.42), rgba(10,12,18,.36));
@@ -681,14 +708,15 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
     justify-content: center;
     text-align: center;
     opacity: 0;
-    transform: translateY(100px);
+    transform: translateY(100px) scale(0.95);
     transition: opacity 0.6s ease, transform 0.6s ease, background 0.5s ease, box-shadow 0.5s ease;
+    z-index: auto;
   }
 
   /* Visible state - slide in */
   .bonus .bonus-cards-mobile .bonus-card.is-visible {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
   }
 
   /* Active state - when card is in sticky position */
@@ -725,8 +753,14 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
     display: none !important;
   }
 
-  .bonus-cards-mobile {
-    display: flex !important;
+  .bonus .bonus-cards-mobile {
+    display: block !important;
+  }
+
+  .bonus .bonus-cards-mobile .bonus-card {
+    position: relative;
+    opacity: 1;
+    transform: none;
   }
 
   .bonus-cards-stack-mobile {
@@ -742,6 +776,25 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
 
   .bonus-cards-mobile {
     display: none !important;
+  }
+
+  /* Desktop carousel cards - larger with centered flex layout */
+  .bonus-card.carousel-card {
+    min-height: 380px;
+    padding: 48px 28px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .bonus-card.carousel-card h3 {
+    margin: 0 0 16px;
+  }
+
+  .bonus-card.carousel-card p {
+    margin: 0;
   }
 
   .bonus-cards-stack-mobile {

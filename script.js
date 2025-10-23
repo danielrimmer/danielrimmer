@@ -824,6 +824,93 @@ const animateStepValue = (el, target, options = {}) => {
   });
 })();
 
+// ────────────────────────────────────────────────────────────────
+// Mobile/Tablet Stacking Animation for Bonus Services
+// ────────────────────────────────────────────────────────────────
+(function () {
+  // Only run on mobile and tablet (below 981px)
+  const isMobileOrTablet = () => window.matchMedia('(max-width: 980px)').matches;
+  if (!isMobileOrTablet()) return;
+
+  const bonusSection = document.querySelector('.bonus#bonus-services');
+  if (!bonusSection) return;
+
+  const cardsContainer = bonusSection.querySelector('.bonus-cards-mobile');
+  if (!cardsContainer) return;
+
+  const cards = Array.from(cardsContainer.querySelectorAll('.bonus-card'));
+  if (!cards.length) return;
+
+  let ticking = false;
+
+  const updateCards = () => {
+    ticking = false;
+    const viewportHeight = window.innerHeight;
+    const headerHeight = document.querySelector('.site-header')?.offsetHeight || 76;
+    const scrollY = window.scrollY;
+
+    // Slide in cards one by one as user scrolls
+    cards.forEach((card, index) => {
+      const cardRect = card.getBoundingClientRect();
+      const cardTop = cardRect.top;
+
+      // Cards slide in when they reach 80% down the viewport
+      const triggerPoint = viewportHeight * 0.8;
+
+      // Check if card should slide in (visible)
+      if (cardTop < triggerPoint && !card.classList.contains('is-visible')) {
+        card.classList.add('is-visible');
+      }
+
+      // Check which card is in the active sticky position
+      const stickyTop = headerHeight + 20;
+      const stickyBottom = headerHeight + 120;
+
+      // Check if this card is in the sticky position (active state with colors)
+      if (cardTop >= stickyTop && cardTop <= stickyBottom) {
+        // Remove active from all cards
+        cards.forEach(c => c.classList.remove('is-active'));
+        // Add active to this card
+        card.classList.add('is-active');
+      } else if (cardTop > stickyBottom) {
+        // Card hasn't reached sticky position yet, remove active
+        card.classList.remove('is-active');
+      }
+    });
+  };
+
+  const onScroll = () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(updateCards);
+  };
+
+  // Use IntersectionObserver for better performance
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        window.addEventListener('scroll', onScroll, { passive: true });
+        updateCards();
+      } else {
+        window.removeEventListener('scroll', onScroll);
+      }
+    });
+  }, { rootMargin: '100px' });
+
+  observer.observe(bonusSection);
+
+  // Initial update
+  updateCards();
+
+  // Re-check on resize
+  window.addEventListener('resize', () => {
+    if (!isMobileOrTablet()) {
+      window.removeEventListener('scroll', onScroll);
+    } else {
+      updateCards();
+    }
+  });
+})();
 
 /* Benefit Cards - Cursor-Following Light Effect */
 (function () {

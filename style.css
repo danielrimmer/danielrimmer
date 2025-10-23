@@ -759,7 +759,8 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
 
 .benefits-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 320px;
   gap: 24px;
   grid-auto-flow: dense;
 }
@@ -777,7 +778,6 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
   flex-direction: column;
   padding: 32px;
   color: #ffffff;
-  min-height: 320px;
 }
 
 .benefit-card:hover {
@@ -794,6 +794,69 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
   height: 100%;
 }
 
+/* Card with full-bleed image */
+.benefit-card.card-with-image {
+  padding: 0;
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 1fr;
+  position: relative;
+}
+
+.card-image-full {
+  grid-column: 1;
+  grid-row: 1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  z-index: 0;
+  opacity: 1;
+}
+
+.card-video-full {
+  grid-column: 1;
+  grid-row: 1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  z-index: 0;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.card-overlay {
+  grid-column: 1;
+  grid-row: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 32px;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.7) 100%);
+  z-index: 1;
+  transition: background 0.4s ease;
+  position: relative;
+}
+
+.benefit-card.card-with-image:hover .card-image-full {
+  opacity: 0;
+  transform: scale(1.08);
+}
+
+.benefit-card.card-with-image:hover .card-video-full {
+  opacity: 1;
+}
+
+.benefit-card.card-with-image:hover .card-overlay {
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.85) 100%);
+}
+
+/* Placeholder for other cards */
 .card-image-placeholder {
   width: 100%;
   height: 140px;
@@ -806,6 +869,8 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
   font-size: 12px;
   color: transparent;
   flex-shrink: 0;
+  overflow: hidden;
+  position: relative;
 }
 
 .benefit-card:hover .card-image-placeholder {
@@ -828,40 +893,47 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
   color: #ffffff;
 }
 
-/* Card size variations for masonry layout */
+/* Card size variations for mosaic layout */
+/* Card 1: Square (1x1) */
 .card-size-1 {
   grid-column: span 1;
-  min-height: 340px;
+  grid-row: span 1;
 }
 
+/* Card 2: Horizontal Rectangle (2x1) */
 .card-size-2 {
-  grid-column: span 1;
-  min-height: 300px;
+  grid-column: span 2;
+  grid-row: span 1;
 }
 
+/* Card 3: Vertical Rectangle (1x2) */
 .card-size-3 {
   grid-column: span 1;
-  min-height: 360px;
+  grid-row: span 2;
 }
 
+/* Card 4: Square (1x1) */
 .card-size-4 {
   grid-column: span 1;
-  min-height: 280px;
+  grid-row: span 1;
 }
 
+/* Card 5: Horizontal Rectangle (2x1) */
 .card-size-5 {
-  grid-column: span 1;
-  min-height: 350px;
+  grid-column: span 2;
+  grid-row: span 1;
 }
 
+/* Card 6: Square (1x1) */
 .card-size-6 {
   grid-column: span 1;
-  min-height: 280px;
+  grid-row: span 1;
 }
 
+/* Card 7: Square (1x1) */
 .card-size-7 {
   grid-column: span 1;
-  min-height: 300px;
+  grid-row: span 1;
 }
 
 /* Cursor-following light effect on hover */
@@ -898,15 +970,67 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
 /* Responsive: Tablet */
 @media (max-width: 980px) {
   .benefits-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 280px;
     gap: 20px;
   }
 
-  .benefit-card {
-    min-height: 300px;
-    padding: 28px;
+  /* Card 1: Square (1x1) */
+  .card-size-1 {
+    grid-column: span 1;
+    grid-row: span 1;
   }
 
+  /* Card 2: Horizontal Rectangle (2x1) */
+  .card-size-2 {
+    grid-column: span 2;
+    grid-row: span 1;
+  }
+
+  /* Card 3: Vertical Rectangle (1x2) */
+  .card-size-3 {
+    grid-column: span 1;
+    grid-row: span 2;
+  }
+
+  /* Card 4: Square (1x1) */
+  .card-size-4 {
+    grid-column: span 1;
+    grid-row: span 1;
+  }
+
+  /* Card 5: Horizontal Rectangle (2x1) */
+  .card-size-5 {
+    grid-column: span 2;
+    grid-row: span 1;
+  }
+
+  /* Card 6: Square (1x1) */
+  .card-size-6 {
+    grid-column: span 1;
+    grid-row: span 1;
+  }
+
+  /* Card 7: Square (1x1) */
+  .card-size-7 {
+    grid-column: span 1;
+    grid-row: span 1;
+  }
+
+  .benefit-card {
+    padding: 28px;
+  }
+}
+
+/* Responsive: Mobile */
+@media (max-width: 640px) {
+  .benefits-grid {
+    grid-template-columns: 1fr;
+    grid-auto-rows: auto;
+    gap: 16px;
+  }
+
+  /* All cards stack vertically on mobile */
   .card-size-1,
   .card-size-2,
   .card-size-3,
@@ -915,15 +1039,7 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
   .card-size-6,
   .card-size-7 {
     grid-column: span 1;
-    min-height: auto;
-  }
-}
-
-/* Responsive: Mobile */
-@media (max-width: 640px) {
-  .benefits-grid {
-    grid-template-columns: 1fr;
-    gap: 16px;
+    grid-row: span 1;
   }
 
   .benefit-card {

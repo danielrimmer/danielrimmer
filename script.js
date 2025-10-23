@@ -1081,3 +1081,24 @@ const animateStepValue = (el, target, options = {}) => {
     });
   });
 })();
+
+/* Card Video Playback on Hover */
+(function () {
+  const cardWithImage = document.querySelector('.card-with-image');
+  if (!cardWithImage) return;
+
+  const video = cardWithImage.querySelector('.card-video-full');
+  if (!video) return;
+
+  cardWithImage.addEventListener('mouseenter', () => {
+    video.currentTime = 0;
+    video.play().catch((err) => {
+      console.warn('Video playback failed:', err);
+    });
+  });
+
+  cardWithImage.addEventListener('mouseleave', () => {
+    video.pause();
+    video.currentTime = 0;
+  });
+})();

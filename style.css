@@ -151,10 +151,12 @@ html[lang="en"] .lang-en, html[lang="he"] .lang-he { background: rgba(255,255,25
 }
 /* Keep fully transparent even when scrolled */
 .site-header.scrolled { background: transparent; border-bottom: none; box-shadow: none; backdrop-filter: none; }
-/* Hide on scroll down */
+/* Hide header when scrolled past first section */
 .site-header.hide { transform: translateY(-100%); opacity: 0; }
 /* Pinned state - when in Bonus Services section, header stays visible and doesn't hide */
 .site-header.is-pinned { transform: translateY(0) !important; opacity: 1 !important; }
+/* Remove blue background on scroll (no is-solid styling) */
+.site-header.is-solid { background: transparent; }
 
 /* Header layout: center logo, split nav */
 .nav { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 12px; padding: 14px 0; }
@@ -424,8 +426,10 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
   transition: transform .4s ease-out;
   z-index: 0;
   overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
-.bonus-bg .bonus-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center bottom; display: block; }
 .bonus-inner {
   position: relative;
   z-index: 2;
@@ -1430,156 +1434,3 @@ html[lang="he"] .process .detail-title {
 }
 .bonus-inner { position: relative; z-index: 1; }
 
-/* ────────────────────────────────────────────────────────────────
-   Bonus Services V2: Scroll-Stacking Animation
-   ──────────────────────────────────────────────────────────────── */
-
-.bonus-stack {
-  display: none !important; /* Hidden for now */
-  background: var(--bg-1);
-  position: relative;
-  padding: 120px 0;
-  min-height: 100vh;
-}
-
-.bonus-stack::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at top center, rgba(0,224,255,.08), transparent 60%),
-              radial-gradient(circle at bottom center, rgba(255,60,126,.08), transparent 60%);
-  opacity: .5;
-  pointer-events: none;
-  z-index: 0;
-}
-
-.bonus-stack .container {
-  position: relative;
-  z-index: 1;
-}
-
-.bonus-stack .section-head {
-  text-align: center;
-  margin-bottom: 60px;
-}
-
-/* Stack container */
-.stack-container {
-  position: relative;
-  width: 100%;
-  max-width: 614px; /* 768 * 0.8 = 614.4px (reduced 20%) */
-  margin: 0 auto;
-  min-height: calc((358px + 15vh) * 4 + 100px); /* Calculated based on card height + spacing + extra room */
-}
-
-/* Individual stack cards */
-.stack-card {
-  position: sticky;
-  top: calc(var(--header-height, 76px) + 10px); /* Header height + 10px spacing */
-  width: 100%;
-  max-width: 538px; /* 672 * 0.8 = 537.6px (reduced 20%) */
-  min-height: 358px; /* 448 * 0.8 = 358.4px (reduced 20%) */
-  margin: 0 auto 15vh;
-  will-change: transform, opacity;
-  transform-origin: center top;
-}
-
-.stack-card-inner {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  min-height: 358px; /* 448 * 0.8 = 358.4px (reduced 20%) */
-  padding: 41px 36px; /* 51 * 0.8 = 40.8, 45 * 0.8 = 36px */
-  border-radius: 26px; /* 32 * 0.8 = 25.6px */
-  background: linear-gradient(160deg, #0c0e16, #0a0c12);
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
-  border: 1px solid rgba(255,255,255,.1);
-  box-shadow: 0 16px 42px rgba(0,0,0,.3); /* 20 * 0.8 = 16, 52 * 0.8 = 41.6 */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
-}
-
-.stack-card-inner h3 {
-  margin: 0 0 21px; /* 26 * 0.8 = 20.8 */
-  font-size: clamp(26px, 2.8vw, 30px); /* 32-38 * 0.8 = 25.6-30.4px */
-  font-weight: 700;
-  color: #fff;
-  letter-spacing: .02em;
-}
-
-.stack-card-inner p {
-  margin: 0;
-  font-size: clamp(19px, 1.8vw, 22px); /* 24-27 * 0.8 = 19.2-21.6px */
-  line-height: 1.65;
-  color: rgba(255,255,255,.88);
-  max-width: 100%;
-}
-
-/* Active state (when card is in view) - matches carousel active card */
-.stack-card.is-active .stack-card-inner {
-  background: linear-gradient(155deg, #12324a, #3b0f2c);
-  border-color: rgba(255,255,255,.1);
-  box-shadow: 0 22px 55px rgba(0,0,0,.42), 0 0 50px rgba(0,224,255,.28);
-}
-
-/* Desktop hover effect */
-@media (min-width: 981px) {
-  .stack-card-inner:hover {
-    transform: scale(1.03);
-    background: linear-gradient(155deg, #005266, #00475a);
-    border-color: rgba(0,224,255,.5);
-    box-shadow: 0 24px 65px rgba(0,0,0,.48), 0 0 65px rgba(0,224,255,.45);
-  }
-
-  .stack-card.is-active .stack-card-inner:hover {
-    background: linear-gradient(155deg, #005266, #00475a);
-  }
-}
-
-/* Mobile responsive */
-@media (max-width: 980px) {
-  .bonus-stack {
-    padding: 80px 0;
-  }
-
-  .stack-container {
-    min-height: calc((280px + 20vh) * 4 + 100px); /* Calculated for mobile: card height + spacing + extra room */
-    max-width: 90%;
-  }
-
-  .stack-card {
-    top: calc(var(--header-height, 76px) + 10px); /* Header height + 10px spacing */
-    max-width: 100%;
-    min-height: 280px;
-    margin-bottom: 20vh;
-  }
-
-  .stack-card-inner {
-    padding: 28px 24px;
-    min-height: 280px;
-  }
-
-  .stack-card-inner h3 {
-    margin-bottom: 14px;
-    font-size: clamp(18px, 4.5vw, 22px);
-  }
-
-  .stack-card-inner p {
-    font-size: clamp(14px, 3.5vw, 16px);
-  }
-}
-
-/* RTL adjustments */
-[dir="rtl"] .stack-card-inner {
-  text-align: center;
-}
-
-[dir="rtl"] .stack-card-inner h3,
-[dir="rtl"] .stack-card-inner p {
-  text-align: center;
-}

@@ -1057,3 +1057,27 @@ const animateStepValue = (el, target, options = {}) => {
     }
   });
 })();
+
+/* Benefit Cards - Cursor-Following Light Effect */
+(function () {
+  const benefitCards = document.querySelectorAll('.benefit-card');
+
+  benefitCards.forEach((card) => {
+    const glowLight = card.querySelector('::before');
+
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      // Update the radial gradient position using CSS custom properties
+      card.style.setProperty('--light-x', `${x}px`);
+      card.style.setProperty('--light-y', `${y}px`);
+    });
+
+    card.addEventListener('mouseleave', () => {
+      card.style.setProperty('--light-x', '-150px');
+      card.style.setProperty('--light-y', '-150px');
+    });
+  });
+})();

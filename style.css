@@ -745,6 +745,206 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
   }
 }
 
+/* Key Benefits Section */
+.key-benefits {
+  position: relative;
+  background: linear-gradient(180deg, #0b0c10, #0f1c2e);
+  overflow: hidden;
+}
+
+.key-benefits .section-head {
+  margin-bottom: 48px;
+  text-align: center;
+}
+
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  grid-auto-flow: dense;
+}
+
+.benefit-card {
+  position: relative;
+  border-radius: 28px;
+  overflow: hidden;
+  background: linear-gradient(135deg, rgba(15, 28, 46, 0.6), rgba(11, 12, 16, 0.8));
+  border: 1.5px solid rgba(192, 192, 192, 0.4);
+  box-shadow: 0 0 30px rgba(192, 192, 192, 0.15), inset 0 0 20px rgba(255, 255, 255, 0.05);
+  transition: all 0.4s cubic-bezier(0.3, 0.7, 0.4, 1);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  padding: 32px;
+  color: #ffffff;
+  min-height: 320px;
+}
+
+.benefit-card:hover {
+  transform: scale(1.06) translateY(-8px);
+  background: linear-gradient(135deg, rgba(0, 224, 255, 0.15), rgba(255, 60, 126, 0.12));
+  border-color: rgba(0, 224, 255, 0.6);
+  box-shadow: 0 0 50px rgba(0, 224, 255, 0.4), 0 0 80px rgba(255, 60, 126, 0.25), inset 0 0 30px rgba(255, 255, 255, 0.08);
+}
+
+.card-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  height: 100%;
+}
+
+.card-image-placeholder {
+  width: 100%;
+  height: 140px;
+  background: transparent;
+  border-radius: 16px;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  color: transparent;
+  flex-shrink: 0;
+}
+
+.benefit-card:hover .card-image-placeholder {
+  background: transparent;
+  border-color: transparent;
+}
+
+.card-text {
+  flex-grow: 1;
+  display: flex;
+  align-items: flex-start;
+}
+
+.card-text h3 {
+  font-size: clamp(18px, 2vw, 22px);
+  font-weight: 700;
+  line-height: 1.4;
+  margin: 0;
+  letter-spacing: 0.02em;
+  color: #ffffff;
+}
+
+/* Card size variations for masonry layout */
+.card-size-1 {
+  grid-column: span 1;
+  min-height: 340px;
+}
+
+.card-size-2 {
+  grid-column: span 1;
+  min-height: 300px;
+}
+
+.card-size-3 {
+  grid-column: span 1;
+  min-height: 360px;
+}
+
+.card-size-4 {
+  grid-column: span 1;
+  min-height: 280px;
+}
+
+.card-size-5 {
+  grid-column: span 1;
+  min-height: 350px;
+}
+
+.card-size-6 {
+  grid-column: span 1;
+  min-height: 280px;
+}
+
+.card-size-7 {
+  grid-column: span 1;
+  min-height: 300px;
+}
+
+/* Cursor-following light effect on hover */
+.benefit-card {
+  position: relative;
+  --light-x: -150px;
+  --light-y: -150px;
+}
+
+.benefit-card::before {
+  content: "";
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  top: calc(var(--light-y) - 150px);
+  left: calc(var(--light-x) - 150px);
+  background: radial-gradient(circle, rgba(0, 224, 255, 0.4) 0%, transparent 70%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+  border-radius: 50%;
+  z-index: 0;
+}
+
+.benefit-card:hover::before {
+  opacity: 0.8;
+}
+
+.card-content {
+  position: relative;
+  z-index: 1;
+}
+
+/* Responsive: Tablet */
+@media (max-width: 980px) {
+  .benefits-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .benefit-card {
+    min-height: 300px;
+    padding: 28px;
+  }
+
+  .card-size-1,
+  .card-size-2,
+  .card-size-3,
+  .card-size-4,
+  .card-size-5,
+  .card-size-6,
+  .card-size-7 {
+    grid-column: span 1;
+    min-height: auto;
+  }
+}
+
+/* Responsive: Mobile */
+@media (max-width: 640px) {
+  .benefits-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .benefit-card {
+    min-height: 280px;
+    padding: 24px;
+    border-radius: 20px;
+  }
+
+  .card-image-placeholder {
+    height: 120px;
+  }
+
+  .card-text h3 {
+    font-size: clamp(16px, 4vw, 20px);
+  }
+
+  .benefit-card:hover {
+    transform: scale(1.04) translateY(-4px);
+  }
+}
+
 /* Services */
 .services {
   position: relative;

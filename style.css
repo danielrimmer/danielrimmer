@@ -930,9 +930,9 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
   grid-row: span 1;
 }
 
-/* Card 7: Square (1x1) */
+/* Card 7: Long Horizontal Rectangle (3x1) - extends to right edge */
 .card-size-7 {
-  grid-column: span 1;
+  grid-column: span 3;
   grid-row: span 1;
 }
 
@@ -1011,9 +1011,9 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
     grid-row: span 1;
   }
 
-  /* Card 7: Square (1x1) */
+  /* Card 7: Long Horizontal Rectangle (3x1) - extends to right edge on tablet */
   .card-size-7 {
-    grid-column: span 1;
+    grid-column: span 3;
     grid-row: span 1;
   }
 
@@ -1053,7 +1053,7 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
   }
 
   .card-text h3 {
-    font-size: clamp(32px, 8vw, 40px);
+    font-size: clamp(24px, 6vw, 30px);
   }
 
   .benefit-card:hover {

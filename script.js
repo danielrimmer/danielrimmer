@@ -1082,24 +1082,62 @@ const animateStepValue = (el, target, options = {}) => {
   });
 })();
 
-/* Card Video Playback on Hover */
+/* Card Video Playback on Hover (Desktop) and Click/Touch (Mobile/Tablet) */
 (function () {
   const cardsWithImages = document.querySelectorAll('.card-with-image');
+
+  let isTouchDevice = () => {
+    return (('ontouchstart' in window) ||
+            (navigator.maxTouchPoints > 0) ||
+            (navigator.msMaxTouchPoints > 0));
+  };
 
   cardsWithImages.forEach((cardWithImage) => {
     const video = cardWithImage.querySelector('.card-video-full');
     if (!video) return;
 
+    // Desktop: mouseenter/mouseleave events
     cardWithImage.addEventListener('mouseenter', () => {
-      video.currentTime = 0;
-      video.play().catch((err) => {
-        console.warn('Video playback failed:', err);
-      });
+      if (!isTouchDevice()) {
+        video.currentTime = 0;
+        video.play().catch((err) => {
+          console.warn('Video playback failed:', err);
+        });
+      }
     });
 
     cardWithImage.addEventListener('mouseleave', () => {
-      video.pause();
-      video.currentTime = 0;
+      if (!isTouchDevice()) {
+        video.pause();
+        video.currentTime = 0;
+      }
     });
+
+    // Mobile/Tablet: click/tap event
+    cardWithImage.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (video.paused) {
+        video.currentTime = 0;
+        video.play().catch((err) => {
+          console.warn('Video playback failed:', err);
+        });
+      } else {
+        video.pause();
+        video.currentTime = 0;
+      }
+    });
+  });
+
+  // Stop video when clicking outside the card on touch devices
+  document.addEventListener('click', () => {
+    if (isTouchDevice()) {
+      cardsWithImages.forEach((cardWithImage) => {
+        const video = cardWithImage.querySelector('.card-video-full');
+        if (video && !video.paused) {
+          video.pause();
+          video.currentTime = 0;
+        }
+      });
+    }
   });
 })();

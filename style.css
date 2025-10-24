@@ -405,7 +405,11 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
   display: grid;
   gap: 22px;
 }
-.bonus-title { margin: 0; text-align: center; }
+.bonus-title {
+  margin: 0;
+  text-align: center;
+  color: #F4EAD2;
+}
 
 .bonus {
   position: relative;
@@ -477,10 +481,68 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
   .bonus-card { width: 100%; }
 }
 
-/* Hide card images on mobile/tablet (shown only on desktop) */
+/* Show card images on mobile/tablet with background */
 @media (max-width: 980px) {
+  .bonus-card {
+    position: relative;
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 0 !important;
+    height: 420px !important;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    border-radius: 16px;
+    border: 2px solid rgba(0, 224, 255, 0.3);
+  }
+
   .bonus-card-image {
-    display: none !important;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    z-index: 1;
+  }
+
+  .bonus-card h3,
+  .bonus-card p {
+    position: relative;
+    z-index: 2;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 16px;
+    margin: 0;
+    color: #fff;
+  }
+
+  .bonus-card h3 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .bonus-card p {
+    font-size: 14px;
+    line-height: 1.4;
+  }
+
+  /* First card - use card1.webp and hide text */
+  .bonus-card:nth-child(1) .bonus-card-image {
+    --image-url: url('images/card1.webp');
+  }
+
+  .bonus-card:nth-child(1) h3,
+  .bonus-card:nth-child(1) p {
+    display: none;
+  }
+
+  /* Cards 2, 3, 4 - use back-of-the-card.png */
+  .bonus-card:nth-child(2) .bonus-card-image,
+  .bonus-card:nth-child(3) .bonus-card-image,
+  .bonus-card:nth-child(4) .bonus-card-image {
+    --image-url: url('images/back-of-the-card.png');
   }
 }
 
@@ -777,6 +839,13 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
     position: relative;
     opacity: 1;
     transform: none;
+    width: 100% !important;
+    max-width: none !important;
+    height: 420px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border-radius: 16px;
+    border: 2px solid rgba(0, 224, 255, 0.3);
   }
 
   .bonus-cards-stack-mobile {

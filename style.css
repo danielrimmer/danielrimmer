@@ -981,6 +981,32 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
     inset: 0;
   }
 
+  /* Desktop: First card front shows ace.png */
+  .bonus .bonus-cards-mobile .bonus-card:nth-child(1) {
+    background-image: url('images/ace.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .bonus .bonus-cards-mobile .bonus-card:nth-child(1) .bonus-card-image {
+    display: none;
+  }
+
+  /* Keep ace.png visible during flip, fade to card1.webp after 90 degrees */
+  .bonus .bonus-cards-mobile .bonus-card:nth-child(1)::before {
+    background-image: url('images/card1.webp') !important;
+    opacity: 0 !important;
+    z-index: -1;
+    transition: opacity 0s linear 0.35s !important;
+  }
+
+  .bonus .bonus-cards-mobile .bonus-card:nth-child(1):hover::before {
+    opacity: 1 !important;
+    z-index: 15;
+    transition: opacity 0s linear 0.35s !important;
+  }
+
   /* Hide image on hover flip */
   .bonus .bonus-cards-mobile .bonus-card-image {
     transition: opacity 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -1058,10 +1084,6 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
     transform: scaleX(-1);
   }
 
-  /* First card - show card1.webp as front when hovered */
-  .bonus .bonus-cards-mobile .bonus-card:nth-child(1):hover::before {
-    background-image: url('images/card1.webp');
-  }
 
   /* Show back on hover flip - only after 80 degrees */
   .bonus .bonus-cards-mobile .bonus-card:hover::before,

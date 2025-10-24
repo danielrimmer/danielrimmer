@@ -825,6 +825,58 @@ const animateStepValue = (el, target, options = {}) => {
 })();
 
 // ────────────────────────────────────────────────────────────────
+// Desktop Poker Card Spread Animation for Bonus Services
+// ────────────────────────────────────────────────────────────────
+(function () {
+  // Only run on desktop (981px and above)
+  const isDesktop = () => window.matchMedia('(min-width: 981px)').matches;
+  if (!isDesktop()) return;
+
+  const bonusSection = document.querySelector('.bonus#bonus-services');
+  if (!bonusSection) return;
+
+  const cardsContainer = bonusSection.querySelector('.bonus-cards-mobile');
+  if (!cardsContainer) return;
+
+  const cards = Array.from(cardsContainer.querySelectorAll('.bonus-card'));
+  if (cards.length < 4) return;
+
+  let ticking = false;
+
+  const updateCards = () => {
+    ticking = false;
+    const scrollY = window.scrollY;
+    const bonusRect = bonusSection.getBoundingClientRect();
+    const bonusTop = bonusRect.top + scrollY;
+    const viewportHeight = window.innerHeight;
+
+    // Calculate trigger points for each card - slow, smooth spread
+    cards.forEach((card, index) => {
+      // Each card triggers ~120px apart for smooth poker card effect
+      const triggerY = bonusTop + (index * 120) - viewportHeight * 0.5;
+
+      if (scrollY >= triggerY) {
+        card.classList.add('is-visible');
+      } else {
+        card.classList.remove('is-visible');
+      }
+    });
+  };
+
+  const onScroll = () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(updateCards);
+  };
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', updateCards);
+
+  // Initial update
+  updateCards();
+})();
+
+// ────────────────────────────────────────────────────────────────
 // Mobile/Tablet Stacking Animation for Bonus Services
 // ────────────────────────────────────────────────────────────────
 (function () {

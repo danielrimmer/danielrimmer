@@ -964,7 +964,7 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
 
   /* Desktop: First card front shows ace.png */
   .bonus .bonus-cards-mobile .bonus-card:nth-child(1) {
-    background-image: url('images/ace.png');
+    background-image: url('images/ace.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

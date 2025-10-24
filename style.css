@@ -425,7 +425,7 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
 }
 .bonus-bg {
   position: absolute;
-  inset: -120px 0 -60px;
+  inset: -200px 0 -200px;
   transform: translate3d(0, 0, 0);
   transition: transform .4s ease-out;
   z-index: 0;
@@ -487,18 +487,21 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
     position: relative;
     display: block !important;
     width: 100%;
-    height: 500px;
+    min-height: 1200px;
     overflow: visible;
+    padding: 20px 0;
   }
 
   .bonus-card {
-    position: absolute !important;
-    width: 100% !important;
-    max-width: none !important;
+    position: sticky !important;
+    top: 80px !important;
+    width: 90% !important;
+    max-width: 400px !important;
     min-width: unset !important;
-    margin: 0 !important;
+    margin: 0 auto !important;
+    margin-bottom: 150px !important;
     padding: 0 !important;
-    height: 420px !important;
+    height: 500px !important;
     flex: none !important;
     overflow: hidden;
     display: flex;
@@ -506,8 +509,32 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
     justify-content: flex-end;
     border-radius: 16px !important;
     border: 2px solid rgba(0, 224, 255, 0.3) !important;
-    top: 0;
-    left: 0;
+    opacity: 0;
+    transform: translateY(60px) scale(0.9);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+
+  /* Cards become visible when scrolled into view */
+  .bonus-card.is-visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+  /* Stacking z-index for proper layering */
+  .bonus-card:nth-child(1) {
+    z-index: 4;
+  }
+
+  .bonus-card:nth-child(2) {
+    z-index: 3;
+  }
+
+  .bonus-card:nth-child(3) {
+    z-index: 2;
+  }
+
+  .bonus-card:nth-child(4) {
+    z-index: 1;
   }
 
   .bonus-card-image {
@@ -555,53 +582,6 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
   .bonus-card:nth-child(3) .bonus-card-image,
   .bonus-card:nth-child(4) .bonus-card-image {
     --image-url: url('images/back-of-the-card.png');
-  }
-
-  /* Stacking effect - cards overlap as user scrolls */
-  .bonus-card {
-    transition: top 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), z-index 0.3s ease;
-  }
-
-  /* Default: cards stacked on top of each other, coming down */
-  .bonus-card:nth-child(1) {
-    z-index: 4;
-    top: 0 !important;
-  }
-
-  .bonus-card:nth-child(2) {
-    z-index: 3;
-    top: -80px !important;
-  }
-
-  .bonus-card:nth-child(3) {
-    z-index: 2;
-    top: -160px !important;
-  }
-
-  .bonus-card:nth-child(4) {
-    z-index: 1;
-    top: -240px !important;
-  }
-
-  /* When card becomes visible, it slides down to its position */
-  .bonus-card.is-visible:nth-child(1) {
-    top: 0 !important;
-    z-index: 4;
-  }
-
-  .bonus-card.is-visible:nth-child(2) {
-    top: 0 !important;
-    z-index: 3;
-  }
-
-  .bonus-card.is-visible:nth-child(3) {
-    top: 0 !important;
-    z-index: 2;
-  }
-
-  .bonus-card.is-visible:nth-child(4) {
-    top: 0 !important;
-    z-index: 1;
   }
 }
 
@@ -898,6 +878,7 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
     position: relative;
     opacity: 1;
     transform: none;
+    height: 500px !important;
   }
 
   .bonus-cards-stack-mobile {

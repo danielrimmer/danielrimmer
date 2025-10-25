@@ -988,7 +988,7 @@ const animateStepValue = (el, target, options = {}) => {
   });
 })();
 
-/* Card Video Playback on Hover (Desktop) and Click/Touch (Mobile/Tablet) */
+/* Card Video Playback on Hover (Desktop) and Auto-play (Mobile/Tablet) */
 (function () {
   const cardsWithImages = document.querySelectorAll('.card-with-image');
 
@@ -996,6 +996,10 @@ const animateStepValue = (el, target, options = {}) => {
     return (('ontouchstart' in window) ||
             (navigator.maxTouchPoints > 0) ||
             (navigator.msMaxTouchPoints > 0));
+  };
+
+  let isTabletOrMobile = () => {
+    return window.innerWidth <= 980;
   };
 
   cardsWithImages.forEach((cardWithImage) => {
@@ -1019,31 +1023,29 @@ const animateStepValue = (el, target, options = {}) => {
       }
     });
 
-    // Mobile/Tablet: click/tap event
-    cardWithImage.addEventListener('click', (e) => {
-      e.stopPropagation();
-      if (video.paused) {
-        video.currentTime = 0;
-        video.play().catch((err) => {
-          console.warn('Video playback failed:', err);
-        });
-      } else {
-        video.pause();
-        video.currentTime = 0;
-      }
-    });
-  });
+    // Mobile/Tablet: Auto-play video once when card becomes visible using Intersection Observer
+    if (isTabletOrMobile() || isTouchDevice()) {
+      const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
+      };
 
-  // Stop video when clicking outside the card on touch devices
-  document.addEventListener('click', () => {
-    if (isTouchDevice()) {
-      cardsWithImages.forEach((cardWithImage) => {
-        const video = cardWithImage.querySelector('.card-video-full');
-        if (video && !video.paused) {
-          video.pause();
-          video.currentTime = 0;
-        }
-      });
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && video.paused) {
+            // Auto-play video once
+            video.currentTime = 0;
+            video.play().catch((err) => {
+              console.warn('Video playback failed:', err);
+            });
+            // Only observe once, then disconnect
+            observer.unobserve(cardWithImage);
+          }
+        });
+      }, observerOptions);
+
+      observer.observe(cardWithImage);
     }
   });
 })();

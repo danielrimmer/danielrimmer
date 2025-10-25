@@ -1574,6 +1574,30 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
   .benefit-card {
     padding: 28px;
   }
+
+  /* Mobile/Tablet: Always show video and description, hide image */
+  .benefit-card.card-with-image .card-image-full {
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+
+  .benefit-card.card-with-image .card-video-full {
+    opacity: 1;
+    transition: opacity 0.4s ease;
+  }
+
+  .benefit-card.card-with-image .card-overlay {
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.85) 100%);
+  }
+
+  .benefit-card.card-with-image .card-description {
+    opacity: 1;
+  }
+
+  /* Video autoplay once on mobile/tablet */
+  .benefit-card.card-with-image .card-video-full {
+    pointer-events: none;
+  }
 }
 
 /* Responsive: Mobile */

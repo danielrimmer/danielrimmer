@@ -2113,7 +2113,7 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
   .hero-copy { grid-column: 1; }
   /* Fallback: ensure at least the first process step is visible
      in case JS is delayed on slower devices */
-  .process-step-list .process-step:first-child {
+  html:not(.process-mobile-enhanced) .process-step-list .process-step:first-child {
     opacity: 1 !important;
     pointer-events: auto !important;
     transform: translateX(0) scale(1) rotateY(0deg) !important;
@@ -2127,6 +2127,100 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
   .process-step .step-title { text-align: left; font-size: 18px; }
   .process-step .step-body { gap: 8px; }
   .process-step .step-desc { display: none; }
+  /* Fallback stacked layout when JS enhancement isn't active */
+  html:not(.process-mobile-enhanced) .process-step-list {
+    position: static;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 18px;
+    min-height: auto;
+    perspective: none;
+    touch-action: pan-y;
+  }
+
+  html:not(.process-mobile-enhanced) .process-step {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    opacity: 1;
+    pointer-events: auto;
+    transform: none;
+    filter: none;
+    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.28);
+    border-radius: 20px;
+  }
+
+  html:not(.process-mobile-enhanced) .process-step.card-current,
+  html:not(.process-mobile-enhanced) .process-step.card-next,
+  html:not(.process-mobile-enhanced) .process-step.card-prev,
+  html:not(.process-mobile-enhanced) .process-step.card-hidden {
+    transform: none;
+    filter: none;
+    z-index: auto;
+  }
+
+  /* Enhanced mobile/tablet carousel (requires JS to add root class) */
+  html.process-mobile-enhanced .process-step-list {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 360px;
+    perspective: 1400px;
+    touch-action: pan-y;
+    gap: 0;
+  }
+
+  html.process-mobile-enhanced .process-step {
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    width: 82%;
+    max-width: 360px;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding: 22px;
+    text-align: left;
+    background: linear-gradient(165deg, #0b101a 10%, #131a2a 90%);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(0) scale(.72) rotateY(0deg);
+    transition: transform .55s cubic-bezier(.25,.8,.25,1), opacity .45s ease, box-shadow .45s ease, filter .45s ease;
+    z-index: 1;
+  }
+
+  html.process-mobile-enhanced .process-step.card-current {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateX(0) scale(1) rotateY(0deg);
+    box-shadow: 0 22px 45px rgba(0,0,0,.38), 0 0 40px rgba(0,224,255,.35);
+    background: linear-gradient(155deg, #12324a 15%, #3b0f2c 85%);
+    z-index: 3;
+  }
+
+  html.process-mobile-enhanced .process-step.card-next {
+    opacity: 1;
+    transform: translateX(46%) scale(.78) rotateY(-34deg);
+    filter: saturate(115%);
+    background: linear-gradient(160deg, #102235 10%, #0f1c2e 90%);
+    z-index: 2;
+  }
+
+  html.process-mobile-enhanced .process-step.card-prev {
+    opacity: 1;
+    transform: translateX(-46%) scale(.78) rotateY(34deg);
+    filter: saturate(115%);
+    background: linear-gradient(160deg, #102235 10%, #0f1c2e 90%);
+    z-index: 2;
+  }
+
+  html.process-mobile-enhanced .process-step.card-hidden {
+    opacity: 1;
+    transform: translateX(0) scale(.6) rotateY(0deg);
+    z-index: 1;
+  }
 
   /* Tablet header layout - use hamburger menu */
   .nav {

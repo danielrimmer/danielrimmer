@@ -405,6 +405,11 @@ html[lang="en"] .lang-en, html[lang="he"] .lang-he { background: rgba(255,255,25
 .nav-links a { opacity: .85; padding: 8px 12px; border-radius: 10px; transition: all .3s ease; }
 .nav-links a:hover, .nav-links a.active { opacity: 1; background: rgba(255,255,255,.06); }
 
+/* Desktop only: hide header nav links (keep language buttons), but allow sidebar to show them */
+@media (min-width: 981px) {
+  .site-header:not(.sidebar-mode) .nav .nav-links { display: none !important; }
+}
+
 /* Hide mobile overlay by default on desktop */
 .mobile-menu { display: none; }
 

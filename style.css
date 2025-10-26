@@ -624,6 +624,15 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
   [dir="rtl"] .scroll-label { right: calc(50% + 12px + 10px); }
 }
 
+/* Mobile/Tablet: force scroll indicator visible */
+@media (max-width: 980px) {
+  .scroll-indicator {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: translateY(0) !important;
+  }
+}
+
 /* About */
 .about-inner { display: grid; grid-template-columns: 1.1fr .9fr; gap: min(6vw, 56px); padding: 36px; }
 .avatar-frame { position: relative; border-radius: 16px; overflow: hidden; border: 1px solid var(--border); aspect-ratio: 1 / 1; }
@@ -885,15 +894,16 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
     justify-content: flex-end;
     border-radius: 16px !important;
     border: 2px solid rgba(0, 224, 255, 0.3) !important;
-    opacity: 0;
-    transform: translateY(60px) scale(0.9);
+    opacity: 1 !important;
+    transform: translateY(0) scale(1) !important;
     transition: opacity 0.5s ease, transform 0.5s ease;
+    visibility: visible !important;
   }
 
   /* Cards become visible when scrolled into view */
   .bonus .bonus-cards-mobile .bonus-card.is-visible {
-    opacity: 1;
-    transform: translateY(0) scale(1);
+    opacity: 1 !important;
+    transform: translateY(0) scale(1) !important;
   }
 
   /* Stacking effect - each card offsets down to show cards beneath */
@@ -2106,7 +2116,8 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
   .process-step-list .process-step:first-child {
     opacity: 1 !important;
     pointer-events: auto !important;
-    transform: none !important;
+    transform: translateX(0) scale(1) rotateY(0deg) !important;
+    visibility: visible !important;
   }
   .projects-grid { grid-template-columns: repeat(2, 1fr); }
   .services-grid { grid-template-columns: repeat(2, 1fr); }
@@ -2344,9 +2355,11 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
     z-index: 2;
   }
   .process-step.card-hidden {
-    opacity: 0;
-    transform: translateX(0) scale(.6) rotateY(0deg);
+    opacity: 1 !important;
+    transform: translateX(0) scale(.6) rotateY(0deg) !important;
     z-index: 1;
+    visibility: visible !important;
+    pointer-events: auto !important;
   }
 }
 

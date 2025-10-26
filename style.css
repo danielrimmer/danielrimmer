@@ -939,8 +939,8 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
 
 }
 
-/* Tablet: show original mobile cards (only between 769px and 980px) */
-@media (min-width: 769px) and (max-width: 980px) {
+/* Tablet: include 768px width (iPad portrait) */
+@media (min-width: 768px) and (max-width: 980px) {
   .bonus-carousel-wrapper {
     display: none !important;
   }
@@ -953,7 +953,7 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
     position: sticky !important;
     opacity: 1 !important;
     transform: none !important;
-    height: 500px !important;
+    height: 600px !important;
     margin-bottom: 150px !important;
   }
 
@@ -1307,6 +1307,14 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
 
   .bonus-cards-stack-mobile {
     display: none !important;
+  }
+}
+
+/* Strong tablet override for Bonus card height */
+@media (min-width: 768px) and (max-width: 980px) {
+  /* Use #bonus-services to outrank earlier rules */
+  #bonus-services .bonus-cards-mobile .bonus-card {
+    height: 600px !important;
   }
 }
 
@@ -2032,4 +2040,3 @@ html[lang="he"] .process .detail-title {
   pointer-events: none;
 }
 .bonus-inner { position: relative; z-index: 1; }
-

@@ -88,6 +88,8 @@ const animateStepValue = (el, target, options = {}) => {
 (function () {
   const toggle = document.querySelector('.nav-toggle');
   if (!toggle) return;
+  // Always start closed to avoid stuck scroll-lock on reload
+  document.documentElement.classList.remove('nav-open');
   toggle.addEventListener('click', () => {
     const open = document.documentElement.classList.toggle('nav-open');
     toggle.setAttribute('aria-expanded', String(open));
@@ -104,6 +106,19 @@ const animateStepValue = (el, target, options = {}) => {
       }
     });
   }
+
+  // Safety: on resize, if not in mobile/tablet layout, ensure menu is closed
+  const mq = window.matchMedia('(max-width: 980px)');
+  const ensureClosed = () => {
+    if (!mq.matches && document.documentElement.classList.contains('nav-open')) {
+      document.documentElement.classList.remove('nav-open');
+      toggle.setAttribute('aria-expanded', 'false');
+    }
+  };
+  if (typeof mq.addEventListener === 'function') mq.addEventListener('change', ensureClosed);
+  else if (typeof mq.addListener === 'function') mq.addListener(ensureClosed);
+  window.addEventListener('orientationchange', ensureClosed);
+  window.addEventListener('resize', ensureClosed);
 })();
 
 // Scroll spy to highlight current section

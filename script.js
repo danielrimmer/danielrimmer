@@ -1049,3 +1049,77 @@ const animateStepValue = (el, target, options = {}) => {
     }
   });
 })();
+
+// Typewriter effect for Key Benefits card descriptions
+(function () {
+  const benefitCards = document.querySelectorAll('.benefit-card');
+  if (!benefitCards.length) return;
+
+  const typeText = (el, text, delay) => new Promise((resolve) => {
+    el.textContent = '';
+    let i = 0;
+    const tick = () => {
+      el.textContent = text.slice(0, i++);
+      if (i <= text.length) setTimeout(tick, delay);
+      else resolve();
+    };
+    tick();
+  });
+
+  const startTypewriting = async (card) => {
+    const description = card.querySelector('.card-description');
+    if (!description) return;
+
+    const text = description.textContent.trim();
+    description.textContent = '';
+    await typeText(description, text, 30); // 30ms per character - same speed as hero subtitle
+  };
+
+  const isMobile = () => window.matchMedia('(max-width: 980px)').matches;
+
+  // Desktop: trigger on hover
+  benefitCards.forEach((card) => {
+    if (!isMobile()) {
+      let hasTyped = false;
+      card.addEventListener('mouseenter', async () => {
+        if (!hasTyped) {
+          hasTyped = true;
+          await startTypewriting(card);
+        }
+      });
+      card.addEventListener('mouseleave', () => {
+        hasTyped = false;
+      });
+    }
+  });
+
+  // Mobile/Tablet: trigger on scroll into view
+  if ('IntersectionObserver' in window) {
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px',
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const card = entry.target;
+          const description = card.querySelector('.card-description');
+
+          // Check if already typed
+          if (description && !description.dataset.typed) {
+            description.dataset.typed = 'true';
+            startTypewriting(card);
+            observer.unobserve(card);
+          }
+        }
+      });
+    }, observerOptions);
+
+    benefitCards.forEach((card) => {
+      if (isMobile()) {
+        observer.observe(card);
+      }
+    });
+  }
+})();

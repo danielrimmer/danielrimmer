@@ -479,13 +479,12 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
 /* Scroll indicator sign */
 .scroll-indicator {
   position: absolute;
-  left: 50%;
+  left: 0;
+  right: 0;
   bottom: 20px;
-  transform: translateX(-50%) translateY(6px);
+  transform: translateY(6px);
   z-index: 3;
-  display: inline-flex;
-  align-items: center;
-  gap: 14px;
+  display: block;
   color: rgba(255,255,255,0.82);
   font-size: clamp(14px, 1.6vw, 18px);
   font-weight: 600;
@@ -499,17 +498,26 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
 .scroll-indicator.show {
   opacity: 1;
   visibility: visible;
-  transform: translateX(-50%) translateY(0);
+  transform: translateY(0);
 }
 
-.scroll-label { white-space: nowrap; }
+.scroll-label {
+  position: absolute;
+  right: calc(50% + 14px + 14px); /* center + half mouse + gap */
+  top: 50%;
+  transform: translateY(-50%);
+  white-space: nowrap;
+  text-align: right;
+}
 
 .scroll-mouse {
   width: 28px;
   height: 46px;
   border: 2px solid rgba(255,255,255,0.7);
   border-radius: 16px;
-  position: relative;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
   display: inline-block;
 }
 
@@ -548,16 +556,21 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
 /* Hebrew: anchor bottom-left, reverse order so text sits right of symbol */
 [dir="rtl"] .scroll-indicator {
   right: auto;
-  left: 50%;
-  /* keep base transform (includes translateY animation offset) */
-  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .scroll-label {
+  right: auto;
+  left: calc(50% + 14px + 14px);
+  text-align: left;
 }
 
 /* Small screens: slightly smaller sign */
 @media (max-width: 640px) {
-  .scroll-indicator { gap: 10px; font-size: 14px; }
+  .scroll-indicator { font-size: 14px; }
   .scroll-mouse { width: 24px; height: 40px; }
   .scroll-mouse::before { top: 8px; width: 8px; height: 8px; }
+  .scroll-label { right: calc(50% + 12px + 10px); }
+  [dir="rtl"] .scroll-label { left: calc(50% + 12px + 10px); }
 }
 
 /* About */

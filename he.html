@@ -111,6 +111,23 @@
           padding: 24px 0 24px 0 !important; /* Balanced padding */
         }
 
+        /* Reorder items in sidebar - language buttons should be last */
+        .site-header.sidebar-mode .right-side {
+          display: flex !important;
+          flex-direction: column !important;
+          align-items: center !important;
+        }
+
+        /* Move language buttons to the very end */
+        .site-header.sidebar-mode .lang-group {
+          order: 999 !important; /* Push to bottom */
+          margin-top: 12px !important;
+        }
+
+        .site-header.sidebar-mode .nav-links.nav-right {
+          order: 1 !important;
+        }
+
         /* Logo positioned at top CENTER */
         .site-header.sidebar-mode .logo {
           position: absolute !important;

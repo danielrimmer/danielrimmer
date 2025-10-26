@@ -2207,39 +2207,6 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
   .process-step .step-desc { display: block; font-size: 15px; color: rgba(255,255,255,.84); }
   .process-detail-panel { display: none; }
 
-  /* No-JS fallback: stack cards */
-  html.no-js .process-step-list {
-    position: static;
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 18px;
-    min-height: auto;
-    perspective: none;
-  }
-
-  html.no-js .process-step {
-    position: relative;
-    inset: auto;
-    width: 100%;
-    max-width: none;
-    margin: 0;
-    opacity: 1;
-    pointer-events: auto;
-    transform: none;
-    filter: none;
-    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.28);
-    border-radius: 20px;
-  }
-
-  html.no-js .process-step.card-current,
-  html.no-js .process-step.card-next,
-  html.no-js .process-step.card-prev,
-  html.no-js .process-step.card-hidden {
-    transform: none;
-    filter: none;
-    z-index: auto;
-  }
-
   /* Tablet header layout - use hamburger menu */
   .nav {
     display: block !important;

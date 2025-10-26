@@ -1,5 +1,3 @@
-document.documentElement.classList.remove('no-js');
-
 const formatStepNumber = (value) => {
   const safe = Math.max(0, Math.round(Number(value) || 0));
   return safe < 10 ? `0${safe}` : String(safe);

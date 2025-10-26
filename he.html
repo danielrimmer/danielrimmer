@@ -20,7 +20,8 @@
 
       /* Desktop header layout */
       @media (min-width: 721px) {
-        .site-header .container.nav {
+        /* Normal header (not sidebar mode) */
+        .site-header:not(.sidebar-mode) .container.nav {
           position: relative;
           display: flex;
           align-items: center;
@@ -29,14 +30,14 @@
           min-height: 90px;
         }
 
-        .site-header .nav-left {
+        .site-header:not(.sidebar-mode) .nav-left {
           display: flex;
           align-items: center;
           gap: 16px;
           z-index: 2;
         }
 
-        .site-header .right-side {
+        .site-header:not(.sidebar-mode) .right-side {
           display: flex;
           align-items: center;
           gap: 16px;
@@ -44,13 +45,13 @@
           z-index: 2;
         }
 
-        /* Enlarge Hebrew header nav links (not language buttons) */
-        .site-header .nav-links a {
+        /* Enlarge Hebrew header nav links (not language buttons) - only in normal mode */
+        .site-header:not(.sidebar-mode) .nav-links a {
           font-size: 1.15em;
         }
 
-        /* Absolutely center the logo */
-        .site-header .logo {
+        /* Absolutely center the logo - only in normal mode */
+        .site-header:not(.sidebar-mode) .logo {
           position: absolute;
           left: 50%;
           top: 50%;
@@ -61,10 +62,70 @@
           pointer-events: auto;
         }
 
-        .site-header .logo .logo-img {
+        .site-header:not(.sidebar-mode) .logo .logo-img {
           height: 70px;
           width: auto;
           display: block;
+        }
+
+        /* Sidebar mode - Hebrew: position on RIGHT side */
+        .site-header.sidebar-mode {
+          left: auto !important;
+          right: 0 !important;
+        }
+
+        .site-header.sidebar-mode .container.nav {
+          display: flex !important;
+          flex-direction: column !important;
+          align-items: flex-end !important;
+          padding: 24px 10px 32px 0 !important;
+        }
+
+        /* Logo positioned at top RIGHT */
+        .site-header.sidebar-mode .logo {
+          position: absolute !important;
+          left: auto !important;
+          right: 10px !important;
+          top: 20px !important;
+          transform: translateX(0) !important;
+        }
+
+        /* In sidebar mode, ensure all nav items are visible and right-aligned */
+        .site-header.sidebar-mode .nav-left,
+        .site-header.sidebar-mode .right-side {
+          display: flex !important;
+          flex-direction: column !important;
+          align-items: flex-end !important;
+          width: 100% !important;
+        }
+
+        .site-header.sidebar-mode .nav-links {
+          display: flex !important;
+          flex-direction: column !important;
+          align-items: flex-end !important;
+          width: 100% !important;
+        }
+
+        .site-header.sidebar-mode .nav-links a {
+          text-align: right !important;
+          padding: 6px 8px !important;
+          margin-right: 0 !important;
+          margin-left: auto !important;
+        }
+
+        .site-header.sidebar-mode .lang-group {
+          justify-content: flex-end !important;
+          margin-right: 0 !important;
+          margin-left: auto !important;
+        }
+
+        .site-header.sidebar-mode .nav-left {
+          margin-top: 90px !important;
+          align-items: flex-end !important;
+        }
+
+        .site-header.sidebar-mode .right-side {
+          align-items: flex-end !important;
         }
       }
 
@@ -131,11 +192,10 @@
   <body>
     <header class="site-header" id="home">
       <div class="container nav">
-        <!-- צד שמאל: בית, אודות, פרויקטים, יתרונות -->
+        <!-- צד שמאל: בית, תהליך, יתרונות -->
         <nav class="nav-links nav-left" aria-label="ניווט שמאלי">
           <a href="#home" class="active">בית</a>
-          <a href="#about">אודות</a>
-          <a href="#projects">פרויקטים</a>
+          <a href="#process-v1">תהליך</a>
           <a href="#key-benefits">יתרונות</a>
         </nav>
 
@@ -144,17 +204,17 @@
           <img class="logo-img" src="images/logo-initials.svg?v=1" alt="דניאל רימר" />
         </a>
 
-        <!-- צד ימין: שירותים, יצירת קשר, שפה -->
+        <!-- צד ימין: אודות, שירותים, יצירת קשר, שפה -->
         <div class="right-side">
+          <nav class="nav-links nav-right" aria-label="ניווט ימני">
+            <a href="#about">אודות</a>
+            <a href="#services">שירותים</a>
+            <a href="#contact">יצירת קשר</a>
+          </nav>
           <div class="lang-group" role="group" aria-label="שפה">
             <a class="btn btn-ghost lang-switch lang-en" href="index.html" aria-label="Switch to English">EN</a>
             <a class="btn btn-ghost lang-switch lang-he" href="he.html" aria-label="Switch to Hebrew">HE</a>
           </div>
-          <nav class="nav-links nav-right" aria-label="ניווט ימני">
-            <a href="#process-v1">תהליך</a>
-            <a href="#services">שירותים</a>
-            <a href="#contact">יצירת קשר</a>
-          </nav>
         </div>
 
         <!-- תפריט לנייד -->
@@ -168,10 +228,9 @@
         <div class="mobile-menu-panel" role="dialog" aria-modal="true" aria-label="ניווט ראשי" tabindex="-1">
           <nav class="nav-links">
             <a href="#home">בית</a>
-            <a href="#about">אודות</a>
-            <a href="#projects">פרויקטים</a>
-            <a href="#key-benefits">יתרונות</a>
             <a href="#process-v1">תהליך</a>
+            <a href="#key-benefits">יתרונות</a>
+            <a href="#about">אודות</a>
             <a href="#services">שירותים</a>
             <a href="#contact">יצירת קשר</a>
           </nav>

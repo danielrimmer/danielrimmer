@@ -144,7 +144,7 @@ const animateStepValue = (el, target, options = {}) => {
   });
 })();
 
-// Page-load animation and header visibility on scroll
+// Page-load animation and header visibility on scroll with sidebar transformation
 (function () {
   const header = document.querySelector('.site-header');
   const root = document.documentElement;
@@ -155,6 +155,12 @@ const animateStepValue = (el, target, options = {}) => {
   const heroSection = document.getElementById('hero');
   let headerHeight = header?.getBoundingClientRect().height || 76;
   if (header) root.style.setProperty('--header-height', `${Math.round(headerHeight)}px`);
+
+  // Track sidebar state
+  let isSidebarMode = false;
+  let sidebarExpandTimeout = null;
+
+  const isDesktop = () => window.matchMedia('(min-width: 981px)').matches;
 
   const onScroll = () => {
     if (!header || !heroSection) return;
@@ -174,15 +180,53 @@ const animateStepValue = (el, target, options = {}) => {
     // Remove the old blue background styling
     header.classList.remove('is-solid');
 
-    // Simple logic: hide header if scrolled past hero section, show otherwise
-    // Unless mobile menu is open
-    if (!navOpen && y >= heroSectionHeight) {
-      // Scrolled past the first section - hide the header
-      header.classList.add('hide');
-      header.classList.remove('is-pinned');
-    } else {
-      // Still in the first section or menu is open - show the header
-      header.classList.remove('hide');
+    // Desktop sidebar transformation logic
+    if (isDesktop() && !navOpen) {
+      if (y >= heroSectionHeight) {
+        // Scrolled past hero - transform to sidebar
+        if (!isSidebarMode) {
+          isSidebarMode = true;
+          header.classList.remove('hide', 'sidebar-collapsing');
+          header.classList.add('sidebar-mode');
+
+          // Clear any pending timeout
+          if (sidebarExpandTimeout) clearTimeout(sidebarExpandTimeout);
+
+          // Add expanded class after logo slides (800ms for logo animation)
+          sidebarExpandTimeout = setTimeout(() => {
+            header.classList.add('sidebar-expanded');
+          }, 800);
+        }
+      } else {
+        // Scrolled back to hero - revert to normal header
+        if (isSidebarMode) {
+          isSidebarMode = false;
+
+          // Clear any pending timeout
+          if (sidebarExpandTimeout) clearTimeout(sidebarExpandTimeout);
+
+          // Start collapse animation
+          header.classList.add('sidebar-collapsing');
+          header.classList.remove('sidebar-expanded');
+
+          // After collapse animation, remove sidebar mode
+          setTimeout(() => {
+            header.classList.remove('sidebar-mode', 'sidebar-collapsing');
+          }, 400);
+        }
+      }
+    } else if (!isDesktop()) {
+      // Mobile/tablet: use original hide/show logic
+      if (!navOpen && y >= heroSectionHeight) {
+        header.classList.add('hide');
+        header.classList.remove('is-pinned');
+      } else {
+        header.classList.remove('hide');
+      }
+
+      // Clean up sidebar classes on mobile
+      header.classList.remove('sidebar-mode', 'sidebar-expanded', 'sidebar-collapsing');
+      isSidebarMode = false;
     }
   };
 

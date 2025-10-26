@@ -30,8 +30,15 @@ const animateStepValue = (el, target, options = {}) => {
 
   const scrollToEl = (el) => {
     if (!el) return;
+
+    // Special handling for home/hero - scroll to absolute top (0)
+    if (el.id === 'home' || el.id === 'hero') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+
     // No offset for specific sections to show them from the top
-    const sectionsWithoutOffset = ['about', 'contact', 'process-v1', 'key-benefits', 'services'];
+    const sectionsWithoutOffset = ['about', 'contact', 'process-v1', 'key-benefits', 'services', 'bonus-services'];
     const shouldShowFromTop = sectionsWithoutOffset.includes(el.id);
     const scrollOffset = shouldShowFromTop ? 0 : offset();
     const top = el.getBoundingClientRect().top + window.scrollY - scrollOffset;

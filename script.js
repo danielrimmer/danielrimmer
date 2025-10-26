@@ -416,7 +416,10 @@ const animateStepValue = (el, target, options = {}) => {
     tick();
   });
 
+  let startedTyping = false;
   const start = async () => {
+    if (startedTyping) return;
+    startedTyping = true;
     await typeText(titleEl, titleText, 60);
     // Speed up the hero paragraph typing for both languages
     await typeText(subEl, subText, 30);
@@ -439,7 +442,11 @@ const animateStepValue = (el, target, options = {}) => {
       }
     }, { threshold: 0.6 });
     io.observe(hero);
-  } else start();
+    // Fallback: ensure typing begins even if IO doesn't fire
+    setTimeout(start, 1200);
+  } else {
+    start();
+  }
 })();
 
 // Floating glowing cursor effect (desktop only)

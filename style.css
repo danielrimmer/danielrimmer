@@ -476,6 +476,79 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
 /* Prevent awkward mid-word breaks in hero */
 .hero .h1, .hero .sub { hyphens: none; word-break: normal; overflow-wrap: break-word; }
 
+/* Scroll indicator sign */
+.scroll-indicator {
+  position: absolute;
+  right: 24px;
+  bottom: 20px;
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  color: rgba(255,255,255,0.82);
+  font-size: clamp(14px, 1.6vw, 18px);
+  font-weight: 600;
+  letter-spacing: .02em;
+  pointer-events: none; /* purely decorative */
+}
+
+.scroll-label { white-space: nowrap; }
+
+.scroll-mouse {
+  width: 28px;
+  height: 46px;
+  border: 2px solid rgba(255,255,255,0.7);
+  border-radius: 16px;
+  position: relative;
+  display: inline-block;
+}
+
+.scroll-mouse::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 9px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  transform: translateX(-50%);
+  background: var(--acc-cyan);
+  opacity: 1;
+  animation: scrollDot 2.2s cubic-bezier(.3,.6,.3,1) infinite;
+}
+
+@keyframes scrollDot {
+  0% {
+    transform: translate(-50%, 0) scale(1);
+    background: var(--acc-cyan);
+    opacity: 1;
+  }
+  60% {
+    transform: translate(-50%, 20px) scale(0.84);
+    background: #9bdff0; /* lighter cyan */
+    opacity: 0.7;
+  }
+  100% {
+    transform: translate(-50%, 30px) scale(0.7);
+    background: rgba(200, 205, 210, 0);
+    opacity: 0;
+  }
+}
+
+/* Hebrew: anchor bottom-left, reverse order so text sits right of symbol */
+[dir="rtl"] .scroll-indicator {
+  right: auto;
+  left: 24px;
+  flex-direction: row-reverse;
+}
+
+/* Small screens: slightly smaller sign */
+@media (max-width: 640px) {
+  .scroll-indicator { gap: 10px; font-size: 14px; }
+  .scroll-mouse { width: 24px; height: 40px; }
+  .scroll-mouse::before { top: 8px; width: 8px; height: 8px; }
+}
+
 /* About */
 .about-inner { display: grid; grid-template-columns: 1.1fr .9fr; gap: min(6vw, 56px); padding: 36px; }
 .avatar-frame { position: relative; border-radius: 16px; overflow: hidden; border: 1px solid var(--border); aspect-ratio: 1 / 1; }
@@ -2422,4 +2495,3 @@ html[lang="he"] .process .detail-title {
     gap: 8px;
   }
 }
-

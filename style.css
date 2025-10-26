@@ -399,10 +399,18 @@ html[lang="en"] .lang-en, html[lang="he"] .lang-he { background: rgba(255,255,25
 
 /* Desktop: hard-center the logo within the header bar */
 @media (min-width: 981px) {
+  /* Match Hebrew header layout for EN: taller bar and absolute positioning */
+  .site-header:not(.sidebar-mode) .container.nav {
+    position: relative;
+    display: block;
+    padding: 20px 0;
+    min-height: 90px;
+  }
+
   .site-header:not(.sidebar-mode) .logo {
     position: absolute;
     left: 50%;
-    top: 50%;
+    top: 56%; /* slightly lower to match Hebrew visual */
     transform: translate(-50%, -50%);
     z-index: 1;
     pointer-events: auto;

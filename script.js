@@ -562,7 +562,8 @@ const animateStepValue = (el, target, options = {}) => {
     const defaultWallpaper = section?.dataset.defaultWallpaper || '';
     if (panel) panel.setAttribute('tabindex', '0');
 
-    const mobileQuery = window.matchMedia('(max-width: 720px)');
+    // Treat both phones and tablets as "mobile" for this interaction
+    const mobileQuery = window.matchMedia('(max-width: 980px)');
     const isMobile = () => mobileQuery.matches;
 
     let current = steps[0] || null;

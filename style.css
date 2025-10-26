@@ -2085,6 +2085,10 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
 /* Reveal on scroll */
 .reveal { opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
 .reveal.visible { opacity: 1; transform: translateY(0); }
+@media (max-width: 980px) {
+  /* On small screens, avoid reveal timing mishaps: always visible */
+  .reveal { opacity: 1; transform: none; }
+}
 
 /* Animated title */
 .animate-title { display: inline-block; }

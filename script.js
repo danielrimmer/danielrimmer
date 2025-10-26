@@ -1,3 +1,5 @@
+document.documentElement.classList.remove('no-js');
+
 const formatStepNumber = (value) => {
   const safe = Math.max(0, Math.round(Number(value) || 0));
   return safe < 10 ? `0${safe}` : String(safe);
@@ -555,23 +557,10 @@ const animateStepValue = (el, target, options = {}) => {
   const lists = document.querySelectorAll('.process-step-list');
   if (!lists.length) return;
 
-  const root = document.documentElement;
-  const mobileQueryGlobal = window.matchMedia('(max-width: 980px)');
-  let enhancementReady = false;
-
-  const updateEnhancedClass = () => {
-    const enable = enhancementReady && mobileQueryGlobal.matches;
-    root.classList.toggle('process-mobile-enhanced', enable);
-  };
-
   const registerQueryListener = (mq, handler) => {
     if (typeof mq.addEventListener === 'function') mq.addEventListener('change', handler);
     else if (typeof mq.addListener === 'function') mq.addListener(handler);
   };
-
-  registerQueryListener(mobileQueryGlobal, () => {
-    updateEnhancedClass();
-  });
 
   lists.forEach((list) => {
     const steps = Array.from(list.querySelectorAll('.process-step'));
@@ -588,7 +577,7 @@ const animateStepValue = (el, target, options = {}) => {
     if (panel) panel.setAttribute('tabindex', '0');
 
     // Treat both phones and tablets as "mobile" for this interaction
-    const mobileQuery = mobileQueryGlobal;
+    const mobileQuery = window.matchMedia('(max-width: 980px)');
     const isMobile = () => mobileQuery.matches;
 
     let current = steps[0] || null;
@@ -689,14 +678,11 @@ const animateStepValue = (el, target, options = {}) => {
         });
         if (numberEl) numberEl.textContent = formatStepNumber(Number(first.dataset.step) || 1);
         applyWallpaper(first?.dataset.wallpaper);
-        enhancementReady = true;
       } else {
         const initial = steps.find((step) => step.classList.contains('active')) || steps[0];
         activate(initial, true);
-        enhancementReady = false;
       }
       applyCardClasses();
-      updateEnhancedClass();
     };
 
     steps.forEach((step, index) => {
@@ -783,9 +769,6 @@ const animateStepValue = (el, target, options = {}) => {
       initialize();
     });
   });
-
-  // Ensure root class state is correct on initial load
-  updateEnhancedClass();
 })();
 
 // Version 2 carousel interaction

@@ -1573,7 +1573,6 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
 
   .benefit-card {
     padding: 28px;
-    border: 1.5px solid #F4EAD2;
   }
 
   /* Mobile/Tablet: Always show video and description, hide image */
@@ -1625,7 +1624,6 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
     min-height: 280px;
     padding: 24px;
     border-radius: 20px;
-    border: 1.5px solid #F4EAD2;
   }
 
   .card-image-placeholder {

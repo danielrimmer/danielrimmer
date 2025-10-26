@@ -397,6 +397,32 @@ html[lang="en"] .lang-en, html[lang="he"] .lang-he { background: rgba(255,255,25
 /* Center logo in grid */
 .nav .logo { justify-self: center; }
 
+/* Desktop: hard-center the logo within the header bar */
+@media (min-width: 981px) {
+  .site-header:not(.sidebar-mode) .logo {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    pointer-events: auto;
+  }
+  /* Keep language buttons pinned on the far edge */
+  .site-header:not(.sidebar-mode) .right-side {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  /* Keep left container in place (empty) for symmetry if needed */
+  .site-header:not(.sidebar-mode) .nav-left {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
+
 /* Left and right groups */
 .nav-left { justify-self: start; }
 .right-side { justify-self: end; display: inline-flex; align-items: center; gap: 16px; }

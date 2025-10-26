@@ -606,6 +606,14 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
   text-align: right;
 }
 
+/* Ensure the symbol itself is perfectly centered in RTL as well */
+[dir="rtl"] .scroll-mouse {
+  left: 50% !important;
+  right: auto !important;
+  top: 50% !important;
+  transform: translate(-50%, -50%) !important;
+}
+
 /* Small screens: slightly smaller sign */
 @media (max-width: 640px) {
   .scroll-indicator { font-size: 14px; height: 40px; }

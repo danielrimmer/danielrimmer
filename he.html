@@ -18,6 +18,20 @@
     <style id="he-header-fix">
       /* --- Hebrew header specific styles --- */
 
+      /* Mirror the hero video for Hebrew */
+      .hero-media video {
+        transform: scaleX(-1) scale(1.05);
+      }
+
+      /* Hebrew hero text positioning - place in first (right) column */
+      @media (min-width: 981px) {
+        .hero-copy {
+          grid-column: 1 !important;
+          justify-self: start !important;
+          text-align: right !important;
+        }
+      }
+
       /* Desktop header layout */
       @media (min-width: 721px) {
         /* Normal header (not sidebar mode) */

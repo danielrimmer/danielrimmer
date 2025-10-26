@@ -600,9 +600,10 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
 }
 
 [dir="rtl"] .scroll-label {
-  right: auto;
-  left: calc(50% + 14px + 14px);
-  text-align: left;
+  /* Match English placement: label on left side of centered symbol */
+  left: auto;
+  right: calc(50% + 14px + 14px);
+  text-align: right;
 }
 
 /* Small screens: slightly smaller sign */
@@ -611,7 +612,7 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
   .scroll-mouse { width: 24px; height: 40px; }
   .scroll-mouse::before { top: 8px; width: 8px; height: 8px; }
   .scroll-label { right: calc(50% + 12px + 10px); }
-  [dir="rtl"] .scroll-label { left: calc(50% + 12px + 10px); }
+  [dir="rtl"] .scroll-label { right: calc(50% + 12px + 10px); }
 }
 
 /* About */

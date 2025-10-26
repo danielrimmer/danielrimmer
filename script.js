@@ -222,16 +222,13 @@ const animateStepValue = (el, target, options = {}) => {
       root.style.setProperty('--header-height', `${Math.round(headerHeight)}px`);
     }
 
-    // Get the actual height of the hero section
-    const heroSectionHeight = heroSection.offsetHeight || heroSection.clientHeight || window.innerHeight;
-
     // Remove the old blue background styling
     header.classList.remove('is-solid');
 
     // Desktop sidebar transformation logic
     if (isDesktop() && !navOpen) {
-      if (y >= heroSectionHeight) {
-        // Scrolled past hero - transform to sidebar
+      if (y >= 50) {
+        // Scrolled 50px - transform to sidebar
         if (!isSidebarMode) {
           isSidebarMode = true;
           header.classList.remove('hide', 'sidebar-collapsing');

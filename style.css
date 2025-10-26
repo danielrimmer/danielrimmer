@@ -528,17 +528,17 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
 
   .bonus .bonus-cards-mobile .bonus-card:nth-child(2) {
     z-index: 2;
-    top: 135px !important;
+    top: 90px !important;
   }
 
   .bonus .bonus-cards-mobile .bonus-card:nth-child(3) {
     z-index: 3;
-    top: 190px !important;
+    top: 100px !important;
   }
 
   .bonus .bonus-cards-mobile .bonus-card:nth-child(4) {
     z-index: 4;
-    top: 245px !important;
+    top: 110px !important;
   }
 
   .bonus-card-image {
@@ -964,17 +964,17 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
   }
 
   .bonus .bonus-cards-mobile .bonus-card:nth-child(2) {
-    top: 135px !important;
+    top: 90px !important;
     z-index: 2;
   }
 
   .bonus .bonus-cards-mobile .bonus-card:nth-child(3) {
-    top: 190px !important;
+    top: 100px !important;
     z-index: 3;
   }
 
   .bonus .bonus-cards-mobile .bonus-card:nth-child(4) {
-    top: 245px !important;
+    top: 110px !important;
     z-index: 4;
   }
 

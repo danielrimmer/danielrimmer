@@ -1112,61 +1112,51 @@ const animateStepValue = (el, target, options = {}) => {
 /* Card Video Playback on Hover (Desktop) and Auto-play (Mobile/Tablet) */
 (function () {
   const cardsWithImages = document.querySelectorAll('.card-with-image');
+  if (!cardsWithImages.length) return;
 
-  let isTouchDevice = () => {
-    return (('ontouchstart' in window) ||
-            (navigator.maxTouchPoints > 0) ||
-            (navigator.msMaxTouchPoints > 0));
+  const isTouchDevice = () => ('ontouchstart' in window) || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
+  const isTabletOrMobile = () => window.innerWidth <= 980;
+
+  const autoplayVideo = (video) => {
+    if (!video) return;
+    video.currentTime = 0;
+    const playPromise = video.play();
+    if (playPromise && playPromise.catch) {
+      playPromise.catch(() => {});
+    }
   };
 
-  let isTabletOrMobile = () => {
-    return window.innerWidth <= 980;
+  const stopVideo = (video) => {
+    if (!video) return;
+    video.pause();
+    video.currentTime = 0;
   };
 
-  cardsWithImages.forEach((cardWithImage) => {
-    const video = cardWithImage.querySelector('.card-video-full');
+  cardsWithImages.forEach((card) => {
+    const video = card.querySelector('.card-video-full');
     if (!video) return;
 
-    // Desktop: mouseenter/mouseleave events
-    cardWithImage.addEventListener('mouseenter', () => {
-      if (!isTouchDevice()) {
-        video.currentTime = 0;
-        video.play().catch((err) => {
-          console.warn('Video playback failed:', err);
-        });
-      }
+    // Desktop hover behaviour
+    card.addEventListener('mouseenter', () => {
+      if (!isTouchDevice()) autoplayVideo(video);
+    });
+    card.addEventListener('mouseleave', () => {
+      if (!isTouchDevice()) stopVideo(video);
     });
 
-    cardWithImage.addEventListener('mouseleave', () => {
-      if (!isTouchDevice()) {
-        video.pause();
-        video.currentTime = 0;
-      }
-    });
-
-    // Mobile/Tablet: Auto-play video once when card becomes visible using Intersection Observer
+    // Mobile/Tablet: autoplay when card enters viewport and loop every time it re-enters
     if (isTabletOrMobile() || isTouchDevice()) {
-      const observerOptions = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.1
-      };
-
       const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting && video.paused) {
-            // Auto-play video once
-            video.currentTime = 0;
-            video.play().catch((err) => {
-              console.warn('Video playback failed:', err);
-            });
-            // Only observe once, then disconnect
-            observer.unobserve(cardWithImage);
+          if (entry.isIntersecting) {
+            autoplayVideo(video);
+          } else {
+            stopVideo(video);
           }
         });
-      }, observerOptions);
+      }, { threshold: 0.25 });
 
-      observer.observe(cardWithImage);
+      observer.observe(card);
     }
   });
 })();

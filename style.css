@@ -266,11 +266,31 @@ html[lang="en"] .lang-en, html[lang="he"] .lang-he { background: rgba(255,255,25
     background: transparent;
     pointer-events: auto;
     white-space: nowrap;
+    position: relative;
+    border-bottom: 1px solid transparent;
+    transition: all 0.3s ease;
+  }
+
+  .site-header.sidebar-mode .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 8px;
+    right: 8px;
+    height: 1px;
+    background: var(--acc-cyan);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+
+  .site-header.sidebar-mode .nav-links a:hover::after,
+  .site-header.sidebar-mode .nav-links a.active::after {
+    transform: scaleX(1);
   }
 
   .site-header.sidebar-mode .nav-links a:hover,
   .site-header.sidebar-mode .nav-links a.active {
-    background: rgba(255, 255, 255, 0.1);
     color: #ffffff;
   }
 

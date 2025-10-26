@@ -1219,10 +1219,10 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
 }
 
 .carousel-nav:hover {
-  background: linear-gradient(135deg, rgba(255,60,126,.28), rgba(255,60,126,.18));
-  border-color: rgba(255,60,126,.45);
+  background: linear-gradient(135deg, rgba(255, 60, 126, .34), rgba(255, 60, 126, .22));
+  border-color: rgba(255, 60, 126, .55);
   color: #fff;
-  box-shadow: 0 0 0 4px rgba(255,60,126,.12), 0 8px 24px rgba(0,0,0,.35);
+  box-shadow: 0 0 0 4px rgba(255, 60, 126, .18), 0 0 26px rgba(255, 60, 126, .36), 0 8px 24px rgba(0,0,0,.35);
   transform: scale(1.08);
 }
 

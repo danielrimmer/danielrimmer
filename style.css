@@ -581,6 +581,27 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
     display: none;
   }
 
+  /* Use ::after pseudo-element to overlay the card image for mobile/tablet */
+  .bonus-card:nth-child(1)::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: url('images/card1.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 16px;
+    z-index: 8;
+    top: 0;
+    left: 0;
+  }
+
+  /* Hebrew version - use card1-he.webp for mobile/tablet */
+  html[lang="he"] .bonus-card:nth-child(1)::after {
+    background-image: url('images/card1-he.webp');
+  }
+
   /* Card 2 - replace image with card2-hover.webp for mobile/tablet */
   .bonus-card:nth-child(2) .bonus-card-image {
     position: absolute;
@@ -605,6 +626,11 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
     z-index: 8;
     top: 0;
     left: 0;
+  }
+
+  /* Hebrew version - use card2-he.webp for mobile/tablet */
+  html[lang="he"] .bonus-card:nth-child(2)::after {
+    background-image: url('images/card2-he.webp');
   }
 
   /* Card 3 - replace image with card3-hover.webp for mobile/tablet */
@@ -633,6 +659,11 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
     left: 0;
   }
 
+  /* Hebrew version - use card3-he.webp for mobile/tablet */
+  html[lang="he"] .bonus-card:nth-child(3)::after {
+    background-image: url('images/card3-he.webp');
+  }
+
   /* Card 4 - replace image with card4-hover.webp for mobile/tablet */
   .bonus-card:nth-child(4) .bonus-card-image {
     position: absolute;
@@ -657,6 +688,11 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
     z-index: 8;
     top: 0;
     left: 0;
+  }
+
+  /* Hebrew version - use card4-he.webp for mobile/tablet */
+  html[lang="he"] .bonus-card:nth-child(4)::after {
+    background-image: url('images/card4-he.webp');
   }
 }
 
@@ -1079,6 +1115,11 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
     transition: opacity 0s linear 0.35s !important;
   }
 
+  /* Hebrew version - use card1-he.webp on hover */
+  html[lang="he"] .bonus .bonus-cards-mobile .bonus-card:nth-child(1)::before {
+    background-image: url('images/card1-he.webp') !important;
+  }
+
   .bonus .bonus-cards-mobile .bonus-card:nth-child(1):hover::before {
     opacity: 1 !important;
     z-index: 15;
@@ -1101,6 +1142,11 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
     left: 0;
     opacity: 0;
     transition: opacity 0s linear 0.35s;
+  }
+
+  /* Hebrew version - use card2-he.webp on hover */
+  html[lang="he"] .bonus .bonus-cards-mobile .bonus-card:nth-child(2)::before {
+    background-image: url('images/card2-he.webp');
   }
 
   .bonus .bonus-cards-mobile .bonus-card:nth-child(2):hover::before {
@@ -1126,6 +1172,11 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
     transition: opacity 0s linear 0.35s;
   }
 
+  /* Hebrew version - use card3-he.webp on hover */
+  html[lang="he"] .bonus .bonus-cards-mobile .bonus-card:nth-child(3)::before {
+    background-image: url('images/card3-he.webp');
+  }
+
   .bonus .bonus-cards-mobile .bonus-card:nth-child(3):hover::before {
     opacity: 1 !important;
     transition: opacity 0s linear 0.35s;
@@ -1147,6 +1198,11 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
     left: 0;
     opacity: 0;
     transition: opacity 0s linear 0.35s;
+  }
+
+  /* Hebrew version - use card4-he.webp on hover */
+  html[lang="he"] .bonus .bonus-cards-mobile .bonus-card:nth-child(4)::before {
+    background-image: url('images/card4-he.webp');
   }
 
   .bonus .bonus-cards-mobile .bonus-card:nth-child(4):hover::before {

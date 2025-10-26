@@ -23,9 +23,7 @@
         /* Normal header (not sidebar mode) */
         .site-header:not(.sidebar-mode) .container.nav {
           position: relative;
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
+          display: block !important;
           padding: 20px 0;
           min-height: 90px;
         }
@@ -66,6 +64,24 @@
           height: 70px;
           width: auto;
           display: block;
+        }
+
+        /* Fix RTL layout - keep language buttons on far right */
+        .site-header:not(.sidebar-mode) .right-side {
+          position: absolute;
+          right: 0;
+          top: 50%;
+          transform: translateY(-50%);
+          display: flex;
+          align-items: center;
+          gap: 16px;
+        }
+
+        .site-header:not(.sidebar-mode) .nav-left {
+          position: absolute;
+          left: 0;
+          top: 50%;
+          transform: translateY(-50%);
         }
 
         /* Sidebar mode - Hebrew: position on RIGHT side */
@@ -203,17 +219,17 @@
           <img class="logo-img" src="images/logo-initials.svg?v=1" alt="דניאל רימר" />
         </a>
 
-        <!-- צד ימין: אודות, שירותים, יצירת קשר, שפה -->
+        <!-- צד ימין: שפה, אודות, שירותים, יצירת קשר -->
         <div class="right-side">
+          <div class="lang-group" role="group" aria-label="שפה">
+            <a class="btn btn-ghost lang-switch lang-en" href="index.html" aria-label="Switch to English">EN</a>
+            <a class="btn btn-ghost lang-switch lang-he" href="he.html" aria-label="Switch to Hebrew">HE</a>
+          </div>
           <nav class="nav-links nav-right" aria-label="ניווט ימני">
             <a href="#about">אודות</a>
             <a href="#services">שירותים</a>
             <a href="#contact">יצירת קשר</a>
           </nav>
-          <div class="lang-group" role="group" aria-label="שפה">
-            <a class="btn btn-ghost lang-switch lang-en" href="index.html" aria-label="Switch to English">EN</a>
-            <a class="btn btn-ghost lang-switch lang-he" href="he.html" aria-label="Switch to Hebrew">HE</a>
-          </div>
         </div>
 
         <!-- תפריט לנייד -->

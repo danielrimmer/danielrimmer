@@ -520,21 +520,25 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
     transform: translateY(0) scale(1);
   }
 
-  /* Stacking z-index for proper layering - reversed so second card appears above first */
+  /* Stacking effect - each card offsets down to show cards beneath */
   .bonus .bonus-cards-mobile .bonus-card:nth-child(1) {
     z-index: 1;
+    top: 80px !important;
   }
 
   .bonus .bonus-cards-mobile .bonus-card:nth-child(2) {
     z-index: 2;
+    top: 135px !important;
   }
 
   .bonus .bonus-cards-mobile .bonus-card:nth-child(3) {
     z-index: 3;
+    top: 190px !important;
   }
 
   .bonus .bonus-cards-mobile .bonus-card:nth-child(4) {
     z-index: 4;
+    top: 245px !important;
   }
 
   .bonus-card-image {
@@ -946,11 +950,32 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
   }
 
   .bonus .bonus-cards-mobile .bonus-card {
-    position: relative !important;
+    position: sticky !important;
     opacity: 1 !important;
     transform: none !important;
-    height: auto !important;
-    min-height: 500px !important;
+    height: 500px !important;
+    margin-bottom: 150px !important;
+  }
+
+  /* Stacking effect for tablet - each card offsets down to show cards beneath */
+  .bonus .bonus-cards-mobile .bonus-card:nth-child(1) {
+    top: 80px !important;
+    z-index: 1;
+  }
+
+  .bonus .bonus-cards-mobile .bonus-card:nth-child(2) {
+    top: 135px !important;
+    z-index: 2;
+  }
+
+  .bonus .bonus-cards-mobile .bonus-card:nth-child(3) {
+    top: 190px !important;
+    z-index: 3;
+  }
+
+  .bonus .bonus-cards-mobile .bonus-card:nth-child(4) {
+    top: 245px !important;
+    z-index: 4;
   }
 
   .bonus-cards-stack-mobile {

@@ -71,61 +71,59 @@
         /* Sidebar mode - Hebrew: position on RIGHT side */
         .site-header.sidebar-mode {
           left: auto !important;
-          right: 0 !important;
+          right: 10px !important; /* Match left sidebar spacing */
         }
 
         .site-header.sidebar-mode .container.nav {
           display: flex !important;
           flex-direction: column !important;
-          align-items: flex-end !important;
-          padding: 24px 10px 32px 0 !important;
+          align-items: center !important; /* Center items */
+          padding: 24px 0 24px 0 !important; /* Balanced padding */
         }
 
-        /* Logo positioned at top RIGHT */
+        /* Logo positioned at top CENTER */
         .site-header.sidebar-mode .logo {
           position: absolute !important;
-          left: auto !important;
-          right: 10px !important;
+          left: 50% !important;
+          right: auto !important;
           top: 20px !important;
-          transform: translateX(0) !important;
+          transform: translateX(-50%) !important; /* Center horizontally */
         }
 
-        /* In sidebar mode, ensure all nav items are visible and right-aligned */
+        /* In sidebar mode, center all nav items */
         .site-header.sidebar-mode .nav-left,
         .site-header.sidebar-mode .right-side {
           display: flex !important;
           flex-direction: column !important;
-          align-items: flex-end !important;
+          align-items: center !important; /* Center items */
           width: 100% !important;
         }
 
         .site-header.sidebar-mode .nav-links {
           display: flex !important;
           flex-direction: column !important;
-          align-items: flex-end !important;
+          align-items: center !important; /* Center items */
           width: 100% !important;
         }
 
         .site-header.sidebar-mode .nav-links a {
-          text-align: right !important;
+          text-align: center !important; /* Center text */
           padding: 6px 8px !important;
-          margin-right: 0 !important;
-          margin-left: auto !important;
+          margin: 0 auto !important; /* Center with auto margins */
         }
 
         .site-header.sidebar-mode .lang-group {
-          justify-content: flex-end !important;
-          margin-right: 0 !important;
-          margin-left: auto !important;
+          justify-content: center !important; /* Center language buttons */
+          margin: 0 auto !important;
         }
 
         .site-header.sidebar-mode .nav-left {
           margin-top: 90px !important;
-          align-items: flex-end !important;
+          align-items: center !important; /* Center items */
         }
 
         .site-header.sidebar-mode .right-side {
-          align-items: flex-end !important;
+          align-items: center !important; /* Center items */
         }
       }
 

@@ -30,7 +30,11 @@ const animateStepValue = (el, target, options = {}) => {
 
   const scrollToEl = (el) => {
     if (!el) return;
-    const top = el.getBoundingClientRect().top + window.scrollY - offset();
+    // No offset for specific sections to show them from the top
+    const sectionsWithoutOffset = ['about', 'contact', 'process-v1', 'key-benefits', 'services'];
+    const shouldShowFromTop = sectionsWithoutOffset.includes(el.id);
+    const scrollOffset = shouldShowFromTop ? 0 : offset();
+    const top = el.getBoundingClientRect().top + window.scrollY - scrollOffset;
     window.scrollTo({ top, behavior: 'smooth' });
   };
 
@@ -97,22 +101,59 @@ const animateStepValue = (el, target, options = {}) => {
 
 // Scroll spy to highlight current section
 (function () {
-  const sections = Array.from(document.querySelectorAll('main section[id]'));
+  const sections = Array.from(document.querySelectorAll('main section[id]'))
+    .filter(sec => sec.id && !sec.hasAttribute('hidden')); // Exclude hidden sections
+
   // Only desktop header links (exclude mobile overlay)
   const links = new Map(
     Array.from(document.querySelectorAll('.nav .nav-links a[href^="#"]')).map((a) => [a.getAttribute('href'), a])
   );
 
   const onScroll = () => {
-    const y = window.scrollY + (document.querySelector('.site-header')?.offsetHeight || 0) + 24;
+    const header = document.querySelector('.site-header');
+    const isSidebarMode = header?.classList.contains('sidebar-mode');
+
+    // Different detection logic for sidebar mode (more sensitive)
+    const viewportMiddle = window.innerHeight / 2;
+    const scrollY = window.scrollY;
+
     let activeId = '#home';
+    let closestSection = null;
+    let closestDistance = Infinity;
+
+    // Find which section is closest to the viewport middle (for sidebar)
+    // or traditional top-based detection (for normal header)
     for (const sec of sections) {
-      if (sec.offsetTop <= y) activeId = `#${sec.id}`;
+      if (isSidebarMode) {
+        // Sidebar mode: detect section closest to viewport center
+        const rect = sec.getBoundingClientRect();
+        const sectionMiddle = rect.top + rect.height / 2;
+        const distance = Math.abs(sectionMiddle - viewportMiddle);
+
+        if (distance < closestDistance && rect.top < viewportMiddle && rect.bottom > 0) {
+          closestDistance = distance;
+          closestSection = sec;
+        }
+      } else {
+        // Normal mode: traditional scroll-based detection
+        const offset = header?.offsetHeight || 0;
+        if (sec.offsetTop <= scrollY + offset + 100) {
+          activeId = `#${sec.id}`;
+        }
+      }
     }
+
+    // Use closest section for sidebar mode
+    if (isSidebarMode && closestSection) {
+      activeId = `#${closestSection.id}`;
+    }
+
+    // Update all nav links
     links.forEach((a) => a.classList.remove('active'));
     const el = links.get(activeId);
     if (el) el.classList.add('active');
   };
+
   window.addEventListener('scroll', onScroll, { passive: true });
   window.addEventListener('resize', onScroll);
   onScroll();

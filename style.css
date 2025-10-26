@@ -170,15 +170,32 @@ html[lang="en"] .lang-en, html[lang="he"] .lang-he { background: rgba(255,255,25
     width: 100px;
     height: auto; /* Auto height to fit content */
     right: auto;
-    background: rgba(15, 28, 46, 0.85); /* #0f1c2e with 15% transparency */
+    border-radius: 16px; /* Rounded corners on all sides */
+    border: 1px solid transparent;
+    background:
+      linear-gradient(180deg, rgba(15, 28, 46, 0.94), rgba(10, 18, 30, 0.86)) padding-box,
+      linear-gradient(140deg, rgba(0, 224, 255, 0.55), rgba(255, 60, 126, 0.55)) border-box;
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 16px; /* Rounded corners on all sides */
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition:
+      border-width 0.26s ease,
+      box-shadow 0.26s ease,
+      background 0.26s ease,
+      transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     pointer-events: none;
     z-index: 10;
+  }
+
+  .site-header.sidebar-mode:hover {
+    border-width: 2px;
+    background:
+      linear-gradient(180deg, rgba(15, 28, 46, 0.96), rgba(10, 18, 30, 0.9)) padding-box,
+      linear-gradient(140deg, rgba(0, 224, 255, 0.85), rgba(255, 60, 126, 0.85)) border-box;
+    box-shadow:
+      0 0 22px rgba(0, 224, 255, 0.26),
+      0 0 32px rgba(255, 60, 126, 0.22),
+      0 8px 26px rgba(0, 0, 0, 0.35);
   }
 
   .site-header.sidebar-mode::after {

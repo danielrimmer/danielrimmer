@@ -371,6 +371,7 @@ const animateStepValue = (el, target, options = {}) => {
   const titleEl = document.querySelector('.animate-title');
   const subEl = document.querySelector('.hero .hero-copy .sub');
   const ctaEl = document.querySelector('.hero .hero-cta');
+  const scrollIndicator = document.querySelector('#hero .scroll-indicator');
   const heroSection = document.getElementById('hero');
   if (!titleEl || !subEl || !ctaEl) return;
 
@@ -388,6 +389,7 @@ const animateStepValue = (el, target, options = {}) => {
   titleEl.textContent = '';
   subEl.textContent = '';
   ctaEl.classList.remove('show');
+  if (scrollIndicator) scrollIndicator.classList.remove('show');
 
   const typeText = (el, text, delay) => new Promise((resolve) => {
     let i = 0;
@@ -405,6 +407,8 @@ const animateStepValue = (el, target, options = {}) => {
     await typeText(subEl, subText, 30);
     // Reveal CTA immediately after the paragraph finishes
     ctaEl.classList.add('show');
+    // Show scroll indicator only when typing is done
+    if (scrollIndicator) scrollIndicator.classList.add('show');
   };
 
   if ('IntersectionObserver' in window) {

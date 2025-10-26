@@ -481,7 +481,7 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
   position: absolute;
   left: 50%;
   bottom: 20px;
-  transform: translateX(-50%);
+  transform: translateX(-50%) translateY(6px);
   z-index: 3;
   display: inline-flex;
   align-items: center;
@@ -491,6 +491,15 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
   font-weight: 600;
   letter-spacing: .02em;
   pointer-events: none; /* purely decorative */
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .35s ease, transform .35s ease, visibility 0s linear .35s;
+}
+
+.scroll-indicator.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
 }
 
 .scroll-label { white-space: nowrap; }
@@ -540,7 +549,7 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
 [dir="rtl"] .scroll-indicator {
   right: auto;
   left: 50%;
-  transform: translateX(-50%);
+  /* keep base transform (includes translateY animation offset) */
   flex-direction: row-reverse;
 }
 

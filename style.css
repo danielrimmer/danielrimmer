@@ -456,7 +456,7 @@ html[lang="en"] .lang-en, html[lang="he"] .lang-he { background: rgba(255,255,25
 .hero::after { content: ""; position: absolute; inset: 0; z-index: 1; background: linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.25) 40%, rgba(0,0,0,.2) 70%, rgba(0,0,0,.15)); }
 .hero-inner { position: relative; z-index: 2; display: grid; grid-template-columns: 1.1fr .9fr; gap: min(6vw, 56px); align-items: center; }
 .hero-copy { grid-column: 2; justify-self: end; }
-.hero-copy .sub { margin: 14px 0 26px; color: #ffffff; font-size: clamp(16px, 1.5vw, 18px); }
+.hero-copy .sub { margin: 14px 0 26px; color: #ffffff; font-size: clamp(16px, 1.5vw, 18px); font-weight: 600; }
 /* Place English hero text in the first (left) column */
 html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: left; }
 .hero-art { position: relative; aspect-ratio: 1 / 1; border-radius: 18px; border: 1px solid var(--border); overflow: hidden; }
@@ -2316,15 +2316,13 @@ html[lang="he"] .process .detail-title {
 }
 
 .card-logo {
-  position: absolute;
-  top: 30px;
-  left: 40px;
   width: 60px;
   height: auto;
+  margin-bottom: 12px;
 }
 
 .card-content {
-  margin-top: 40px;
+  margin-top: 0;
 }
 
 .card-name {
@@ -2382,6 +2380,7 @@ html[lang="he"] .process .detail-title {
 .contact-text {
   font-size: clamp(14px, 2.5vw, 16px);
   letter-spacing: 0.01em;
+  unicode-bidi: plaintext;
 }
 
 .contact-label {
@@ -2397,13 +2396,8 @@ html[lang="he"] .process .detail-title {
   }
 
   .card-logo {
-    top: 20px;
-    left: 25px;
     width: 50px;
-  }
-
-  .card-content {
-    margin-top: 30px;
+    margin-bottom: 10px;
   }
 
   .contact-item {

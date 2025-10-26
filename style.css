@@ -2363,6 +2363,42 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
   }
 }
 
+/* Override: simplify process layout on phones/tablets to show all cards stacked */
+@media (max-width: 980px) {
+  .process-step-list {
+    position: static !important;
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 18px !important;
+    min-height: auto !important;
+    perspective: none !important;
+    touch-action: pan-y !important;
+  }
+
+  .process-step {
+    position: relative !important;
+    inset: auto !important;
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    transform: none !important;
+    filter: none !important;
+    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.28);
+    border-radius: 20px;
+  }
+
+  .process-step.card-current,
+  .process-step.card-next,
+  .process-step.card-prev,
+  .process-step.card-hidden {
+    transform: none !important;
+    filter: none !important;
+    z-index: auto !important;
+  }
+}
+
 [dir="rtl"] .nav { grid-template-columns: 1fr auto; }
 [dir="rtl"] .nav .logo {
   justify-self: end;

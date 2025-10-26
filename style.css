@@ -594,9 +594,10 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
   }
 }
 
-/* Hebrew: anchor bottom-left, reverse order so text sits right of symbol */
+/* Hebrew: keep full-width container so center math works identically */
 [dir="rtl"] .scroll-indicator {
-  right: auto;
+  left: 0;
+  right: 0;
 }
 
 [dir="rtl"] .scroll-label {

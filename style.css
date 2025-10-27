@@ -892,6 +892,7 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
   box-shadow: 0 0 25px rgba(0, 224, 255, 0.5), 0 0 40px rgba(255, 60, 126, 0.3);
   transform: translateY(-6px);
   border-color: transparent;
+  cursor: url('images/cursor-hover.svg') 11 11, pointer;
 }
 
 @media (max-width: 768px) {
@@ -1544,11 +1545,13 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
   .bonus .bonus-cards-mobile .bonus-card:hover {
     transform: translateX(-1500px) rotateY(180deg) !important;
     transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    cursor: url('images/cursor-hover.svg') 11 11, pointer;
   }
 
   .bonus .bonus-cards-mobile .bonus-card.is-visible:hover {
     transform: rotateY(180deg) !important;
     transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    cursor: url('images/cursor-hover.svg') 11 11, pointer;
   }
 
   /* Card image styling - fills entire card (front) */
@@ -1864,6 +1867,7 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
     0 0 35px rgba(0, 224, 255, 0.32),
     0 0 55px rgba(255, 60, 126, 0.26),
     inset 0 0 30px rgba(255, 255, 255, 0.08);
+  cursor: url('images/cursor-hover.svg') 11 11, pointer;
 }
 
 .card-content {
@@ -2180,6 +2184,7 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
 
   .benefit-card:hover {
     transform: scale(1.04) translateY(-4px);
+    cursor: url('images/cursor-hover.svg') 11 11, pointer;
   }
 }
 

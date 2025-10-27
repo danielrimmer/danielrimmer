@@ -574,8 +574,8 @@ const animateStepValue = (el, target, options = {}) => {
     const defaultWallpaper = section?.dataset.defaultWallpaper || '';
     if (panel) panel.setAttribute('tabindex', '0');
 
-    // Treat both phones and tablets as "mobile" for this interaction
-    const mobileQuery = window.matchMedia('(max-width: 980px)');
+    // Mobile phones only (max-width: 720px) use carousel, tablets+ use desktop layout
+    const mobileQuery = window.matchMedia('(max-width: 720px)');
     const isMobile = () => mobileQuery.matches;
 
     let current = steps[0] || null;
@@ -763,6 +763,7 @@ const animateStepValue = (el, target, options = {}) => {
     registerQueryListener(mobileQuery, () => {
       initialize();
     });
+
   });
 })();
 

@@ -2028,6 +2028,11 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
 
   .benefit-card {
     padding: 28px;
+    border: 1px solid transparent;
+    background:
+      linear-gradient(135deg, rgba(15, 28, 46, 0.6), rgba(11, 12, 16, 0.8)) padding-box,
+      linear-gradient(135deg, #00e0ff, #ff3c7e) border-box;
+    box-shadow: 0 0 30px rgba(0, 224, 255, 0.15), inset 0 0 20px rgba(255, 255, 255, 0.05);
   }
 
   /* Mobile/Tablet: Always show video and description, hide image */

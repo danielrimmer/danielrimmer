@@ -43,10 +43,10 @@ img { max-width: 100%; display: block; }
 a { color: inherit; text-decoration: none; }
 ::selection { background: rgba(0,224,255,.24); }
 
-/* Skip to main content link for keyboard navigation */
+/* Skip to main content link for keyboard navigation - hidden until focused */
 .skip-link {
-  position: absolute;
-  top: -40px;
+  position: fixed;
+  top: 0;
   left: 0;
   background: var(--acc-cyan);
   color: var(--bg-1);
@@ -55,10 +55,16 @@ a { color: inherit; text-decoration: none; }
   font-weight: 600;
   z-index: 9999;
   border-radius: 0 0 8px 0;
-  transition: top 0.3s ease;
+  clip-path: inset(100%);
+  white-space: nowrap;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
 }
 .skip-link:focus {
-  top: 0;
+  clip-path: unset;
+  width: auto;
+  height: auto;
 }
 
 a, button, .btn, .nav-toggle, .process-step, .lang-switch, .theme-toggle {

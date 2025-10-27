@@ -1204,18 +1204,22 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
   width: 56px;
   height: 56px;
   border-radius: 50%;
-  border: 1px solid rgba(255,255,255,.12);
-  background: linear-gradient(135deg, rgba(12,14,22,.42), rgba(10,12,18,.36));
+  border: 1.6px solid rgba(0, 224, 255, 0.68);
+  background: linear-gradient(135deg, rgba(0, 224, 255, 0.42), rgba(0, 224, 255, 0.24));
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  color: rgba(255,255,255,.75);
+  color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: all .3s ease;
+  transition: transform .3s ease;
   z-index: 10;
   flex-shrink: 0;
+  box-shadow:
+    0 0 0 4px rgba(0, 224, 255, 0.18),
+    0 0 26px rgba(0, 224, 255, 0.38),
+    0 8px 24px rgba(0, 0, 0, 0.35);
 }
 
 .carousel-nav:active {

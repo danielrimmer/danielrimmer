@@ -17,6 +17,9 @@
     <link rel="stylesheet" href="style.css?v=whoami-14" />
   </head>
   <body>
+    <!-- Skip to main content link for keyboard navigation -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
     <header class="site-header" id="home">
       <div class="container nav">
         <!-- Left side: Home, Process, Bonus, Benefits -->
@@ -29,7 +32,7 @@
 
         <!-- Centered logo (40% bigger handled via CSS) -->
         <a href="#home" class="logo" aria-label="Go to top">
-          <img class="logo-img" src="images/logo-initials.svg?v=1" alt="דניאל רימר" />
+          <img class="logo-img" src="images/logo-initials.svg?v=1" alt="Daniel Rimmer Logo" />
         </a>
 
         <!-- Right side: About, Services, Contact, Language -->
@@ -71,7 +74,7 @@
       </div>
     </header>
 
-    <main>
+    <main id="main-content">
       <!-- Hero -->
       <section class="hero section reveal" id="hero">
         <div class="hero-media" aria-hidden="true">
@@ -356,104 +359,12 @@
         </div>
       </section>
 
-      <!-- Projects -->
-      <section class="projects section reveal" id="projects" hidden>
+      <!-- Projects (Section hidden - update with real projects when available) -->
+      <section class="projects section reveal" id="projects" hidden aria-label="Featured Projects (Coming Soon)">
         <div class="container">
           <div class="section-head">
             <h2 class="h2">Featured Projects</h2>
-            <p class="muted">Selected work — exploration and production.</p>
-          </div>
-
-          <div class="grid projects-grid">
-            <!-- Card 1 -->
-            <article class="card project">
-              <a href="#" class="project-link" aria-label="View project">
-                <figure class="thumb t1"></figure>
-                <div class="project-meta">
-                  <h3 class="h3">Aurora Landing</h3>
-                  <p>Minimal landing page with glass UI and motion.</p>
-                  <div class="actions">
-                    <a class="btn btn-ghost" href="#">View Live</a>
-                    <a class="btn btn-ghost" href="#">View Code</a>
-                  </div>
-                </div>
-              </a>
-            </article>
-
-            <!-- Card 2 -->
-            <article class="card project">
-              <a href="#" class="project-link" aria-label="View project">
-                <figure class="thumb t2"></figure>
-                <div class="project-meta">
-                  <h3 class="h3">Neon Dashboard</h3>
-                  <p>Data dashboard with real‑time charts and dark UI.</p>
-                  <div class="actions">
-                    <a class="btn btn-ghost" href="#">View Live</a>
-                    <a class="btn btn-ghost" href="#">View Code</a>
-                  </div>
-                </div>
-              </a>
-            </article>
-
-            <!-- Card 3 -->
-            <article class="card project">
-              <a href="#" class="project-link" aria-label="View project">
-                <figure class="thumb t3"></figure>
-                <div class="project-meta">
-                  <h3 class="h3">Eclipse Studio</h3>
-                  <p>Brand site with cinematic scroll and parallax.</p>
-                  <div class="actions">
-                    <a class="btn btn-ghost" href="#">View Live</a>
-                    <a class="btn btn-ghost" href="#">View Code</a>
-                  </div>
-                </div>
-              </a>
-            </article>
-
-            <!-- Card 4 -->
-            <article class="card project">
-              <a href="#" class="project-link" aria-label="View project">
-                <figure class="thumb t4"></figure>
-                <div class="project-meta">
-                  <h3 class="h3">Atlas Commerce</h3>
-                  <p>Elegant e‑commerce UX with fast interactions.</p>
-                  <div class="actions">
-                    <a class="btn btn-ghost" href="#">View Live</a>
-                    <a class="btn btn-ghost" href="#">View Code</a>
-                  </div>
-                </div>
-              </a>
-            </article>
-
-            <!-- Card 5 -->
-            <article class="card project">
-              <a href="#" class="project-link" aria-label="View project">
-                <figure class="thumb t5"></figure>
-                <div class="project-meta">
-                  <h3 class="h3">Helix Docs</h3>
-                  <p>Docs portal with search, themes, and MDX.</p>
-                  <div class="actions">
-                    <a class="btn btn-ghost" href="#">View Live</a>
-                    <a class="btn btn-ghost" href="#">View Code</a>
-                  </div>
-                </div>
-              </a>
-            </article>
-
-            <!-- Card 6 -->
-            <article class="card project">
-              <a href="#" class="project-link" aria-label="View project">
-                <figure class="thumb t6"></figure>
-                <div class="project-meta">
-                  <h3 class="h3">Nova Portfolio</h3>
-                  <p>Creative portfolio with grid and hover reveals.</p>
-                  <div class="actions">
-                    <a class="btn btn-ghost" href="#">View Live</a>
-                    <a class="btn btn-ghost" href="#">View Code</a>
-                  </div>
-                </div>
-              </a>
-            </article>
+            <p class="muted">Selected work — exploration and production. Coming soon.</p>
           </div>
         </div>
       </section>
@@ -489,7 +400,7 @@
             <!-- Card Content -->
             <div class="card-content">
               <!-- Logo -->
-              <img class="card-logo" src="images/logo-initials.svg?v=1" alt="Daniel Rimmer Logo">
+              <img class="card-logo" src="images/logo-initials.svg?v=1" alt="Daniel Rimmer" />
               <h2 class="card-name">Daniel Rimmer</h2>
               <p class="card-title">Web Designer | Front-End Developer | Copywriter</p>
 

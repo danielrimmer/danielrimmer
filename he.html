@@ -235,6 +235,9 @@
     </style>
   </head>
   <body>
+    <!-- קישור לדלוג לתוכן ראשי לניווט מקלדת -->
+    <a href="#main-content" class="skip-link">דלוג לתוכן ראשי</a>
+
     <header class="site-header" id="home">
       <div class="container nav">
         <!-- צד שמאל: בית, תהליך, בונוס, יתרונות -->
@@ -289,7 +292,7 @@
       </div>
     </header>
 
-    <main>
+    <main id="main-content">
       <!-- Hero -->
       <section class="hero section reveal" id="hero">
         <div class="hero-media" aria-hidden="true">
@@ -599,98 +602,12 @@
         </div>
       </section>
 
-      <!-- Projects -->
-      <section class="projects section reveal" id="projects" hidden>
+      <!-- Projects (Section hidden - update with real projects when available) -->
+      <section class="projects section reveal" id="projects" hidden aria-label="פרויקטים נבחרים (בקרוב)">
         <div class="container">
           <div class="section-head">
             <h2 class="h2">פרויקטים נבחרים</h2>
-            <p class="muted">עבודות מייצגות — חקירה ופרודקשן.</p>
-          </div>
-
-          <div class="grid projects-grid">
-            <article class="card project">
-              <a href="#" class="project-link" aria-label="צפה בפרויקט">
-                <figure class="thumb t1"></figure>
-                <div class="project-meta">
-                  <h3 class="h3">Aurora Landing</h3>
-                  <p>דף נחיתה מינימליסטי עם ממשק זכוכיתי ותנועה.</p>
-                  <div class="actions">
-                    <a class="btn btn-ghost" href="#">צפייה</a>
-                    <a class="btn btn-ghost" href="#">קוד</a>
-                  </div>
-                </div>
-              </a>
-            </article>
-
-            <article class="card project">
-              <a href="#" class="project-link" aria-label="צפה בפרויקט">
-                <figure class="thumb t2"></figure>
-                <div class="project-meta">
-                  <h3 class="h3">Neon Dashboard</h3>
-                  <p>דשבורד נתונים בזמן אמת בממשק כהה.</p>
-                  <div class="actions">
-                    <a class="btn btn-ghost" href="#">צפייה</a>
-                    <a class="btn btn-ghost" href="#">קוד</a>
-                  </div>
-                </div>
-              </a>
-            </article>
-
-            <article class="card project">
-              <a href="#" class="project-link" aria-label="צפה בפרויקט">
-                <figure class="thumb t3"></figure>
-                <div class="project-meta">
-                  <h3 class="h3">Eclipse Studio</h3>
-                  <p>אתר מותג עם גלילה קולנועית ופרלקסה.</p>
-                  <div class="actions">
-                    <a class="btn btn-ghost" href="#">צפייה</a>
-                    <a class="btn btn-ghost" href="#">קוד</a>
-                  </div>
-                </div>
-              </a>
-            </article>
-
-            <article class="card project">
-              <a href="#" class="project-link" aria-label="צפה בפרויקט">
-                <figure class="thumb t4"></figure>
-                <div class="project-meta">
-                  <h3 class="h3">Atlas Commerce</h3>
-                  <p>UX אלגנטי למסחר אלקטרוני ואינטראקציות מהירות.</p>
-                  <div class="actions">
-                    <a class="btn btn-ghost" href="#">צפייה</a>
-                    <a class="btn btn-ghost" href="#">קוד</a>
-                  </div>
-                </div>
-              </a>
-            </article>
-
-            <article class="card project">
-              <a href="#" class="project-link" aria-label="צפה בפרויקט">
-                <figure class="thumb t5"></figure>
-                <div class="project-meta">
-                  <h3 class="h3">Helix Docs</h3>
-                  <p>אתר דוקומנטציה עם חיפוש, מצבים וניהול תוכן.</p>
-                  <div class="actions">
-                    <a class="btn btn-ghost" href="#">צפייה</a>
-                    <a class="btn btn-ghost" href="#">קוד</a>
-                  </div>
-                </div>
-              </a>
-            </article>
-
-            <article class="card project">
-              <a href="#" class="project-link" aria-label="צפה בפרויקט">
-                <figure class="thumb t6"></figure>
-                <div class="project-meta">
-                  <h3 class="h3">Nova Portfolio</h3>
-                  <p>פורטפוליו יצירתי עם רשת והובר רוויויל.</p>
-                  <div class="actions">
-                    <a class="btn btn-ghost" href="#">צפייה</a>
-                    <a class="btn btn-ghost" href="#">קוד</a>
-                  </div>
-                </div>
-              </a>
-            </article>
+            <p class="muted">עבודות מייצגות — חקירה ופרודקשן. בקרוב.</p>
           </div>
         </div>
       </section>
@@ -726,7 +643,7 @@
             <!-- Card Content -->
             <div class="card-content">
               <!-- Logo -->
-              <img class="card-logo" src="images/logo-initials.svg?v=1" alt="דניאל רימר לוגו">
+              <img class="card-logo" src="images/logo-initials.svg?v=1" alt="דניאל רימר" />
               <h2 class="card-name">דניאל רימר</h2>
               <p class="card-title">מעצב אתרים | מפתח פרונט-אנד | קופירייטר</p>
 

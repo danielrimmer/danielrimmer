@@ -181,31 +181,7 @@ const animateStepValue = (el, target, options = {}) => {
   onScroll();
 })();
 
-// Fake contact form handler
-(function () {
-  const form = document.getElementById('contact-form');
-  const status = document.getElementById('form-status');
-  const sendBtn = document.getElementById('send-btn');
-  if (!form) return;
-
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    status.textContent = '';
-    sendBtn.disabled = true;
-    sendBtn.textContent = 'Sending…';
-    try {
-      // Simulate async send
-      await new Promise((r) => setTimeout(r, 900));
-      status.textContent = 'Thanks — your message has been sent.';
-      form.reset();
-    } catch (err) {
-      status.textContent = 'Something went wrong. Please try again.';
-    } finally {
-      sendBtn.disabled = false;
-      sendBtn.textContent = 'Send Message';
-    }
-  });
-})();
+// Contact form handler (removed - form is a static business card, not a functional form)
 
 // Page-load animation and header visibility on scroll with sidebar transformation
 (function () {
@@ -216,6 +192,7 @@ const animateStepValue = (el, target, options = {}) => {
   else onReady();
 
   const heroSection = document.getElementById('hero');
+  const heroSectionHeight = heroSection?.offsetHeight || window.innerHeight;
   let headerHeight = header?.getBoundingClientRect().height || 76;
   if (header) root.style.setProperty('--header-height', `${Math.round(headerHeight)}px`);
 
@@ -407,10 +384,12 @@ const animateStepValue = (el, target, options = {}) => {
   if (scrollIndicator) scrollIndicator.classList.remove('show');
 
   const typeText = (el, text, delay) => new Promise((resolve) => {
+    // Handle Unicode properly by converting to array of grapheme clusters
+    const chars = Array.from(text);
     let i = 0;
     const tick = () => {
-      el.textContent = text.slice(0, i++);
-      if (i <= text.length) setTimeout(tick, delay);
+      el.textContent = chars.slice(0, i++).join('');
+      if (i <= chars.length) setTimeout(tick, delay);
       else resolve();
     };
     tick();
@@ -458,16 +437,37 @@ const animateStepValue = (el, target, options = {}) => {
 
   let x = window.innerWidth / 2, y = window.innerHeight / 2;
   let tx = x, ty = y;
+  let isAnimating = false;
+  let lastMovement = Date.now();
+  const inactivityTimeout = 5000; // Stop animation after 5s of no movement
+
   const lerp = (a, b, t) => a + (b - a) * t;
   const loop = () => {
+    if (!isAnimating) return;
     x = lerp(x, tx, 0.18);
     y = lerp(y, ty, 0.18);
     glow.style.transform = `translate3d(${x}px, ${y}px, 0)`;
     requestAnimationFrame(loop);
   };
-  requestAnimationFrame(loop);
 
-  window.addEventListener('mousemove', (e) => { tx = e.clientX; ty = e.clientY; }, { passive: true });
+  const handleMouseMove = (e) => {
+    tx = e.clientX;
+    ty = e.clientY;
+    lastMovement = Date.now();
+    if (!isAnimating) {
+      isAnimating = true;
+      loop();
+    }
+  };
+
+  // Stop animation after inactivity to save battery
+  setInterval(() => {
+    if (Date.now() - lastMovement > inactivityTimeout && isAnimating) {
+      isAnimating = false;
+    }
+  }, inactivityTimeout);
+
+  window.addEventListener('mousemove', handleMouseMove, { passive: true });
 
   const hoverables = 'a, button, .btn, .project';
   document.addEventListener('mouseover', (e) => {
@@ -752,15 +752,12 @@ const animateStepValue = (el, target, options = {}) => {
       pointerActive = false;
     };
 
+    // Use pointer events only (covers mouse, touch, pen) - avoid duplicate touch listeners
     list.addEventListener('pointerdown', handlePointerDown);
-    list.addEventListener('pointermove', handlePointerMove);
+    list.addEventListener('pointermove', handlePointerMove, { passive: true });
     list.addEventListener('pointerup', handlePointerUp);
     list.addEventListener('pointercancel', handlePointerUp);
     list.addEventListener('pointerleave', handlePointerUp);
-    list.addEventListener('touchstart', handlePointerDown, { passive: true });
-    list.addEventListener('touchmove', handlePointerMove, { passive: true });
-    list.addEventListener('touchend', handlePointerUp);
-    list.addEventListener('touchcancel', handlePointerUp);
 
     initialize();
     registerQueryListener(mobileQuery, () => {
@@ -1076,13 +1073,22 @@ const animateStepValue = (el, target, options = {}) => {
   updateCards();
 
   // Re-check on resize
-  window.addEventListener('resize', () => {
+  const handleResize = () => {
     if (!isMobileOrTablet()) {
       window.removeEventListener('scroll', onScroll);
     } else {
       updateCards();
     }
-  });
+  };
+  window.addEventListener('resize', handleResize);
+
+  // Cleanup: disconnect observer when leaving page
+  const cleanup = () => {
+    observer.disconnect();
+    window.removeEventListener('scroll', onScroll);
+    window.removeEventListener('resize', handleResize);
+  };
+  window.addEventListener('beforeunload', cleanup);
 })();
 
 /* Benefit Cards - Cursor-Following Light Effect */
@@ -1168,10 +1174,12 @@ const animateStepValue = (el, target, options = {}) => {
 
   const typeText = (el, text, delay) => new Promise((resolve) => {
     el.textContent = '';
+    // Handle Unicode properly by converting to array of grapheme clusters
+    const chars = Array.from(text);
     let i = 0;
     const tick = () => {
-      el.textContent = text.slice(0, i++);
-      if (i <= text.length) setTimeout(tick, delay);
+      el.textContent = chars.slice(0, i++).join('');
+      if (i <= chars.length) setTimeout(tick, delay);
       else resolve();
     };
     tick();

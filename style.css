@@ -1138,6 +1138,124 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
     z-index: 4;
     top: 110px !important;
   }
+
+  .bonus-card-image {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    z-index: 1;
+  }
+
+  .bonus-card h3,
+  .bonus-card p {
+    position: relative;
+    z-index: 2;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 16px;
+    margin: 0;
+    color: #fff;
+  }
+
+  .bonus-card h3 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .bonus-card p {
+    font-size: 14px;
+    line-height: 1.4;
+  }
+
+  /* First card - use card1.webp and hide text */
+  .bonus-card:nth-child(1) .bonus-card-image {
+    --image-url: url('images/card1.webp');
+  }
+
+  .bonus-card:nth-child(1) h3,
+  .bonus-card:nth-child(1) p {
+    display: none;
+  }
+
+  /* Card 2 - replace image with card2-hover.webp for mobile/tablet */
+  .bonus-card:nth-child(2) .bonus-card-image {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    z-index: 1;
+  }
+
+  /* Use ::after pseudo-element to overlay the hover version */
+  .bonus-card:nth-child(2)::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: url('images/card2-hover.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 16px;
+    z-index: 8;
+    top: 0;
+    left: 0;
+  }
+
+  /* Card 3 - replace image with card3-hover.webp for mobile/tablet */
+  .bonus-card:nth-child(3) .bonus-card-image {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    z-index: 1;
+  }
+
+  /* Use ::after pseudo-element to overlay the hover version */
+  .bonus-card:nth-child(3)::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: url('images/card3-hover.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 16px;
+    z-index: 8;
+    top: 0;
+    left: 0;
+  }
+
+  /* Card 4 - replace image with card4-hover.webp for mobile/tablet */
+  .bonus-card:nth-child(4) .bonus-card-image {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    z-index: 1;
+  }
+
+  /* Use ::after pseudo-element to overlay the hover version */
+  .bonus-card:nth-child(4)::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: url('images/card4-hover.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 16px;
+    z-index: 8;
+    top: 0;
+    left: 0;
+  }
 }
 
 /* Default: hide mobile stacking container on all screen sizes */

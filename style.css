@@ -2894,7 +2894,7 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
     padding: clamp(20px, 5vw, 32px);
     flex-direction: column;
     gap: clamp(12px, 2.5vw, 16px);
-    align-items: flex-end;
+    align-items: flex-start;
     min-height: auto;
     justify-content: flex-start;
     width: 100%;
@@ -2908,8 +2908,9 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
     letter-spacing: .18em;
     color: rgba(0,224,255,.78);
     text-align: right;
-    align-self: flex-end;
     width: 100%;
+    margin: 0;
+    direction: rtl;
   }
 
   [dir="rtl"] .detail-title {
@@ -2919,8 +2920,9 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
     text-transform: uppercase;
     line-height: 1.2;
     text-align: right;
-    align-self: flex-end;
     width: 100%;
+    margin: 0;
+    direction: rtl;
   }
 
   [dir="rtl"] .detail-text {
@@ -2929,6 +2931,8 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
     color: rgba(255,255,255,.9);
     text-align: right;
     width: 100%;
+    margin: 0;
+    direction: rtl;
   }
 
   /* Ensure wallpaper is visible on tablet */
@@ -2950,10 +2954,10 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
 [dir="rtl"] .process-step .step-desc { text-align: right; }
 [dir="rtl"] .process-step.card-next { transform: translateX(-46%) scale(.78) rotateY(34deg); }
 [dir="rtl"] .process-step.card-prev { transform: translateX(46%) scale(.78) rotateY(-34deg); }
-[dir="rtl"] .process-detail-panel { align-items: flex-end; text-align: right; }
-[dir="rtl"] .detail-title { text-transform: uppercase; letter-spacing: .08em; text-align: right; align-self: flex-end; width: 100%; }
-[dir="rtl"] .detail-number { text-align: right; align-self: flex-end; width: 100%; }
-[dir="rtl"] .detail-text { text-align: right; width: 100%; }
+[dir="rtl"] .process-detail-panel { align-items: flex-start; text-align: right; }
+[dir="rtl"] .detail-title { text-transform: uppercase; letter-spacing: .08em; text-align: right; }
+[dir="rtl"] .detail-number { text-align: right; }
+[dir="rtl"] .detail-text { text-align: right; }
 [dir="rtl"] .bonus-card p { text-align: right; }
 
 @media (prefers-reduced-motion: reduce) {

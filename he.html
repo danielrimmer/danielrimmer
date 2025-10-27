@@ -233,62 +233,26 @@
         }
       }
 
-      /* Hebrew bonus carousel cards - show Hebrew images on hover */
+      /* Hebrew bonus poker cards - show Hebrew images on hover (desktop only) */
       @media (min-width: 981px) {
         /* Card 1 - Show Hebrew image on hover */
-        .bonus-card.carousel-card:nth-child(1).active:hover {
+        .bonus .bonus-cards-mobile .bonus-card:nth-child(1)::before {
           background-image: url('images/card1-he.webp') !important;
-          background-size: cover !important;
-          background-position: center !important;
-          background-repeat: no-repeat !important;
-        }
-
-        .bonus-card.carousel-card:nth-child(1).active:hover h3,
-        .bonus-card.carousel-card:nth-child(1).active:hover p,
-        .bonus-card.carousel-card:nth-child(1).active:hover .card-number {
-          display: none !important;
         }
 
         /* Card 2 - Show Hebrew image on hover */
-        .bonus-card.carousel-card:nth-child(2).active:hover {
+        .bonus .bonus-cards-mobile .bonus-card:nth-child(2)::before {
           background-image: url('images/card2-he.webp') !important;
-          background-size: cover !important;
-          background-position: center !important;
-          background-repeat: no-repeat !important;
-        }
-
-        .bonus-card.carousel-card:nth-child(2).active:hover h3,
-        .bonus-card.carousel-card:nth-child(2).active:hover p,
-        .bonus-card.carousel-card:nth-child(2).active:hover .card-number {
-          display: none !important;
         }
 
         /* Card 3 - Show Hebrew image on hover */
-        .bonus-card.carousel-card:nth-child(3).active:hover {
+        .bonus .bonus-cards-mobile .bonus-card:nth-child(3)::before {
           background-image: url('images/card3-he.webp') !important;
-          background-size: cover !important;
-          background-position: center !important;
-          background-repeat: no-repeat !important;
-        }
-
-        .bonus-card.carousel-card:nth-child(3).active:hover h3,
-        .bonus-card.carousel-card:nth-child(3).active:hover p,
-        .bonus-card.carousel-card:nth-child(3).active:hover .card-number {
-          display: none !important;
         }
 
         /* Card 4 - Show Hebrew image on hover */
-        .bonus-card.carousel-card:nth-child(4).active:hover {
+        .bonus .bonus-cards-mobile .bonus-card:nth-child(4)::before {
           background-image: url('images/card4-he.webp') !important;
-          background-size: cover !important;
-          background-position: center !important;
-          background-repeat: no-repeat !important;
-        }
-
-        .bonus-card.carousel-card:nth-child(4).active:hover h3,
-        .bonus-card.carousel-card:nth-child(4).active:hover p,
-        .bonus-card.carousel-card:nth-child(4).active:hover .card-number {
-          display: none !important;
         }
       }
     </style>
@@ -445,44 +409,6 @@
           <div class="process-bonus">
             <h2 class="h2 bonus-title" id="bonus-services-title">שירותי בונוס</h2>
 
-            <!-- Desktop 3D Carousel -->
-            <div class="bonus-carousel-wrapper">
-              <button class="carousel-nav carousel-nav-prev" aria-label="שירות קודם">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M9 18l6-6-6-6"/>
-                </svg>
-              </button>
-
-              <div class="bonus-carousel" data-bonus-carousel>
-                <div class="bonus-card carousel-card active" data-index="0">
-                  <span class="card-number">01</span>
-                  <h3>ללמד אותך לנהל את האתר שלך</h3>
-                  <p>אדריך אותך כיצד לבצע עדכונים ותחזוקה בסיסיים כך שתישאר עצמאי.</p>
-                </div>
-                <div class="bonus-card carousel-card" data-index="1">
-                  <span class="card-number">02</span>
-                  <h3>הקמת אימייל מקצועי (בפחות מ-0.04$ ליום)</h3>
-                  <p>אקים עבורך כתובת אימייל עסקית שמחזקת את אמינות המותג ואת התקשורת.</p>
-                </div>
-                <div class="bonus-card carousel-card" data-index="2">
-                  <span class="card-number">03</span>
-                  <h3>ביסוס הנוכחות הדיגיטלית שלך</h3>
-                  <p>אחבר עבורך את הדומיין, אקים את האתר ואוודא שהעסק שלך יופיע ברחבי הרשת.</p>
-                </div>
-                <div class="bonus-card carousel-card" data-index="3">
-                  <span class="card-number">04</span>
-                  <h3>עיצוב לוגו</h3>
-                  <p>אני אעצב לוגו נקי ומקצועי המשקף את האישיות והערכים של המותג שלך — ויוצר זהות ויזואלית ייחודית שקל לזהות ולזכור.</p>
-                </div>
-              </div>
-
-              <button class="carousel-nav carousel-nav-next" aria-label="שירות הבא">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M15 18l-6-6 6-6"/>
-                </svg>
-              </button>
-            </div>
-
             <!-- Desktop & Mobile cards layout -->
             <div class="bonus-cards bonus-cards-mobile">
               <div class="bonus-card">
@@ -504,34 +430,6 @@
                 <img class="bonus-card-image" src="images/card4.webp" alt="Card 4" loading="lazy" decoding="async" />
                 <h3 data-title="עיצוב לוגו">עיצוב לוגו</h3>
                 <p data-desc="אני אעצב לוגו נקי ומקצועי המשקף את האישיות והערכים של המותג שלך — ויוצר זהות ויזואלית ייחודית שקל לזהות ולזכור.">אני אעצב לוגו נקי ומקצועי המשקף את האישיות והערכים של המותג שלך — ויוצר זהות ויזואלית ייחודית שקל לזהות ולזכור.</p>
-              </div>
-            </div>
-
-            <!-- Mobile scroll-stacking version -->
-            <div class="bonus-cards-stack-mobile" data-bonus-stack-mobile>
-              <div class="bonus-card-stack-mobile" data-bonus-card-mobile data-index="0">
-                <div class="bonus-card">
-                  <h3>ללמד אותך לנהל את האתר שלך</h3>
-                  <p>אדריך אותך כיצד לבצע עדכונים ותחזוקה בסיסיים כך שתישאר עצמאי.</p>
-                </div>
-              </div>
-              <div class="bonus-card-stack-mobile" data-bonus-card-mobile data-index="1">
-                <div class="bonus-card">
-                  <h3>הקמת אימייל מקצועי (בפחות מ-0.04$ ליום)</h3>
-                  <p>אקים עבורך כתובת אימייל עסקית שמחזקת את אמינות המותג ואת התקשורת.</p>
-                </div>
-              </div>
-              <div class="bonus-card-stack-mobile" data-bonus-card-mobile data-index="2">
-                <div class="bonus-card">
-                  <h3>ביסוס הנוכחות הדיגיטלית שלך</h3>
-                  <p>אחבר עבורך את הדומיין, אקים את האתר ואוודא שהעסק שלך יופיע ברחבי הרשת.</p>
-                </div>
-              </div>
-              <div class="bonus-card-stack-mobile" data-bonus-card-mobile data-index="3">
-                <div class="bonus-card">
-                  <h3>עיצוב לוגו</h3>
-                  <p>אני אעצב לוגו נקי ומקצועי המשקף את האישיות והערכים של המותג שלך — ויוצר זהות ויזואלית ייחודית שקל לזהות ולזכור.</p>
-                </div>
               </div>
             </div>
           </div>

@@ -2017,11 +2017,13 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
 
   /* Mobile/Tablet: Always show video and description, hide image */
   .benefit-card.card-with-image .card-image-full {
+    display: none;
     opacity: 0;
     transition: opacity 0.4s ease;
   }
 
   .benefit-card.card-with-image .card-video-full {
+    display: block;
     opacity: 1;
     transition: opacity 0.4s ease;
   }

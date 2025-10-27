@@ -898,8 +898,8 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
   .bonus-card { width: 100%; }
 }
 
-/* Show card images on mobile/tablet with background */
-@media (max-width: 980px) {
+/* Show card images on tablet (721px - 980px) with stacking effect */
+@media (min-width: 721px) and (max-width: 980px) {
   .bonus-cards {
     position: relative;
     display: block !important;
@@ -918,7 +918,7 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
     margin: 0 auto !important;
     margin-bottom: 150px !important;
     padding: 0 !important;
-    height: 500px !important;
+    height: 600px !important;
     flex: none !important;
     overflow: hidden;
     display: flex;
@@ -1075,6 +1075,68 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
     z-index: 8;
     top: 0;
     left: 0;
+  }
+}
+
+/* Show card images on mobile (max-width: 720px) with stacking effect */
+@media (max-width: 720px) {
+  .bonus-cards {
+    position: relative;
+    display: block !important;
+    width: 100%;
+    min-height: 1200px;
+    overflow: visible;
+    padding: 20px 0;
+  }
+
+  .bonus .bonus-cards-mobile .bonus-card {
+    position: sticky !important;
+    top: 80px !important;
+    width: 90% !important;
+    max-width: 400px !important;
+    min-width: unset !important;
+    margin: 0 auto !important;
+    margin-bottom: 150px !important;
+    padding: 0 !important;
+    height: 500px !important;
+    flex: none !important;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    border-radius: 16px !important;
+    border: 2px solid rgba(0, 224, 255, 0.3) !important;
+    opacity: 1 !important;
+    transform: translateY(0) scale(1) !important;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    visibility: visible !important;
+  }
+
+  /* Cards become visible when scrolled into view */
+  .bonus .bonus-cards-mobile .bonus-card.is-visible {
+    opacity: 1 !important;
+    transform: translateY(0) scale(1) !important;
+  }
+
+  /* Stacking effect - each card offsets down to show cards beneath */
+  .bonus .bonus-cards-mobile .bonus-card:nth-child(1) {
+    z-index: 1;
+    top: 80px !important;
+  }
+
+  .bonus .bonus-cards-mobile .bonus-card:nth-child(2) {
+    z-index: 2;
+    top: 90px !important;
+  }
+
+  .bonus .bonus-cards-mobile .bonus-card:nth-child(3) {
+    z-index: 3;
+    top: 100px !important;
+  }
+
+  .bonus .bonus-cards-mobile .bonus-card:nth-child(4) {
+    z-index: 4;
+    top: 110px !important;
   }
 }
 

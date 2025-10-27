@@ -989,9 +989,9 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
     line-height: 1.4;
   }
 
-  /* Card 1 - use card1-he.webp and hide text */
+  /* Card 1 - use card1.webp and hide text */
   .bonus-card:nth-child(1) .bonus-card-image {
-    content: url('images/card1-he.webp');
+    content: url('images/card1.webp');
   }
 
   .bonus-card:nth-child(1) h3,
@@ -999,9 +999,9 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
     display: none;
   }
 
-  /* Card 2 - use card2-he.webp and hide text */
+  /* Card 2 - use card2-hover.webp and hide text */
   .bonus-card:nth-child(2) .bonus-card-image {
-    content: url('images/card2-he.webp');
+    content: url('images/card2-hover.webp');
   }
 
   .bonus-card:nth-child(2) h3,
@@ -1009,9 +1009,9 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
     display: none;
   }
 
-  /* Card 3 - use card3-he.webp and hide text */
+  /* Card 3 - use card3-hover.webp and hide text */
   .bonus-card:nth-child(3) .bonus-card-image {
-    content: url('images/card3-he.webp');
+    content: url('images/card3-hover.webp');
   }
 
   .bonus-card:nth-child(3) h3,
@@ -1019,9 +1019,9 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
     display: none;
   }
 
-  /* Card 4 - use card4-he.webp and hide text */
+  /* Card 4 - use card4-hover.webp and hide text */
   .bonus-card:nth-child(4) .bonus-card-image {
-    content: url('images/card4-he.webp');
+    content: url('images/card4-hover.webp');
   }
 
   .bonus-card:nth-child(4) h3,
@@ -1121,9 +1121,9 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
     line-height: 1.4;
   }
 
-  /* Card 1 - use card1-he.webp and hide text */
+  /* Card 1 - use card1.webp and hide text */
   .bonus-card:nth-child(1) .bonus-card-image {
-    content: url('images/card1-he.webp');
+    content: url('images/card1.webp');
   }
 
   .bonus-card:nth-child(1) h3,
@@ -1131,9 +1131,9 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
     display: none;
   }
 
-  /* Card 2 - use card2-he.webp and hide text */
+  /* Card 2 - use card2-hover.webp and hide text */
   .bonus-card:nth-child(2) .bonus-card-image {
-    content: url('images/card2-he.webp');
+    content: url('images/card2-hover.webp');
   }
 
   .bonus-card:nth-child(2) h3,
@@ -1141,9 +1141,9 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
     display: none;
   }
 
-  /* Card 3 - use card3-he.webp and hide text */
+  /* Card 3 - use card3-hover.webp and hide text */
   .bonus-card:nth-child(3) .bonus-card-image {
-    content: url('images/card3-he.webp');
+    content: url('images/card3-hover.webp');
   }
 
   .bonus-card:nth-child(3) h3,
@@ -1151,9 +1151,9 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
     display: none;
   }
 
-  /* Card 4 - use card4-he.webp and hide text */
+  /* Card 4 - use card4-hover.webp and hide text */
   .bonus-card:nth-child(4) .bonus-card-image {
-    content: url('images/card4-he.webp');
+    content: url('images/card4-hover.webp');
   }
 
   .bonus-card:nth-child(4) h3,

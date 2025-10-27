@@ -1218,17 +1218,6 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
   flex-shrink: 0;
 }
 
-.carousel-nav:hover {
-  background: rgba(255, 60, 126, .42);
-  border-color: rgba(255, 60, 126, .68);
-  color: #fff;
-  box-shadow:
-    0 0 0 4px rgba(255, 60, 126, .22),
-    0 0 28px rgba(255, 60, 126, .42),
-    0 8px 24px rgba(0,0,0,.35);
-  transform: scale(1.08);
-}
-
 .carousel-nav:active {
   transform: scale(.96);
 }

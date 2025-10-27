@@ -190,6 +190,7 @@ html[lang="en"] .lang-en, html[lang="he"] .lang-he { background: rgba(255,255,25
     background:
       linear-gradient(180deg, rgba(15, 28, 46, 0.94), rgba(10, 18, 30, 0.86)) padding-box,
       linear-gradient(140deg, rgba(0, 224, 255, 0.55), rgba(255, 60, 126, 0.55)) border-box;
+    background-size: 200% 200%;
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
@@ -206,11 +207,26 @@ html[lang="en"] .lang-en, html[lang="he"] .lang-he { background: rgba(255,255,25
     border-width: 2px;
     background:
       linear-gradient(180deg, rgba(15, 28, 46, 0.96), rgba(10, 18, 30, 0.9)) padding-box,
-      linear-gradient(140deg, rgba(0, 224, 255, 0.85), rgba(255, 60, 126, 0.85)) border-box;
+      linear-gradient(-45deg, rgba(0, 224, 255, 0.85), rgba(255, 60, 126, 0.85), rgba(0, 224, 255, 0.85)) border-box;
+    background-size: 200% 200%;
+    background-position: 0% 0%;
+    animation: gradientBorderMove 3s linear infinite;
     box-shadow:
       0 0 22px rgba(0, 224, 255, 0.26),
       0 0 32px rgba(255, 60, 126, 0.22),
       0 8px 26px rgba(0, 0, 0, 0.35);
+  }
+
+  @keyframes gradientBorderMove {
+    0% {
+      background-position: 0% 0%;
+    }
+    50% {
+      background-position: 100% 100%;
+    }
+    100% {
+      background-position: 0% 0%;
+    }
   }
 
   .site-header.sidebar-mode::after {
@@ -1855,6 +1871,7 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
   flex-direction: column;
   padding: 32px;
   color: #ffffff;
+  background-size: 200% 200%;
 }
 
 .benefit-card:hover {
@@ -1862,7 +1879,10 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
   border: 1.6px solid transparent;
   background:
     linear-gradient(135deg, rgba(0, 224, 255, 0.22), rgba(255, 60, 126, 0.16)) padding-box,
-    linear-gradient(135deg, #00e0ff, #ff3c7e) border-box;
+    linear-gradient(-45deg, #00e0ff, #ff3c7e, #00e0ff) border-box;
+  background-size: 200% 200%;
+  background-position: 0% 0%;
+  animation: gradientBorderMove 3s linear infinite;
   box-shadow:
     0 0 35px rgba(0, 224, 255, 0.32),
     0 0 55px rgba(255, 60, 126, 0.26),
@@ -2800,10 +2820,11 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
     display: grid;
     grid-template-columns: 1fr;
     align-items: center;
-    justify-items: center;
+    justify-items: end;
     gap: 8px !important;
     padding: clamp(12px, 3vw, 16px) !important;
-    text-align: center;
+    text-align: right;
+    direction: rtl;
     background: linear-gradient(120deg, rgba(16,18,28,.36), rgba(12,14,20,.32)) !important;
     border-radius: 12px;
     border: 1px solid rgba(255,255,255,.06);
@@ -2849,11 +2870,11 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
     font-size: clamp(24px, 6vw, 32px);
     font-weight: 700;
     letter-spacing: .1em;
-    direction: ltr;
+    direction: rtl;
     display: block !important;
     width: 100% !important;
-    text-align: center !important;
-    justify-self: center !important;
+    text-align: right !important;
+    justify-self: end !important;
     color: #fff;
     margin: 0 !important;
     flex-shrink: 0;
@@ -2866,20 +2887,24 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
   [dir="rtl"] .process-step .step-title {
     font-weight: 600;
     font-size: clamp(13px, 2.5vw, 15px);
-    text-align: center;
+    text-align: right;
     display: block;
     line-height: 1.2;
     word-break: break-word;
     overflow-wrap: break-word;
+    width: 100%;
+    direction: rtl;
   }
 
   [dir="rtl"] .process-step .step-body {
     display: flex;
     flex-direction: column;
     gap: 4px !important;
-    text-align: center !important;
+    text-align: right !important;
+    align-items: flex-end;
     min-width: 0;
     width: 100%;
+    direction: rtl;
   }
 
   [dir="rtl"] .process-step .step-desc {

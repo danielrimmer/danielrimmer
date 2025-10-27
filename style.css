@@ -1204,8 +1204,8 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
   width: 56px;
   height: 56px;
   border-radius: 50%;
-  border: 1.6px solid rgba(0, 224, 255, 0.68);
-  background: linear-gradient(135deg, rgba(0, 224, 255, 0.42), rgba(0, 224, 255, 0.24));
+  border: 5px solid red !important;
+  background: red !important;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   color: #fff;
@@ -1216,10 +1216,7 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
   transition: all .3s ease;
   z-index: 10;
   flex-shrink: 0;
-  box-shadow:
-    0 0 0 4px rgba(0, 224, 255, 0.18),
-    0 0 26px rgba(0, 224, 255, 0.38),
-    0 8px 24px rgba(0, 0, 0, 0.35);
+  box-shadow: none;
 }
 
 .carousel-nav:hover {

@@ -5,6 +5,20 @@
   --muted: #b7b7b7;
   --acc-cyan: #00e0ff; /* neon cyan */
   --acc-mag: #ff3c7e;  /* magenta glow */
+  --wallpaper-blue: #2674ff;
+  --wallpaper-blue-rgb: 38, 116, 255;
+  --bonus-gradient:
+    radial-gradient(circle at 50% 50%,
+      rgba(15, 28, 46, 0.92) 0%,
+      rgba(15, 28, 46, 0.86) 24%,
+      rgba(0, 224, 255, 0.6) 48%,
+      rgba(var(--wallpaper-blue-rgb), 0.54) 70%,
+      rgba(3, 7, 18, 0.97) 100%);
+  --bonus-glow:
+    radial-gradient(circle at 50% 50%,
+      rgba(0, 224, 255, 0.38) 0%,
+      rgba(0, 224, 255, 0.18) 22%,
+      rgba(0, 224, 255, 0) 48%);
   --grad-cm: linear-gradient(120deg, var(--acc-cyan), var(--acc-mag));
   --card: rgba(255, 255, 255, 0.045);
   --border: rgba(255, 255, 255, 0.08);
@@ -924,14 +938,20 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
 .bonus {
   position: relative;
   overflow: hidden;
+  background: var(--bonus-gradient);
+  isolation: isolate;
 }
 .bonus::before {
   content: "";
   position: absolute;
-  inset: 0;
-  background: linear-gradient(0deg, rgba(11,12,16,0.82) 0%, rgba(11,12,16,0.35) 35%, rgba(11,12,16,0.12) 100%);
+  inset: -18% -18%;
+  background:
+    var(--bonus-glow),
+    radial-gradient(circle at 50% 50%, rgba(var(--wallpaper-blue-rgb), 0.18) 0%, rgba(var(--wallpaper-blue-rgb), 0) 62%),
+    linear-gradient(180deg, rgba(3, 7, 18, 0.65) 0%, rgba(3, 7, 18, 0.28) 52%, rgba(3, 7, 18, 0.72) 100%);
   z-index: 1;
   pointer-events: none;
+  filter: blur(10px);
 }
 .bonus-bg {
   position: absolute;
@@ -940,9 +960,12 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
   transition: transform .4s ease-out;
   z-index: 0;
   overflow: hidden;
-  background-size: cover;
+  background: var(--bonus-gradient);
+  background-size: 140% 140%;
   background-position: center;
   background-repeat: no-repeat;
+  pointer-events: none;
+  opacity: .82;
 }
 
 .bonus-bg-image {
@@ -950,7 +973,7 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
   height: 100%;
   object-fit: cover;
   object-position: center;
-  display: block;
+  display: none;
 }
 
 .bonus-inner {
@@ -1447,19 +1470,10 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
 /* Mobile-specific stacking animation - MUST BE MOST SPECIFIC */
 @media screen and (max-width: 768px) {
   .bonus.section {
-    background: var(--bg-2) !important; /* Darker blue background */
+    background: var(--bonus-gradient) !important; /* Maintain glowing gradient */
     min-height: auto; /* Let content determine height */
     padding: 24px 0 16px 0; /* 20% smaller than previous */
     overflow: visible !important; /* Allow cards to be visible */
-  }
-
-  /* Hide the video background on mobile */
-  .bonus .bonus-bg {
-    display: none !important;
-  }
-
-  .bonus.section::before {
-    display: none !important;
   }
 
   .bonus .bonus-inner {
@@ -3077,19 +3091,23 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
 /* Temporary: hide Featured Projects section */
 #projects { display: none !important; }
 .bonus {
-  background: #040404;
   position: relative;
+  background: var(--bonus-gradient);
 }
 .bonus::before {
   content: "";
   position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at top right, rgba(0,224,255,.12), transparent 55%),
-              radial-gradient(circle at bottom left, rgba(255,60,126,.12), transparent 55%);
-  opacity: .65;
+  inset: -18% -18%;
+  background:
+    var(--bonus-glow),
+    radial-gradient(circle at 50% 50%, rgba(var(--wallpaper-blue-rgb), 0.18) 0%, rgba(var(--wallpaper-blue-rgb), 0) 62%),
+    linear-gradient(180deg, rgba(3, 7, 18, 0.65) 0%, rgba(3, 7, 18, 0.28) 52%, rgba(3, 7, 18, 0.72) 100%);
+  opacity: .85;
+  z-index: 1;
   pointer-events: none;
+  filter: blur(10px);
 }
-.bonus-inner { position: relative; z-index: 1; }
+.bonus-inner { position: relative; z-index: 2; }
 
 /* ════════════════════════════════════════════════════════════════════
    Contact Split Section

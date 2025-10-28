@@ -3528,9 +3528,9 @@ html[dir="rtl"] .contact-detail-icon {
 }
 
 .pricing-divider {
-  height: 1px;
+  height: 2px;
   width: 100%;
-  background: linear-gradient(90deg, rgba(0, 224, 255, 0), rgba(0, 224, 255, 0.4), rgba(255, 60, 126, 0.35), rgba(0, 224, 255, 0));
+  background: rgba(0, 224, 255, 0.4);
   border: none;
 }
 
@@ -3714,9 +3714,9 @@ html[dir="rtl"] .pricing-price-old {
 }
 
 .pricing-divider {
-  height: 1px;
+  height: 2px;
   width: 100%;
-  background: linear-gradient(90deg, rgba(0, 224, 255, 0), rgba(0, 224, 255, 0.4), rgba(255, 60, 126, 0.35), rgba(0, 224, 255, 0));
+  background: rgba(0, 224, 255, 0.4);
   border: none;
 }
 

@@ -3552,12 +3552,27 @@ html[dir="rtl"] .contact-detail-icon {
 }
 
 .pricing-includes li::before {
-  content: "✓";
-  font-size: 18px;
-  color: rgba(0, 224, 255, 0.9);
-  font-weight: 600;
-  margin-top: 2px;
+  content: "";
+  width: 24px;
+  height: 24px;
+  border: 2px solid rgba(0, 224, 255, 0.9);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin-right: 12px;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.pricing-includes li::after {
+  content: "✓";
+  font-size: 14px;
+  color: rgba(0, 224, 255, 0.9);
+  font-weight: 700;
+  position: absolute;
+  left: 6px;
+  line-height: 1;
 }
 
 .pricing-includes span {
@@ -3614,12 +3629,29 @@ html[dir="rtl"] .pricing-includes li::before {
   order: 2;
 }
 
+html[dir="rtl"] .pricing-includes li::after {
+  order: 0;
+  position: static;
+  margin-left: 0;
+  left: auto;
+}
+
 html[dir="rtl"] .pricing-includes span {
   order: 1;
 }
 
 html[dir="rtl"] .pricing-price {
   flex-direction: row-reverse;
+  justify-content: flex-end;
+  text-align: right;
+}
+
+html[dir="rtl"] .pricing-price span:last-child {
+  order: 1;
+}
+
+html[dir="rtl"] .pricing-price-old {
+  order: 2;
 }
 
 html[dir="rtl"] .pricing-price span:last-child {
@@ -3727,8 +3759,26 @@ html[dir="rtl"] .pricing-price-old {
 }
 
 .pricing-includes li::before {
-  content: "✅";
+  content: "";
+  width: 24px;
+  height: 24px;
+  border: 2px solid rgba(0, 224, 255, 0.9);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   flex-shrink: 0;
+  position: relative;
+}
+
+.pricing-includes li::after {
+  content: "✓";
+  font-size: 14px;
+  color: rgba(0, 224, 255, 0.9);
+  font-weight: 700;
+  position: absolute;
+  left: 6px;
+  line-height: 1;
 }
 
 .pricing-includes span {
@@ -3779,12 +3829,21 @@ html[dir="rtl"] .pricing-includes li::before {
   order: 2;
 }
 
+html[dir="rtl"] .pricing-includes li::after {
+  order: 0;
+  position: static;
+  margin-left: 0;
+  left: auto;
+}
+
 html[dir="rtl"] .pricing-includes span {
   order: 1;
 }
 
 html[dir="rtl"] .pricing-price {
   flex-direction: row-reverse;
+  justify-content: flex-end;
+  text-align: right;
 }
 
 html[dir="rtl"] .pricing-price span:last-child {

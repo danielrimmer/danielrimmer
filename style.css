@@ -3598,20 +3598,36 @@ html[dir="rtl"] .pricing-card {
 }
 
 html[dir="rtl"] .pricing-includes {
-  align-items: flex-end;
+  align-items: flex-start;
+  text-align: right;
 }
 
 html[dir="rtl"] .pricing-includes li {
-  justify-content: flex-end;
+  flex-direction: row-reverse;
+  text-align: right;
+  gap: 10px;
 }
 
 html[dir="rtl"] .pricing-includes li::before {
   margin-left: 12px;
   margin-right: 0;
+  order: 2;
+}
+
+html[dir="rtl"] .pricing-includes span {
+  order: 1;
 }
 
 html[dir="rtl"] .pricing-price {
-  justify-content: flex-end;
+  flex-direction: row-reverse;
+}
+
+html[dir="rtl"] .pricing-price span:last-child {
+  order: 1;
+}
+
+html[dir="rtl"] .pricing-price-old {
+  order: 2;
 }
 
 /* Pricing Section */
@@ -3747,19 +3763,36 @@ html[dir="rtl"] .pricing-card {
 }
 
 html[dir="rtl"] .pricing-includes {
-  align-items: flex-end;
+  align-items: flex-start;
+  text-align: right;
 }
 
 html[dir="rtl"] .pricing-includes li {
-  justify-content: flex-end;
+  flex-direction: row-reverse;
+  text-align: right;
+  gap: 10px;
 }
 
 html[dir="rtl"] .pricing-includes li::before {
   margin-left: 12px;
+  margin-right: 0;
+  order: 2;
+}
+
+html[dir="rtl"] .pricing-includes span {
+  order: 1;
 }
 
 html[dir="rtl"] .pricing-price {
-  justify-content: flex-end;
+  flex-direction: row-reverse;
+}
+
+html[dir="rtl"] .pricing-price span:last-child {
+  order: 1;
+}
+
+html[dir="rtl"] .pricing-price-old {
+  order: 2;
 }
 
 
@@ -3821,4 +3854,47 @@ html[dir="rtl"] .pricing-price {
 
 .pricing-card-head .pricing-price {
   margin-top: auto;
+}
+
+/* ============================================
+   LAZY LOADING OPTIMIZATION STYLES
+   ============================================ */
+
+/* Video lazy loading */
+video {
+  transition: opacity 0.3s ease;
+}
+
+/* Image lazy loading indicators */
+img.img-loaded {
+  animation: fadeInImage 0.3s ease;
+}
+
+@keyframes fadeInImage {
+  from {
+    opacity: 0.8;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Background image loading */
+[data-bg-src] {
+  transition: opacity 0.4s ease;
+}
+
+[data-bg-src].bg-loaded {
+  opacity: 1;
+}
+
+/* Placeholder styles for lazy-loaded content */
+.card-video-full {
+  background: rgba(0, 0, 0, 0.2);
+  transition: background 0.3s ease;
+}
+
+.card-video-full[preload="auto"],
+.card-video-full.loaded {
+  background: transparent;
 }

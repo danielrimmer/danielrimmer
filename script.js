@@ -1279,3 +1279,187 @@ const animateStepValue = (el, target, options = {}) => {
     });
   }
 })();
+
+// ============================================
+// ADVANCED LAZY LOADING FOR BELOW-FOLD CONTENT
+// ============================================
+(function () {
+  // Lazy load videos when they come into view
+  (function lazyLoadVideos() {
+    const videos = document.querySelectorAll('video[data-src], video.lazy-video');
+    if (!('IntersectionObserver' in window) || videos.length === 0) return;
+
+    const videoObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const video = entry.target;
+            const sources = video.querySelectorAll('source[data-src]');
+
+            // Load all source elements dynamically
+            sources.forEach((source) => {
+              if (source.dataset.src) {
+                source.src = source.dataset.src;
+                delete source.dataset.src;
+              }
+            });
+
+            // If no sources yet but video has data-src, create them
+            if (sources.length === 0 && video.dataset.src) {
+              const source = document.createElement('source');
+              source.src = video.dataset.src;
+              source.type = 'video/mp4';
+              video.appendChild(source);
+              delete video.dataset.src;
+            }
+
+            video.load();
+            videoObserver.unobserve(video);
+          }
+        });
+      },
+      { rootMargin: '50px' } // Start loading 50px before video enters viewport
+    );
+
+    videos.forEach((video) => videoObserver.observe(video));
+  })();
+
+  // Lazy load background images for sections (for parallax and wallpapers)
+  (function lazyLoadBackgrounds() {
+    const elements = document.querySelectorAll('[data-bg-src]');
+    if (!('IntersectionObserver' in window) || elements.length === 0) return;
+
+    const bgObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const el = entry.target;
+            const bgSrc = el.dataset.bgSrc;
+            if (bgSrc) {
+              el.style.backgroundImage = `url('${bgSrc}')`;
+              el.classList.add('bg-loaded');
+              delete el.dataset.bgSrc;
+              bgObserver.unobserve(el);
+            }
+          }
+        });
+      },
+      { rootMargin: '100px' } // Start loading 100px before element enters viewport
+    );
+
+    elements.forEach((el) => bgObserver.observe(el));
+  })();
+
+  // Lazy load multiple background images (for process wallpaper switcher)
+  (function lazyLoadProcessWallpapers() {
+    const processDetail = document.querySelector('.process-detail-panel');
+    if (!processDetail) return;
+
+    const wallpaperMap = {
+      'images/myprocess.webp': true,
+      'images/brainstorm.webp': true,
+      'images/design.webp': true,
+      'images/website.webp': true,
+      'images/salescopy.webp': true,
+      'images/integrating.webp': true,
+    };
+
+    // Check if process section is visible, then preload wallpapers
+    const processSection = document.querySelector('.process');
+    if (!processSection) return;
+
+    if ('IntersectionObserver' in window) {
+      const processObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              // Process section is visible, preload wallpaper images
+              Object.keys(wallpaperMap).forEach((url) => {
+                const img = new Image();
+                img.src = url;
+              });
+              processObserver.unobserve(entry.target);
+            }
+          });
+        },
+        { rootMargin: '200px' }
+      );
+      processObserver.observe(processSection);
+    }
+  })();
+
+  // Lazy load benefit card videos (more aggressive than default HTML loading)
+  (function lazyLoadBenefitCardVideos() {
+    const benefitVideos = document.querySelectorAll('.card-video-full');
+    if (!('IntersectionObserver' in window) || benefitVideos.length === 0) return;
+
+    const videoObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const video = entry.target;
+            const source = video.querySelector('source');
+
+            // Only load if not already loaded
+            if (source && source.src && !source.dataset.loaded) {
+              video.preload = 'auto'; // Change to auto load on visibility
+              source.dataset.loaded = 'true';
+              video.load();
+            }
+
+            videoObserver.unobserve(video);
+          }
+        });
+      },
+      { rootMargin: '150px' } // Start loading 150px before visibility
+    );
+
+    benefitVideos.forEach((video) => {
+      if (video.preload !== 'auto') {
+        video.preload = 'none'; // Don't preload by default
+        videoObserver.observe(video);
+      }
+    });
+  })();
+
+  // Preload images on viewport visibility for better perceived performance
+  (function optimizeImageLoading() {
+    const lazyImages = document.querySelectorAll('img[loading="lazy"]');
+    if (!('IntersectionObserver' in window) || lazyImages.length === 0) return;
+
+    const imageObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const img = entry.target;
+            // Native lazy loading handles this, but we can add a loaded class
+            if (img.complete) {
+              img.classList.add('img-loaded');
+            } else {
+              img.addEventListener('load', () => {
+                img.classList.add('img-loaded');
+              }, { once: true });
+            }
+            imageObserver.unobserve(img);
+          }
+        });
+      },
+      { rootMargin: '50px' }
+    );
+
+    lazyImages.forEach((img) => imageObserver.observe(img));
+  })();
+
+  // Bonus: Defer non-critical CSS and scripts
+  (function deferNonCriticalAssets() {
+    // This would typically be done server-side, but can help with in-page optimization
+    // Mark when document is fully interactive
+    document.addEventListener('DOMContentLoaded', () => {
+      document.body.classList.add('dom-ready');
+    });
+
+    window.addEventListener('load', () => {
+      document.body.classList.add('fully-loaded');
+    });
+  })();
+})();

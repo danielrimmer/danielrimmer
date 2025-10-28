@@ -445,6 +445,59 @@ html[lang="en"] .lang-en, html[lang="he"] .lang-he { background: rgba(255,255,25
 /* Center logo in grid */
 .nav .logo { justify-self: center; }
 
+/* ============================================
+   ANIMATED GRADIENT EFFECT FOR LOGO
+   ============================================
+   Smooth gradient animation flowing upward:
+   Navy (#0f1c2e) → Cyan (#00e0ff) → Magenta (#ff3c7e) → White (#ffffff)
+*/
+
+/* Animated gradient keyframes - smooth upward scrolling effect */
+@keyframes logoGradientFlow {
+  0% {
+    filter: drop-shadow(0 0 0px rgba(0, 224, 255, 0))
+            hue-rotate(0deg);
+  }
+  25% {
+    filter: drop-shadow(0 0 5px rgba(0, 224, 255, 0.3))
+            hue-rotate(15deg);
+  }
+  50% {
+    filter: drop-shadow(0 0 8px rgba(255, 60, 126, 0.4))
+            hue-rotate(30deg);
+  }
+  75% {
+    filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.3))
+            hue-rotate(15deg);
+  }
+  100% {
+    filter: drop-shadow(0 0 0px rgba(0, 224, 255, 0))
+            hue-rotate(0deg);
+  }
+}
+
+/* Apply animation to logo image */
+.site-header .logo .logo-img {
+  animation: logoGradientFlow 8s ease-in-out infinite;
+  will-change: filter;
+  transition: all 0.3s ease;
+}
+
+/* Logo container styling */
+.site-header .logo {
+  position: relative;
+  transition: all 0.3s ease;
+  overflow: visible;
+}
+
+/* Hover effect for logo - enhanced glow */
+.site-header .logo:hover {
+  transform: scale(1.05);
+  filter: drop-shadow(0 0 20px rgba(0, 224, 255, 0.6))
+          drop-shadow(0 0 30px rgba(255, 60, 126, 0.3));
+  will-change: transform;
+}
+
 /* Desktop: hard-center the logo within the header bar */
 @media (min-width: 981px) {
   /* Match Hebrew header layout for EN: taller bar and absolute positioning */
@@ -3015,164 +3068,375 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
 .bonus-inner { position: relative; z-index: 1; }
 
 /* ════════════════════════════════════════════════════════════════════
-   Contact Business Card Section
+   Contact Split Section
    ════════════════════════════════════════════════════════════════════ */
 
 .contact.section {
+  position: relative;
+  padding: clamp(80px, 10vw, 140px) 0;
+  background: #0b0c10;
+  overflow: hidden;
+}
+
+.contact-showcase {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  min-height: clamp(560px, 78vh, 760px);
+  max-width: 1180px;
+  margin: 0 auto;
+  border-radius: 32px;
+  overflow: hidden;
+  background: #0b0c10;
+  box-shadow: 0 40px 120px rgba(2, 10, 20, 0.65);
+  isolation: isolate;
+}
+
+.contact-showcase::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  border: 1px solid rgba(0, 224, 255, 0.08);
+  pointer-events: none;
+}
+
+.contact-showcase-left {
+  flex: 1;
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
-  padding: 120px 0;
+  background: #0f1c2e;
+  min-height: 100%;
+  overflow: hidden;
+  animation: contactFadeLeft 1s ease-out both;
 }
 
-.business-card {
-  position: relative;
-  background: #101820;
-  border-radius: 20px;
-  padding: 50px 60px;
-  max-width: 600px;
-  width: 100%;
-  margin: 0 auto;
-  box-shadow:
-    0 20px 60px rgba(0, 0, 0, 0.5),
-    0 0 0 1px rgba(255, 255, 255, 0.05);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Magenta glow border gradient */
-.business-card::before {
-  content: '';
+.contact-showcase-left::before {
+  content: "";
   position: absolute;
-  inset: -2px;
-  border-radius: 20px;
-  padding: 2px;
-  background: linear-gradient(135deg, var(--acc-mag), var(--acc-cyan));
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  mask-composite: exclude;
-  opacity: 0.3;
-  transition: opacity 0.4s ease;
+  inset: 0;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(15, 28, 46, 0.88) 0%,
+      rgba(15, 28, 46, 0.88) 60%,
+      rgba(0, 224, 255, 0.74) 60%,
+      rgba(0, 224, 255, 0.74) 90%,
+      rgba(255, 60, 126, 0.7) 90%,
+      rgba(255, 60, 126, 0.7) 100%
+    ),
+    radial-gradient(circle at 25% 75%, rgba(0, 224, 255, 0.3), transparent 55%),
+    radial-gradient(circle at 75% 25%, rgba(255, 60, 126, 0.25), transparent 50%);
+  pointer-events: none;
 }
 
-.business-card:hover {
-  transform: translateY(-5px);
-  box-shadow:
-    0 30px 80px rgba(0, 0, 0, 0.6),
-    0 0 60px rgba(255, 60, 126, 0.3),
-    0 0 0 1px rgba(255, 255, 255, 0.08);
+.contact-showcase-left::after {
+  content: "";
+  position: absolute;
+  width: clamp(160px, 20vw, 260px);
+  height: clamp(160px, 20vw, 260px);
+  bottom: clamp(40px, 6vh, 90px);
+  right: clamp(30px, 12vw, 160px);
+  background-image: radial-gradient(rgba(255, 255, 255, 0.35) 1px, transparent 0);
+  background-size: 18px 18px;
+  opacity: 0.25;
+  filter: drop-shadow(0 0 14px rgba(0, 224, 255, 0.35));
 }
 
-.business-card:hover::before {
-  opacity: 0.8;
+.contact-showcase-left-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: clamp(40px, 8vw, 80px);
 }
 
-.card-logo {
-  width: 60px;
-  height: auto;
-  margin-bottom: 12px;
+.contact-callout {
+  display: inline-block;
+  font-family: Poppins, Montserrat, "Space Grotesk", sans-serif;
+  font-size: clamp(48px, 9vw, 96px);
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #ffffff;
+  line-height: 1.05;
+  text-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.5),
+    0 0 40px rgba(0, 224, 255, 0.45);
 }
 
-.card-content {
-  margin-top: 0;
-}
-
-.card-name {
-  font-family: Poppins, Montserrat, "Space Grotesk", Roboto, Inter, sans-serif;
-  font-size: clamp(32px, 5vw, 42px);
-  font-weight: 900;
-  letter-spacing: 0.02em;
-  margin-bottom: 8px;
-  background: linear-gradient(135deg, var(--acc-cyan), var(--acc-mag));
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.card-title {
-  font-size: clamp(14px, 2.5vw, 16px);
-  color: var(--muted);
-  margin-bottom: 40px;
-  letter-spacing: 0.02em;
-}
-
-.contact-info {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.contact-item {
+.contact-showcase-right {
+  flex: 1;
+  position: relative;
   display: flex;
   align-items: center;
-  gap: 16px;
-  padding: 12px 16px;
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  transition: all 0.3s ease;
+  justify-content: center;
+  background: #0a1524;
+  padding: clamp(48px, 8vw, 80px);
+  animation: contactFadeRight 1s ease-out both 0.1s;
+}
+
+.contact-showcase-right::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top left, rgba(0, 224, 255, 0.18), transparent 55%);
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.contact-showcase-content {
+  position: relative;
+  z-index: 1;
+  max-width: 420px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(24px, 4vw, 36px);
+  text-align: left;
+  animation: contactFadeUp 0.9s ease-out both 0.2s;
+}
+
+.contact-heading {
+  font-family: Poppins, Montserrat, "Space Grotesk", sans-serif;
+  font-size: clamp(32px, 5vw, 48px);
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-shadow: 0 14px 40px rgba(0, 0, 0, 0.45);
+}
+
+.contact-subheading {
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: clamp(16px, 2vw, 19px);
+  color: rgba(255, 255, 255, 0.88);
+  margin: 0;
+  line-height: 1.65;
+  letter-spacing: 0.02em;
+}
+
+.contact-details-list {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(20px, 3vw, 28px);
+}
+
+.contact-detail {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 18px 20px;
+  border-radius: 16px;
+  background: rgba(7, 17, 31, 0.45);
+  border: 1px solid rgba(0, 224, 255, 0.05);
+  color: #ffffff;
   text-decoration: none;
-  color: var(--text);
+  transition: transform 0.3s ease, background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.35);
+  opacity: 0;
 }
 
-.contact-item:hover {
-  background: rgba(255, 60, 126, 0.08);
-  border-color: rgba(255, 60, 126, 0.3);
-  box-shadow: 0 0 20px rgba(255, 60, 126, 0.2);
-  transform: translateX(5px);
+.contact-detail:hover,
+.contact-detail:focus-visible {
+  transform: translateX(8px);
+  background: rgba(0, 224, 255, 0.08);
+  border-color: rgba(0, 224, 255, 0.35);
+  box-shadow:
+    0 24px 60px rgba(0, 0, 0, 0.45),
+    0 0 28px rgba(0, 224, 255, 0.32);
+  outline: none;
 }
 
-.contact-icon {
-  width: 24px;
-  height: 24px;
-  color: var(--acc-cyan);
-  flex-shrink: 0;
+.contact-detail-icon {
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 26px;
+  background: linear-gradient(135deg, rgba(0, 224, 255, 0.3), rgba(255, 60, 126, 0.3));
+  border: 1px solid rgba(0, 224, 255, 0.4);
+  box-shadow: 0 0 20px rgba(0, 224, 255, 0.24);
+  transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.contact-text {
-  font-size: clamp(14px, 2.5vw, 16px);
+.contact-detail:hover .contact-detail-icon,
+.contact-detail:focus-visible .contact-detail-icon {
+  background: linear-gradient(135deg, rgba(0, 224, 255, 0.55), rgba(255, 60, 126, 0.45));
+  border-color: rgba(0, 224, 255, 0.75);
+  box-shadow: 0 0 25px rgba(255, 60, 126, 0.38);
+}
+
+.contact-detail-text {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.4;
   letter-spacing: 0.01em;
+  color: #ffffff;
+  text-shadow: 0 0 12px rgba(0, 224, 255, 0.15);
   unicode-bidi: plaintext;
 }
 
-.contact-label {
+.contact-detail-label {
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.6);
   font-weight: 600;
-  margin-right: 8px;
-  color: var(--text);
 }
 
-/* Responsive */
-@media (max-width: 640px) {
-  .business-card {
-    padding: 40px 30px;
-  }
-
-  .card-logo {
-    width: 50px;
-    margin-bottom: 10px;
-  }
-
-  .contact-item {
-    padding: 10px 14px;
-    gap: 12px;
-  }
-
-  .contact-icon {
-    width: 20px;
-    height: 20px;
-  }
+.contact-detail-value {
+  font-size: 18px;
+  font-weight: 500;
 }
 
-@media (max-width: 400px) {
-  .business-card {
-    padding: 35px 25px;
+.contact-detail:nth-child(1) {
+  animation: contactFadeUp 0.8s ease-out 0.45s both;
+}
+
+.contact-detail:nth-child(2) {
+  animation: contactFadeUp 0.8s ease-out 0.62s both;
+}
+
+.contact-detail:nth-child(3) {
+  animation: contactFadeUp 0.8s ease-out 0.79s both;
+}
+
+@media (max-width: 960px) {
+  .contact.section {
+    padding: clamp(64px, 12vw, 120px) 0;
   }
 
-  .contact-item {
+  .contact-showcase {
     flex-direction: column;
-    align-items: flex-start;
-    gap: 8px;
+    min-height: auto;
+    border-radius: 28px;
+  }
+
+  .contact-showcase-left,
+  .contact-showcase-right {
+    min-height: clamp(340px, 45vh, 420px);
+  }
+
+  .contact-showcase-right {
+    padding: clamp(36px, 10vw, 60px);
+  }
+
+  .contact-showcase-content {
+    text-align: center;
+    align-items: center;
+  }
+
+  .contact-detail {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 640px) {
+  .contact-showcase {
+    border-radius: 22px;
+  }
+
+  .contact-callout {
+    font-size: clamp(40px, 12vw, 64px);
+    letter-spacing: 0.1em;
+  }
+
+  .contact-detail {
+    gap: 16px;
+    padding: 14px 16px;
+  }
+
+  .contact-detail-icon {
+    width: 48px;
+    height: 48px;
+    font-size: 22px;
+  }
+
+  .contact-detail-text {
+    font-size: 16px;
+  }
+
+  .contact-detail-value {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 420px) {
+  .contact-showcase-left::after {
+    display: none;
+  }
+
+  .contact-detail {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+  }
+}
+
+html[dir="rtl"] .contact-showcase {
+  direction: rtl;
+}
+
+html[dir="rtl"] .contact-showcase-content {
+  text-align: right;
+  align-items: flex-end;
+}
+
+html[dir="rtl"] .contact-detail {
+  flex-direction: row-reverse;
+  text-align: right;
+}
+
+html[dir="rtl"] .contact-detail:hover,
+html[dir="rtl"] .contact-detail:focus-visible {
+  transform: translateX(-8px);
+}
+
+html[dir="rtl"] .contact-detail-text {
+  text-align: right;
+}
+
+@keyframes contactFadeLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes contactFadeRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes contactFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 

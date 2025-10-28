@@ -17,9 +17,6 @@ html, body { height: 100%; }
 body {
   margin: 0;
   color: var(--text);
-  background: linear-gradient(120deg, var(--bg-1), var(--bg-2));
-  background-size: 200% 200%;
-  animation: gradientShift 18s ease infinite;
   font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
@@ -28,10 +25,37 @@ body {
   transform: translateY(4px) scale(0.995);
   transition: opacity .6s ease, transform .6s ease;
   cursor: url('images/cursor-default.svg') 11 11, auto;
+  position: relative;
+  min-height: 100%;
+  background: #030712;
+  overflow-x: hidden;
 }
 
 body.is-ready { opacity: 1; transform: none; }
 [dir="rtl"] body { font-family: Roboto, system-ui, -apple-system, Segoe UI, Arial, sans-serif; }
+
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -2;
+}
+
+body::before {
+  background:
+    radial-gradient(circle at max(-8vw, -160px) 55%, rgba(38, 116, 255, 0.82) 0%, rgba(38, 116, 255, 0.72) 22%, rgba(7, 30, 70, 0.35) 48%, rgba(3, 10, 26, 0.12) 70%, rgba(3, 7, 18, 0) 78%),
+    radial-gradient(circle at clamp(140px, 18vw, 320px) 42%, rgba(0, 224, 255, 0.48), rgba(0, 224, 255, 0) 55%),
+    radial-gradient(circle at 82% 12%, rgba(0, 86, 186, 0.32), rgba(0, 86, 186, 0) 45%),
+    linear-gradient(160deg, #02050c 0%, #030813 42%, #02040b 86%, #02040a 100%);
+  transform: translateZ(0);
+}
+
+body::after {
+  z-index: -1;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.32) 0%, rgba(0, 0, 0, 0.24) 35%, rgba(0, 0, 0, 0.36) 100%);
+}
 
 @keyframes gradientShift {
   0% { background-position: 0% 50%; }
@@ -3074,7 +3098,7 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
 .contact.section {
   position: relative;
   padding: clamp(80px, 10vw, 140px) 0;
-  background: #0b0c10;
+  background: transparent;
   overflow: hidden;
 }
 
@@ -3088,7 +3112,8 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
   margin: 0 auto;
   border-radius: 32px;
   overflow: hidden;
-  background: #0b0c10;
+  background: rgba(6, 12, 24, 0.58);
+  backdrop-filter: blur(14px);
   box-shadow: 0 40px 120px rgba(2, 10, 20, 0.65);
   isolation: isolate;
 }
@@ -3108,7 +3133,7 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #0f1c2e;
+  background: transparent;
   min-height: 100%;
   overflow: hidden;
   animation: contactFadeLeft 1s ease-out both;
@@ -3119,17 +3144,8 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(
-      180deg,
-      rgba(15, 28, 46, 0.88) 0%,
-      rgba(15, 28, 46, 0.88) 60%,
-      rgba(0, 224, 255, 0.74) 60%,
-      rgba(0, 224, 255, 0.74) 90%,
-      rgba(255, 60, 126, 0.7) 90%,
-      rgba(255, 60, 126, 0.7) 100%
-    ),
-    radial-gradient(circle at 25% 75%, rgba(0, 224, 255, 0.3), transparent 55%),
-    radial-gradient(circle at 75% 25%, rgba(255, 60, 126, 0.25), transparent 50%);
+    radial-gradient(circle at 40% 52%, rgba(0, 153, 255, 0.22), rgba(0, 153, 255, 0) 58%),
+    radial-gradient(circle at 72% 24%, rgba(0, 224, 255, 0.18), rgba(0, 224, 255, 0) 55%);
   pointer-events: none;
 }
 
@@ -3173,7 +3189,7 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #0a1524;
+  background: transparent;
   padding: clamp(48px, 8vw, 80px);
   animation: contactFadeRight 1s ease-out both 0.1s;
 }
@@ -3182,8 +3198,8 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at top left, rgba(0, 224, 255, 0.18), transparent 55%);
-  opacity: 0.4;
+  background: radial-gradient(circle at 14% 18%, rgba(0, 224, 255, 0.22), transparent 58%);
+  opacity: 0.45;
   pointer-events: none;
 }
 

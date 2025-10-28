@@ -2966,7 +2966,7 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
 
   [dir="rtl"] .process-step .step-title {
     font-weight: 600;
-    font-size: clamp(13px, 2.5vw, 15px);
+    font-size: clamp(12px, 2.2vw, 14px);
     text-align: right;
     display: block;
     line-height: 1.2;
@@ -3064,6 +3064,13 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
 [dir="rtl"] .detail-number { text-align: right; }
 [dir="rtl"] .detail-text { text-align: right; }
 [dir="rtl"] .bonus-card p { text-align: right; }
+
+@media (min-width: 981px) {
+  [dir="rtl"] .process-detail-panel[data-active-step="6"] .detail-text {
+    white-space: nowrap;
+    overflow-wrap: normal;
+  }
+}
 
 @media (prefers-reduced-motion: reduce) {
   .process-step { transition: none !important; }
@@ -3412,11 +3419,24 @@ html[dir="rtl"] .contact-showcase {
 html[dir="rtl"] .contact-showcase-content {
   text-align: right;
   align-items: flex-end;
+  gap: clamp(18px, 3vw, 32px);
+}
+
+html[dir="rtl"] .contact-heading {
+  text-transform: none;
+  letter-spacing: 0;
+  text-align: right;
+}
+
+html[dir="rtl"] .contact-subheading {
+  text-align: right;
+  max-width: 32ch;
 }
 
 html[dir="rtl"] .contact-detail {
   flex-direction: row-reverse;
   text-align: right;
+  justify-content: flex-end;
 }
 
 html[dir="rtl"] .contact-detail:hover,
@@ -3426,6 +3446,12 @@ html[dir="rtl"] .contact-detail:focus-visible {
 
 html[dir="rtl"] .contact-detail-text {
   text-align: right;
+  align-items: flex-end;
+}
+
+html[dir="rtl"] .contact-detail-icon {
+  margin-left: 0;
+  margin-right: 0;
 }
 
 @keyframes contactFadeLeft {

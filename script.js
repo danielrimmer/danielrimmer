@@ -688,6 +688,7 @@ const animateStepValue = (el, target, options = {}) => {
 
       if (panel) {
         panel.classList.add('updating');
+        panel.dataset.activeStep = String(stepIndex);
         if (titleEl) titleEl.textContent = detailTitle;
         if (textEl) textEl.textContent = detailText;
         if (numberEl) animateStepValue(numberEl, stepIndex, { duration: 500 });

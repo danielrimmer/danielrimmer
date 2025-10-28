@@ -1284,6 +1284,20 @@ const animateStepValue = (el, target, options = {}) => {
 // ADVANCED LAZY LOADING FOR BELOW-FOLD CONTENT
 // ============================================
 (function () {
+  // Detect device type for responsive lazy loading
+  const isMobileDevice = () => window.innerWidth <= 480;
+  const isTabletDevice = () => window.innerWidth > 480 && window.innerWidth <= 1024;
+
+  // Responsive rootMargin based on device
+  // Mobile: smaller margin (faster scrolling, smaller viewport)
+  // Tablet: medium margin
+  // Desktop: larger margin (slower perceived scroll, more time to load)
+  const getResponsiveMargin = (mobileVal, tabletVal, desktopVal) => {
+    if (isMobileDevice()) return `${mobileVal}px`;
+    if (isTabletDevice()) return `${tabletVal}px`;
+    return `${desktopVal}px`;
+  };
+
   // Lazy load videos when they come into view
   (function lazyLoadVideos() {
     const videos = document.querySelectorAll('video[data-src], video.lazy-video');
@@ -1318,7 +1332,7 @@ const animateStepValue = (el, target, options = {}) => {
           }
         });
       },
-      { rootMargin: '50px' } // Start loading 50px before video enters viewport
+      { rootMargin: getResponsiveMargin(30, 40, 50) } // Mobile: 30px, Tablet: 40px, Desktop: 50px
     );
 
     videos.forEach((video) => videoObserver.observe(video));
@@ -1344,7 +1358,7 @@ const animateStepValue = (el, target, options = {}) => {
           }
         });
       },
-      { rootMargin: '100px' } // Start loading 100px before element enters viewport
+      { rootMargin: getResponsiveMargin(60, 80, 100) } // Mobile: 60px, Tablet: 80px, Desktop: 100px
     );
 
     elements.forEach((el) => bgObserver.observe(el));
@@ -1382,7 +1396,7 @@ const animateStepValue = (el, target, options = {}) => {
             }
           });
         },
-        { rootMargin: '200px' }
+        { rootMargin: getResponsiveMargin(120, 160, 200) } // Mobile: 120px, Tablet: 160px, Desktop: 200px
       );
       processObserver.observe(processSection);
     }
@@ -1411,7 +1425,7 @@ const animateStepValue = (el, target, options = {}) => {
           }
         });
       },
-      { rootMargin: '150px' } // Start loading 150px before visibility
+      { rootMargin: getResponsiveMargin(80, 120, 150) } // Mobile: 80px, Tablet: 120px, Desktop: 150px
     );
 
     benefitVideos.forEach((video) => {
@@ -1444,7 +1458,7 @@ const animateStepValue = (el, target, options = {}) => {
           }
         });
       },
-      { rootMargin: '50px' }
+      { rootMargin: getResponsiveMargin(30, 40, 50) } // Mobile: 30px, Tablet: 40px, Desktop: 50px
     );
 
     lazyImages.forEach((img) => imageObserver.observe(img));

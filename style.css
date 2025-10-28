@@ -5,20 +5,7 @@
   --muted: #b7b7b7;
   --acc-cyan: #00e0ff; /* neon cyan */
   --acc-mag: #ff3c7e;  /* magenta glow */
-  --wallpaper-blue: #2674ff;
-  --wallpaper-blue-rgb: 38, 116, 255;
-  --bonus-gradient:
-    radial-gradient(circle at 50% 50%,
-      rgba(15, 28, 46, 0.92) 0%,
-      rgba(15, 28, 46, 0.86) 24%,
-      rgba(0, 224, 255, 0.6) 48%,
-      rgba(var(--wallpaper-blue-rgb), 0.54) 70%,
-      rgba(3, 7, 18, 0.97) 100%);
-  --bonus-glow:
-    radial-gradient(circle at 50% 50%,
-      rgba(0, 224, 255, 0.38) 0%,
-      rgba(0, 224, 255, 0.18) 22%,
-      rgba(0, 224, 255, 0) 48%);
+  --snap-offset: clamp(72px, 10vh, 120px);
   --grad-cm: linear-gradient(120deg, var(--acc-cyan), var(--acc-mag));
   --card: rgba(255, 255, 255, 0.045);
   --border: rgba(255, 255, 255, 0.08);
@@ -64,6 +51,11 @@ body::before {
     radial-gradient(circle at 82% 12%, rgba(0, 86, 186, 0.32), rgba(0, 86, 186, 0) 45%),
     linear-gradient(160deg, #02050c 0%, #030813 42%, #02040b 86%, #02040a 100%);
   transform: translateZ(0);
+}
+
+html[lang="he"] body::before {
+  transform: scaleX(-1) translateZ(0);
+  transform-origin: center;
 }
 
 body::after {
@@ -938,34 +930,27 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
 .bonus {
   position: relative;
   overflow: hidden;
-  background: var(--bonus-gradient);
   isolation: isolate;
+  background: var(--bg-2);
 }
 .bonus::before {
   content: "";
   position: absolute;
-  inset: -18% -18%;
-  background:
-    var(--bonus-glow),
-    radial-gradient(circle at 50% 50%, rgba(var(--wallpaper-blue-rgb), 0.18) 0%, rgba(var(--wallpaper-blue-rgb), 0) 62%),
-    linear-gradient(180deg, rgba(3, 7, 18, 0.65) 0%, rgba(3, 7, 18, 0.28) 52%, rgba(3, 7, 18, 0.72) 100%);
+  inset: 0;
+  background: linear-gradient(180deg, rgba(15, 28, 46, 0.7) 0%, rgba(15, 28, 46, 0.32) 45%, rgba(15, 28, 46, 0.78) 100%);
   z-index: 1;
   pointer-events: none;
-  filter: blur(10px);
 }
 .bonus-bg {
   position: absolute;
-  inset: -200px 0 -200px;
-  transform: translate3d(0, 0, 0);
+  inset: 0;
+  transform: translateZ(0);
   transition: transform .4s ease-out;
   z-index: 0;
   overflow: hidden;
-  background: var(--bonus-gradient);
-  background-size: 140% 140%;
-  background-position: center;
-  background-repeat: no-repeat;
+  background: transparent;
   pointer-events: none;
-  opacity: .82;
+  opacity: .9;
 }
 
 .bonus-bg-image {
@@ -973,7 +958,9 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
   height: 100%;
   object-fit: cover;
   object-position: center;
-  display: none;
+  transform: scale(1.02);
+  filter: saturate(1.05);
+  pointer-events: none;
 }
 
 .bonus-inner {
@@ -1470,7 +1457,7 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
 /* Mobile-specific stacking animation - MUST BE MOST SPECIFIC */
 @media screen and (max-width: 768px) {
   .bonus.section {
-    background: var(--bonus-gradient) !important; /* Maintain glowing gradient */
+    background: var(--bg-2) !important;
     min-height: auto; /* Let content determine height */
     padding: 24px 0 16px 0; /* 20% smaller than previous */
     overflow: visible !important; /* Allow cards to be visible */
@@ -3092,20 +3079,18 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
 #projects { display: none !important; }
 .bonus {
   position: relative;
-  background: var(--bonus-gradient);
+  overflow: hidden;
+  isolation: isolate;
+  background: var(--bg-2);
 }
 .bonus::before {
   content: "";
   position: absolute;
-  inset: -18% -18%;
-  background:
-    var(--bonus-glow),
-    radial-gradient(circle at 50% 50%, rgba(var(--wallpaper-blue-rgb), 0.18) 0%, rgba(var(--wallpaper-blue-rgb), 0) 62%),
-    linear-gradient(180deg, rgba(3, 7, 18, 0.65) 0%, rgba(3, 7, 18, 0.28) 52%, rgba(3, 7, 18, 0.72) 100%);
+  inset: 0;
+  background: linear-gradient(180deg, rgba(15, 28, 46, 0.7) 0%, rgba(15, 28, 46, 0.32) 45%, rgba(15, 28, 46, 0.78) 100%);
   opacity: .85;
   z-index: 1;
   pointer-events: none;
-  filter: blur(10px);
 }
 .bonus-inner { position: relative; z-index: 2; }
 

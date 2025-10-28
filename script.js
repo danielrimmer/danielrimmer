@@ -304,6 +304,41 @@ const animateStepValue = (el, target, options = {}) => {
   onScroll();
 })();
 
+// Bonus section wallpaper parallax
+(function () {
+  const images = Array.from(document.querySelectorAll('.bonus .bonus-bg-image'));
+  if (!images.length) return;
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+  if (reduce.matches) return;
+
+  const clamp = (v, min, max) => Math.max(min, Math.min(max, v));
+  let ticking = false;
+
+  const update = () => {
+    ticking = false;
+    const vh = window.innerHeight || document.documentElement.clientHeight;
+    images.forEach((img) => {
+      const host = img.closest('.bonus') || img.parentElement;
+      if (!host) return;
+      const rect = host.getBoundingClientRect();
+      const centerDelta = rect.top + rect.height / 2 - vh / 2;
+      const offsetY = clamp(-centerDelta * 0.045, -60, 60);
+      const offsetX = clamp(centerDelta * 0.02, -30, 30);
+      img.style.transform = `translate3d(${offsetX}px, ${offsetY}px, 0) scale(1.05)`;
+    });
+  };
+
+  const onScroll = () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(update);
+  };
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll);
+  onScroll();
+})();
+
 // Hero background video: alternate two sources seamlessly (two stacked videos)
 (function () {
   const containers = document.querySelectorAll('#hero .hero-media');

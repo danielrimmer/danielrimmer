@@ -958,8 +958,10 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
   height: 100%;
   object-fit: cover;
   object-position: center;
-  transform: scale(1.02);
+  transform: scale(1.05);
   filter: saturate(1.05);
+  will-change: transform;
+  transition: transform .4s ease-out;
   pointer-events: none;
 }
 

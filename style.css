@@ -1644,7 +1644,7 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
     text-align: center;
     opacity: 0;
     transform: translateX(-1500px) rotateY(0deg);
-    transition: opacity 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition: opacity 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.3s ease;
     z-index: 10;
     will-change: transform, opacity;
     flex-shrink: 0;
@@ -1656,14 +1656,15 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
   /* Card hover - flip effect */
   .bonus .bonus-cards-mobile .bonus-card:hover {
     transform: translateX(-1500px) rotateY(180deg) !important;
-    transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
     cursor: url('images/cursor-hover.svg') 11 11, pointer;
   }
 
   .bonus .bonus-cards-mobile .bonus-card.is-visible:hover {
-    transform: rotateY(180deg) !important;
-    transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transform: translateX(0) rotateY(180deg) !important;
+    transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
     cursor: url('images/cursor-hover.svg') 11 11, pointer;
+    box-shadow: 0 16px 36px rgba(0,0,0,.6), 0 0 30px rgba(0, 224, 255, 0.25), inset 0 1px 0 rgba(255,255,255,.12);
   }
 
   /* Card image styling - fills entire card (front) */

@@ -3700,12 +3700,12 @@ html[dir="rtl"] .pricing-promo-text {
   gap: 12px;
   font-size: clamp(28px, 4vw, 34px);
   font-weight: 700;
-  color: #00e0ff;
+  color: #ff3c7e;
 }
 
 .pricing-price-old {
   font-size: clamp(18px, 3vw, 20px);
-  color: #ff3c7e;
+  color: #00e0ff;
   text-decoration: line-through;
   opacity: 0.85;
 }
@@ -4010,12 +4010,12 @@ html[dir="rtl"] .pricing-promo-text {
   gap: 12px;
   font-size: clamp(28px, 4vw, 34px);
   font-weight: 700;
-  color: #00e0ff;
+  color: #ff3c7e;
 }
 
 .pricing-price-old {
   font-size: clamp(18px, 3vw, 20px);
-  color: #ff3c7e;
+  color: #00e0ff;
   text-decoration: line-through;
   opacity: 0.85;
 }

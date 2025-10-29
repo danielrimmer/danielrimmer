@@ -1150,6 +1150,23 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
   .bonus-card:nth-child(4) p {
     display: none;
   }
+
+  /* Hebrew version - use Hebrew card images for tablet */
+  html[dir="rtl"] .bonus-card:nth-child(1) .bonus-card-image {
+    content: url('images/card1-he.webp');
+  }
+
+  html[dir="rtl"] .bonus-card:nth-child(2) .bonus-card-image {
+    content: url('images/card2-he.webp');
+  }
+
+  html[dir="rtl"] .bonus-card:nth-child(3) .bonus-card-image {
+    content: url('images/card3-he.webp');
+  }
+
+  html[dir="rtl"] .bonus-card:nth-child(4) .bonus-card-image {
+    content: url('images/card4-he.webp');
+  }
 }
 
 /* Show card images on mobile (max-width: 720px) with stacking effect */
@@ -1281,6 +1298,23 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
   .bonus-card:nth-child(4) h3,
   .bonus-card:nth-child(4) p {
     display: none;
+  }
+
+  /* Hebrew version - use Hebrew card images for mobile */
+  html[dir="rtl"] .bonus-card:nth-child(1) .bonus-card-image {
+    content: url('images/card1-he.webp');
+  }
+
+  html[dir="rtl"] .bonus-card:nth-child(2) .bonus-card-image {
+    content: url('images/card2-he.webp');
+  }
+
+  html[dir="rtl"] .bonus-card:nth-child(3) .bonus-card-image {
+    content: url('images/card3-he.webp');
+  }
+
+  html[dir="rtl"] .bonus-card:nth-child(4) .bonus-card-image {
+    content: url('images/card4-he.webp');
   }
 }
 

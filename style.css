@@ -3508,6 +3508,51 @@ html[dir="rtl"] .contact-details-list {
   margin-bottom: clamp(32px, 5vw, 52px);
 }
 
+.pricing-promo {
+  position: relative;
+  padding: clamp(28px, 4vw, 40px);
+  margin-bottom: clamp(32px, 5vw, 48px);
+  border-radius: 22px;
+  background:
+    linear-gradient(160deg, rgba(12, 18, 32, 0.92), rgba(8, 12, 24, 0.88)) padding-box,
+    linear-gradient(135deg, rgba(0, 224, 255, 0.45), rgba(255, 60, 126, 0.4)) border-box;
+  border: 1px solid transparent;
+  box-shadow: 0 28px 60px rgba(0, 12, 28, 0.45);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  align-items: center;
+}
+
+.pricing-promo h3 {
+  margin: 0;
+  font-size: clamp(22px, 3.5vw, 28px);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  background: var(--grad-cm);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.pricing-promo p {
+  margin: 0;
+  color: rgba(224, 232, 240, 0.92);
+  line-height: 1.65;
+  font-size: clamp(15px, 2vw, 17px);
+  max-width: 800px;
+}
+
+.pricing-promo strong {
+  color: rgba(255, 255, 255, 0.98);
+  font-weight: 600;
+}
+
+.pricing-promo .btn {
+  margin-top: 8px;
+}
+
 .pricing-grid {
   display: grid;
   gap: clamp(20px, 3vw, 28px);
@@ -3692,6 +3737,51 @@ html[dir="rtl"] .pricing-price-old {
 .pricing .section-head {
   text-align: center;
   margin-bottom: clamp(32px, 5vw, 52px);
+}
+
+.pricing-promo {
+  position: relative;
+  padding: clamp(28px, 4vw, 40px);
+  margin-bottom: clamp(32px, 5vw, 48px);
+  border-radius: 22px;
+  background:
+    linear-gradient(160deg, rgba(12, 18, 32, 0.92), rgba(8, 12, 24, 0.88)) padding-box,
+    linear-gradient(135deg, rgba(0, 224, 255, 0.45), rgba(255, 60, 126, 0.4)) border-box;
+  border: 1px solid transparent;
+  box-shadow: 0 28px 60px rgba(0, 12, 28, 0.45);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  align-items: center;
+}
+
+.pricing-promo h3 {
+  margin: 0;
+  font-size: clamp(22px, 3.5vw, 28px);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  background: var(--grad-cm);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.pricing-promo p {
+  margin: 0;
+  color: rgba(224, 232, 240, 0.92);
+  line-height: 1.65;
+  font-size: clamp(15px, 2vw, 17px);
+  max-width: 800px;
+}
+
+.pricing-promo strong {
+  color: rgba(255, 255, 255, 0.98);
+  font-weight: 600;
+}
+
+.pricing-promo .btn {
+  margin-top: 8px;
 }
 
 .pricing-grid {

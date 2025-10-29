@@ -3700,7 +3700,7 @@ html[dir="rtl"] .pricing-promo-text {
   gap: 12px;
   font-size: clamp(28px, 4vw, 34px);
   font-weight: 700;
-  color: #ff3c7e;
+  color: #00e0ff;
 }
 
 .pricing-price-old {
@@ -3708,6 +3708,11 @@ html[dir="rtl"] .pricing-promo-text {
   color: #00e0ff;
   text-decoration: line-through;
   opacity: 0.85;
+}
+
+/* Color swap for prices with old/new price comparison */
+.pricing-price:has(.pricing-price-old) span:last-child {
+  color: #ff3c7e;
 }
 
 .pricing-divider {
@@ -4010,7 +4015,7 @@ html[dir="rtl"] .pricing-promo-text {
   gap: 12px;
   font-size: clamp(28px, 4vw, 34px);
   font-weight: 700;
-  color: #ff3c7e;
+  color: #00e0ff;
 }
 
 .pricing-price-old {
@@ -4018,6 +4023,11 @@ html[dir="rtl"] .pricing-promo-text {
   color: #00e0ff;
   text-decoration: line-through;
   opacity: 0.85;
+}
+
+/* Color swap for prices with old/new price comparison */
+.pricing-price:has(.pricing-price-old) span:last-child {
+  color: #ff3c7e;
 }
 
 .pricing-divider {

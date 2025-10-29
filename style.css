@@ -3587,21 +3587,21 @@ html[dir="rtl"] .contact-details-list {
 }
 
 /* Rocket fire effect - animated gradient behind rocket */
-.pricing-promo-rocket::after {
+.pricing-promo-visual::after {
   content: '';
   position: absolute;
-  bottom: -20%;
+  bottom: 10%;
   left: 50%;
   transform: translateX(-50%);
-  width: 40%;
-  height: 60%;
+  width: clamp(60px, 10vw, 100px);
+  height: clamp(90px, 15vw, 150px);
   background: linear-gradient(180deg,
     rgba(0, 224, 255, 0.8) 0%,
     rgba(255, 60, 126, 0.6) 50%,
     rgba(255, 165, 0, 0.4) 100%);
   filter: blur(15px);
   border-radius: 50% 50% 50% 50% / 30% 30% 70% 70%;
-  z-index: -1;
+  z-index: 1;
   animation: rocketFire 0.8s ease-in-out infinite alternate;
 }
 
@@ -3945,21 +3945,21 @@ html[dir="rtl"] .pricing-price-old {
 }
 
 /* Rocket fire effect - animated gradient behind rocket */
-.pricing-promo-rocket::after {
+.pricing-promo-visual::after {
   content: '';
   position: absolute;
-  bottom: -20%;
+  bottom: 10%;
   left: 50%;
   transform: translateX(-50%);
-  width: 40%;
-  height: 60%;
+  width: clamp(60px, 10vw, 100px);
+  height: clamp(90px, 15vw, 150px);
   background: linear-gradient(180deg,
     rgba(0, 224, 255, 0.8) 0%,
     rgba(255, 60, 126, 0.6) 50%,
     rgba(255, 165, 0, 0.4) 100%);
   filter: blur(15px);
   border-radius: 50% 50% 50% 50% / 30% 30% 70% 70%;
-  z-index: -1;
+  z-index: 1;
   animation: rocketFire 0.8s ease-in-out infinite alternate;
 }
 

@@ -3601,7 +3601,15 @@ html[dir="rtl"] .contact-details-list {
   z-index: 2;
 }
 
-
+.pricing-promo-visual::before {
+  content: '';
+  position: absolute;
+  width: clamp(175px, 27.5vw, 275px);
+  height: clamp(175px, 27.5vw, 275px);
+  background: radial-gradient(circle, rgba(0, 224, 255, 0.2) 0%, rgba(255, 60, 126, 0.15) 50%, transparent 70%);
+  border-radius: 50%;
+  z-index: -1;
+}
 
 /* Responsive layout for smaller screens */
 @media (max-width: 900px) {
@@ -3900,7 +3908,15 @@ html[dir="rtl"] .pricing-price-old {
   z-index: 2;
 }
 
-
+.pricing-promo-visual::before {
+  content: '';
+  position: absolute;
+  width: clamp(175px, 27.5vw, 275px);
+  height: clamp(175px, 27.5vw, 275px);
+  background: radial-gradient(circle, rgba(0, 224, 255, 0.2) 0%, rgba(255, 60, 126, 0.15) 50%, transparent 70%);
+  border-radius: 50%;
+  z-index: -1;
+}
 
 /* Responsive layout for smaller screens */
 @media (max-width: 900px) {

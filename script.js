@@ -491,8 +491,8 @@ const animateStepValue = (el, target, options = {}) => {
 
     // Random color from cyan-pink gradient based on position
     const hue = 180 + Math.random() * 120; // cyan (180) to pink (300)
-    const size = 8 + Math.random() * 12 + (speed * 0.3);
-    const opacity = 0.3 + (speed * 0.01);
+    const size = 12 + Math.random() * 16 + (speed * 0.5);
+    const opacity = 0.5 + (speed * 0.02);
 
     particle.style.cssText = `
       position: fixed;
@@ -536,8 +536,8 @@ const animateStepValue = (el, target, options = {}) => {
     glow.style.transform = `translate3d(${x}px, ${y}px, 0)`;
 
     // Create trail particles based on speed
-    if (speed > 2) {
-      const particleCount = Math.min(Math.floor(speed / 15), 3);
+    if (speed > 0.5) {
+      const particleCount = Math.min(Math.floor(speed / 5) + 1, 4);
       for (let i = 0; i < particleCount; i++) {
         if (trail.length < maxTrailParticles) {
           const particle = createTrailParticle(x, y, speed);

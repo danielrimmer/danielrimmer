@@ -3571,6 +3571,7 @@ html[dir="rtl"] .contact-details-list {
 }
 
 .pricing-promo-visual {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -3581,6 +3582,28 @@ html[dir="rtl"] .contact-details-list {
   width: clamp(120px, 20vw, 200px);
   height: auto;
   filter: drop-shadow(0 8px 24px rgba(0, 224, 255, 0.3));
+}
+
+.pricing-promo-visual::before {
+  content: '';
+  position: absolute;
+  width: clamp(140px, 22vw, 220px);
+  height: clamp(140px, 22vw, 220px);
+  background: radial-gradient(circle, rgba(0, 224, 255, 0.2) 0%, rgba(255, 60, 126, 0.15) 50%, transparent 70%);
+  border-radius: 50%;
+  z-index: -1;
+  animation: pulseGlow 3s ease-in-out infinite;
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
 }
 
 /* Responsive layout for smaller screens */
@@ -3866,6 +3889,7 @@ html[dir="rtl"] .pricing-price-old {
 }
 
 .pricing-promo-visual {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -3876,6 +3900,28 @@ html[dir="rtl"] .pricing-price-old {
   width: clamp(120px, 20vw, 200px);
   height: auto;
   filter: drop-shadow(0 8px 24px rgba(0, 224, 255, 0.3));
+}
+
+.pricing-promo-visual::before {
+  content: '';
+  position: absolute;
+  width: clamp(140px, 22vw, 220px);
+  height: clamp(140px, 22vw, 220px);
+  background: radial-gradient(circle, rgba(0, 224, 255, 0.2) 0%, rgba(255, 60, 126, 0.15) 50%, transparent 70%);
+  border-radius: 50%;
+  z-index: -1;
+  animation: pulseGlow 3s ease-in-out infinite;
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
 }
 
 /* Responsive layout for smaller screens */

@@ -3586,43 +3586,6 @@ html[dir="rtl"] .contact-details-list {
   z-index: 2;
 }
 
-/* Rocket fire effect - animated gradient at rocket exhaust (bottom) */
-.pricing-promo-visual::after {
-  content: '';
-  position: absolute;
-  bottom: -5%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: clamp(40px, 7vw, 70px);
-  height: clamp(80px, 13vw, 130px);
-  background: linear-gradient(180deg,
-    rgba(0, 224, 255, 0.8) 0%,
-    rgba(255, 60, 126, 0.6) 50%,
-    rgba(255, 165, 0, 0.4) 100%);
-  filter: blur(15px);
-  border-radius: 50% 50% 50% 50% / 30% 30% 70% 70%;
-  z-index: 1;
-  animation: rocketFire 0.8s ease-in-out infinite alternate;
-}
-
-@keyframes rocketFire {
-  0% {
-    transform: translateX(-50%) scaleY(1);
-    opacity: 0.9;
-    background: linear-gradient(180deg,
-      rgba(0, 224, 255, 0.8) 0%,
-      rgba(255, 60, 126, 0.6) 50%,
-      rgba(255, 165, 0, 0.4) 100%);
-  }
-  100% {
-    transform: translateX(-50%) scaleY(1.15);
-    opacity: 0.7;
-    background: linear-gradient(180deg,
-      rgba(255, 60, 126, 0.8) 0%,
-      rgba(255, 165, 0, 0.6) 50%,
-      rgba(0, 224, 255, 0.4) 100%);
-  }
-}
 
 .pricing-promo-visual::before {
   content: '';
@@ -3944,43 +3907,6 @@ html[dir="rtl"] .pricing-price-old {
   z-index: 2;
 }
 
-/* Rocket fire effect - animated gradient at rocket exhaust (bottom) */
-.pricing-promo-visual::after {
-  content: '';
-  position: absolute;
-  bottom: -5%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: clamp(40px, 7vw, 70px);
-  height: clamp(80px, 13vw, 130px);
-  background: linear-gradient(180deg,
-    rgba(0, 224, 255, 0.8) 0%,
-    rgba(255, 60, 126, 0.6) 50%,
-    rgba(255, 165, 0, 0.4) 100%);
-  filter: blur(15px);
-  border-radius: 50% 50% 50% 50% / 30% 30% 70% 70%;
-  z-index: 1;
-  animation: rocketFire 0.8s ease-in-out infinite alternate;
-}
-
-@keyframes rocketFire {
-  0% {
-    transform: translateX(-50%) scaleY(1);
-    opacity: 0.9;
-    background: linear-gradient(180deg,
-      rgba(0, 224, 255, 0.8) 0%,
-      rgba(255, 60, 126, 0.6) 50%,
-      rgba(255, 165, 0, 0.4) 100%);
-  }
-  100% {
-    transform: translateX(-50%) scaleY(1.15);
-    opacity: 0.7;
-    background: linear-gradient(180deg,
-      rgba(255, 60, 126, 0.8) 0%,
-      rgba(255, 165, 0, 0.6) 50%,
-      rgba(0, 224, 255, 0.4) 100%);
-  }
-}
 
 .pricing-promo-visual::before {
   content: '';

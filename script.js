@@ -464,7 +464,7 @@ const animateStepValue = (el, target, options = {}) => {
   }
 })();
 
-// Floating glowing cursor effect (desktop only)
+// Floating glowing cursor effect with smoky trail (desktop only)
 (function () {
   if (window.matchMedia('(pointer: coarse)').matches) return; // skip on touch
   const glow = document.createElement('div');
@@ -476,13 +476,81 @@ const animateStepValue = (el, target, options = {}) => {
   let isAnimating = false;
   let lastMovement = Date.now();
   const inactivityTimeout = 5000; // Stop animation after 5s of no movement
+  const trail = [];
+  const maxTrailParticles = 15;
 
   const lerp = (a, b, t) => a + (b - a) * t;
+
+  // Calculate movement speed
+  const getSpeed = (dx, dy) => Math.sqrt(dx * dx + dy * dy);
+
+  // Create smoky trail particle
+  const createTrailParticle = (px, py, speed) => {
+    const particle = document.createElement('div');
+    particle.className = 'cursor-trail';
+
+    // Random color from cyan-pink gradient based on position
+    const hue = 180 + Math.random() * 120; // cyan (180) to pink (300)
+    const size = 8 + Math.random() * 12 + (speed * 0.3);
+    const opacity = 0.3 + (speed * 0.01);
+
+    particle.style.cssText = `
+      position: fixed;
+      width: ${size}px;
+      height: ${size}px;
+      border-radius: 50%;
+      background: radial-gradient(circle, hsl(${hue}, 100%, 60%) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 9998;
+      left: ${px}px;
+      top: ${py}px;
+      transform: translate(-50%, -50%);
+      opacity: ${Math.min(opacity, 0.6)};
+      filter: blur(${2 + speed * 0.1}px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    `;
+
+    document.body.appendChild(particle);
+
+    // Animate particle
+    requestAnimationFrame(() => {
+      particle.style.opacity = '0';
+      particle.style.transform = `translate(-50%, -50%) scale(${1.5 + speed * 0.05})`;
+    });
+
+    // Remove after animation
+    setTimeout(() => particle.remove(), 800);
+
+    return particle;
+  };
+
   const loop = () => {
     if (!isAnimating) return;
+
+    const dx = tx - x;
+    const dy = ty - y;
+    const speed = getSpeed(dx, dy);
+
     x = lerp(x, tx, 0.18);
     y = lerp(y, ty, 0.18);
     glow.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+
+    // Create trail particles based on speed
+    if (speed > 2) {
+      const particleCount = Math.min(Math.floor(speed / 15), 3);
+      for (let i = 0; i < particleCount; i++) {
+        if (trail.length < maxTrailParticles) {
+          const particle = createTrailParticle(x, y, speed);
+          trail.push(particle);
+        }
+      }
+
+      // Clean up old particles
+      while (trail.length > maxTrailParticles) {
+        trail.shift();
+      }
+    }
+
     requestAnimationFrame(loop);
   };
 

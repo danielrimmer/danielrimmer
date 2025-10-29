@@ -3597,7 +3597,6 @@ html[dir="rtl"] .contact-details-list {
 .pricing-promo-rocket {
   width: clamp(150px, 25vw, 250px);
   height: auto;
-  filter: drop-shadow(0 8px 24px rgba(0, 224, 255, 0.3));
   position: relative;
   z-index: 2;
 }
@@ -3897,7 +3896,6 @@ html[dir="rtl"] .pricing-price-old {
 .pricing-promo-rocket {
   width: clamp(150px, 25vw, 250px);
   height: auto;
-  filter: drop-shadow(0 8px 24px rgba(0, 224, 255, 0.3));
   position: relative;
   z-index: 2;
 }

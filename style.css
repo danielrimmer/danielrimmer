@@ -970,6 +970,22 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
   z-index: 2;
 }
 
+/* Hide wallpaper and use solid color on mobile and tablet */
+@media (max-width: 980px) {
+  .bonus {
+    background: #0f1c2e !important;
+  }
+
+  .bonus-bg,
+  .bonus-bg-image {
+    display: none !important;
+  }
+
+  .bonus::before {
+    display: none !important;
+  }
+}
+
 /* Bonus Services cards */
 .bonus-cards {
   display: flex;

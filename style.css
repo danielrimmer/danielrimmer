@@ -3559,7 +3559,7 @@ html[dir="rtl"] .contact-details-list {
 
 .pricing-promo-text .btn {
   margin-top: 8px;
-  align-self: flex-start;
+  align-self: center;
 }
 
 .pricing-promo-divider {
@@ -3877,7 +3877,7 @@ html[dir="rtl"] .pricing-price-old {
 
 .pricing-promo-text .btn {
   margin-top: 8px;
-  align-self: flex-start;
+  align-self: center;
 }
 
 .pricing-promo-divider {

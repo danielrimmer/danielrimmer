@@ -1,0 +1,53 @@
+/*
+  Cache-Control: public, max-age=3600
+
+# Cache bust-able assets with version params get long cache
+/*.min.css
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.min.js
+  Cache-Control: public, max-age=31536000, immutable
+
+/images/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/images/**/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# HTML files should not be cached for long
+/*.html
+  Cache-Control: public, max-age=3600, must-revalidate
+
+# SVG assets
+/*.svg
+  Cache-Control: public, max-age=31536000, immutable
+
+/images/*.svg
+  Cache-Control: public, max-age=31536000, immutable
+
+# Video files
+/*.mp4
+  Cache-Control: public, max-age=31536000, immutable
+
+/images/*.mp4
+  Cache-Control: public, max-age=31536000, immutable
+
+/images/**/*.mp4
+  Cache-Control: public, max-age=31536000, immutable
+
+# WebP images
+/*.webp
+  Cache-Control: public, max-age=31536000, immutable
+
+/images/*.webp
+  Cache-Control: public, max-age=31536000, immutable
+
+/images/**/*.webp
+  Cache-Control: public, max-age=31536000, immutable
+
+# Google Fonts
+https://fonts.googleapis.com/*
+  Cache-Control: public, max-age=31536000, immutable
+
+https://fonts.gstatic.com/*
+  Cache-Control: public, max-age=31536000, immutable

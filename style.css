@@ -3531,7 +3531,7 @@ html[dir="rtl"] .contact-details-list {
   margin-bottom: clamp(32px, 5vw, 48px);
   border-radius: 22px;
   background:
-    linear-gradient(160deg, rgba(12, 18, 32, 0.92), rgba(8, 12, 24, 0.88)) padding-box,
+    #0c1420 padding-box,
     linear-gradient(135deg, rgba(0, 224, 255, 0.45), rgba(255, 60, 126, 0.4)) border-box;
   border: 1px solid transparent;
   box-shadow: 0 28px 60px rgba(0, 12, 28, 0.45);
@@ -3841,7 +3841,7 @@ html[dir="rtl"] .pricing-price-old {
   margin-bottom: clamp(32px, 5vw, 48px);
   border-radius: 22px;
   background:
-    linear-gradient(160deg, rgba(12, 18, 32, 0.92), rgba(8, 12, 24, 0.88)) padding-box,
+    #0c1420 padding-box,
     linear-gradient(135deg, rgba(0, 224, 255, 0.45), rgba(255, 60, 126, 0.4)) border-box;
   border: 1px solid transparent;
   box-shadow: 0 28px 60px rgba(0, 12, 28, 0.45);

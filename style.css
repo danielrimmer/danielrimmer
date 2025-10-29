@@ -3586,15 +3586,15 @@ html[dir="rtl"] .contact-details-list {
   z-index: 2;
 }
 
-/* Rocket fire effect - animated gradient behind rocket */
+/* Rocket fire effect - animated gradient at rocket exhaust (bottom) */
 .pricing-promo-visual::after {
   content: '';
   position: absolute;
-  bottom: 10%;
+  bottom: -5%;
   left: 50%;
   transform: translateX(-50%);
-  width: clamp(60px, 10vw, 100px);
-  height: clamp(90px, 15vw, 150px);
+  width: clamp(40px, 7vw, 70px);
+  height: clamp(80px, 13vw, 130px);
   background: linear-gradient(180deg,
     rgba(0, 224, 255, 0.8) 0%,
     rgba(255, 60, 126, 0.6) 50%,
@@ -3944,15 +3944,15 @@ html[dir="rtl"] .pricing-price-old {
   z-index: 2;
 }
 
-/* Rocket fire effect - animated gradient behind rocket */
+/* Rocket fire effect - animated gradient at rocket exhaust (bottom) */
 .pricing-promo-visual::after {
   content: '';
   position: absolute;
-  bottom: 10%;
+  bottom: -5%;
   left: 50%;
   transform: translateX(-50%);
-  width: clamp(60px, 10vw, 100px);
-  height: clamp(90px, 15vw, 150px);
+  width: clamp(40px, 7vw, 70px);
+  height: clamp(80px, 13vw, 130px);
   background: linear-gradient(180deg,
     rgba(0, 224, 255, 0.8) 0%,
     rgba(255, 60, 126, 0.6) 50%,

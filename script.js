@@ -477,7 +477,8 @@ const animateStepValue = (el, target, options = {}) => {
   let lastMovement = Date.now();
   const inactivityTimeout = 5000; // Stop animation after 5s of no movement
   const trail = [];
-  const maxTrailParticles = 15;
+  const maxTrailParticles = 8;
+  let frameCounter = 0;
 
   const lerp = (a, b, t) => a + (b - a) * t;
 
@@ -506,8 +507,9 @@ const animateStepValue = (el, target, options = {}) => {
       top: ${py}px;
       transform: translate(-50%, -50%);
       opacity: ${Math.min(opacity, 0.5)};
-      filter: blur(${4 + speed * 0.2}px);
-      transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+      filter: blur(4px);
+      transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+      will-change: opacity, transform;
     `;
 
     document.body.appendChild(particle);
@@ -519,7 +521,7 @@ const animateStepValue = (el, target, options = {}) => {
     });
 
     // Remove after animation
-    setTimeout(() => particle.remove(), 800);
+    setTimeout(() => particle.remove(), 500);
 
     return particle;
   };
@@ -535,17 +537,20 @@ const animateStepValue = (el, target, options = {}) => {
     y = lerp(y, ty, 0.18);
     glow.style.transform = `translate3d(${x}px, ${y}px, 0)`;
 
-    // Create trail particles based on speed
-    if (speed > 0.8) {
-      const particleCount = Math.min(Math.floor(speed / 8) + 1, 3);
+    // Create trail particles based on speed - throttled to every 3rd frame
+    frameCounter++;
+    if (speed > 1.5 && frameCounter % 3 === 0) {
+      const particleCount = Math.min(Math.floor(speed / 10) + 1, 2);
       for (let i = 0; i < particleCount; i++) {
-        const particle = createTrailParticle(x, y, speed);
-        trail.push(particle);
-
-        // Clean up old particles
-        if (trail.length > maxTrailParticles) {
-          trail.shift();
+        if (trail.length < maxTrailParticles) {
+          const particle = createTrailParticle(x, y, speed);
+          trail.push(particle);
         }
+      }
+
+      // Clean up old particles
+      while (trail.length > maxTrailParticles) {
+        trail.shift();
       }
     }
 

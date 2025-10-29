@@ -491,24 +491,23 @@ const animateStepValue = (el, target, options = {}) => {
 
     // Random color from cyan-pink gradient based on position
     const hue = 180 + Math.random() * 120; // cyan (180) to pink (300)
-    const size = 20 + Math.random() * 20 + (speed * 0.8);
-    const opacity = 0.7 + (speed * 0.02);
+    const size = 10 + Math.random() * 12 + (speed * 0.4);
+    const opacity = 0.35 + (speed * 0.015);
 
     particle.style.cssText = `
       position: fixed;
       width: ${size}px;
       height: ${size}px;
       border-radius: 50%;
-      background: radial-gradient(circle, hsl(${hue}, 100%, 70%) 0%, hsl(${hue}, 100%, 50%) 30%, transparent 70%);
+      background: radial-gradient(circle, hsl(${hue}, 100%, 65%) 0%, transparent 65%);
       pointer-events: none;
       z-index: 9998;
       left: ${px}px;
       top: ${py}px;
       transform: translate(-50%, -50%);
-      opacity: ${Math.min(opacity, 0.9)};
-      filter: blur(${3 + speed * 0.15}px);
-      transition: opacity 1s ease-out, transform 1s ease-out;
-      box-shadow: 0 0 ${size * 2}px hsl(${hue}, 100%, 60%);
+      opacity: ${Math.min(opacity, 0.5)};
+      filter: blur(${4 + speed * 0.2}px);
+      transition: opacity 0.7s ease-out, transform 0.7s ease-out;
     `;
 
     document.body.appendChild(particle);
@@ -536,9 +535,9 @@ const animateStepValue = (el, target, options = {}) => {
     y = lerp(y, ty, 0.18);
     glow.style.transform = `translate3d(${x}px, ${y}px, 0)`;
 
-    // Create trail particles based on speed - always create on movement
-    if (speed > 0.1) {
-      const particleCount = Math.min(Math.floor(speed / 3) + 1, 5);
+    // Create trail particles based on speed
+    if (speed > 0.8) {
+      const particleCount = Math.min(Math.floor(speed / 8) + 1, 3);
       for (let i = 0; i < particleCount; i++) {
         const particle = createTrailParticle(x, y, speed);
         trail.push(particle);

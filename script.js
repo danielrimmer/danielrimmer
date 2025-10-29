@@ -40,7 +40,8 @@ const animateStepValue = (el, target, options = {}) => {
     // No offset for specific sections to show them from the top
     const sectionsWithoutOffset = ['about', 'contact', 'process-v1', 'key-benefits', 'services', 'bonus-services'];
     const shouldShowFromTop = sectionsWithoutOffset.includes(el.id);
-    const scrollOffset = shouldShowFromTop ? 0 : offset();
+    const sidebarActive = header?.classList.contains('sidebar-mode');
+    const scrollOffset = sidebarActive || shouldShowFromTop ? 0 : offset();
     const top = el.getBoundingClientRect().top + window.scrollY - scrollOffset;
     window.scrollTo({ top, behavior: 'smooth' });
   };

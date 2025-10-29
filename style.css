@@ -3416,42 +3416,84 @@ html[dir="rtl"] .contact-showcase {
   direction: rtl;
 }
 
+html[dir="rtl"] .contact-showcase-right {
+  justify-content: flex-end;
+  align-items: stretch;
+}
+
 html[dir="rtl"] .contact-showcase-content {
   text-align: right;
-  align-items: flex-end;
+  align-items: stretch;
   gap: clamp(18px, 3vw, 32px);
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-left: auto;
+  margin-right: 0;
 }
 
 html[dir="rtl"] .contact-heading {
   text-transform: none;
   letter-spacing: 0;
   text-align: right;
+  width: 100%;
 }
 
 html[dir="rtl"] .contact-subheading {
   text-align: right;
   max-width: 32ch;
+  width: 100%;
 }
 
 html[dir="rtl"] .contact-detail {
-  flex-direction: row-reverse;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 20px;
   text-align: right;
-  justify-content: flex-end;
+  direction: rtl;
+  align-items: center;
+  padding: 18px 20px 18px 20px;
+  width: 100%;
 }
 
 html[dir="rtl"] .contact-detail:hover,
 html[dir="rtl"] .contact-detail:focus-visible {
-  transform: translateX(-8px);
+  transform: translateX(8px);
 }
 
 html[dir="rtl"] .contact-detail-text {
   text-align: right;
   align-items: flex-end;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+  justify-self: stretch;
+  direction: rtl;
 }
 
 html[dir="rtl"] .contact-detail-icon {
   margin-left: 0;
   margin-right: 0;
+  justify-self: start;
+}
+
+html[dir="rtl"] .contact-detail-label,
+html[dir="rtl"] .contact-detail-value {
+  width: 100%;
+  text-align: right;
+  align-self: flex-end;
+}
+
+html[dir="rtl"] .contact-detail-value bdi {
+  display: inline-block;
+  width: 100%;
+  text-align: right;
+}
+
+html[dir="rtl"] .contact-details-list {
+  align-items: stretch;
+  width: 100%;
 }
 
 /* Pricing Section */

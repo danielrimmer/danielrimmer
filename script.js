@@ -491,23 +491,24 @@ const animateStepValue = (el, target, options = {}) => {
 
     // Random color from cyan-pink gradient based on position
     const hue = 180 + Math.random() * 120; // cyan (180) to pink (300)
-    const size = 12 + Math.random() * 16 + (speed * 0.5);
-    const opacity = 0.5 + (speed * 0.02);
+    const size = 20 + Math.random() * 20 + (speed * 0.8);
+    const opacity = 0.7 + (speed * 0.02);
 
     particle.style.cssText = `
       position: fixed;
       width: ${size}px;
       height: ${size}px;
       border-radius: 50%;
-      background: radial-gradient(circle, hsl(${hue}, 100%, 60%) 0%, transparent 70%);
+      background: radial-gradient(circle, hsl(${hue}, 100%, 70%) 0%, hsl(${hue}, 100%, 50%) 30%, transparent 70%);
       pointer-events: none;
       z-index: 9998;
       left: ${px}px;
       top: ${py}px;
       transform: translate(-50%, -50%);
-      opacity: ${Math.min(opacity, 0.6)};
-      filter: blur(${2 + speed * 0.1}px);
-      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+      opacity: ${Math.min(opacity, 0.9)};
+      filter: blur(${3 + speed * 0.15}px);
+      transition: opacity 1s ease-out, transform 1s ease-out;
+      box-shadow: 0 0 ${size * 2}px hsl(${hue}, 100%, 60%);
     `;
 
     document.body.appendChild(particle);
@@ -535,19 +536,17 @@ const animateStepValue = (el, target, options = {}) => {
     y = lerp(y, ty, 0.18);
     glow.style.transform = `translate3d(${x}px, ${y}px, 0)`;
 
-    // Create trail particles based on speed
-    if (speed > 0.5) {
-      const particleCount = Math.min(Math.floor(speed / 5) + 1, 4);
+    // Create trail particles based on speed - always create on movement
+    if (speed > 0.1) {
+      const particleCount = Math.min(Math.floor(speed / 3) + 1, 5);
       for (let i = 0; i < particleCount; i++) {
-        if (trail.length < maxTrailParticles) {
-          const particle = createTrailParticle(x, y, speed);
-          trail.push(particle);
-        }
-      }
+        const particle = createTrailParticle(x, y, speed);
+        trail.push(particle);
 
-      // Clean up old particles
-      while (trail.length > maxTrailParticles) {
-        trail.shift();
+        // Clean up old particles
+        if (trail.length > maxTrailParticles) {
+          trail.shift();
+        }
       }
     }
 

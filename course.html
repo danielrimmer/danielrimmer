@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Build Your Own Website – Course | Daniel Rimmer</title>
+    <meta
+      name="description"
+      content="Learn how to build your own website in a week — no coding required. 100% satisfaction or your money back."
+    />
+    <meta name="og:title" content="Build Your Own Website – Course | Daniel Rimmer" />
+    <meta name="og:description" content="Learn how to build your own website in a week — no coding required. 100% satisfaction or your money back." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css?v=whoami-25" />
+    <link rel="icon" type="image/svg+xml" href="images/logo-initials.svg" />
+    <style>
+      /* Course-specific styles */
+      .course-hero {
+        padding: clamp(80px, 12vh, 140px) 0;
+        text-align: center;
+      }
+
+      .course-hero h1 {
+        margin-bottom: 24px;
+        font-size: clamp(2.2rem, 5vw, 3.2rem);
+        font-family: Poppins, system-ui, sans-serif;
+        font-weight: 800;
+        background: linear-gradient(120deg, var(--acc-cyan), var(--acc-mag));
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        line-height: 1.2;
+      }
+
+      .course-hero p {
+        max-width: 720px;
+        margin: 0 auto 48px;
+        font-size: clamp(1rem, 1.2vw, 1.125rem);
+        line-height: 1.7;
+        color: var(--text);
+      }
+
+      .course-pricing {
+        padding: clamp(80px, 12vh, 140px) 0;
+      }
+
+      .course-pricing-header {
+        text-align: center;
+        margin-bottom: 60px;
+      }
+
+      .course-pricing-header h2 {
+        font-size: clamp(1.8rem, 4vw, 2.8rem);
+        font-family: Poppins, system-ui, sans-serif;
+        font-weight: 800;
+        margin-bottom: 16px;
+        background: linear-gradient(120deg, var(--acc-cyan), var(--acc-mag));
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .course-pricing-header p {
+        font-size: clamp(1rem, 1.1vw, 1.125rem);
+        color: var(--muted);
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      .course-card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: clamp(32px, 4vw, 48px);
+        max-width: 600px;
+        margin: 0 auto;
+        backdrop-filter: blur(20px);
+        transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      }
+
+      .course-card:hover {
+        border-color: var(--acc-cyan);
+        box-shadow: 0 0 30px rgba(0, 224, 255, 0.2), 0 16px 40px rgba(0, 0, 0, 0.3);
+        transform: translateY(-8px);
+      }
+
+      .course-card h3 {
+        font-size: 1.8rem;
+        font-family: Poppins, system-ui, sans-serif;
+        font-weight: 800;
+        margin: 0 0 32px;
+        color: #fff;
+      }
+
+      .course-features {
+        margin-bottom: 32px;
+      }
+
+      .course-features h4 {
+        font-size: 0.95rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--acc-cyan);
+        margin: 0 0 16px;
+      }
+
+      .course-feature-list {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 32px;
+      }
+
+      .course-feature-list li {
+        padding: 10px 0;
+        font-size: 0.95rem;
+        color: var(--text);
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+      }
+
+      .course-feature-list li::before {
+        content: "✅";
+        flex-shrink: 0;
+        font-size: 1.1rem;
+      }
+
+      .course-bonus {
+        border-top: 1px solid var(--border);
+        padding-top: 24px;
+        margin-top: 24px;
+      }
+
+      .course-bonus h4 {
+        font-size: 0.95rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--acc-mag);
+        margin: 0 0 16px;
+      }
+
+      .course-bonus-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .course-bonus-list li {
+        padding: 10px 0;
+        font-size: 0.95rem;
+        color: var(--text);
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+      }
+
+      .course-bonus-list li::before {
+        content: "✨";
+        flex-shrink: 0;
+        font-size: 1.1rem;
+      }
+
+      .course-cta {
+        margin-top: 40px;
+        display: flex;
+        gap: 12px;
+        justify-content: center;
+      }
+
+      .course-cta .btn {
+        min-width: 280px;
+      }
+
+      /* Language-specific styles */
+      [data-lang="he"] .course-hero,
+      [data-lang="he"] .course-pricing {
+        direction: rtl;
+        text-align: center;
+      }
+
+      [data-lang="he"] .course-feature-list li {
+        flex-direction: row-reverse;
+      }
+
+      [data-lang="he"] .course-bonus-list li {
+        flex-direction: row-reverse;
+      }
+
+      /* Hide non-active languages */
+      .lang-block {
+        display: none;
+      }
+
+      .lang-block.active {
+        display: block;
+      }
+
+      /* Smooth transitions between languages */
+      .lang-block {
+        animation: fadeOut 0.3s ease;
+      }
+
+      .lang-block.active {
+        animation: fadeIn 0.3s ease;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      @keyframes fadeOut {
+        from {
+          opacity: 1;
+        }
+        to {
+          opacity: 0;
+        }
+      }
+
+      /* Responsive design */
+      @media (max-width: 720px) {
+        .course-card {
+          padding: 24px;
+        }
+
+        .course-card h3 {
+          font-size: 1.5rem;
+        }
+
+        .course-cta {
+          flex-direction: column;
+        }
+
+        .course-cta .btn {
+          min-width: unset;
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body data-lang="en">
+    <!-- Skip to main content link for keyboard navigation -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <header class="site-header" id="home">
+      <div class="container nav">
+        <!-- Left side: Home, Course, Pricing -->
+        <nav class="nav-links nav-left" aria-label="Primary left">
+          <a href="index.html" class="lang-block active" data-lang="en">Home</a>
+          <a href="index.html" class="lang-block" data-lang="he">בית</a>
+          <a href="#course" class="lang-block active" data-lang="en">Course</a>
+          <a href="#course" class="lang-block" data-lang="he">קורס</a>
+          <a href="index.html#pricing" class="lang-block active" data-lang="en">Pricing</a>
+          <a href="he.html#pricing" class="lang-block" data-lang="he">תמחור</a>
+        </nav>
+
+        <!-- Centered logo (40% bigger handled via CSS) - with animated gradient -->
+        <a href="index.html" class="logo" aria-label="Go to home">
+          <img class="logo-img" src="images/logo-initials-animated.svg?v=1" alt="Daniel Rimmer Logo" />
+        </a>
+
+        <!-- Right side: About, Contact, Language -->
+        <div class="right-side">
+          <nav class="nav-links nav-right" aria-label="Primary right">
+            <a href="index.html#about" class="lang-block active" data-lang="en">About</a>
+            <a href="he.html#about" class="lang-block" data-lang="he">אודות</a>
+            <a href="#contact" class="lang-block active" data-lang="en">Contact</a>
+            <a href="#contact" class="lang-block" data-lang="he">צור קשר</a>
+          </nav>
+          <div class="lang-group" role="group" aria-label="Language">
+            <a class="btn btn-ghost lang-switch lang-en" href="#" data-lang="en" aria-label="Switch to English">EN</a>
+            <a class="btn btn-ghost lang-switch lang-he" href="#" data-lang="he" aria-label="Switch to Hebrew">HE</a>
+          </div>
+        </div>
+
+        <!-- Mobile toggle -->
+        <button class="nav-toggle" aria-expanded="false" aria-label="Toggle navigation">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+
+      <!-- Mobile overlay menu -->
+      <div class="mobile-menu" aria-label="Mobile navigation">
+        <div class="mobile-menu-panel" role="dialog" aria-modal="true" aria-label="Primary navigation" tabindex="-1">
+          <nav class="nav-links">
+            <a href="index.html" class="lang-block active" data-lang="en">Home</a>
+            <a href="index.html" class="lang-block" data-lang="he">בית</a>
+            <a href="#course" class="lang-block active" data-lang="en">Course</a>
+            <a href="#course" class="lang-block" data-lang="he">קורס</a>
+            <a href="index.html#pricing" class="lang-block active" data-lang="en">Pricing</a>
+            <a href="he.html#pricing" class="lang-block" data-lang="he">תמחור</a>
+            <a href="index.html#about" class="lang-block active" data-lang="en">About</a>
+            <a href="he.html#about" class="lang-block" data-lang="he">אודות</a>
+            <a href="#contact" class="lang-block active" data-lang="en">Contact</a>
+            <a href="#contact" class="lang-block" data-lang="he">צור קשר</a>
+          </nav>
+          <div class="lang-group" role="group" aria-label="Language">
+            <a class="btn btn-ghost lang-switch lang-en" href="#" data-lang="en" aria-label="Switch to English">EN</a>
+            <a class="btn btn-ghost lang-switch lang-he" href="#" data-lang="he" aria-label="Switch to Hebrew">HE</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main id="main-content">
+      <!-- Hero Section -->
+      <section class="course-hero section reveal" id="course">
+        <div class="container">
+          <!-- English Version -->
+          <div class="lang-block active" data-lang="en">
+            <h1>Build Your Own Website – Course</h1>
+            <p>
+              Have you ever dreamed of building your own website — even without any experience in coding or design? What if I told you that you could do it in just one week and only eight hours of learning?
+            </p>
+            <p>
+              You might be skeptical, and that's fair. But I promise — by the end of this course, you'll have a beautiful, fully functional website you built yourself.
+            </p>
+            <p>
+              And here's the best part: if you're not completely satisfied, I offer a 100% money-back guarantee. You take absolutely no risk — only the opportunity to bring your dream website to life.
+            </p>
+          </div>
+
+          <!-- Hebrew Version -->
+          <div class="lang-block" data-lang="he" dir="rtl">
+            <h1>בנה את האתר שלך בעצמך – הקורס</h1>
+            <p>
+              חלמת פעם לבנות את האתר שלך — גם בלי שום ניסיון בקוד או בעיצוב? ומה אם היית מגלה שאתה יכול לעשות את זה בתוך שבוע אחד בלבד וב-8 שעות לימוד בלבד?
+            </p>
+            <p>
+              אולי זה נשמע לך לא מציאותי — אבל אני מבטיח שתוכל ליצור אתר מהמם, מקצועי ופונקציונלי בעצמך.
+            </p>
+            <p>
+              והחלק הטוב ביותר? אני מציע החזר כספי מלא אם לא תהיה מרוצה מהתוצאה.
+            </p>
+            <p>
+              אין לך מה להפסיד — רק להרוויח את היכולת לבנות את האתר שתמיד רצית.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Pricing Section -->
+      <section class="course-pricing section reveal">
+        <div class="container">
+          <div class="course-pricing-header">
+            <!-- English Version -->
+            <div class="lang-block active" data-lang="en">
+              <h2>Pricing – A Complete Experience at an Unbelievable Value</h2>
+              <p>You're not just buying a course — you're investing in a lifetime skill that can change your business, career, and confidence online.</p>
+            </div>
+
+            <!-- Hebrew Version -->
+            <div class="lang-block" data-lang="he" dir="rtl">
+              <h2>מחיר – חוויה שלמה במחיר מפתיע</h2>
+              <p>אתה לא רק קונה קורס — אתה משקיע ביכולת שישמש אותך לכל החיים, שתפתח לך דלתות לעולם הדיגיטלי.</p>
+            </div>
+          </div>
+
+          <div class="course-card">
+            <!-- English Version -->
+            <div class="lang-block active" data-lang="en">
+              <h3>Super Course</h3>
+              <div class="course-features">
+                <h4>What's Included</h4>
+                <ul class="course-feature-list">
+                  <li>4 learning sessions of 2 hours each</li>
+                  <li>How to install the same software professionals use</li>
+                  <li>Responsive Website</li>
+                  <li>Lightning-Fast Performance</li>
+                  <li>SEO Optimized</li>
+                  <li>The Basics of Coding</li>
+                  <li>Designing for the Web</li>
+                  <li>How to Optimize Your Website</li>
+                  <li>How to Create Mind-Blowing Images and Videos</li>
+                  <li>Prompt Engineering</li>
+                  <li>60 Minutes Credit After Learning Sessions</li>
+                  <li>Google Business Implementation</li>
+                </ul>
+              </div>
+              <div class="course-bonus">
+                <h4>Bonus</h4>
+                <ul class="course-bonus-list">
+                  <li>1h session – How to Write Copy That Sells</li>
+                  <li>How to Buy a Domain</li>
+                  <li>How to Connect Your Website to Your Domain</li>
+                  <li>How to Host Your Website Online – For Free</li>
+                  <li>One-on-One Private Class</li>
+                </ul>
+              </div>
+              <div class="course-cta">
+                <a class="btn btn-primary scrollto" href="#contact">Contact Me to Join</a>
+              </div>
+            </div>
+
+            <!-- Hebrew Version -->
+            <div class="lang-block" data-lang="he" dir="rtl">
+              <h3>קורס-על</h3>
+              <div class="course-features">
+                <h4>מה כלול</h4>
+                <ul class="course-feature-list">
+                  <li>4 מפגשים של שעתיים כל אחד</li>
+                  <li>איך להתקין את התוכנות שבהן משתמשים המקצוענים</li>
+                  <li>אתר רספונסיבי</li>
+                  <li>ביצועים מהירים במיוחד</li>
+                  <li>אופטימיזציה למנועי חיפוש (SEO)</li>
+                  <li>יסודות הקוד</li>
+                  <li>עיצוב לאינטרנט</li>
+                  <li>איך לשפר את מהירות האתר שלך</li>
+                  <li>איך ליצור תמונות וסרטונים מרהיבים</li>
+                  <li>Prompt Engineering</li>
+                  <li>60 דקות נוספות של ליווי לאחר השיעורים</li>
+                  <li>חיבור העסק שלך לגוגל ביזנס</li>
+                </ul>
+              </div>
+              <div class="course-bonus">
+                <h4>בונוס</h4>
+                <ul class="course-bonus-list">
+                  <li>מפגש נוסף (1 שעה) – איך לכתוב טקסט שמוכר</li>
+                  <li>איך לקנות דומיין</li>
+                  <li>איך לחבר את האתר שלך לדומיין</li>
+                  <li>איך להעלות את האתר שלך לאוויר – בחינם</li>
+                  <li>שיעור אישי אחד-על-אחד</li>
+                </ul>
+              </div>
+              <div class="course-cta">
+                <a class="btn btn-primary scrollto" href="#contact">צור קשר להרשמה</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact Section -->
+      <section class="contact section reveal" id="contact">
+        <div class="contact-showcase">
+          <div class="contact-showcase-left">
+            <div class="contact-showcase-left-content">
+              <!-- English Version -->
+              <span class="contact-callout lang-block active" data-lang="en">GET IN<br />TOUCH.</span>
+              <!-- Hebrew Version -->
+              <span class="contact-callout lang-block" data-lang="he" dir="rtl">צור<br />קשר.</span>
+            </div>
+          </div>
+          <div class="contact-showcase-right">
+            <div class="contact-showcase-content">
+              <!-- English Version -->
+              <div class="lang-block active" data-lang="en">
+                <h2 class="contact-heading">Get in Touch to Join the Course</h2>
+                <p class="contact-subheading">
+                  Ready to take the first step? Let's connect and start your journey to building your dream website.
+                </p>
+              </div>
+
+              <!-- Hebrew Version -->
+              <div class="lang-block" data-lang="he" dir="rtl">
+                <h2 class="contact-heading">צור קשר כדי להצטרף לקורס</h2>
+                <p class="contact-subheading">
+                  מוכן להתחיל? בואו נתחבר ונתחיל את הדרך לבניית האתר שתמיד רצית.
+                </p>
+              </div>
+
+              <div class="contact-details-list">
+                <a class="contact-detail" href="tel:+972533191655">
+                  <span class="contact-detail-icon" aria-hidden="true">📞</span>
+                  <span class="contact-detail-text">
+                    <span class="contact-detail-label lang-block active" data-lang="en">Phone</span>
+                    <span class="contact-detail-label lang-block" data-lang="he" dir="rtl">טלפון</span>
+                    <span class="contact-detail-value">+972 53 319 1655</span>
+                  </span>
+                </a>
+                <a class="contact-detail" href="https://wa.me/972535455468" target="_blank" rel="noopener noreferrer">
+                  <span class="contact-detail-icon" aria-hidden="true">💬</span>
+                  <span class="contact-detail-text">
+                    <span class="contact-detail-label lang-block active" data-lang="en">WhatsApp</span>
+                    <span class="contact-detail-label lang-block" data-lang="he" dir="rtl">וואטסאפ</span>
+                    <span class="contact-detail-value">+972 53 545 5468</span>
+                  </span>
+                </a>
+                <a class="contact-detail" href="mailto:daniyelyaakov@gmail.com">
+                  <span class="contact-detail-icon" aria-hidden="true">✉️</span>
+                  <span class="contact-detail-text">
+                    <span class="contact-detail-label lang-block active" data-lang="en">Email</span>
+                    <span class="contact-detail-label lang-block" data-lang="he" dir="rtl">דוא״ל</span>
+                    <span class="contact-detail-value">daniyelyaakov@gmail.com</span>
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>© 2025 Daniel Rimmer — All Rights Reserved.</p>
+      </div>
+    </footer>
+
+    <script src="script.js?v=process-21" defer></script>
+    <script>
+      // Language switching functionality for course page
+      document.addEventListener('DOMContentLoaded', () => {
+        const body = document.body;
+        const langSwitches = document.querySelectorAll('.lang-switch');
+        const langBlocks = document.querySelectorAll('.lang-block');
+
+        // Set initial language based on URL or default to English
+        const urlParams = new URLSearchParams(window.location.search);
+        const lang = urlParams.get('lang') || 'en';
+        setLanguage(lang);
+
+        // Language switch button click handlers
+        langSwitches.forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const lang = btn.getAttribute('data-lang');
+            setLanguage(lang);
+          });
+        });
+
+        function setLanguage(lang) {
+          body.setAttribute('data-lang', lang);
+          body.setAttribute('dir', lang === 'he' ? 'rtl' : 'ltr');
+
+          langBlocks.forEach(block => {
+            if (block.getAttribute('data-lang') === lang) {
+              block.classList.add('active');
+            } else {
+              block.classList.remove('active');
+            }
+          });
+
+          // Update active lang button
+          langSwitches.forEach(btn => {
+            if (btn.getAttribute('data-lang') === lang) {
+              btn.classList.add('active');
+            } else {
+              btn.classList.remove('active');
+            }
+          });
+        }
+      });
+
+      // Smooth scroll for anchors
+      document.addEventListener('click', (e) => {
+        if (e.target.classList.contains('scrollto')) {
+          e.preventDefault();
+          const href = e.target.getAttribute('href');
+          if (href.startsWith('#')) {
+            const target = document.querySelector(href);
+            if (target) {
+              target.scrollIntoView({ behavior: 'smooth' });
+            }
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

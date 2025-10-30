@@ -76,15 +76,14 @@
         background: var(--card);
         border: 1px solid var(--border);
         border-radius: 16px;
-        padding: clamp(32px, 4vw, 48px);
-        max-width: 1000px;
+        padding: 40px 48px;
+        max-width: 1200px;
         margin: 0 auto;
         backdrop-filter: blur(20px);
         transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-        display: grid;
-        grid-template-columns: 1fr 2fr;
-        gap: 48px;
-        align-items: start;
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
       }
 
       .course-card:hover {
@@ -93,20 +92,28 @@
         transform: translateY(-8px);
       }
 
+      .course-card-header {
+        display: flex;
+        align-items: center;
+        gap: 60px;
+      }
+
       .course-card-left {
         display: flex;
         flex-direction: column;
-        justify-content: flex-start;
+        justify-content: center;
         gap: 24px;
-        padding: 32px 0;
+        flex-shrink: 0;
+        min-width: 200px;
+        padding-right: 40px;
         border-right: 1px solid var(--border);
-        padding-right: 48px;
       }
 
-      .course-card-right {
-        display: flex;
-        flex-direction: column;
-        gap: 24px;
+      .course-card-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 48px;
+        width: 100%;
       }
 
       .course-card h3 {
@@ -143,11 +150,11 @@
       }
 
       .course-features {
-        margin-bottom: 32px;
+        margin-bottom: 0;
       }
 
       .course-features h4 {
-        font-size: 0.95rem;
+        font-size: 0.85rem;
         font-weight: 600;
         text-transform: uppercase;
         letter-spacing: 0.1em;
@@ -158,32 +165,34 @@
       .course-feature-list {
         list-style: none;
         padding: 0;
-        margin: 0 0 32px;
+        margin: 0;
       }
 
       .course-feature-list li {
-        padding: 10px 0;
-        font-size: 0.95rem;
+        padding: 8px 0;
+        font-size: 0.9rem;
         color: var(--text);
         display: flex;
         align-items: flex-start;
-        gap: 12px;
+        gap: 10px;
+        line-height: 1.4;
       }
 
       .course-feature-list li::before {
         content: "✅";
         flex-shrink: 0;
-        font-size: 1.1rem;
+        font-size: 1rem;
+        margin-top: 1px;
       }
 
       .course-bonus {
-        border-top: 1px solid var(--border);
-        padding-top: 24px;
-        margin-top: 24px;
+        border-top: none;
+        padding-top: 0;
+        margin-top: 0;
       }
 
       .course-bonus h4 {
-        font-size: 0.95rem;
+        font-size: 0.85rem;
         font-weight: 600;
         text-transform: uppercase;
         letter-spacing: 0.1em;
@@ -198,29 +207,38 @@
       }
 
       .course-bonus-list li {
-        padding: 10px 0;
-        font-size: 0.95rem;
+        padding: 8px 0;
+        font-size: 0.9rem;
         color: var(--text);
         display: flex;
         align-items: flex-start;
-        gap: 12px;
+        gap: 10px;
+        line-height: 1.4;
       }
 
       .course-bonus-list li::before {
         content: "✨";
         flex-shrink: 0;
-        font-size: 1.1rem;
+        font-size: 1rem;
+        margin-top: 1px;
+      }
+
+      .course-card-footer {
+        display: flex;
+        justify-content: center;
+        padding-top: 24px;
+        border-top: 1px solid var(--border);
+        margin-top: 24px;
       }
 
       .course-cta {
-        margin-top: 40px;
         display: flex;
         gap: 12px;
         justify-content: center;
       }
 
       .course-cta .btn {
-        min-width: 280px;
+        min-width: 240px;
       }
 
       /* Language-specific styles */
@@ -228,6 +246,17 @@
       [data-lang="he"] .course-pricing {
         direction: rtl;
         text-align: center;
+      }
+
+      [data-lang="he"] .course-card-header {
+        flex-direction: row-reverse;
+      }
+
+      [data-lang="he"] .course-card-left {
+        border-right: none;
+        border-left: 1px solid var(--border);
+        padding-right: 0;
+        padding-left: 40px;
       }
 
       [data-lang="he"] .course-feature-list li {
@@ -275,9 +304,17 @@
       }
 
       /* Responsive design */
-      @media (max-width: 980px) {
-        .course-card {
-          grid-template-columns: 1fr;
+      @media (max-width: 1100px) {
+        .course-card-content {
+          grid-template-columns: 1fr 1fr;
+          gap: 32px;
+        }
+      }
+
+      @media (max-width: 900px) {
+        .course-card-header {
+          flex-direction: column;
+          align-items: flex-start;
           gap: 32px;
         }
 
@@ -285,13 +322,30 @@
           border-right: none;
           border-bottom: 1px solid var(--border);
           padding-right: 0;
-          padding-bottom: 32px;
+          padding-bottom: 24px;
+        }
+
+        [data-lang="he"] .course-card-header {
+          flex-direction: column;
+          align-items: flex-end;
+        }
+
+        [data-lang="he"] .course-card-left {
+          border-left: none;
+          border-bottom: 1px solid var(--border);
+          padding-left: 0;
+        }
+
+        .course-card-content {
+          grid-template-columns: 1fr 1fr;
+          gap: 32px;
         }
       }
 
       @media (max-width: 720px) {
         .course-card {
           padding: 24px;
+          gap: 24px;
         }
 
         .course-card h3 {
@@ -299,12 +353,16 @@
         }
 
         .course-card-left {
-          padding: 16px 0;
-          padding-bottom: 16px;
+          min-width: unset;
         }
 
         .course-price-new {
           font-size: 1.8rem;
+        }
+
+        .course-card-content {
+          grid-template-columns: 1fr;
+          gap: 24px;
         }
 
         .course-cta {
@@ -439,15 +497,17 @@
           <div class="course-card">
             <!-- English Version -->
             <div class="lang-block active" data-lang="en">
-              <div class="course-card-left">
-                <h3>Super Course</h3>
-                <div class="course-pricing-section">
-                  <div class="course-price-old">Price Slashed: ₪ 3,500</div>
-                  <div class="course-price-new">₪ 2,800</div>
-                  <div class="course-price-divider"></div>
+              <div class="course-card-header">
+                <div class="course-card-left">
+                  <h3>Super Course</h3>
+                  <div class="course-pricing-section">
+                    <div class="course-price-old">Price Slashed: ₪ 3,500</div>
+                    <div class="course-price-new">₪ 2,800</div>
+                    <div class="course-price-divider"></div>
+                  </div>
                 </div>
               </div>
-              <div class="course-card-right">
+              <div class="course-card-content">
                 <div class="course-features">
                   <h4>What's Included</h4>
                   <ul class="course-feature-list">
@@ -456,25 +516,37 @@
                     <li>Responsive Website</li>
                     <li>Lightning-Fast Performance</li>
                     <li>SEO Optimized</li>
+                  </ul>
+                </div>
+                <div class="course-features">
+                  <h4>More Features</h4>
+                  <ul class="course-feature-list">
                     <li>The Basics of Coding</li>
                     <li>Designing for the Web</li>
                     <li>How to Optimize Your Website</li>
                     <li>How to Create Mind-Blowing Images and Videos</li>
                     <li>Prompt Engineering</li>
+                  </ul>
+                </div>
+                <div class="course-features">
+                  <h4>Final Features & Bonus</h4>
+                  <ul class="course-feature-list">
                     <li>60 Minutes Credit After Learning Sessions</li>
                     <li>Google Business Implementation</li>
                   </ul>
+                  <div class="course-bonus">
+                    <h4>Bonus</h4>
+                    <ul class="course-bonus-list">
+                      <li>1h session – How to Write Copy That Sells</li>
+                      <li>How to Buy a Domain</li>
+                      <li>How to Connect Your Website to Your Domain</li>
+                      <li>How to Host Your Website Online – For Free</li>
+                      <li>One-on-One Private Class</li>
+                    </ul>
+                  </div>
                 </div>
-                <div class="course-bonus">
-                  <h4>Bonus</h4>
-                  <ul class="course-bonus-list">
-                    <li>1h session – How to Write Copy That Sells</li>
-                    <li>How to Buy a Domain</li>
-                    <li>How to Connect Your Website to Your Domain</li>
-                    <li>How to Host Your Website Online – For Free</li>
-                    <li>One-on-One Private Class</li>
-                  </ul>
-                </div>
+              </div>
+              <div class="course-card-footer">
                 <div class="course-cta">
                   <a class="btn btn-primary scrollto" href="#contact">Contact Me to Join</a>
                 </div>
@@ -483,15 +555,17 @@
 
             <!-- Hebrew Version -->
             <div class="lang-block" data-lang="he" dir="rtl">
-              <div class="course-card-left">
-                <h3>קורס-על</h3>
-                <div class="course-pricing-section">
-                  <div class="course-price-old">מחיר ירוד: ₪ 3,500</div>
-                  <div class="course-price-new">₪ 2,800</div>
-                  <div class="course-price-divider"></div>
+              <div class="course-card-header">
+                <div class="course-card-left">
+                  <h3>קורס-על</h3>
+                  <div class="course-pricing-section">
+                    <div class="course-price-old">מחיר ירוד: ₪ 3,500</div>
+                    <div class="course-price-new">₪ 2,800</div>
+                    <div class="course-price-divider"></div>
+                  </div>
                 </div>
               </div>
-              <div class="course-card-right">
+              <div class="course-card-content">
                 <div class="course-features">
                   <h4>מה כלול</h4>
                   <ul class="course-feature-list">
@@ -500,25 +574,37 @@
                     <li>אתר רספונסיבי</li>
                     <li>ביצועים מהירים במיוחד</li>
                     <li>אופטימיזציה למנועי חיפוש (SEO)</li>
+                  </ul>
+                </div>
+                <div class="course-features">
+                  <h4>תכונות נוספות</h4>
+                  <ul class="course-feature-list">
                     <li>יסודות הקוד</li>
                     <li>עיצוב לאינטרנט</li>
                     <li>איך לשפר את מהירות האתר שלך</li>
                     <li>איך ליצור תמונות וסרטונים מרהיבים</li>
                     <li>Prompt Engineering</li>
+                  </ul>
+                </div>
+                <div class="course-features">
+                  <h4>תכונות סופיות וּבונוס</h4>
+                  <ul class="course-feature-list">
                     <li>60 דקות נוספות של ליווי לאחר השיעורים</li>
                     <li>חיבור העסק שלך לגוגל ביזנס</li>
                   </ul>
+                  <div class="course-bonus">
+                    <h4>בונוס</h4>
+                    <ul class="course-bonus-list">
+                      <li>מפגש נוסף (1 שעה) – איך לכתוב טקסט שמוכר</li>
+                      <li>איך לקנות דומיין</li>
+                      <li>איך לחבר את האתר שלך לדומיין</li>
+                      <li>איך להעלות את האתר שלך לאוויר – בחינם</li>
+                      <li>שיעור אישי אחד-על-אחד</li>
+                    </ul>
+                  </div>
                 </div>
-                <div class="course-bonus">
-                  <h4>בונוס</h4>
-                  <ul class="course-bonus-list">
-                    <li>מפגש נוסף (1 שעה) – איך לכתוב טקסט שמוכר</li>
-                    <li>איך לקנות דומיין</li>
-                    <li>איך לחבר את האתר שלך לדומיין</li>
-                    <li>איך להעלות את האתר שלך לאוויר – בחינם</li>
-                    <li>שיעור אישי אחד-על-אחד</li>
-                  </ul>
-                </div>
+              </div>
+              <div class="course-card-footer">
                 <div class="course-cta">
                   <a class="btn btn-primary scrollto" href="#contact">צור קשר להרשמה</a>
                 </div>

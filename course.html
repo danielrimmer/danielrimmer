@@ -19,27 +19,61 @@
     <link rel="stylesheet" href="style.css?v=whoami-25" />
     <link rel="icon" type="image/svg+xml" href="images/logo-initials.svg" />
     <style>
-      /* Course-specific styles */
+      /* Course Hero Section - Full Screen Video Background */
       .course-hero {
-        padding: clamp(60px, 10vh, 120px) 0;
+        position: relative;
+        overflow: hidden;
+        height: 100vh;
+      }
+
+      .course-hero-media {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+      }
+
+      .course-hero-media video {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transform: scale(1.15);
+      }
+
+      /* Mirror video for Hebrew */
+      [data-lang="he"] .course-hero-media video {
+        transform: scaleX(-1) scale(1.15);
+      }
+
+      /* Subtle overlay for text readability */
+      .course-hero::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        background: linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.25) 40%, rgba(0,0,0,.2) 70%, rgba(0,0,0,.15));
       }
 
       .course-hero .container {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 60px;
+        position: relative;
+        z-index: 2;
+        display: flex;
         align-items: center;
+        height: 100%;
       }
 
       .course-hero-content {
         display: flex;
         flex-direction: column;
         gap: 24px;
+        max-width: 550px;
       }
 
       .course-hero h1 {
         margin: 0;
-        font-size: clamp(2rem, 4vw, 3rem);
+        font-size: clamp(2.2rem, 5vw, 3.2rem);
         font-family: Poppins, system-ui, sans-serif;
         font-weight: 800;
         background: linear-gradient(120deg, var(--acc-cyan), var(--acc-mag));
@@ -51,43 +85,21 @@
 
       .course-hero p {
         margin: 0;
-        font-size: clamp(0.95rem, 1.1vw, 1rem);
+        font-size: clamp(0.95rem, 1.1vw, 1.05rem);
         line-height: 1.7;
-        color: var(--text);
+        color: #ffffff;
       }
 
-      .course-hero-video {
-        position: relative;
-        width: 100%;
-        overflow: hidden;
-        border-radius: 16px;
+      /* English: text on left */
+      [data-lang="en"] .course-hero-content {
+        text-align: left;
+        padding-right: 80px;
       }
 
-      .course-hero-video video {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        display: block;
-        transform: scale(1.15);
-      }
-
-      /* Mirror video for Hebrew */
-      [data-lang="he"] .course-hero-video video {
-        transform: scaleX(-1) scale(1.15);
-      }
-
-      /* Hebrew layout - flip columns */
-      [data-lang="he"] .course-hero .container {
-        grid-template-columns: 1fr 1fr;
-      }
-
+      /* Hebrew: text on left with RTL alignment */
       [data-lang="he"] .course-hero-content {
-        order: 2;
         text-align: right;
-      }
-
-      [data-lang="he"] .course-hero-video {
-        order: 1;
+        padding-left: 80px;
       }
 
       .course-pricing {
@@ -375,28 +387,34 @@
       }
 
       @media (max-width: 900px) {
+        .course-hero {
+          height: auto;
+          padding: 80px 0;
+        }
+
         .course-hero .container {
-          grid-template-columns: 1fr;
-          gap: 40px;
+          display: block;
         }
 
-        [data-lang="he"] .course-hero-content {
-          order: 1;
+        .course-hero-content {
+          max-width: 100%;
+          padding-right: 0 !important;
+          padding-left: 0 !important;
         }
 
-        [data-lang="he"] .course-hero-video {
-          order: 2;
+        .course-hero-media {
+          display: none;
+        }
+
+        .course-hero::after {
+          display: none;
         }
       }
 
       @media (max-width: 720px) {
         .course-hero {
-          padding: clamp(40px, 8vh, 80px) 0;
-        }
-
-        .course-hero .container {
-          grid-template-columns: 1fr;
-          gap: 32px;
+          height: auto;
+          padding: 60px 0;
         }
 
         .course-hero h1 {
@@ -509,6 +527,11 @@
     <main id="main-content">
       <!-- Hero Section: Build Your Own Website – Course -->
       <section class="course-hero section reveal" id="course">
+        <!-- Full-screen background video -->
+        <div class="course-hero-media" aria-hidden="true">
+          <video autoplay muted loop playsinline preload="metadata" src="images/course-video.mp4"></video>
+        </div>
+
         <div class="container">
           <!-- English Version -->
           <div class="lang-block active" data-lang="en">
@@ -524,20 +547,10 @@
                 And here's the best part: if you're not completely satisfied, I offer a 100% money-back guarantee. You take absolutely no risk — only the opportunity to bring your dream website to life.
               </p>
             </div>
-            <div class="course-hero-video">
-              <video autoplay muted loop playsinline preload="metadata">
-                <source src="images/course-video.mp4" type="video/mp4" />
-              </video>
-            </div>
           </div>
 
           <!-- Hebrew Version -->
           <div class="lang-block" data-lang="he" dir="rtl">
-            <div class="course-hero-video">
-              <video autoplay muted loop playsinline preload="metadata">
-                <source src="images/course-video.mp4" type="video/mp4" />
-              </video>
-            </div>
             <div class="course-hero-content">
               <h1>בנה את האתר שלך בעצמך – הקורס</h1>
               <p>

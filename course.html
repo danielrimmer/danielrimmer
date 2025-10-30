@@ -567,9 +567,14 @@
         text-align: right;
       }
 
-      /* Course page header - no preheader, so reset to top */
-      .site-header {
+      /* Course page header - no preheader, so reset to top (but not for sidebar mode) */
+      .site-header:not(.sidebar-mode) {
         top: 0 !important;
+      }
+
+      /* Course page sidebar - same top spacing as index page */
+      .site-header.sidebar-mode {
+        top: 50px !important;
       }
     </style>
   </head>
@@ -579,6 +584,12 @@
 
     <header class="site-header" id="home">
       <div class="container nav">
+        <!-- Left side: Navigation (for sidebar) -->
+        <nav class="nav-links nav-left" aria-label="Primary left">
+          <a href="index.html" class="lang-block active" data-lang="en">Home</a>
+          <a href="index.html" class="lang-block" data-lang="he">בית</a>
+        </nav>
+
         <!-- Centered logo (40% bigger handled via CSS) - with animated gradient -->
         <a href="index.html" class="logo" aria-label="Go to home">
           <img class="logo-img" src="images/logo-initials-animated.svg?v=1" alt="Daniel Rimmer Logo" />
@@ -587,14 +598,10 @@
         <!-- Right side: Navigation and Language -->
         <div class="right-side">
           <nav class="nav-links nav-right" aria-label="Primary right">
-            <a href="#course" class="lang-block active" data-lang="en">Course</a>
-            <a href="#course" class="lang-block" data-lang="he">קורס</a>
             <a href="#pricing" class="lang-block active" data-lang="en">Pricing</a>
             <a href="#pricing" class="lang-block" data-lang="he">תמחור</a>
             <a href="#contact" class="lang-block active" data-lang="en">Contact</a>
             <a href="#contact" class="lang-block" data-lang="he">צור קשר</a>
-            <a href="index.html" class="lang-block active" data-lang="en">Home</a>
-            <a href="index.html" class="lang-block" data-lang="he">בית</a>
           </nav>
           <div class="lang-group" role="group" aria-label="Language">
             <a class="btn btn-ghost lang-switch lang-en" href="#" data-lang="en" aria-label="Switch to English">EN</a>
@@ -612,14 +619,12 @@
       <div class="mobile-menu" aria-label="Mobile navigation">
         <div class="mobile-menu-panel" role="dialog" aria-modal="true" aria-label="Primary navigation" tabindex="-1">
           <nav class="nav-links">
-            <a href="#course" class="lang-block active" data-lang="en">Course</a>
-            <a href="#course" class="lang-block" data-lang="he">קורס</a>
+            <a href="index.html" class="lang-block active" data-lang="en">Home</a>
+            <a href="index.html" class="lang-block" data-lang="he">בית</a>
             <a href="#pricing" class="lang-block active" data-lang="en">Pricing</a>
             <a href="#pricing" class="lang-block" data-lang="he">תמחור</a>
             <a href="#contact" class="lang-block active" data-lang="en">Contact</a>
             <a href="#contact" class="lang-block" data-lang="he">צור קשר</a>
-            <a href="index.html" class="lang-block active" data-lang="en">Home</a>
-            <a href="index.html" class="lang-block" data-lang="he">בית</a>
           </nav>
           <div class="lang-group" role="group" aria-label="Language">
             <a class="btn btn-ghost lang-switch lang-en" href="#" data-lang="en" aria-label="Switch to English">EN</a>

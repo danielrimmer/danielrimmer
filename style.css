@@ -507,6 +507,25 @@ html[lang="en"] .lang-en, html[lang="he"] .lang-he { background: rgba(255,255,25
     transform: scale(1.05);
   }
 
+  /* Remove Course button special styling for Hebrew version */
+  [dir="rtl"] .site-header.sidebar-mode .nav-right a:last-child {
+    border: none;
+    border-radius: 6px;
+    padding: 8px 12px;
+    background: transparent;
+    background-size: auto;
+    animation: navItemDrop 0.4s ease forwards;
+    font-weight: 500;
+    box-shadow: none;
+    transition: all 0.3s ease;
+    color: #ffffff;
+  }
+
+  [dir="rtl"] .site-header.sidebar-mode .nav-right a:last-child:hover {
+    box-shadow: none;
+    transform: none;
+  }
+
   /* Language switcher in sidebar */
   .site-header.sidebar-mode .lang-group {
     margin-top: 12px;

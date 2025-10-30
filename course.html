@@ -70,7 +70,7 @@
         gap: 24px;
         max-width: 550px;
         padding: 48px;
-        background: linear-gradient(to bottom, rgba(15, 28, 46, 0.6), rgba(15, 28, 46, 0.1));
+        background: linear-gradient(to bottom, rgba(15, 28, 46, 0.5), rgba(15, 28, 46, 0.3));
         backdrop-filter: blur(12px);
         border-radius: 20px;
         border: 1px solid rgba(255, 255, 255, 0.1);
@@ -82,6 +82,7 @@
         font-family: Poppins, system-ui, sans-serif;
         font-weight: 800;
         color: #ffffff;
+        opacity: 1;
         line-height: 1.2;
         animation: dropIn 0.8s ease-out;
       }
@@ -91,6 +92,7 @@
         font-size: clamp(0.95rem, 1.1vw, 1.05rem);
         line-height: 1.7;
         color: #ffffff;
+        opacity: 0.5;
       }
 
       .course-hero p:nth-of-type(1) {
@@ -135,32 +137,36 @@
         z-index: 3;
       }
 
-      /* English: scroll indicator on right */
-      [data-lang="en"] .course-hero .scroll-indicator {
-        right: 60px;
-        left: auto;
-      }
-
-      [data-lang="en"] .scroll-label {
-        left: auto;
-        right: calc(100% + 28px);
-        text-align: right;
-      }
-
-      /* Hebrew: scroll indicator on left */
-      [data-lang="he"] .course-hero .scroll-indicator {
+      /* English: scroll indicator on left */
+      .course-hero .scroll-indicator[data-lang="en"] {
         left: 60px;
         right: auto;
       }
 
-      [data-lang="he"] .scroll-label {
+      .course-hero .scroll-indicator[data-lang="en"] .scroll-label {
         left: calc(100% + 28px);
         right: auto;
         text-align: left;
       }
 
+      /* Hebrew: scroll indicator on right */
+      .course-hero .scroll-indicator[data-lang="he"] {
+        right: 60px;
+        left: auto;
+      }
+
+      .course-hero .scroll-indicator[data-lang="he"] .scroll-label {
+        right: calc(100% + 28px);
+        left: auto;
+        text-align: right;
+      }
+
       .course-pricing {
+        position: relative;
         padding: clamp(80px, 12vh, 140px) 0;
+        background:
+          linear-gradient(180deg, rgba(3, 7, 18, 0.5), rgba(3, 7, 18, 0.6)),
+          url('images/wallpaper-course.webp') right center/cover no-repeat;
       }
 
       .course-pricing-header {
@@ -173,10 +179,7 @@
         font-family: Poppins, system-ui, sans-serif;
         font-weight: 800;
         margin-bottom: 16px;
-        background: linear-gradient(120deg, var(--acc-cyan), var(--acc-mag));
-        background-clip: text;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+        color: #ffffff;
       }
 
       .course-pricing-header p {
@@ -268,6 +271,11 @@
         letter-spacing: 0.1em;
         color: var(--acc-cyan);
         margin: 0 0 16px;
+        text-align: left;
+      }
+
+      [dir="rtl"] .course-features h4 {
+        text-align: right;
       }
 
       .course-feature-list {
@@ -293,6 +301,12 @@
         margin-top: 1px;
       }
 
+      [data-lang="he"] .course-feature-list li,
+      [dir="rtl"] .course-feature-list li {
+        flex-direction: row-reverse;
+        text-align: right;
+      }
+
       .course-bonus {
         border-top: none;
         padding-top: 0;
@@ -306,6 +320,11 @@
         letter-spacing: 0.1em;
         color: var(--acc-mag);
         margin: 0 0 16px;
+        text-align: left;
+      }
+
+      [dir="rtl"] .course-bonus h4 {
+        text-align: right;
       }
 
       .course-bonus-list {
@@ -331,6 +350,12 @@
         margin-top: 1px;
       }
 
+      [data-lang="he"] .course-bonus-list li,
+      [dir="rtl"] .course-bonus-list li {
+        flex-direction: row-reverse;
+        text-align: right;
+      }
+
       .course-card-footer {
         display: flex;
         justify-content: center;
@@ -349,6 +374,7 @@
 
       .course-cta .btn {
         min-width: 240px;
+        text-align: center;
       }
 
       /* Language-specific styles */
@@ -517,6 +543,28 @@
           width: 100%;
         }
       }
+
+      /* Hebrew contact section text alignment */
+      [dir="rtl"] .contact-heading {
+        text-align: right;
+      }
+
+      [dir="rtl"] .contact-subheading {
+        text-align: right;
+      }
+
+      [dir="rtl"] .contact-detail {
+        text-align: right;
+      }
+
+      [dir="rtl"] .contact-detail-text {
+        text-align: right;
+      }
+
+      /* Course page header - no preheader, so reset to top */
+      .site-header {
+        top: 0 !important;
+      }
     </style>
   </head>
   <body data-lang="en">
@@ -525,26 +573,22 @@
 
     <header class="site-header" id="home">
       <div class="container nav">
-        <!-- Left side: Course, Pricing, Contact -->
-        <nav class="nav-links nav-left" aria-label="Primary left">
-          <a href="#course" class="lang-block active" data-lang="en">Course</a>
-          <a href="#course" class="lang-block" data-lang="he">קורס</a>
-          <a href="#pricing" class="lang-block active" data-lang="en">Pricing</a>
-          <a href="#pricing" class="lang-block" data-lang="he">תמחור</a>
-          <a href="#contact" class="lang-block active" data-lang="en">Contact</a>
-          <a href="#contact" class="lang-block" data-lang="he">צור קשר</a>
-        </nav>
-
         <!-- Centered logo (40% bigger handled via CSS) - with animated gradient -->
         <a href="index.html" class="logo" aria-label="Go to home">
           <img class="logo-img" src="images/logo-initials-animated.svg?v=1" alt="Daniel Rimmer Logo" />
         </a>
 
-        <!-- Right side: Language -->
+        <!-- Right side: Navigation and Language -->
         <div class="right-side">
           <nav class="nav-links nav-right" aria-label="Primary right">
-            <a href="index.html" class="lang-block active" data-lang="en">Back to Home</a>
-            <a href="index.html" class="lang-block" data-lang="he">חזרה לבית</a>
+            <a href="#course" class="lang-block active" data-lang="en">Course</a>
+            <a href="#course" class="lang-block" data-lang="he">קורס</a>
+            <a href="#pricing" class="lang-block active" data-lang="en">Pricing</a>
+            <a href="#pricing" class="lang-block" data-lang="he">תמחור</a>
+            <a href="#contact" class="lang-block active" data-lang="en">Contact</a>
+            <a href="#contact" class="lang-block" data-lang="he">צור קשר</a>
+            <a href="index.html" class="lang-block active" data-lang="en">Home</a>
+            <a href="index.html" class="lang-block" data-lang="he">בית</a>
           </nav>
           <div class="lang-group" role="group" aria-label="Language">
             <a class="btn btn-ghost lang-switch lang-en" href="#" data-lang="en" aria-label="Switch to English">EN</a>
@@ -562,16 +606,14 @@
       <div class="mobile-menu" aria-label="Mobile navigation">
         <div class="mobile-menu-panel" role="dialog" aria-modal="true" aria-label="Primary navigation" tabindex="-1">
           <nav class="nav-links">
-            <a href="index.html" class="lang-block active" data-lang="en">Home</a>
-            <a href="index.html" class="lang-block" data-lang="he">בית</a>
             <a href="#course" class="lang-block active" data-lang="en">Course</a>
             <a href="#course" class="lang-block" data-lang="he">קורס</a>
-            <a href="index.html#pricing" class="lang-block active" data-lang="en">Pricing</a>
-            <a href="he.html#pricing" class="lang-block" data-lang="he">תמחור</a>
-            <a href="index.html#about" class="lang-block active" data-lang="en">About</a>
-            <a href="he.html#about" class="lang-block" data-lang="he">אודות</a>
+            <a href="#pricing" class="lang-block active" data-lang="en">Pricing</a>
+            <a href="#pricing" class="lang-block" data-lang="he">תמחור</a>
             <a href="#contact" class="lang-block active" data-lang="en">Contact</a>
             <a href="#contact" class="lang-block" data-lang="he">צור קשר</a>
+            <a href="index.html" class="lang-block active" data-lang="en">Home</a>
+            <a href="index.html" class="lang-block" data-lang="he">בית</a>
           </nav>
           <div class="lang-group" role="group" aria-label="Language">
             <a class="btn btn-ghost lang-switch lang-en" href="#" data-lang="en" aria-label="Switch to English">EN</a>
@@ -671,6 +713,7 @@
                   </div>
                 </div>
               </div>
+
               <div class="course-card-content">
                 <div class="course-features">
                   <h4>What's Included</h4>
@@ -707,7 +750,8 @@
               </div>
               <div class="course-card-footer">
                 <div class="course-cta">
-                  <a class="btn btn-primary scrollto" href="#contact">Contact Me to Join</a>
+                  <a class="btn btn-primary scrollto lang-block active" data-lang="en" href="#contact">SCHEDULE A CALL</a>
+                  <a class="btn btn-primary scrollto lang-block" data-lang="he" href="#contact">קבע שיחה</a>
                 </div>
               </div>
             </div>
@@ -716,13 +760,13 @@
             <div class="lang-block" data-lang="he" dir="rtl">
               <div class="course-card-header">
                 <div class="course-card-right">
+                  <h3>סופר קורס</h3>
+                </div>
+                <div class="course-card-left">
                   <div class="course-pricing-section">
                     <span class="course-price-old">₪ 3,500</span>
                     <span class="course-price-new">₪ 2,800</span>
                   </div>
-                </div>
-                <div class="course-card-left">
-                  <h3>קורס-על</h3>
                 </div>
               </div>
               <div class="course-card-content">
@@ -761,7 +805,8 @@
               </div>
               <div class="course-card-footer">
                 <div class="course-cta">
-                  <a class="btn btn-primary scrollto" href="#contact">צור קשר להרשמה</a>
+                  <a class="btn btn-primary scrollto lang-block active" data-lang="en" href="#contact">SCHEDULE A CALL</a>
+                  <a class="btn btn-primary scrollto lang-block" data-lang="he" href="#contact">קבע שיחה</a>
                 </div>
               </div>
             </div>

@@ -192,7 +192,8 @@ const animateStepValue = (el, target, options = {}) => {
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', onReady);
   else onReady();
 
-  const heroSection = document.getElementById('hero');
+  const heroSection = document.getElementById('hero') || document.getElementById('course');
+  const isCoursePagee = !!document.getElementById('course');
   const heroSectionHeight = heroSection?.offsetHeight || window.innerHeight;
   let headerHeight = header?.getBoundingClientRect().height || 76;
   if (header) root.style.setProperty('--header-height', `${Math.round(headerHeight)}px`);
@@ -218,8 +219,8 @@ const animateStepValue = (el, target, options = {}) => {
     // Remove the old blue background styling
     header.classList.remove('is-solid');
 
-    // Desktop sidebar transformation logic
-    if (isDesktop() && !navOpen) {
+    // Desktop sidebar transformation logic - EXCLUDE course page
+    if (isDesktop() && !navOpen && !isCoursePagee) {
       if (y >= 50) {
         // Scrolled 50px - transform to sidebar
         if (!isSidebarMode) {
@@ -266,6 +267,43 @@ const animateStepValue = (el, target, options = {}) => {
       header.classList.remove('sidebar-mode', 'sidebar-expanded', 'sidebar-collapsing');
       isSidebarMode = false;
     }
+
+    // Update active navigation link based on current section
+    const updateActiveSection = () => {
+      const sections = document.querySelectorAll('section[id]');
+      let activeSection = null;
+      let maxVisibility = 0;
+
+      sections.forEach((section) => {
+        const rect = section.getBoundingClientRect();
+        const viewportHeight = window.innerHeight;
+
+        // Calculate how much of the section is visible
+        const top = Math.max(0, rect.top);
+        const bottom = Math.min(viewportHeight, rect.bottom);
+        const visibility = Math.max(0, bottom - top);
+
+        // Find the section with the most visibility
+        if (visibility > maxVisibility) {
+          maxVisibility = visibility;
+          activeSection = section.id;
+        }
+      });
+
+      // Update active links in navigation
+      if (activeSection) {
+        document.querySelectorAll('.nav-links a').forEach((link) => {
+          const href = link.getAttribute('href');
+          if (href === `#${activeSection}`) {
+            link.classList.add('active');
+          } else if (href.startsWith('#')) {
+            link.classList.remove('active');
+          }
+        });
+      }
+    };
+
+    updateActiveSection();
   };
 
   window.addEventListener('scroll', onScroll, { passive: true });
@@ -399,8 +437,8 @@ const animateStepValue = (el, target, options = {}) => {
   const titleEl = document.querySelector('.animate-title');
   const subEl = document.querySelector('.hero .hero-copy .sub');
   const ctaEl = document.querySelector('.hero .hero-cta');
-  const scrollIndicator = document.querySelector('#hero .scroll-indicator');
-  const heroSection = document.getElementById('hero');
+  const scrollIndicator = document.querySelector('#hero .scroll-indicator') || document.querySelector('#course .scroll-indicator');
+  const heroSection = document.getElementById('hero') || document.getElementById('course');
   if (!titleEl || !subEl || !ctaEl) return;
 
   const titleText = titleEl.textContent.trim();

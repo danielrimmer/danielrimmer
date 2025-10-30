@@ -69,6 +69,11 @@
         flex-direction: column;
         gap: 24px;
         max-width: 550px;
+        padding: 48px;
+        background: rgba(15, 28, 46, 0.75);
+        backdrop-filter: blur(12px);
+        border-radius: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
       }
 
       .course-hero h1 {
@@ -76,11 +81,9 @@
         font-size: clamp(2.2rem, 5vw, 3.2rem);
         font-family: Poppins, system-ui, sans-serif;
         font-weight: 800;
-        background: linear-gradient(120deg, var(--acc-cyan), var(--acc-mag));
-        background-clip: text;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+        color: #ffffff;
         line-height: 1.2;
+        animation: dropIn 0.8s ease-out;
       }
 
       .course-hero p {
@@ -88,6 +91,29 @@
         font-size: clamp(0.95rem, 1.1vw, 1.05rem);
         line-height: 1.7;
         color: #ffffff;
+      }
+
+      .course-hero p:nth-of-type(1) {
+        animation: dropIn 0.8s ease-out 0.15s both;
+      }
+
+      .course-hero p:nth-of-type(2) {
+        animation: dropIn 0.8s ease-out 0.3s both;
+      }
+
+      .course-hero p:nth-of-type(3) {
+        animation: dropIn 0.8s ease-out 0.45s both;
+      }
+
+      @keyframes dropIn {
+        from {
+          opacity: 0;
+          transform: translateY(-30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
       }
 
       /* English: text on left */

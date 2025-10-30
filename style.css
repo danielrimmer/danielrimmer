@@ -141,6 +141,11 @@ a { color: inherit; text-decoration: none; }
   color: #ffffff;
 }
 
+.preheader-next {
+  color: var(--acc-mag);
+  font-weight: 700;
+}
+
 @media (max-width: 720px) {
   .preheader {
     padding: 6px 0;
@@ -483,21 +488,22 @@ html[lang="en"] .lang-en, html[lang="he"] .lang-he { background: rgba(255,255,25
     }
   }
 
-  /* Course button - special styling with fire gradient animation */
+  /* Course button - special styling with magenta and cyan gradient animation */
   .site-header.sidebar-mode .nav-right a:last-child {
     border: 1px solid #ffffff;
     border-radius: 8px;
     padding: 6px 12px;
-    background: linear-gradient(90deg, #ff6b35, #ff8c42, #ffa630, #ff6b35);
+    background: linear-gradient(90deg, var(--acc-mag), #ff00ff, var(--acc-cyan), var(--acc-mag));
     background-size: 200% 100%;
     animation: fireGradient 3s ease infinite, navItemDrop 0.4s ease forwards;
     font-weight: 600;
-    box-shadow: 0 0 20px rgba(255, 107, 53, 0.4);
+    box-shadow: 0 0 20px rgba(255, 60, 126, 0.5), 0 0 15px rgba(0, 224, 255, 0.3);
     transition: all 0.3s ease;
+    color: #ffffff;
   }
 
   .site-header.sidebar-mode .nav-right a:last-child:hover {
-    box-shadow: 0 0 30px rgba(255, 107, 53, 0.7);
+    box-shadow: 0 0 30px rgba(255, 60, 126, 0.8), 0 0 20px rgba(0, 224, 255, 0.6);
     transform: scale(1.05);
   }
 

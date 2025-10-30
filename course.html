@@ -128,6 +128,37 @@
         padding-left: 80px;
       }
 
+      /* Scroll indicator positioning */
+      .course-hero .scroll-indicator {
+        position: absolute;
+        bottom: 40px;
+        z-index: 3;
+      }
+
+      /* English: scroll indicator on right */
+      [data-lang="en"] .course-hero .scroll-indicator {
+        right: 60px;
+        left: auto;
+      }
+
+      [data-lang="en"] .scroll-label {
+        left: auto;
+        right: calc(100% + 28px);
+        text-align: right;
+      }
+
+      /* Hebrew: scroll indicator on left */
+      [data-lang="he"] .course-hero .scroll-indicator {
+        left: 60px;
+        right: auto;
+      }
+
+      [data-lang="he"] .scroll-label {
+        left: calc(100% + 28px);
+        right: auto;
+        text-align: left;
+      }
+
       .course-pricing {
         padding: clamp(80px, 12vh, 140px) 0;
       }
@@ -593,6 +624,19 @@
               </p>
             </div>
           </div>
+        </div>
+
+        <!-- Scroll indicator (decorative sign) -->
+        <!-- English Version -->
+        <div class="scroll-indicator lang-block active" data-lang="en" aria-label="Scroll Down">
+          <span class="scroll-label">Scroll Down</span>
+          <span class="scroll-mouse" aria-hidden="true"></span>
+        </div>
+
+        <!-- Hebrew Version -->
+        <div class="scroll-indicator lang-block" data-lang="he" aria-label="גלול למטה">
+          <span class="scroll-label">גלול למטה</span>
+          <span class="scroll-mouse" aria-hidden="true"></span>
         </div>
       </section>
 

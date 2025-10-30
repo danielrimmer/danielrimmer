@@ -126,27 +126,22 @@
 
       .course-pricing-section {
         display: flex;
-        flex-direction: column;
-        gap: 16px;
+        align-items: baseline;
+        gap: 12px;
+        font-size: clamp(28px, 4vw, 34px);
+        font-weight: 700;
+        color: #00e0ff;
       }
 
       .course-price-old {
-        font-size: 0.95rem;
-        color: var(--muted);
+        font-size: clamp(18px, 3vw, 20px);
+        color: #00e0ff;
         text-decoration: line-through;
+        opacity: 0.85;
       }
 
       .course-price-new {
-        font-size: 2.2rem;
-        font-family: Poppins, system-ui, sans-serif;
-        font-weight: 800;
-        color: var(--acc-cyan);
-      }
-
-      .course-price-divider {
-        height: 2px;
-        background-color: var(--acc-cyan);
-        margin: 16px 0;
+        color: #ff3c7e;
       }
 
       .course-features {
@@ -501,9 +496,8 @@
                 <div class="course-card-left">
                   <h3>Super Course</h3>
                   <div class="course-pricing-section">
-                    <div class="course-price-old">Price Slashed: ₪ 3,500</div>
-                    <div class="course-price-new">₪ 2,800</div>
-                    <div class="course-price-divider"></div>
+                    <span class="course-price-old">₪ 3,500</span>
+                    <span class="course-price-new">₪ 2,800</span>
                   </div>
                 </div>
               </div>
@@ -526,24 +520,19 @@
                     <li>How to Optimize Your Website</li>
                     <li>How to Create Mind-Blowing Images and Videos</li>
                     <li>Prompt Engineering</li>
-                  </ul>
-                </div>
-                <div class="course-features">
-                  <h4>Final Features & Bonus</h4>
-                  <ul class="course-feature-list">
                     <li>60 Minutes Credit After Learning Sessions</li>
                     <li>Google Business Implementation</li>
                   </ul>
-                  <div class="course-bonus">
-                    <h4>Bonus</h4>
-                    <ul class="course-bonus-list">
-                      <li>1h session – How to Write Copy That Sells</li>
-                      <li>How to Buy a Domain</li>
-                      <li>How to Connect Your Website to Your Domain</li>
-                      <li>How to Host Your Website Online – For Free</li>
-                      <li>One-on-One Private Class</li>
-                    </ul>
-                  </div>
+                </div>
+                <div class="course-bonus">
+                  <h4>Bonus</h4>
+                  <ul class="course-bonus-list">
+                    <li>1h session – How to Write Copy That Sells</li>
+                    <li>How to Buy a Domain</li>
+                    <li>How to Connect Your Website to Your Domain</li>
+                    <li>How to Host Your Website Online – For Free</li>
+                    <li>One-on-One Private Class</li>
+                  </ul>
                 </div>
               </div>
               <div class="course-card-footer">
@@ -559,9 +548,8 @@
                 <div class="course-card-left">
                   <h3>קורס-על</h3>
                   <div class="course-pricing-section">
-                    <div class="course-price-old">מחיר ירוד: ₪ 3,500</div>
-                    <div class="course-price-new">₪ 2,800</div>
-                    <div class="course-price-divider"></div>
+                    <span class="course-price-old">₪ 3,500</span>
+                    <span class="course-price-new">₪ 2,800</span>
                   </div>
                 </div>
               </div>
@@ -584,24 +572,19 @@
                     <li>איך לשפר את מהירות האתר שלך</li>
                     <li>איך ליצור תמונות וסרטונים מרהיבים</li>
                     <li>Prompt Engineering</li>
-                  </ul>
-                </div>
-                <div class="course-features">
-                  <h4>תכונות סופיות וּבונוס</h4>
-                  <ul class="course-feature-list">
                     <li>60 דקות נוספות של ליווי לאחר השיעורים</li>
                     <li>חיבור העסק שלך לגוגל ביזנס</li>
                   </ul>
-                  <div class="course-bonus">
-                    <h4>בונוס</h4>
-                    <ul class="course-bonus-list">
-                      <li>מפגש נוסף (1 שעה) – איך לכתוב טקסט שמוכר</li>
-                      <li>איך לקנות דומיין</li>
-                      <li>איך לחבר את האתר שלך לדומיין</li>
-                      <li>איך להעלות את האתר שלך לאוויר – בחינם</li>
-                      <li>שיעור אישי אחד-על-אחד</li>
-                    </ul>
-                  </div>
+                </div>
+                <div class="course-bonus">
+                  <h4>בונוס</h4>
+                  <ul class="course-bonus-list">
+                    <li>מפגש נוסף (1 שעה) – איך לכתוב טקסט שמוכר</li>
+                    <li>איך לקנות דומיין</li>
+                    <li>איך לחבר את האתר שלך לדומיין</li>
+                    <li>איך להעלות את האתר שלך לאוויר – בחינם</li>
+                    <li>שיעור אישי אחד-על-אחד</li>
+                  </ul>
                 </div>
               </div>
               <div class="course-card-footer">

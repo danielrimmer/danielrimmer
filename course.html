@@ -39,12 +39,26 @@
         height: 100%;
         object-fit: cover;
         display: block;
-        transform: scale(1.15);
+        transform: scale(1);
       }
 
       /* Mirror video for Hebrew */
       [data-lang="he"] .course-hero-media video {
-        transform: scaleX(-1) scale(1.15);
+        transform: scaleX(-1) scale(1);
+      }
+
+      /* Mobile/Tablet: Ensure video displays properly */
+      @media (max-width: 980px) {
+        .course-hero-media {
+          z-index: -1;
+        }
+
+        .course-hero-media video {
+          display: block;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
       }
 
       /* Subtle overlay for text readability */
@@ -159,6 +173,39 @@
         right: calc(100% + 28px);
         left: auto;
         text-align: right;
+      }
+
+      /* Mobile/Tablet: center scroll indicator */
+      @media (max-width: 980px) {
+        .course-hero .scroll-indicator {
+          left: 50%;
+          right: auto;
+          transform: translateX(-50%);
+        }
+
+        .course-hero .scroll-indicator[data-lang="en"] {
+          left: 50%;
+          right: auto;
+        }
+
+        .course-hero .scroll-indicator[data-lang="en"] .scroll-label {
+          left: calc(100% + 20px);
+          right: auto;
+          text-align: left;
+          white-space: nowrap;
+        }
+
+        .course-hero .scroll-indicator[data-lang="he"] {
+          left: 50%;
+          right: auto;
+        }
+
+        .course-hero .scroll-indicator[data-lang="he"] .scroll-label {
+          left: auto;
+          right: calc(100% + 20px);
+          text-align: right;
+          white-space: nowrap;
+        }
       }
 
       .course-pricing {

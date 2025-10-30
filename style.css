@@ -760,7 +760,7 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
   position: absolute;
   left: 0;
   right: 0;
-  bottom: 20px;
+  bottom: 40px;
   transform: translateY(6px);
   z-index: 3;
   display: block;

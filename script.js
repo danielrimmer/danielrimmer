@@ -219,8 +219,16 @@ const animateStepValue = (el, target, options = {}) => {
     // Remove the old blue background styling
     header.classList.remove('is-solid');
 
+    // Course page header hide logic - hide after 40px scroll
+    if (isCoursePagee && !navOpen) {
+      if (y >= 40) {
+        header.classList.add('hide');
+      } else {
+        header.classList.remove('hide');
+      }
+    }
     // Desktop sidebar transformation logic - EXCLUDE course page
-    if (isDesktop() && !navOpen && !isCoursePagee) {
+    else if (isDesktop() && !navOpen && !isCoursePagee) {
       if (y >= 50) {
         // Scrolled 50px - transform to sidebar
         if (!isSidebarMode) {
@@ -254,7 +262,7 @@ const animateStepValue = (el, target, options = {}) => {
           }, 400);
         }
       }
-    } else if (!isDesktop()) {
+    } else if (!isDesktop() && !isCoursePagee) {
       // Mobile/tablet: use original hide/show logic
       if (!navOpen && y >= heroSectionHeight) {
         header.classList.add('hide');

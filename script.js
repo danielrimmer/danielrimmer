@@ -563,21 +563,6 @@ const animateStepValue = (el, target, options = {}) => {
   });
 })();
 
-// Subtle parallax on hero orbs
-(function () {
-  const hero = document.querySelector('.hero');
-  const a = document.querySelector('.orb-a');
-  const b = document.querySelector('.orb-b');
-  if (!hero || !a || !b) return;
-  hero.addEventListener('mousemove', (e) => {
-    const r = hero.getBoundingClientRect();
-    const cx = (e.clientX - r.left) / r.width - 0.5;
-    const cy = (e.clientY - r.top) / r.height - 0.5;
-    a.style.transform = `translate(${cx * 12}px, ${cy * 12}px)`;
-    b.style.transform = `translate(${cx * -12}px, ${cy * -12}px)`;
-  });
-})();
-
 // Parallax wallpaper in About section (subtle, reduced-motion aware)
 (function () {
   const section = document.querySelector('section.about');
@@ -853,76 +838,6 @@ const animateStepValue = (el, target, options = {}) => {
   });
 })();
 
-// Version 2 carousel interaction
-(function () {
-  const carousels = document.querySelectorAll('[data-process-carousel]');
-  if (!carousels.length) return;
-
-  carousels.forEach((carousel) => {
-    const cards = Array.from(carousel.querySelectorAll('.process-card'));
-    if (!cards.length) return;
-
-    const section = carousel.closest('.process');
-    const controls = section ? Array.from(section.querySelectorAll('.carousel-btn')) : [];
-    let activeIndex = Math.max(0, cards.findIndex((card) => card.classList.contains('active')));
-
-    const clampIndex = (index) => {
-      if (index < 0) return 0;
-      if (index >= cards.length) return cards.length - 1;
-      return index;
-    };
-
-    const ensureVisible = (card) => {
-      if (!card || typeof card.scrollIntoView !== 'function') return;
-      card.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-    };
-
-    const setActive = (index, focusCard = false, animate = true) => {
-      const nextIndex = clampIndex(index);
-      const nextCard = cards[nextIndex];
-      if (!nextCard) return;
-      if (nextIndex === activeIndex && nextCard.classList.contains('active') && animate) return;
-      activeIndex = nextIndex;
-      cards.forEach((card, i) => {
-        const isActive = i === nextIndex;
-        card.classList.toggle('active', isActive);
-        card.setAttribute('aria-expanded', String(isActive));
-      });
-      if (animate) {
-        animateStepValue(nextCard.querySelector('.step-num'), Number(nextCard.dataset.step) || nextIndex + 1, { duration: 500, from: 0 });
-      }
-      ensureVisible(nextCard);
-      if (focusCard) nextCard.focus();
-    };
-
-    cards.forEach((card, index) => {
-      card.addEventListener('click', () => setActive(index));
-      card.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          setActive(index);
-        } else if (e.key === 'ArrowRight') {
-          e.preventDefault();
-          setActive(index + 1, true);
-        } else if (e.key === 'ArrowLeft') {
-          e.preventDefault();
-          setActive(index - 1, true);
-        }
-      });
-    });
-
-    controls.forEach((btn) => {
-      btn.addEventListener('click', () => {
-        const dir = btn.dataset.dir === 'prev' ? -1 : 1;
-        setActive(activeIndex + dir, true);
-      });
-    });
-
-    cards.forEach((card) => card.setAttribute('aria-expanded', String(card.classList.contains('active'))));
-    setActive(activeIndex, false, false);
-  });
-})();
-
 // Bonus Services 3D Carousel
 (function () {
   const carousels = document.querySelectorAll('[data-bonus-carousel]');
@@ -1183,8 +1098,6 @@ const animateStepValue = (el, target, options = {}) => {
   const benefitCards = document.querySelectorAll('.benefit-card');
 
   benefitCards.forEach((card) => {
-    const glowLight = card.querySelector('::before');
-
     card.addEventListener('mousemove', (e) => {
       const rect = card.getBoundingClientRect();
       const x = e.clientX - rect.left;
@@ -1388,32 +1301,6 @@ const animateStepValue = (el, target, options = {}) => {
     videos.forEach((video) => videoObserver.observe(video));
   })();
 
-  // Lazy load background images for sections (for parallax and wallpapers)
-  (function lazyLoadBackgrounds() {
-    const elements = document.querySelectorAll('[data-bg-src]');
-    if (!('IntersectionObserver' in window) || elements.length === 0) return;
-
-    const bgObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const el = entry.target;
-            const bgSrc = el.dataset.bgSrc;
-            if (bgSrc) {
-              el.style.backgroundImage = `url('${bgSrc}')`;
-              el.classList.add('bg-loaded');
-              delete el.dataset.bgSrc;
-              bgObserver.unobserve(el);
-            }
-          }
-        });
-      },
-      { rootMargin: getResponsiveMargin(60, 80, 100) } // Mobile: 60px, Tablet: 80px, Desktop: 100px
-    );
-
-    elements.forEach((el) => bgObserver.observe(el));
-  })();
-
   // Lazy load multiple background images (for process wallpaper switcher)
   (function lazyLoadProcessWallpapers() {
     const processDetail = document.querySelector('.process-detail-panel');
@@ -1514,16 +1401,4 @@ const animateStepValue = (el, target, options = {}) => {
     lazyImages.forEach((img) => imageObserver.observe(img));
   })();
 
-  // Bonus: Defer non-critical CSS and scripts
-  (function deferNonCriticalAssets() {
-    // This would typically be done server-side, but can help with in-page optimization
-    // Mark when document is fully interactive
-    document.addEventListener('DOMContentLoaded', () => {
-      document.body.classList.add('dom-ready');
-    });
-
-    window.addEventListener('load', () => {
-      document.body.classList.add('fully-loaded');
-    });
-  })();
 })();

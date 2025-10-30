@@ -144,35 +144,80 @@
         padding-left: 80px;
       }
 
-      /* Scroll indicator positioning */
+      /* Scroll indicator positioning - centered like index page */
       .course-hero .scroll-indicator {
         position: absolute;
+        left: 0;
+        right: 0;
         bottom: 40px;
         z-index: 3;
+        display: block;
+        opacity: 1;
+        visibility: visible;
       }
 
-      /* English: scroll indicator on left */
-      .course-hero .scroll-indicator[data-lang="en"] {
-        left: 60px;
-        right: auto;
-      }
-
-      .course-hero .scroll-indicator[data-lang="en"] .scroll-label {
-        left: calc(100% + 28px);
+      /* Scroll indicator label and mouse styling */
+      .course-hero .scroll-label {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        white-space: nowrap;
+        font-size: clamp(14px, 1.6vw, 18px);
+        font-weight: 400;
+        color: rgba(255,255,255,0.82);
+        left: calc(50% + 14px + 14px);
         right: auto;
         text-align: left;
       }
 
-      /* Hebrew: scroll indicator on right */
-      .course-hero .scroll-indicator[data-lang="he"] {
-        right: 60px;
+      [data-lang="he"] .course-hero .scroll-label {
         left: auto;
+        right: calc(50% + 14px + 14px);
+        text-align: right;
       }
 
-      .course-hero .scroll-indicator[data-lang="he"] .scroll-label {
-        right: calc(100% + 28px);
-        left: auto;
-        text-align: right;
+      .course-hero .scroll-mouse {
+        width: 28px;
+        height: 46px;
+        border: 2px solid rgba(255,255,255,0.7);
+        border-radius: 16px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        display: inline-block;
+      }
+
+      .course-hero .scroll-mouse::before {
+        content: '';
+        position: absolute;
+        left: 50%;
+        top: 9px;
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        transform: translateX(-50%);
+        background: var(--acc-cyan);
+        opacity: 1;
+        animation: scrollDot 2.2s cubic-bezier(.3,.6,.3,1) infinite;
+      }
+
+      @keyframes scrollDot {
+        0% {
+          transform: translate(-50%, 0) scale(1);
+          background: var(--acc-cyan);
+          opacity: 1;
+        }
+        60% {
+          transform: translate(-50%, 20px) scale(0.84);
+          background: #9bdff0;
+          opacity: 0.7;
+        }
+        100% {
+          transform: translate(-50%, 30px) scale(0.7);
+          background: rgba(200, 205, 210, 0);
+          opacity: 0;
+        }
       }
 
       /* Mobile/Tablet: center scroll indicator */
@@ -183,28 +228,17 @@
           transform: translateX(-50%);
         }
 
-        .course-hero .scroll-indicator[data-lang="en"] {
-          left: 50%;
-          right: auto;
-        }
-
-        .course-hero .scroll-indicator[data-lang="en"] .scroll-label {
+        .course-hero .scroll-label {
           left: calc(100% + 20px);
           right: auto;
           text-align: left;
           white-space: nowrap;
         }
 
-        .course-hero .scroll-indicator[data-lang="he"] {
-          left: 50%;
-          right: auto;
-        }
-
-        .course-hero .scroll-indicator[data-lang="he"] .scroll-label {
+        [data-lang="he"] .course-hero .scroll-label {
           left: auto;
           right: calc(100% + 20px);
           text-align: right;
-          white-space: nowrap;
         }
       }
 
@@ -321,6 +355,7 @@
         text-align: left;
       }
 
+      [data-lang="he"] .course-features h4,
       [dir="rtl"] .course-features h4 {
         text-align: right;
       }
@@ -339,6 +374,7 @@
         align-items: flex-start;
         gap: 10px;
         line-height: 1.4;
+        text-align: left;
       }
 
       .course-feature-list li::before {
@@ -351,9 +387,21 @@
         margin-top: 0;
       }
 
-      [data-lang="he"] .course-feature-list li,
+      [data-lang="he"] .course-feature-list li::before,
+      [dir="rtl"] .course-feature-list li::before {
+        margin-right: 0;
+        margin-left: 12px;
+      }
+
+      [data-lang="he"] .course-feature-list li {
+        flex-direction: row;
+        direction: rtl;
+        text-align: right;
+      }
+
       [dir="rtl"] .course-feature-list li {
-        flex-direction: row-reverse;
+        flex-direction: row;
+        direction: rtl;
         text-align: right;
       }
 
@@ -373,6 +421,7 @@
         text-align: left;
       }
 
+      [data-lang="he"] .course-bonus h4,
       [dir="rtl"] .course-bonus h4 {
         text-align: right;
       }
@@ -391,6 +440,7 @@
         align-items: flex-start;
         gap: 10px;
         line-height: 1.4;
+        text-align: left;
       }
 
       .course-bonus-list li::before {
@@ -403,9 +453,21 @@
         margin-top: 0;
       }
 
-      [data-lang="he"] .course-bonus-list li,
+      [data-lang="he"] .course-bonus-list li::before,
+      [dir="rtl"] .course-bonus-list li::before {
+        margin-right: 0;
+        margin-left: 12px;
+      }
+
+      [data-lang="he"] .course-bonus-list li {
+        flex-direction: row;
+        direction: rtl;
+        text-align: right;
+      }
+
       [dir="rtl"] .course-bonus-list li {
-        flex-direction: row-reverse;
+        flex-direction: row;
+        direction: rtl;
         text-align: right;
       }
 
@@ -455,12 +517,9 @@
         order: 1;
       }
 
-      [data-lang="he"] .course-feature-list li {
-        flex-direction: row-reverse;
-      }
-
-      [data-lang="he"] .course-bonus-list li {
-        flex-direction: row-reverse;
+      [data-lang="he"] .course-card-content {
+        direction: rtl;
+        text-align: right;
       }
 
       /* Hide non-active languages */
@@ -727,15 +786,8 @@
         </div>
 
         <!-- Scroll indicator (decorative sign) -->
-        <!-- English Version -->
-        <div class="scroll-indicator lang-block active" data-lang="en" aria-label="Scroll Down">
+        <div class="scroll-indicator" aria-label="Scroll Down">
           <span class="scroll-label">Scroll Down</span>
-          <span class="scroll-mouse" aria-hidden="true"></span>
-        </div>
-
-        <!-- Hebrew Version -->
-        <div class="scroll-indicator lang-block" data-lang="he" aria-label="גלול למטה">
-          <span class="scroll-label">גלול למטה</span>
           <span class="scroll-mouse" aria-hidden="true"></span>
         </div>
       </section>
@@ -946,6 +998,8 @@
         const body = document.body;
         const langSwitches = document.querySelectorAll('.lang-switch');
         const langBlocks = document.querySelectorAll('.lang-block');
+        const scrollIndicator = document.querySelector('.course-hero .scroll-indicator');
+        const scrollLabel = scrollIndicator ? scrollIndicator.querySelector('.scroll-label') : null;
 
         // Set initial language based on URL or default to English
         const urlParams = new URLSearchParams(window.location.search);
@@ -972,6 +1026,13 @@
               block.classList.remove('active');
             }
           });
+
+          if (scrollIndicator && scrollLabel) {
+            const indicatorText = lang === 'he' ? 'גלול למטה' : 'Scroll Down';
+            scrollLabel.textContent = indicatorText;
+            scrollLabel.setAttribute('dir', lang === 'he' ? 'rtl' : 'ltr');
+            scrollIndicator.setAttribute('aria-label', indicatorText);
+          }
 
           // Update active lang button
           langSwitches.forEach(btn => {

@@ -21,13 +21,25 @@
     <style>
       /* Course-specific styles */
       .course-hero {
-        padding: clamp(80px, 12vh, 140px) 0;
-        text-align: center;
+        padding: clamp(60px, 10vh, 120px) 0;
+      }
+
+      .course-hero .container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+        align-items: center;
+      }
+
+      .course-hero-content {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
       }
 
       .course-hero h1 {
-        margin-bottom: 24px;
-        font-size: clamp(2.2rem, 5vw, 3.2rem);
+        margin: 0;
+        font-size: clamp(2rem, 4vw, 3rem);
         font-family: Poppins, system-ui, sans-serif;
         font-weight: 800;
         background: linear-gradient(120deg, var(--acc-cyan), var(--acc-mag));
@@ -38,11 +50,44 @@
       }
 
       .course-hero p {
-        max-width: 720px;
-        margin: 0 auto 48px;
-        font-size: clamp(1rem, 1.2vw, 1.125rem);
+        margin: 0;
+        font-size: clamp(0.95rem, 1.1vw, 1rem);
         line-height: 1.7;
         color: var(--text);
+      }
+
+      .course-hero-video {
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+        border-radius: 16px;
+      }
+
+      .course-hero-video video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transform: scale(1.15);
+      }
+
+      /* Mirror video for Hebrew */
+      [data-lang="he"] .course-hero-video video {
+        transform: scaleX(-1) scale(1.15);
+      }
+
+      /* Hebrew layout - flip columns */
+      [data-lang="he"] .course-hero .container {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      [data-lang="he"] .course-hero-content {
+        order: 2;
+        text-align: right;
+      }
+
+      [data-lang="he"] .course-hero-video {
+        order: 1;
       }
 
       .course-pricing {
@@ -329,7 +374,39 @@
         }
       }
 
+      @media (max-width: 900px) {
+        .course-hero .container {
+          grid-template-columns: 1fr;
+          gap: 40px;
+        }
+
+        [data-lang="he"] .course-hero-content {
+          order: 1;
+        }
+
+        [data-lang="he"] .course-hero-video {
+          order: 2;
+        }
+      }
+
       @media (max-width: 720px) {
+        .course-hero {
+          padding: clamp(40px, 8vh, 80px) 0;
+        }
+
+        .course-hero .container {
+          grid-template-columns: 1fr;
+          gap: 32px;
+        }
+
+        .course-hero h1 {
+          font-size: 1.8rem;
+        }
+
+        .course-hero p {
+          font-size: 0.95rem;
+        }
+
         .course-card {
           padding: 24px;
           gap: 24px;
@@ -430,44 +507,58 @@
     </header>
 
     <main id="main-content">
-      <!-- Hero Section -->
+      <!-- Hero Section: Build Your Own Website – Course -->
       <section class="course-hero section reveal" id="course">
         <div class="container">
           <!-- English Version -->
           <div class="lang-block active" data-lang="en">
-            <h1>Build Your Own Website – Course</h1>
-            <p>
-              Have you ever dreamed of building your own website — even without any experience in coding or design? What if I told you that you could do it in just one week and only eight hours of learning?
-            </p>
-            <p>
-              You might be skeptical, and that's fair. But I promise — by the end of this course, you'll have a beautiful, fully functional website you built yourself.
-            </p>
-            <p>
-              And here's the best part: if you're not completely satisfied, I offer a 100% money-back guarantee. You take absolutely no risk — only the opportunity to bring your dream website to life.
-            </p>
+            <div class="course-hero-content">
+              <h1>Build Your Own Website – Course</h1>
+              <p>
+                Have you ever dreamed of building your own website — even without any experience in coding or design? What if I told you that you could do it in just one week and only eight hours of learning?
+              </p>
+              <p>
+                You might be skeptical, and that's fair. But I promise — by the end of this course, you'll have a beautiful, fully functional website you built yourself.
+              </p>
+              <p>
+                And here's the best part: if you're not completely satisfied, I offer a 100% money-back guarantee. You take absolutely no risk — only the opportunity to bring your dream website to life.
+              </p>
+            </div>
+            <div class="course-hero-video">
+              <video autoplay muted loop playsinline preload="metadata">
+                <source src="images/course-video.mp4" type="video/mp4" />
+              </video>
+            </div>
           </div>
 
           <!-- Hebrew Version -->
           <div class="lang-block" data-lang="he" dir="rtl">
-            <h1>בנה את האתר שלך בעצמך – הקורס</h1>
-            <p>
-              חלמת פעם לבנות את האתר שלך — גם בלי שום ניסיון בקוד או בעיצוב? ומה אם היית מגלה שאתה יכול לעשות את זה בתוך שבוע אחד בלבד וב-8 שעות לימוד בלבד?
-            </p>
-            <p>
-              אולי זה נשמע לך לא מציאותי — אבל אני מבטיח שתוכל ליצור אתר מהמם, מקצועי ופונקציונלי בעצמך.
-            </p>
-            <p>
-              והחלק הטוב ביותר? אני מציע החזר כספי מלא אם לא תהיה מרוצה מהתוצאה.
-            </p>
-            <p>
-              אין לך מה להפסיד — רק להרוויח את היכולת לבנות את האתר שתמיד רצית.
-            </p>
+            <div class="course-hero-video">
+              <video autoplay muted loop playsinline preload="metadata">
+                <source src="images/course-video.mp4" type="video/mp4" />
+              </video>
+            </div>
+            <div class="course-hero-content">
+              <h1>בנה את האתר שלך בעצמך – הקורס</h1>
+              <p>
+                חלמת פעם לבנות את האתר שלך — גם בלי שום ניסיון בקוד או בעיצוב? ומה אם היית מגלה שאתה יכול לעשות את זה בתוך שבוע אחד בלבד וב-8 שעות לימוד בלבד?
+              </p>
+              <p>
+                אולי זה נשמע לך לא מציאותי — אבל אני מבטיח שתוכל ליצור אתר מהמם, מקצועי ופונקציונלי בעצמך.
+              </p>
+              <p>
+                והחלק הטוב ביותר? אני מציע החזר כספי מלא אם לא תהיה מרוצה מהתוצאה.
+              </p>
+              <p>
+                אין לך מה להפסיד — רק להרוויח את היכולת לבנות את האתר שתמיד רצית.
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
       <!-- Pricing Section -->
-      <section class="course-pricing section reveal">
+      <section class="course-pricing section reveal" id="pricing">
         <div class="container">
           <div class="course-pricing-header">
             <!-- English Version -->
@@ -595,7 +686,7 @@
         </div>
       </section>
 
-      <!-- Contact Section -->
+      <!-- Contact Section: Get in Touch -->
       <section class="contact section reveal" id="contact">
         <div class="contact-showcase">
           <div class="contact-showcase-left">

@@ -93,22 +93,17 @@
       }
 
       .course-card-header {
-        display: flex;
-        flex-direction: column;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 48px;
+        margin-bottom: 40px;
         align-items: center;
-        justify-content: center;
-        gap: 16px;
-        text-align: center;
-        margin-bottom: 32px;
       }
 
       .course-card-left {
         display: flex;
         flex-direction: column;
-        align-items: center;
-        justify-content: center;
         gap: 16px;
-        flex-shrink: 0;
       }
 
       .course-card-content {
@@ -116,10 +111,11 @@
         grid-template-columns: 1fr 1fr 1fr;
         gap: 48px;
         width: 100%;
+        grid-column: 1 / -1;
       }
 
       .course-card h3 {
-        font-size: 1.8rem;
+        font-size: clamp(2.2rem, 5vw, 3.2rem);
         font-family: Poppins, system-ui, sans-serif;
         font-weight: 800;
         margin: 0;
@@ -128,22 +124,23 @@
 
       .course-pricing-section {
         display: flex;
-        align-items: baseline;
+        flex-direction: column;
         gap: 12px;
-        font-size: clamp(28px, 4vw, 34px);
-        font-weight: 700;
-        color: #00e0ff;
       }
 
       .course-price-old {
-        font-size: clamp(18px, 3vw, 20px);
+        font-size: clamp(20px, 3.5vw, 28px);
         color: #00e0ff;
         text-decoration: line-through;
         opacity: 0.85;
+        font-weight: 600;
       }
 
       .course-price-new {
+        font-size: clamp(32px, 6vw, 48px);
         color: #ff3c7e;
+        font-weight: 800;
+        font-family: Poppins, system-ui, sans-serif;
       }
 
       .course-features {
@@ -245,8 +242,22 @@
         text-align: center;
       }
 
-      [data-lang="he"] .course-card-header {
+      .course-card-right {
+        display: flex;
         flex-direction: column;
+        gap: 16px;
+      }
+
+      [data-lang="he"] .course-card-header {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      [data-lang="he"] .course-card-left {
+        order: 2;
+      }
+
+      [data-lang="he"] .course-card-right {
+        order: 1;
       }
 
       [data-lang="he"] .course-feature-list li {
@@ -295,6 +306,10 @@
 
       /* Responsive design */
       @media (max-width: 1100px) {
+        .course-card-header {
+          gap: 32px;
+        }
+
         .course-card-content {
           grid-template-columns: 1fr 1fr;
           gap: 32px;
@@ -302,6 +317,12 @@
       }
 
       @media (max-width: 900px) {
+        .course-card-header {
+          grid-template-columns: 1fr 1fr;
+          gap: 24px;
+          margin-bottom: 32px;
+        }
+
         .course-card-content {
           grid-template-columns: 1fr 1fr;
           gap: 32px;
@@ -314,16 +335,18 @@
           gap: 24px;
         }
 
-        .course-card h3 {
-          font-size: 1.5rem;
+        .course-card-header {
+          grid-template-columns: 1fr;
+          gap: 24px;
+          margin-bottom: 24px;
         }
 
-        .course-card-left {
-          min-width: unset;
+        .course-card h3 {
+          font-size: 1.8rem;
         }
 
         .course-price-new {
-          font-size: 1.8rem;
+          font-size: 2rem;
         }
 
         .course-card-content {
@@ -466,6 +489,8 @@
               <div class="course-card-header">
                 <div class="course-card-left">
                   <h3>Super Course</h3>
+                </div>
+                <div class="course-card-right">
                   <div class="course-pricing-section">
                     <span class="course-price-old">₪ 3,500</span>
                     <span class="course-price-new">₪ 2,800</span>
@@ -516,12 +541,14 @@
             <!-- Hebrew Version -->
             <div class="lang-block" data-lang="he" dir="rtl">
               <div class="course-card-header">
-                <div class="course-card-left">
-                  <h3>קורס-על</h3>
+                <div class="course-card-right">
                   <div class="course-pricing-section">
                     <span class="course-price-old">₪ 3,500</span>
                     <span class="course-price-new">₪ 2,800</span>
                   </div>
+                </div>
+                <div class="course-card-left">
+                  <h3>קורס-על</h3>
                 </div>
               </div>
               <div class="course-card-content">

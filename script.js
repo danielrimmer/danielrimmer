@@ -222,6 +222,24 @@ const animateStepValue = (el, target, options = {}) => {
     // Remove the old blue background styling
     header.classList.remove('is-solid');
 
+    // Mobile/Tablet: Add dark blue background to header and preheader on scroll
+    if (!isDesktop()) {
+      const preheader = document.querySelector('.preheader');
+      const scrollThreshold = 30; // Change color after scrolling down 30px
+
+      if (y >= scrollThreshold) {
+        header.classList.add('mobile-scrolled');
+        if (preheader) {
+          preheader.classList.add('scrolled');
+        }
+      } else {
+        header.classList.remove('mobile-scrolled');
+        if (preheader) {
+          preheader.classList.remove('scrolled');
+        }
+      }
+    }
+
     // Desktop sidebar transformation logic
     if (isDesktop() && !navOpen) {
       if (y >= 50) {

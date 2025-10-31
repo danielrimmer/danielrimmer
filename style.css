@@ -162,6 +162,26 @@ a { color: inherit; text-decoration: none; }
   }
 }
 
+/* Mobile and tablet: preheader and header background color on scroll */
+@media (max-width: 980px) {
+  .preheader {
+    transition: background-color 0.3s ease;
+  }
+
+  .preheader.scrolled {
+    background: #0d2a52; /* Dark blue */
+  }
+
+  .site-header {
+    transition: background-color 0.3s ease;
+  }
+
+  .site-header.mobile-scrolled {
+    background: rgba(13, 42, 82, 0.95) !important;
+    border-bottom: 1px solid rgba(0, 224, 255, 0.15);
+  }
+}
+
 a, button, .btn, .nav-toggle, .process-step, .lang-switch {
   cursor: url('images/cursor-default.svg') 11 11, pointer;
 }
@@ -3948,20 +3968,20 @@ html[dir="rtl"] .pricing-includes {
 }
 
 html[dir="rtl"] .pricing-includes li {
-  flex-direction: row-reverse;
+  flex-direction: row;
   text-align: right;
-  gap: 10px;
 }
 
 html[dir="rtl"] .pricing-includes li::before {
   margin-left: 12px;
   margin-right: 0;
-  order: 2;
+  order: 0;
 }
 
 
 html[dir="rtl"] .pricing-includes span {
   order: 1;
+  text-align: right;
 }
 
 html[dir="rtl"] .pricing-price {
@@ -4286,20 +4306,20 @@ html[dir="rtl"] .pricing-includes {
 }
 
 html[dir="rtl"] .pricing-includes li {
-  flex-direction: row-reverse;
+  flex-direction: row;
   text-align: right;
-  gap: 10px;
 }
 
 html[dir="rtl"] .pricing-includes li::before {
   margin-left: 12px;
   margin-right: 0;
-  order: 2;
+  order: 0;
 }
 
 
 html[dir="rtl"] .pricing-includes span {
   order: 1;
+  text-align: right;
 }
 
 html[dir="rtl"] .pricing-price {

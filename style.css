@@ -184,6 +184,13 @@ a { color: inherit; text-decoration: none; }
   }
 }
 
+/* Course page: header dark blue background on scroll */
+.site-header.course-scrolled {
+  background: rgba(13, 42, 82, 0.95) !important;
+  border-bottom: 1px solid rgba(0, 224, 255, 0.15);
+  transition: background-color 0.3s ease;
+}
+
 /* Mobile and tablet: preheader and header background color on scroll */
 @media (max-width: 980px) {
   .preheader {

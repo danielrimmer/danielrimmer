@@ -230,8 +230,16 @@ const animateStepValue = (el, target, options = {}) => {
     // Handle preheader visibility and styling
     const preheader = document.querySelector('.preheader');
 
-    // Mobile/Tablet: Add dark blue background to header and preheader on scroll
-    if (!isDesktop()) {
+    // Course page: Add dark blue background to header after scrolling 40px
+    if (isCoursePagee) {
+      const courseScrollThreshold = 40;
+      if (y >= courseScrollThreshold) {
+        header.classList.add('course-scrolled');
+      } else {
+        header.classList.remove('course-scrolled');
+      }
+    } else if (!isDesktop()) {
+      // Mobile/Tablet (index and he pages): Add dark blue background to header and preheader on scroll
       const scrollThreshold = 30; // Change color after scrolling down 30px
 
       if (y >= scrollThreshold) {
@@ -246,7 +254,7 @@ const animateStepValue = (el, target, options = {}) => {
         }
       }
     } else {
-      // Desktop: Hide preheader after scrolling down 20px
+      // Desktop (index and he pages): Hide preheader after scrolling down 20px
       const preheaderHideThreshold = 20;
       if (y >= preheaderHideThreshold) {
         if (preheader) {

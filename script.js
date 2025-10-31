@@ -191,6 +191,7 @@ const animateStepValue = (el, target, options = {}) => {
 (function () {
   const header = document.querySelector('.site-header');
   const root = document.documentElement;
+  const preheader = document.querySelector('.preheader');
   const onReady = () => document.body.classList.add('is-ready');
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', onReady);
   else onReady();
@@ -200,6 +201,25 @@ const animateStepValue = (el, target, options = {}) => {
   const heroSectionHeight = heroSection?.offsetHeight || window.innerHeight;
   let headerHeight = header?.getBoundingClientRect().height || 76;
   if (header) root.style.setProperty('--header-height', `${Math.round(headerHeight)}px`);
+
+  let preheaderHeight = 0;
+  const syncPreheaderHeight = () => {
+    if (!preheader) {
+      if (preheaderHeight !== 0) {
+        preheaderHeight = 0;
+        root.style.setProperty('--preheader-height', '0px');
+      }
+      return;
+    }
+    const style = window.getComputedStyle(preheader);
+    const isFixed = style.position === 'fixed';
+    const measured = isFixed ? preheader.getBoundingClientRect().height : 0;
+    if (Math.abs(measured - preheaderHeight) > 0.5) {
+      preheaderHeight = measured;
+      root.style.setProperty('--preheader-height', `${Math.round(preheaderHeight)}px`);
+    }
+  };
+  syncPreheaderHeight();
 
   // Add class to body to identify course page for CSS selectors
   if (isCoursePagee) {
@@ -214,6 +234,7 @@ const animateStepValue = (el, target, options = {}) => {
 
   const onScroll = () => {
     if (!header || !heroSection) return;
+    syncPreheaderHeight();
     const y = window.scrollY;
     const navOpen = document.documentElement.classList.contains('nav-open');
 
@@ -333,6 +354,11 @@ const animateStepValue = (el, target, options = {}) => {
 
   window.addEventListener('scroll', onScroll, { passive: true });
   window.addEventListener('resize', onScroll);
+  window.addEventListener('resize', syncPreheaderHeight);
+  window.addEventListener('orientationchange', syncPreheaderHeight);
+  const preheaderMq = window.matchMedia('(max-width: 980px)');
+  if (typeof preheaderMq.addEventListener === 'function') preheaderMq.addEventListener('change', syncPreheaderHeight);
+  else if (typeof preheaderMq.addListener === 'function') preheaderMq.addListener(syncPreheaderHeight);
   onScroll();
 })();
 

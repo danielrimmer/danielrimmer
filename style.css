@@ -105,7 +105,10 @@ a { color: inherit; text-decoration: none; }
 
 /* Preheader bar */
 .preheader {
-  position: relative;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
   z-index: 40;
   background: var(--acc-cyan);
   padding: 8px 0;
@@ -115,6 +118,7 @@ a { color: inherit; text-decoration: none; }
   color: var(--bg-1);
   text-align: center;
   line-height: 1.4;
+  transition: background-color 0.3s ease;
 }
 
 .preheader .container {
@@ -146,7 +150,7 @@ a { color: inherit; text-decoration: none; }
   font-weight: 700;
 }
 
-@media (max-width: 720px) {
+@media (max-width: 980px) {
   .preheader {
     padding: 6px 0;
     font-size: 0.75rem;
@@ -156,30 +160,31 @@ a { color: inherit; text-decoration: none; }
     padding: 0 15px;
   }
 
-  /* Add spacing between preheader and header on mobile */
+  /* Add spacing between preheader and header on mobile and tablet */
   .site-header {
     top: 40px !important;
   }
 }
 
-/* Mobile and tablet: preheader and header background color on scroll */
-@media (max-width: 980px) {
+@media (max-width: 720px) {
   .preheader {
-    transition: background-color 0.3s ease;
+    padding: 6px 0;
+    font-size: 0.75rem;
   }
 
-  .preheader.scrolled {
-    background: #0d2a52; /* Dark blue */
+  .preheader p {
+    padding: 0 15px;
   }
+}
 
-  .site-header {
-    transition: background-color 0.3s ease;
-  }
+/* Preheader and header background color on scroll (all device sizes) */
+.preheader.scrolled {
+  background: #0d2a52; /* Dark blue */
+}
 
-  .site-header.mobile-scrolled {
-    background: rgba(13, 42, 82, 0.95) !important;
-    border-bottom: 1px solid rgba(0, 224, 255, 0.15);
-  }
+.site-header.mobile-scrolled {
+  background: rgba(13, 42, 82, 0.95) !important;
+  border-bottom: 1px solid rgba(0, 224, 255, 0.15);
 }
 
 a, button, .btn, .nav-toggle, .process-step, .lang-switch {
@@ -259,6 +264,9 @@ html[lang="en"] .lang-en, html[lang="he"] .lang-he { background: rgba(255,255,25
   border-bottom: none;
   box-shadow: none;
   transition: transform .3s ease, opacity .3s ease, background-color .3s ease;
+  display: block;
+  visibility: visible;
+  opacity: 1;
 }
 .site-header::after {
   content: "";

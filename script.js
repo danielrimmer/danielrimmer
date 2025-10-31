@@ -201,6 +201,11 @@ const animateStepValue = (el, target, options = {}) => {
   let headerHeight = header?.getBoundingClientRect().height || 76;
   if (header) root.style.setProperty('--header-height', `${Math.round(headerHeight)}px`);
 
+  // Add class to body to identify course page for CSS selectors
+  if (isCoursePagee) {
+    document.body.id = 'course-page';
+  }
+
   // Track sidebar state
   let isSidebarMode = false;
   let sidebarExpandTimeout = null;

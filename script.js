@@ -239,19 +239,13 @@ const animateStepValue = (el, target, options = {}) => {
         header.classList.remove('course-scrolled');
       }
     } else if (!isDesktop()) {
-      // Mobile/Tablet (index and he pages): Add dark blue background to header and preheader on scroll
+      // Mobile/Tablet (index and he pages): Add dark blue background to header only on scroll
       const scrollThreshold = 30; // Change color after scrolling down 30px
 
       if (y >= scrollThreshold) {
         header.classList.add('mobile-scrolled');
-        if (preheader) {
-          preheader.classList.add('scrolled');
-        }
       } else {
         header.classList.remove('mobile-scrolled');
-        if (preheader) {
-          preheader.classList.remove('scrolled');
-        }
       }
     } else {
       // Desktop (index and he pages): Hide preheader after scrolling down 20px

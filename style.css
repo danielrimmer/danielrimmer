@@ -153,8 +153,8 @@ a { color: inherit; text-decoration: none; }
   font-weight: 700;
 }
 
-/* Tablet (index and he pages): keep preheader and header fixed */
-@media (min-width: 721px) and (max-width: 980px) {
+/* Mobile and tablet (index and he pages): keep preheader and header fixed */
+@media (max-width: 980px) {
   body:not(#course-page) .preheader {
     position: fixed;
     top: 0;
@@ -177,11 +177,6 @@ a { color: inherit; text-decoration: none; }
   .preheader p {
     padding: 0 15px;
   }
-
-  /* Add spacing between preheader and header on mobile */
-  .site-header {
-    top: 40px !important;
-  }
 }
 
 /* Course page: header dark blue background on scroll */
@@ -191,16 +186,8 @@ a { color: inherit; text-decoration: none; }
   transition: background-color 0.3s ease;
 }
 
-/* Mobile and tablet: preheader and header background color on scroll */
+/* Mobile and tablet: header background color on scroll (preheader stays original color) */
 @media (max-width: 980px) {
-  .preheader {
-    transition: background-color 0.3s ease;
-  }
-
-  .preheader.scrolled {
-    background: #0d2a52; /* Dark blue */
-  }
-
   .site-header {
     transition: background-color 0.3s ease;
   }

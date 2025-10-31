@@ -227,9 +227,6 @@ const animateStepValue = (el, target, options = {}) => {
     // Remove the old blue background styling
     header.classList.remove('is-solid');
 
-    // Handle preheader visibility and styling
-    const preheader = document.querySelector('.preheader');
-
     // Course page: Add dark blue background to header after scrolling 40px
     if (isCoursePagee) {
       const courseScrollThreshold = 40;
@@ -246,18 +243,6 @@ const animateStepValue = (el, target, options = {}) => {
         header.classList.add('mobile-scrolled');
       } else {
         header.classList.remove('mobile-scrolled');
-      }
-    } else {
-      // Desktop (index and he pages): Hide preheader after scrolling down 20px
-      const preheaderHideThreshold = 20;
-      if (y >= preheaderHideThreshold) {
-        if (preheader) {
-          preheader.classList.add('hidden');
-        }
-      } else {
-        if (preheader) {
-          preheader.classList.remove('hidden');
-        }
       }
     }
 

@@ -222,9 +222,11 @@ const animateStepValue = (el, target, options = {}) => {
     // Remove the old blue background styling
     header.classList.remove('is-solid');
 
+    // Handle preheader visibility and styling
+    const preheader = document.querySelector('.preheader');
+
     // Mobile/Tablet: Add dark blue background to header and preheader on scroll
     if (!isDesktop()) {
-      const preheader = document.querySelector('.preheader');
       const scrollThreshold = 30; // Change color after scrolling down 30px
 
       if (y >= scrollThreshold) {
@@ -236,6 +238,18 @@ const animateStepValue = (el, target, options = {}) => {
         header.classList.remove('mobile-scrolled');
         if (preheader) {
           preheader.classList.remove('scrolled');
+        }
+      }
+    } else {
+      // Desktop: Hide preheader after scrolling down 20px
+      const preheaderHideThreshold = 20;
+      if (y >= preheaderHideThreshold) {
+        if (preheader) {
+          preheader.classList.add('hidden');
+        }
+      } else {
+        if (preheader) {
+          preheader.classList.remove('hidden');
         }
       }
     }

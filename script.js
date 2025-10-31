@@ -282,19 +282,12 @@ const animateStepValue = (el, target, options = {}) => {
         }
       }
     } else if (!isDesktop()) {
-      // Mobile/tablet: use original hide/show logic (but not for course page)
-      if (!isCoursePagee) {
-        if (!navOpen && y >= heroSectionHeight) {
-          header.classList.add('hide');
-          header.classList.remove('is-pinned');
-        } else {
-          header.classList.remove('hide');
-        }
+      // Mobile/tablet: keep header visible (no hiding)
+      header.classList.remove('hide');
 
-        // Clean up sidebar classes on mobile
-        header.classList.remove('sidebar-mode', 'sidebar-expanded', 'sidebar-collapsing');
-        isSidebarMode = false;
-      }
+      // Clean up sidebar classes on mobile
+      header.classList.remove('sidebar-mode', 'sidebar-expanded', 'sidebar-collapsing');
+      isSidebarMode = false;
     }
 
     // Update active navigation link based on current section

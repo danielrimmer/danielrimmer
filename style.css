@@ -1035,9 +1035,7 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
   text-transform: uppercase;
   max-width: min(640px, 90%);
   line-height: 1.2;
-  min-height: 1.2em;
-  max-height: 2.4em;
-  overflow: hidden;
+  min-height: 2.4em;
 }
 .detail-text {
   margin: 0;

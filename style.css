@@ -3223,6 +3223,11 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
     direction: rtl;
   }
 
+  /* Step 6 in Hebrew: smaller font for single-line text */
+  [dir="rtl"] .process-detail-panel[data-active-step="6"] .detail-text {
+    font-size: clamp(12px, 1.8vw, 14px);
+  }
+
   /* Ensure wallpaper is visible on tablet */
   [dir="rtl"] .process-bg {
     display: block !important;

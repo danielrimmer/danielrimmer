@@ -1040,6 +1040,9 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
   font-size: clamp(18px, 2vw, 24px);
   line-height: 1.55;
   max-width: min(640px, 90%);
+  min-height: 4.65em;
+  display: flex;
+  align-items: flex-start;
 }
 .process-bonus {
   display: grid;

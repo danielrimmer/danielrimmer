@@ -217,7 +217,7 @@ button:hover,
 html[lang="en"] .hero .h1 { font-size: calc(0.92 * clamp(30px, 4.4vw, 52px)); }
 .h2 { font: 900 clamp(24px, 3.2vw, 36px) Poppins, Montserrat, "Space Grotesk", Roboto, Inter, sans-serif; margin: 0 0 12px; letter-spacing: .04em; }
 .h3 { font: 700 clamp(18px, 2vw, 22px) Poppins, Montserrat, "Space Grotesk", Roboto, Inter, sans-serif; margin: 0 0 8px; letter-spacing: .02em; }
-.muted { color: #a0a0a0; } /* Improved contrast: was #b7b7b7 (3.8:1), now 5.2:1 WCAG AA */
+.muted { color: #ffffff; } /* White text */
 
 .hero .hero-gradient {
   background: linear-gradient(130deg, #0b0c10 0%, #0f1c2e 28%, #00e0ff 62%, #ff3c7e 100%);

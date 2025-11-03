@@ -3244,10 +3244,6 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
 [dir="rtl"] .bonus-card p { text-align: right; }
 
 @media (min-width: 981px) {
-  [dir="rtl"] .process-detail-panel[data-active-step="6"] .detail-text {
-    white-space: nowrap;
-    overflow-wrap: normal;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {

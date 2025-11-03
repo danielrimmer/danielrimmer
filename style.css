@@ -942,7 +942,7 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
 }
 .process-inner { position: relative; z-index: 2; display: grid; gap: 48px; }
 .process-heading { display: grid; gap: 12px; max-width: 680px; }
-.process-heading .muted { font-size: clamp(14px, 2vw, 18px); line-height: 1.5; }
+.process-heading .muted { font-size: clamp(12px, 1.6vw, 15px); line-height: 1.4; max-width: 550px; }
 
 /* Center process title on mobile and tablet */
 @media (max-width: 980px) {

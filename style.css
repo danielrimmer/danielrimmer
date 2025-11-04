@@ -147,6 +147,15 @@ a { color: inherit; text-decoration: none; }
   font-weight: 700;
 }
 
+.preheader.preheader-alert {
+  background: linear-gradient(120deg, rgba(0, 224, 255, 0.9), rgba(255, 60, 126, 0.9));
+  color: #05070e;
+}
+
+.preheader.preheader-alert .preheader-next {
+  color: #05070e;
+}
+
 /* Mobile and tablet (index and he pages): keep preheader and header fixed */
 @media (max-width: 980px) {
   body:not(#course-page) .preheader {
@@ -248,11 +257,28 @@ html[lang="en"] .hero .h1 { font-size: calc(0.92 * clamp(30px, 4.4vw, 52px)); }
 }
 .btn-ghost { background: transparent; border: 1px solid var(--border); }
 .btn-ghost:hover { border-color: rgba(0,224,255,.45); box-shadow: 0 0 0 4px rgba(0,224,255,.12); }
+.btn-secondary {
+  background: rgba(0, 224, 255, 0.12);
+  border-color: rgba(0, 224, 255, 0.35);
+  color: #ffffff;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.03);
+}
+.btn-secondary:hover {
+  border-color: rgba(0, 224, 255, 0.6);
+  box-shadow: 0 0 0 4px rgba(0, 224, 255, 0.18);
+  transform: translateY(-1px);
+}
 
 /* Language switch in header */
 .lang-group { display: inline-flex; gap: 4px; }
 .lang-switch { height: 40px; display: inline-flex; align-items: center; justify-content: center; padding: 8px 12px; border-radius: 10px; font-weight: 600; min-width: 46px; }
 html[lang="en"] .lang-en, html[lang="he"] .lang-he { background: rgba(255,255,255,.08); border-color: rgba(0,224,255,.45); }
+.lang-switch.is-current {
+  background: rgba(255,255,255,.12);
+  border: 1px solid rgba(0,224,255,.55);
+  color: #ffffff;
+  pointer-events: none;
+}
 
 .glass {
   background: linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.02));
@@ -761,6 +787,25 @@ html[lang="en"] .lang-en, html[lang="he"] .lang-he { background: rgba(255,255,25
 /* Place English hero text in the first (left) column */
 html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: left; }
 .hero-cta .btn { padding: 14px 22px; font-size: 16px; }
+.hero-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.18);
+  background: rgba(0, 0, 0, 0.3);
+  font-size: 11px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.75);
+  margin-bottom: 16px;
+}
+.hero-note {
+  margin: 12px 0 0;
+  font-weight: 600;
+  color: rgba(0, 224, 255, 0.9);
+}
 
 /* CTA reveal after typing */
 .hero-cta { opacity: 0; visibility: hidden; transform: translateY(6px); transition: opacity .35s ease, transform .35s ease, visibility 0s linear .35s; }
@@ -862,6 +907,25 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
   text-align: right;
 }
 
+.section-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 12px;
+  height: 28px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.16);
+  color: rgba(255,255,255,.72);
+  letter-spacing: 0.4em;
+  font-size: 11px;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+.section-head.align-left {
+  text-align: left;
+}
+
 /* Ensure the symbol itself is perfectly centered in RTL as well */
 [dir="rtl"] .scroll-mouse {
   left: 50% !important;
@@ -900,6 +964,45 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
   html[lang="en"] .about-inner { align-items: stretch; }
   html[lang="en"] .about-visual { align-self: stretch; }
   html[lang="en"] .about-visual .avatar-frame { height: 100%; aspect-ratio: auto; }
+}
+
+/* Problem section */
+.problem {
+  background: linear-gradient(180deg, rgba(5, 8, 16, 0.96), rgba(7, 13, 25, 0.9));
+}
+.problem-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  gap: clamp(24px, 6vw, 48px);
+  align-items: start;
+}
+.problem-lead {
+  border-radius: 24px;
+  border: 1px solid rgba(255,255,255,.08);
+  background: linear-gradient(135deg, rgba(17, 26, 44, 0.85), rgba(8, 12, 20, 0.9));
+  padding: clamp(24px, 4vw, 36px);
+  display: grid;
+  gap: 12px;
+  font-size: 17px;
+  line-height: 1.6;
+}
+.problem-lead p { margin: 0; }
+.problem-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.problem-highlight {
+  font-size: 1.12rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+.problem-cta .btn { margin-top: 6px; }
+
+@media (max-width: 900px) {
+  .problem-layout {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* Projects */
@@ -1031,7 +1134,7 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
 }
 .detail-title {
   margin: 0;
-  font: 800 clamp(26px, 4vw, 48px) Poppins, Montserrat, "Space Grotesk", Roboto, Inter, sans-serif;
+  font: 800 clamp(22px, 3.5vw, 40px) Poppins, Montserrat, "Space Grotesk", Roboto, Inter, sans-serif;
   letter-spacing: .08em;
   text-transform: uppercase;
   max-width: min(640px, 90%);
@@ -1056,6 +1159,12 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
   margin: 0;
   text-align: center;
   color: #F4EAD2;
+}
+.bonus-value-tagline {
+  margin: 0;
+  text-align: center;
+  color: rgba(255,255,255,.84);
+  font-size: clamp(14px, 2vw, 16px);
 }
 
 .bonus {
@@ -2690,7 +2799,7 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
   }
 
   .detail-title {
-    font-size: clamp(16px, 3.5vw, 20px);
+    font-size: clamp(14px, 3vw, 18px);
     font-weight: 800;
     letter-spacing: .08em;
     text-transform: uppercase;
@@ -3431,6 +3540,27 @@ html[lang="en"] .hero-copy { grid-column: 1; justify-self: start; text-align: le
   flex-direction: column;
   gap: clamp(20px, 3vw, 28px);
 }
+.contact-steps {
+  border-top: 1px solid rgba(255,255,255,.08);
+  padding-top: 18px;
+}
+.contact-steps-title {
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-size: 13px;
+  color: rgba(255,255,255,.7);
+  margin: 0 0 10px;
+}
+.contact-steps ol {
+  margin: 0;
+  padding-left: 18px;
+  color: rgba(255,255,255,.85);
+  display: grid;
+  gap: 6px;
+  font-size: 15px;
+}
+.contact-steps li { line-height: 1.6; }
 
 .contact-detail {
   position: relative;
@@ -3905,6 +4035,26 @@ html[dir="rtl"] .pricing-promo-text {
 /* Color swap for prices with old/new price comparison */
 .pricing-price:has(.pricing-price-old) span:last-child {
   color: #ff3c7e;
+}
+.pricing-card.highlighted {
+  border-width: 2px;
+  background:
+    linear-gradient(160deg, rgba(18, 24, 44, 0.98), rgba(12, 18, 34, 0.92)) padding-box,
+    linear-gradient(135deg, rgba(255, 60, 126, 0.8), rgba(0, 224, 255, 0.8)) border-box;
+  box-shadow:
+    0 32px 80px rgba(0, 0, 0, 0.6),
+    0 0 40px rgba(255, 60, 126, 0.35);
+}
+.pricing-flag {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.22);
+  letter-spacing: 0.32em;
+  font-size: 12px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.85);
 }
 
 .pricing-divider {

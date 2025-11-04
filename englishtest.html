@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Website Design That Sells — Daniel Rimmer</title>
+    <meta
+      name="description"
+      content="Stop wasting money on pretty websites that don't convert. Get a high-converting website built in weeks, not months."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css?v=whoami-25" />
+    <link rel="icon" type="image/svg+xml" href="images/logo-initials.svg" />
+    <style>
+      .sales-hero {
+        position: relative;
+        overflow: hidden;
+        padding: clamp(80px, 12vh, 160px) 0;
+        background: var(--bg-1);
+      }
+
+      .sales-hero-inner {
+        display: grid;
+        gap: 48px;
+        align-items: center;
+      }
+
+      .sales-hero-copy h1 {
+        font: 800 clamp(32px, 5vw, 56px) Poppins, sans-serif;
+        line-height: 1.1;
+        letter-spacing: -0.02em;
+        margin: 0 0 24px;
+        color: #ffffff;
+      }
+
+      .sales-hero-copy h1 strong {
+        color: var(--acc-cyan);
+      }
+
+      .sales-hero-copy p {
+        font-size: clamp(16px, 2vw, 18px);
+        line-height: 1.6;
+        color: rgba(255,255,255,.9);
+        margin: 0 0 32px;
+      }
+
+      .sales-hero-cta {
+        display: flex;
+        gap: 16px;
+        flex-wrap: wrap;
+      }
+
+      .sales-hero-cta .btn {
+        padding: 14px 32px;
+        font-size: 15px;
+        font-weight: 600;
+        border-radius: 6px;
+      }
+
+      .btn-primary-large {
+        background: var(--grad-cm);
+        color: #000;
+        border: none;
+        cursor: pointer;
+        transition: all .3s ease;
+      }
+
+      .btn-primary-large:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 30px rgba(0, 224, 255, 0.3);
+      }
+
+      .btn-secondary {
+        background: transparent;
+        border: 2px solid rgba(255,255,255,.3);
+        color: #ffffff;
+        cursor: pointer;
+        transition: all .3s ease;
+      }
+
+      .btn-secondary:hover {
+        border-color: var(--acc-cyan);
+        color: var(--acc-cyan);
+      }
+
+      .problem-section {
+        padding: clamp(60px, 10vh, 120px) 0;
+        background: var(--bg-1);
+      }
+
+      .problem-header {
+        text-align: center;
+        margin-bottom: 48px;
+      }
+
+      .problem-header h2 {
+        font: 800 clamp(28px, 4.5vw, 44px) Poppins, sans-serif;
+        letter-spacing: -0.02em;
+        margin: 0 0 16px;
+        color: #ffffff;
+      }
+
+      .problem-list {
+        display: grid;
+        gap: 16px;
+        max-width: 700px;
+        margin: 0 auto;
+      }
+
+      .problem-item {
+        padding: 16px;
+        background: rgba(255,255,255,.03);
+        border: 1px solid rgba(255,255,255,.08);
+        border-radius: 8px;
+        font-size: 16px;
+        line-height: 1.6;
+        color: rgba(255,255,255,.9);
+      }
+
+      .problem-item strong {
+        color: var(--acc-mag);
+        font-weight: 700;
+      }
+
+      .solution-section {
+        padding: clamp(60px, 10vh, 120px) 0;
+        background: var(--bg-2);
+      }
+
+      .solution-header {
+        text-align: center;
+        margin-bottom: 48px;
+      }
+
+      .solution-header h2 {
+        font: 800 clamp(28px, 4.5vw, 44px) Poppins, sans-serif;
+        letter-spacing: -0.02em;
+        margin: 0 0 16px;
+        color: #ffffff;
+      }
+
+      .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 24px;
+      }
+
+      .feature-card {
+        padding: 32px;
+        background: rgba(255,255,255,.04);
+        border: 1px solid rgba(255,255,255,.08);
+        border-radius: 12px;
+        transition: all .3s ease;
+      }
+
+      .feature-card:hover {
+        background: rgba(0, 224, 255, 0.08);
+        border-color: rgba(0, 224, 255, 0.3);
+        transform: translateY(-4px);
+      }
+
+      .feature-card h3 {
+        font: 700 clamp(16px, 2vw, 18px) Poppins, sans-serif;
+        margin: 0 0 12px;
+        color: var(--acc-cyan);
+      }
+
+      .feature-card p {
+        font-size: 15px;
+        line-height: 1.6;
+        color: rgba(255,255,255,.85);
+        margin: 0;
+      }
+
+      .process-sales {
+        padding: clamp(60px, 10vh, 120px) 0;
+        background: var(--bg-1);
+      }
+
+      .process-sales h2 {
+        font: 800 clamp(28px, 4.5vw, 44px) Poppins, sans-serif;
+        letter-spacing: -0.02em;
+        text-align: center;
+        margin: 0 0 48px;
+        color: #ffffff;
+      }
+
+      .process-steps {
+        display: grid;
+        gap: 32px;
+        max-width: 900px;
+        margin: 0 auto;
+      }
+
+      .process-step-sales {
+        display: grid;
+        grid-template-columns: 60px 1fr;
+        gap: 24px;
+        align-items: start;
+      }
+
+      .process-step-number {
+        font: 800 32px Poppins, sans-serif;
+        color: var(--acc-cyan);
+        flex-shrink: 0;
+      }
+
+      .process-step-content h3 {
+        font: 700 clamp(18px, 2.5vw, 22px) Poppins, sans-serif;
+        margin: 0 0 12px;
+        color: #ffffff;
+      }
+
+      .process-step-content p {
+        font-size: 15px;
+        line-height: 1.7;
+        color: rgba(255,255,255,.85);
+        margin: 0;
+      }
+
+      .cta-tagline {
+        font-size: 14px;
+        color: var(--acc-cyan);
+        font-weight: 600;
+        margin: 0 0 8px;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+
+      .pricing-section-sales {
+        padding: clamp(60px, 10vh, 120px) 0;
+        background: var(--bg-2);
+      }
+
+      .pricing-section-sales h2 {
+        font: 800 clamp(28px, 4.5vw, 44px) Poppins, sans-serif;
+        text-align: center;
+        margin: 0 0 24px;
+        color: #ffffff;
+      }
+
+      .pricing-tagline {
+        text-align: center;
+        font-size: 16px;
+        color: rgba(255,255,255,.7);
+        margin: 0 0 48px;
+      }
+
+      .pricing-cards-sales {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 32px;
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+
+      .pricing-card-sales {
+        padding: 32px;
+        background: rgba(255,255,255,.05);
+        border: 1px solid rgba(255,255,255,.1);
+        border-radius: 12px;
+        position: relative;
+      }
+
+      .pricing-card-sales.featured {
+        border-color: var(--acc-cyan);
+        background: rgba(0, 224, 255, 0.08);
+        transform: scale(1.02);
+      }
+
+      .pricing-badge {
+        position: absolute;
+        top: -12px;
+        right: 20px;
+        background: var(--grad-cm);
+        color: #000;
+        padding: 6px 16px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 700;
+      }
+
+      .pricing-card-sales h3 {
+        font: 700 clamp(20px, 3vw, 24px) Poppins, sans-serif;
+        margin: 0 0 12px;
+        color: #ffffff;
+      }
+
+      .pricing-card-sales p {
+        font-size: 14px;
+        color: rgba(255,255,255,.7);
+        margin: 0 0 24px;
+        line-height: 1.6;
+      }
+
+      .pricing-amount {
+        margin: 24px 0;
+      }
+
+      .pricing-original {
+        font-size: 14px;
+        color: rgba(255,255,255,.5);
+        text-decoration: line-through;
+        margin-right: 8px;
+      }
+
+      .pricing-current {
+        font: 800 clamp(28px, 4vw, 44px) Poppins, sans-serif;
+        color: var(--acc-cyan);
+      }
+
+      .pricing-save {
+        font-size: 13px;
+        color: var(--acc-mag);
+        font-weight: 600;
+        margin-top: 6px;
+      }
+
+      .pricing-list {
+        list-style: none;
+        padding: 0;
+        margin: 24px 0;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .pricing-list li {
+        font-size: 14px;
+        color: rgba(255,255,255,.8);
+        display: flex;
+        gap: 8px;
+      }
+
+      .pricing-list li:before {
+        content: "✓";
+        color: var(--acc-cyan);
+        font-weight: 700;
+        flex-shrink: 0;
+      }
+
+      .pricing-cta-sales {
+        margin-top: 24px;
+      }
+
+      .pricing-cta-sales .btn {
+        width: 100%;
+        text-align: center;
+        display: block;
+        padding: 12px 24px;
+      }
+
+      .contact-section-sales {
+        padding: clamp(60px, 10vh, 120px) 0;
+        background: var(--bg-1);
+        text-align: center;
+      }
+
+      .contact-section-sales h2 {
+        font: 800 clamp(32px, 5vw, 52px) Poppins, sans-serif;
+        margin: 0 0 24px;
+        color: #ffffff;
+      }
+
+      .contact-section-sales p {
+        font-size: clamp(16px, 2vw, 18px);
+        color: rgba(255,255,255,.8);
+        margin: 0 0 40px;
+        line-height: 1.6;
+      }
+
+      .contact-methods {
+        display: flex;
+        gap: 24px;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .contact-method {
+        padding: 20px 28px;
+        background: rgba(255,255,255,.05);
+        border: 1px solid rgba(255,255,255,.1);
+        border-radius: 8px;
+        transition: all .3s ease;
+      }
+
+      .contact-method:hover {
+        background: rgba(0, 224, 255, 0.1);
+        border-color: var(--acc-cyan);
+      }
+
+      .contact-method-icon {
+        font-size: 24px;
+        margin-bottom: 8px;
+      }
+
+      .contact-method-label {
+        font-size: 12px;
+        color: rgba(255,255,255,.6);
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        margin-bottom: 4px;
+      }
+
+      .contact-method-value {
+        font-size: 15px;
+        color: #ffffff;
+        font-weight: 600;
+      }
+
+      @media (min-width: 768px) {
+        .sales-hero-inner {
+          grid-template-columns: 1fr 1fr;
+        }
+
+        .contact-methods {
+          gap: 32px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Skip to main content link for keyboard navigation -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Preheader bar -->
+    <div class="preheader">
+      <div class="container">
+        <a href="#" class="preheader-link">
+          <p><span class="preheader-next">LAUNCH</span> Special: 65% Off Website Design — Only 4 Spots Available</p>
+        </a>
+      </div>
+    </div>
+
+    <header class="site-header" id="home">
+      <div class="container nav">
+        <nav class="nav-links nav-left" aria-label="Primary left">
+          <a href="#home" class="active">Home</a>
+          <a href="#problem">Problem</a>
+          <a href="#why-me">Why Me</a>
+          <a href="#pricing">Pricing</a>
+        </nav>
+
+        <a href="#home" class="logo" aria-label="Go to top">
+          <img class="logo-img" src="images/logo-initials-animated.svg?v=1" alt="Daniel Rimmer Logo" />
+        </a>
+
+        <div class="right-side">
+          <nav class="nav-links nav-right" aria-label="Primary right">
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+          </nav>
+        </div>
+
+        <button class="nav-toggle" aria-expanded="false" aria-label="Toggle navigation">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+
+      <div class="mobile-menu" aria-label="Mobile navigation">
+        <div class="mobile-menu-panel" role="dialog" aria-modal="true" aria-label="Primary navigation" tabindex="-1">
+          <nav class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#problem">Problem</a>
+            <a href="#why-me">Why Me</a>
+            <a href="#about">About</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#contact">Contact</a>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <main id="main-content">
+      <!-- Hero Section -->
+      <section class="sales-hero section reveal" id="hero">
+        <div class="container sales-hero-inner">
+          <div class="sales-hero-copy">
+            <h1>Your Website Should Be Your <strong>#1 Salesperson</strong>. Not a Digital Brochure That Collects Dust.</h1>
+            <p>Most businesses waste ₪10,000+ on "pretty" websites that don't convert. I build websites that actually sell — combining persuasive copy, conversion-focused design, and fast-loading code that turns visitors into customers while you sleep.</p>
+            <div class="sales-hero-cta">
+              <a class="btn btn-primary-large" href="#pricing">See Launch Pricing (65% Off)</a>
+              <a class="btn btn-secondary" href="#contact">Book Free Strategy Call</a>
+            </div>
+            <p style="font-size: 14px; color: rgba(255,255,255,.6); margin-top: 16px;">⚡ Only 4 spots available at this price</p>
+          </div>
+          <div class="sales-hero-media">
+            <video class="bg-video" autoplay muted loop playsinline preload="metadata" src="images/mecoding.mp4?v=1"></video>
+          </div>
+        </div>
+
+        <div class="scroll-indicator" aria-label="Scroll Down">
+          <span class="scroll-label">Scroll Down</span>
+          <span class="scroll-mouse" aria-hidden="true"></span>
+        </div>
+      </section>
+
+      <!-- Problem Section -->
+      <section class="problem-section section reveal" id="problem" aria-labelledby="problem-title">
+        <div class="container">
+          <div class="problem-header">
+            <h2 id="problem-title">Here's The Brutal Truth About Most Websites...</h2>
+          </div>
+          <div class="problem-list">
+            <div class="problem-item">❌ They cost ₪15,000-30,000 and take 3-6 months to build</div>
+            <div class="problem-item">❌ You're locked into expensive monthly maintenance fees (₪500-2,000/month)</div>
+            <div class="problem-item">❌ They load slowly — losing customers before they even see your offer</div>
+            <div class="problem-item">❌ The design looks generic — identical to 1,000 other businesses</div>
+            <div class="problem-item">❌ The copy is boring — written by designers who don't understand sales psychology</div>
+            <div class="problem-item">❌ <strong>You can't update anything yourself</strong> — trapped calling your developer for every tiny change</div>
+          </div>
+          <div style="text-align: center; margin-top: 48px;">
+            <p style="font-size: 18px; color: rgba(255,255,255,.8); font-weight: 600;">The result? Your "investment" sits there doing nothing while your competitors steal your customers.</p>
+            <p style="font-size: 16px; color: var(--acc-mag); margin-top: 16px; font-weight: 600;">That's not a website. That's expensive decoration.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Why Me Section -->
+      <section class="solution-section section reveal" id="why-me" aria-labelledby="why-me-title">
+        <div class="container">
+          <div class="solution-header">
+            <h2 id="why-me-title">Why Work With Me Instead of Agencies, Fiverr, or DIY Platforms?</h2>
+            <p style="font-size: 16px; color: rgba(255,255,255,.7); margin-top: 16px;">Because I give you the best of all worlds: Agency-quality work at freelance prices, with none of the downsides.</p>
+          </div>
+
+          <div style="background: rgba(0, 224, 255, 0.08); border: 1px solid rgba(0, 224, 255, 0.3); border-radius: 12px; padding: 32px; margin-bottom: 48px;">
+            <p style="font-size: 16px; line-height: 1.8; color: rgba(255,255,255,.9); margin: 0;">
+              <strong style="color: var(--acc-cyan); font-size: 17px;">🎯 Here's What Makes Me Different:</strong><br><br>
+              I'm not just a developer. I'm a business-minded designer with sales experience who understands what makes people buy. Every pixel, every word, every button is strategically placed to guide visitors toward becoming customers.
+            </p>
+          </div>
+
+          <div class="features-grid">
+            <div class="feature-card">
+              <h3>Custom, Responsive Design</h3>
+              <p>Zero template BS — 100% custom for your brand. No cookie-cutter themes. Your site is built from scratch to match your personality and stand out from competitors. Flawless on every device.</p>
+            </div>
+
+            <div class="feature-card">
+              <h3>Full Control of Your Website</h3>
+              <p>You own everything — no hostage situations. I'll teach you how to update your own site. No begging developers. No monthly ransom fees. Total independence.</p>
+            </div>
+
+            <div class="feature-card">
+              <h3>Fast Development & Performance</h3>
+              <p>Delivered in weeks, not months. While agencies take 6 months, I deliver in 4-12 weeks. Your site loads faster than 95% of websites (Google loves this = higher rankings).</p>
+            </div>
+
+            <div class="feature-card">
+              <h3>ROI-Focused Design</h3>
+              <p>Every element is designed to make you money. With B2B and B2C sales experience, I know what makes people click "Buy Now." Conversion-optimized based on proven psychology.</p>
+            </div>
+
+            <div class="feature-card">
+              <h3>SEO Built-In</h3>
+              <p>Your site is coded for Google from day one. Clean structure, fast loading, mobile-optimized — everything search engines reward. Get found. Get traffic. Get customers.</p>
+            </div>
+
+            <div class="feature-card">
+              <h3>Copy That Sells</h3>
+              <p>Most designers can't write. I can. Your copy will speak directly to customer pain points, build trust, and guide them toward buying. This alone is worth 3x the investment.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Process Section -->
+      <section class="process-sales section reveal" id="process">
+        <div class="container">
+          <h2>How We'll Build Your Revenue-Generating Website</h2>
+          <p style="text-align: center; color: rgba(255,255,255,.7); font-size: 16px; margin-bottom: 48px;">No guesswork. No endless revisions. Just a proven 6-step system that gets you from "invisible online" to "customers knocking down your door."</p>
+
+          <div class="process-steps">
+            <div class="process-step-sales">
+              <div class="process-step-number">01</div>
+              <div class="process-step-content">
+                <h3>Discover What Makes You Different</h3>
+                <p>We dig deep into what makes your competitors weak and you strong. I'll extract the unique selling points your market is craving (even if you don't see them yet).</p>
+              </div>
+            </div>
+
+            <div class="process-step-sales">
+              <div class="process-step-number">02</div>
+              <div class="process-step-content">
+                <h3>Map Your Customer's Brain</h3>
+                <p>I research your target audience's pain points, desires, and objections. Then we craft a message that speaks directly to what keeps them up at night.</p>
+              </div>
+            </div>
+
+            <div class="process-step-sales">
+              <div class="process-step-number">03</div>
+              <div class="process-step-content">
+                <h3>Design the Conversion Path</h3>
+                <p>Every section, every button, every image is strategically placed to guide visitors from curiosity to action. No random layouts. Just proven conversion architecture.</p>
+              </div>
+            </div>
+
+            <div class="process-step-sales">
+              <div class="process-step-number">04</div>
+              <div class="process-step-content">
+                <h3>Build It Fast, Build It Right</h3>
+                <p>I code your site with clean, efficient code that loads instantly and works flawlessly on every device. No bloated plugins. No security nightmares.</p>
+              </div>
+            </div>
+
+            <div class="process-step-sales">
+              <div class="process-step-number">05</div>
+              <div class="process-step-content">
+                <h3>Write Copy That Actually Sells</h3>
+                <p>Using sales psychology and persuasive techniques from years of B2B/B2C experience, I write words that turn skeptics into buyers. This is where I shine.</p>
+              </div>
+            </div>
+
+            <div class="process-step-sales">
+              <div class="process-step-number">06</div>
+              <div class="process-step-content">
+                <h3>Launch + Train You for Independence</h3>
+                <p>We go live, I teach you how to manage updates yourself, and you get 60 days of support. After that? You're fully independent. No ongoing fees. No vendor lock-in.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Bonuses Section -->
+      <section class="bonus section reveal" id="bonus-services" aria-labelledby="bonus-services-title">
+        <div class="bonus-bg" aria-hidden="true">
+          <img class="bonus-bg-image" src="images/bonus-wallpaper.webp" alt="Abstract geometric blue background" loading="lazy" decoding="async" />
+        </div>
+        <div class="container bonus-inner">
+          <div class="process-bonus">
+            <p class="bonus-value-tagline">🎁 Four Bonuses Worth ₪4,500 — Included FREE</p>
+            <h2 class="h2 bonus-title" id="bonus-services-title">Because A Great Website Needs More Than Just Design</h2>
+
+            <div class="bonus-cards bonus-cards-mobile">
+              <div class="bonus-card">
+                <img class="bonus-card-image" src="images/card1.webp" alt="Website Management Training" loading="lazy" decoding="async" />
+                <h3>Website Management Training</h3>
+                <p>I don't just hand you the keys and disappear. I'll personally train you to update your own site — change text, swap images, adjust prices. Full independence. Zero ongoing developer costs.</p>
+              </div>
+              <div class="bonus-card">
+                <img class="bonus-card-image" src="images/card2.webp" alt="Professional Email Setup" loading="lazy" decoding="async" />
+                <h3>Professional Email Setup</h3>
+                <p>Stop using @gmail.com for business. I'll set up your professional email (you@yourbusiness.com) for less than ₪15/month. Instant credibility boost.</p>
+              </div>
+              <div class="bonus-card">
+                <img class="bonus-card-image" src="images/card3.webp" alt="Complete Online Launch" loading="lazy" decoding="async" />
+                <h3>Complete Online Launch Package</h3>
+                <p>Domain connection, hosting setup, SSL security, Google indexing — all the technical headaches handled for you. You wake up one morning and your business is live.</p>
+              </div>
+              <div class="bonus-card">
+                <img class="bonus-card-image" src="images/card4.webp" alt="Logo Design" loading="lazy" decoding="async" />
+                <h3>Professional Logo Design</h3>
+                <p>Your website needs a memorable visual identity. I'll design a clean, professional logo that works everywhere — website, business cards, social media. One brand, zero confusion.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- About Section -->
+      <section class="about section reveal" id="about" data-wallpaper="whoami">
+        <div class="about-bg" aria-hidden="true"></div>
+        <div class="container about-inner glass">
+          <div class="about-copy">
+            <h2 class="h2">Why I'm Doing This (And Why You Should Care)</h2>
+            <p>
+              Here's the deal: I'm not some kid fresh out of a coding bootcamp. I've spent years in B2B and B2C sales, understanding what makes customers say "yes." I know the psychology behind buying decisions. I've studied what converts and what flops.
+            </p>
+            <p>
+              Then I taught myself to code. Not because I wanted to be a "developer" — but because I was tired of seeing businesses waste money on beautiful websites that don't sell anything.
+            </p>
+            <p>
+              My unfair advantage? I combine three skills most freelancers don't have: (1) Strategic design that guides visitors toward action, (2) Clean, fast code that search engines love, and (3) Persuasive copywriting that speaks to customer pain points.
+            </p>
+            <p style="font-weight: 600; color: var(--acc-cyan); margin-top: 24px;">
+              Most designers can make things pretty. Most developers can write code. Most copywriters can write words. But very few can do all three — and understand business strategy while doing it.
+            </p>
+            <p style="margin-top: 16px; font-size: 16px;">
+              Bottom line: If you want a website that looks professional AND actually brings in customers, we should talk.
+            </p>
+          </div>
+          <div class="about-visual">
+            <div class="avatar-frame">
+              <img class="avatar-img" src="images/portrait.webp" width="400" height="400" alt="Portrait of Daniel Rimmer" loading="lazy" decoding="async" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Pricing Section -->
+      <section class="pricing-section-sales section reveal" id="pricing" aria-labelledby="pricing-title">
+        <div class="container">
+          <h2 id="pricing-title">Launch Special Pricing (Save 65%)</h2>
+          <p class="pricing-tagline">
+            I'm taking on my first 4 Israeli clients at massive discounts to build my local portfolio. After these 4 spots fill up, prices triple.<br>
+            <strong style="color: var(--acc-cyan);">⚡ This Offer Expires When 4 Spots Are Filled</strong>
+          </p>
+
+          <div class="pricing-cards-sales">
+            <div class="pricing-card-sales">
+              <h3>Sales Copy Only</h3>
+              <p>Already have a website but it's not converting? I'll rewrite your entire site with persuasive copy that turns visitors into buyers.</p>
+
+              <div class="pricing-amount">
+                <div class="pricing-current">₪2,999</div>
+              </div>
+
+              <ul class="pricing-list">
+                <li>Free strategy call</li>
+                <li>1-hour brainstorming session</li>
+                <li>Competitor research</li>
+                <li>Complete copywriting overhaul</li>
+                <li>One revision round</li>
+                <li>Implementation on your site</li>
+                <li>Timeline: 1-2 weeks</li>
+              </ul>
+
+              <div class="pricing-cta-sales">
+                <a class="btn btn-primary-large" href="#contact" style="width: 100%;">Book Your Strategy Call</a>
+              </div>
+            </div>
+
+            <div class="pricing-card-sales featured">
+              <div class="pricing-badge">MOST POPULAR</div>
+              <h3>Super Website</h3>
+              <p>Perfect for small businesses who want a professional online presence that generates leads.</p>
+
+              <div class="pricing-amount">
+                <span class="pricing-original">₪10,000</span>
+                <div class="pricing-current">₪3,499</div>
+                <div class="pricing-save">Save ₪6,501 (65% off)</div>
+              </div>
+
+              <ul class="pricing-list">
+                <li>Everything in Sales Copy</li>
+                <li>Up to 5 custom pages</li>
+                <li>Landing page with sales copy</li>
+                <li>Mobile-responsive design</li>
+                <li>Lightning-fast loading</li>
+                <li>SEO optimization</li>
+                <li>Two rounds of revisions</li>
+                <li>Training + 60-day support</li>
+                <li>All 4 bonuses (₪4,500 value)</li>
+                <li>Timeline: 4-6 weeks</li>
+              </ul>
+
+              <div class="pricing-cta-sales">
+                <a class="btn btn-primary-large" href="#contact" style="width: 100%;">Claim This Package →</a>
+              </div>
+            </div>
+
+            <div class="pricing-card-sales">
+              <h3>Mega Website</h3>
+              <p>For established businesses that need a powerful, multi-page website designed to dominate their market.</p>
+
+              <div class="pricing-amount">
+                <span class="pricing-original">₪20,000</span>
+                <div class="pricing-current">₪6,999</div>
+                <div class="pricing-save">Save ₪13,001 (65% off)</div>
+              </div>
+
+              <ul class="pricing-list">
+                <li>Everything in Super Website</li>
+                <li>Up to 10 custom pages</li>
+                <li>Advanced homepage copy</li>
+                <li>Priority 60-day support</li>
+                <li>2 free months maintenance</li>
+                <li>Advanced SEO setup</li>
+                <li>Two full revision rounds</li>
+                <li>Complete training (videos)</li>
+                <li>All 4 bonuses (₪4,500 value)</li>
+                <li>Timeline: 8-12 weeks</li>
+              </ul>
+
+              <div class="pricing-cta-sales">
+                <a class="btn btn-primary-large" href="#contact" style="width: 100%;">Book Strategy Call →</a>
+              </div>
+            </div>
+          </div>
+
+          <div style="text-align: center; margin-top: 48px; padding: 32px; background: rgba(255,255,255,.03); border-radius: 12px; border: 1px solid rgba(255,255,255,.08);">
+            <p style="font-size: 16px; color: rgba(255,255,255,.9); margin: 0;">
+              <strong style="color: var(--acc-cyan); font-size: 18px;">⏰ Seriously — Only 4 Spots Available</strong><br><br>
+              I can only take on 4 clients at these prices because each project gets my full attention for 4-12 weeks. Once they're gone, the next available slot will be at full price (₪10,000-20,000).
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact Section -->
+      <section class="contact-section-sales section reveal" id="contact">
+        <div class="container">
+          <h2>Ready to Dominate Online?</h2>
+          <p>Let's talk about your website. Book a free 20-minute strategy call. I'll show you exactly what's holding your current site back (or what you need if you're starting from scratch) — with zero pressure to buy.</p>
+
+          <div class="contact-methods">
+            <a href="tel:+972533191655" class="contact-method">
+              <div class="contact-method-icon">📞</div>
+              <div class="contact-method-label">Phone</div>
+              <div class="contact-method-value">+972 53 319 1655</div>
+            </a>
+            <a href="https://wa.me/972535455468" target="_blank" rel="noopener noreferrer" class="contact-method">
+              <div class="contact-method-icon">💬</div>
+              <div class="contact-method-label">WhatsApp</div>
+              <div class="contact-method-value">(Fastest Response)</div>
+            </a>
+            <a href="mailto:daniyelyaakov@gmail.com" class="contact-method">
+              <div class="contact-method-icon">✉️</div>
+              <div class="contact-method-label">Email</div>
+              <div class="contact-method-value">daniyelyaakov@gmail.com</div>
+            </a>
+          </div>
+
+          <div style="margin-top: 48px; padding: 32px; background: rgba(0, 224, 255, 0.08); border: 1px solid rgba(0, 224, 255, 0.3); border-radius: 12px;">
+            <h3 style="font: 700 20px Poppins, sans-serif; margin: 0 0 20px; color: #ffffff;">What happens next?</h3>
+            <ol style="text-align: left; max-width: 500px; margin: 0 auto; color: rgba(255,255,255,.85); font-size: 15px; line-height: 1.8;">
+              <li>You reach out via WhatsApp, phone, or email</li>
+              <li>We schedule a 20-minute strategy call</li>
+              <li>I audit your situation and show you what's possible</li>
+              <li>If we're a good fit, you claim one of the 4 discounted spots</li>
+              <li>4-12 weeks later, you have a website that actually sells</li>
+            </ol>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>© 2025 Daniel Rimmer — All Rights Reserved.</p>
+      </div>
+    </footer>
+
+    <script src="script.js?v=process-21" defer></script>
+  </body>
+</html>

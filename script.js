@@ -34,6 +34,12 @@ const animateStepValue = (el, target, options = {}) => {
     // Special handling for home/hero - scroll to absolute top (0)
     if (el.id === 'home' || el.id === 'hero') {
       window.scrollTo({ top: 0, behavior: 'smooth' });
+      // Move focus to hero section for keyboard navigation
+      setTimeout(() => {
+        el.setAttribute('tabindex', '-1');
+        el.focus();
+        el.removeAttribute('tabindex');
+      }, 600); // Wait for smooth scroll to complete
       return;
     }
 
@@ -44,6 +50,13 @@ const animateStepValue = (el, target, options = {}) => {
     const scrollOffset = sidebarActive || shouldShowFromTop ? 0 : offset();
     const top = el.getBoundingClientRect().top + window.scrollY - scrollOffset;
     window.scrollTo({ top, behavior: 'smooth' });
+
+    // Move focus to target section for keyboard navigation
+    setTimeout(() => {
+      el.setAttribute('tabindex', '-1');
+      el.focus();
+      el.removeAttribute('tabindex');
+    }, 600); // Wait for smooth scroll to complete
   };
 
   document.querySelectorAll('a[href^="#"]').forEach((a) => {
@@ -60,6 +73,20 @@ const animateStepValue = (el, target, options = {}) => {
       }
     });
   });
+})();
+
+// Handle skip link focus for keyboard accessibility
+(function () {
+  const skipLink = document.querySelector('.skip-link');
+  const mainContent = document.getElementById('main-content');
+  if (skipLink && mainContent) {
+    skipLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      mainContent.setAttribute('tabindex', '-1');
+      mainContent.focus();
+      mainContent.removeAttribute('tabindex');
+    });
+  }
 })();
 
 // Reveal on scroll

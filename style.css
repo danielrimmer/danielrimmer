@@ -288,6 +288,16 @@ html[lang="en"] .lang-en, html[lang="he"] .lang-he { background: rgba(255,255,25
   box-shadow: var(--shadow);
 }
 
+/* Universal focus-visible style for keyboard navigation */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--acc-cyan);
+  outline-offset: 2px;
+}
+
 /* Header */
 .site-header {
   position: fixed; top: 32px; left: 0; right: 0; z-index: 50;

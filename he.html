@@ -16,7 +16,7 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="style.css?v=whoami-26" />
+    <link rel="stylesheet" href="style.css?v=whoami-25" />
     <link rel="icon" type="image/svg+xml" href="images/logo-initials.svg" />
     <style id="he-header-fix">
       /* --- Hebrew header specific styles --- */
@@ -37,69 +37,7 @@
 
       /* Desktop header layout */
       @media (min-width: 721px) {
-        /* Normal header (not sidebar mode) */
-        .site-header:not(.sidebar-mode) .container.nav {
-          position: relative;
-          display: block !important;
-          padding: 20px 0;
-          min-height: 90px;
-        }
-
-        .site-header:not(.sidebar-mode) .nav-left {
-          display: flex;
-          align-items: center;
-          gap: 16px;
-          z-index: 2;
-        }
-
-        .site-header:not(.sidebar-mode) .right-side {
-          display: flex;
-          align-items: center;
-          gap: 16px;
-          white-space: nowrap;
-          z-index: 2
-        }
-
-        /* Enlarge Hebrew header nav links (not language buttons) - only in normal mode */
-        .site-header:not(.sidebar-mode) .nav-links a {
-          font-size: 1.15em;
-        }
-
-        /* Absolutely center the logo - only in normal mode */
-        .site-header:not(.sidebar-mode) .logo {
-          position: absolute;
-          left: 50%;
-          top: 50%;
-          transform: translate(-50%, -50%);
-          display: inline-flex;
-          align-items: center;
-          z-index: 1;
-          pointer-events: auto;
-        }
-
-        .site-header:not(.sidebar-mode) .logo .logo-img {
-          height: 70px;
-          width: auto;
-          display: block;
-        }
-
-        /* Fix RTL layout - keep language buttons on far right */
-        .site-header:not(.sidebar-mode) .right-side {
-          position: absolute;
-          right: 0;
-          top: 50%;
-          transform: translateY(-50%);
-          display: flex;
-          align-items: center;
-          gap: 16px;
-        }
-
-        .site-header:not(.sidebar-mode) .nav-left {
-          position: absolute;
-          left: 0;
-          top: 50%;
-          transform: translateY(-50%);
-        }
+        /* Use default header layout from style.css - no custom overrides */
 
         /* Sidebar mode - Hebrew: position on RIGHT side */
         .site-header.sidebar-mode {
@@ -259,24 +197,11 @@
         }
       }
 
-      /* Hide pricing promo section */
-      .pricing-promo {
-        display: none !important;
-      }
     </style>
   </head>
   <body>
     <!-- קישור לדלוג לתוכן ראשי לניווט מקלדת -->
     <a href="#main-content" class="skip-link">דלוג לתוכן ראשי</a>
-
-    <!-- Preheader bar -->
-    <div class="preheader">
-      <div class="container">
-        <a href="course.html?lang=he" class="preheader-link">
-          <p><span class="preheader-next">חדש</span> קורס - צור את האתר שלך בשלוש שבועות. ללא ניסיון קודם בתכנות</p>
-        </a>
-      </div>
-    </div>
 
     <header class="site-header" id="home">
       <div class="container nav">

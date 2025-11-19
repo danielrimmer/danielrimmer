@@ -300,7 +300,7 @@ select:focus-visible {
 
 /* Header */
 .site-header {
-  position: fixed; top: 32px; left: 0; right: 0; z-index: 50;
+  position: fixed; top: 0; left: 0; right: 0; z-index: 50;
   background: rgba(15, 28, 46, 0);
   border-bottom: none;
   box-shadow: none;
@@ -4622,15 +4622,4 @@ img.img-loaded {
 .card-video-full[preload="auto"],
 .card-video-full.loaded {
   background: transparent;
-}
-
-/* Hide pricing promo section for Hebrew version */
-.pricing-promo {
-  display: none !important;
-  visibility: hidden !important;
-  height: 0 !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  border: none !important;
-  overflow: hidden !important;
 }

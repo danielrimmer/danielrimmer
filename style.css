@@ -4623,3 +4623,14 @@ img.img-loaded {
 .card-video-full.loaded {
   background: transparent;
 }
+
+/* Hide pricing promo section for Hebrew version */
+.pricing-promo {
+  display: none !important;
+  visibility: hidden !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  overflow: hidden !important;
+}

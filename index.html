@@ -19,14 +19,30 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Daniel Rimmer — Web Designer & Front‑End Developer" />
     <meta name="twitter:description" content="Portfolio of Daniel Rimmer — Web Designer & Front‑End Developer crafting modern, elegant, and high‑performing websites." />
-    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
+
+    <!-- Performance optimizations -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+
+    <!-- Preload critical CSS -->
+    <link rel="preload" href="style.css?v=whoami-25" as="style" />
+    <link rel="stylesheet" href="style.css?v=whoami-25" />
+
+    <!-- Load fonts with font-display swap for better performance -->
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@700;800&display=swap"
       rel="stylesheet"
+      media="print"
+      onload="this.media='all'"
     />
-    <link rel="stylesheet" href="style.css?v=whoami-25" />
+    <noscript>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@700;800&display=swap"
+        rel="stylesheet"
+      />
+    </noscript>
+
     <link rel="icon" type="image/svg+xml" href="images/logo-initials.svg" />
     <style>
       /* Hide Course link in navigation and mobile menu */

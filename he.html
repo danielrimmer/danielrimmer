@@ -2,21 +2,38 @@
 <html lang="he" dir="rtl">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#0b0c10" />
+    <meta name="color-scheme" content="light dark" />
     <title>דניאל רימר — מעצב אתרים ומפתח פרונט‑אנד</title>
     <meta
       name="description"
       content="הפורטפוליו של דניאל רימר — מעצב אתרים ומפתח פרונט‑אנד היוצר חוויות דיגיטליות מודרניות ואלגנטיות."
     />
-    <meta name="theme-color" content="#000000" />
-    <meta name="color-scheme" content="light dark" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
+
+    <!-- Performance optimizations -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+
+    <!-- Preload critical CSS -->
+    <link rel="preload" href="style.css?v=whoami-25" as="style" />
+    <link rel="stylesheet" href="style.css?v=whoami-25" />
+
+    <!-- Load fonts with font-display swap for better performance -->
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@700;800&display=swap"
       rel="stylesheet"
+      media="print"
+      onload="this.media='all'"
     />
-    <link rel="stylesheet" href="style.css?v=whoami-25" />
+    <noscript>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@700;800&display=swap"
+        rel="stylesheet"
+      />
+    </noscript>
+
     <link rel="icon" type="image/svg+xml" href="images/logo-initials.svg" />
     <style id="he-header-fix">
       /* --- Hebrew header specific styles --- */
